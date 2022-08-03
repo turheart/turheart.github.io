@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>Hello World</title>
+    <url>/2022/08/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Redis面试题</title>
     <url>/2022/08/03/Redis%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     <content><![CDATA[<h1 id="1-Redis基础篇"><a href="#1-Redis基础篇" class="headerlink" title="1 Redis基础篇"></a>1 Redis基础篇</h1><blockquote>
 <h3 id="1、简单介绍一下Redis优点和缺点？"><a href="#1、简单介绍一下Redis优点和缺点？" class="headerlink" title="1、简单介绍一下Redis优点和缺点？"></a>1、简单介绍一下Redis优点和缺点？</h3></blockquote>
@@ -21,12 +39,12 @@
 <p>高性能：</p>
 <p>假如用户第一次访问数据库中的某些数据。这个过程会比较慢，因为是从硬盘上读取的。将该用户访问的数据存在数缓存中，这样下一次再访问这些数据的</p>
 <p>时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。如果数据库中的对应数据改变的之后，同步改变缓存中相应的数据即可！</p>
-<img src="images/image-20220218134011125.png" alt="image-20220218134011125" style="zoom:50%;" /> 
+<img src="Redis面试题/image-20220218134011125.png" alt="image-20220218134011125" style="zoom:50%;" /> 
 
 <p>高并发：</p>
 <p>直接操作缓存能够承受的请求是远远大于直接访问数据库的，所以我们可以考虑把数据库中的部分数据转移到缓存中去，这样用户的一部分请求会直接到缓</p>
 <p>存这里而不用经过数据库。</p>
-<img src="images/image-20220218134126349.png" alt="image-20220218134126349" style="zoom:50%;" /> 
+<img src="Redis面试题/image-20220218134126349.png" alt="image-20220218134126349" style="zoom:50%;" /> 
 
 <blockquote>
 <h3 id="3、常见的缓存同步方案都有哪些？-高频"><a href="#3、常见的缓存同步方案都有哪些？-高频" class="headerlink" title="3、常见的缓存同步方案都有哪些？(高频)"></a>3、常见的缓存同步方案都有哪些？(高频)</h3></blockquote>
@@ -120,7 +138,7 @@
 <blockquote>
 <h3 id="8、缓存穿透、缓存击穿、缓存雪崩解决方案？-高频"><a href="#8、缓存穿透、缓存击穿、缓存雪崩解决方案？-高频" class="headerlink" title="8、缓存穿透、缓存击穿、缓存雪崩解决方案？(高频)"></a>8、缓存穿透、缓存击穿、缓存雪崩解决方案？(高频)</h3></blockquote>
 <p>加入缓存以后的数据查询流程：</p>
-<p><img src="/images/image-20220505084631909.png" alt="image-20220505084631909">  </p>
+<p><img src="/Redis%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220505084631909.png" alt="image-20220505084631909">  </p>
 <p><strong>缓存穿透</strong>：</p>
 <p>概述：指查询一个一定<strong>不存在</strong>的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到 DB 去查询，可能导致 DB 挂</p>
 <p>掉。</p>
@@ -143,15 +161,15 @@
 <blockquote>
 <h3 id="9、什么是布隆过滤器？-高频"><a href="#9、什么是布隆过滤器？-高频" class="headerlink" title="9、什么是布隆过滤器？(高频)"></a>9、什么是布隆过滤器？(高频)</h3></blockquote>
 <p><strong>概述</strong>：布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上由一个很长的二进制向量(二进制数组)和一系列随机映射函数(hash函数)。</p>
-<p><img src="/images/image-20220505124612288.png" alt="image-20220505124612288">   </p>
+<p><img src="/Redis%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220505124612288.png" alt="image-20220505124612288">   </p>
 <p><strong>作用</strong>：布隆过滤器可以用于检索一个元素是否在一个集合中。</p>
 <p><strong>添加元素</strong>：将商品的id(id1)存储到布隆过滤器</p>
-<p><img src="/images/image-20220505125247251.png" alt="image-20220505125247251">   </p>
+<p><img src="/Redis%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220505125247251.png" alt="image-20220505125247251">   </p>
 <p>假设当前的布隆过滤器中提供了三个hash函数，此时就使用三个hash函数对id1进行哈希运算，运算结果分别为：1、4、9那么就会数组中对应的位置数</p>
 <p>据更改为1。</p>
 <p><strong>判断数据是否存在</strong>：使用相同的hash函数对数据进行哈希运算，得到哈希值。然后判断该哈希值所对应的数组位置是否都为1，如果不都是则说明该数据</p>
 <p><strong>肯定不存在</strong>。如果是说明该数据<strong>可能</strong>存在，因为哈希运算可能就会存在重复的情况。如下图所示：</p>
-<p><img src="/images/image-20220505130720532.png" alt="image-20220505130720532">   </p>
+<p><img src="/Redis%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220505130720532.png" alt="image-20220505130720532">   </p>
 <p>假设添加完id1和id2数据以后，布隆过滤器中数据的存储方式如上图所示，那么此时要判断id3对应的数据在布隆过滤器中是否存在，按照上述的判断规则</p>
 <p>应该是存在，但是id3这个数据在布隆过滤器中压根就不存在，这种情况就属于误判。</p>
 <p><strong>误判率</strong>：数组越小误判率就越大，数组越大误判率就越小，但是同时带来了更多的内存消耗。</p>
@@ -379,23 +397,9 @@
 
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/08/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+      <tags>
+        <tag>面试题</tag>
+        <tag>Redis</tag>
+      </tags>
   </entry>
 </search>
