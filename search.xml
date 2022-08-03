@@ -397,9 +397,11 @@
 
 
 ]]></content>
+      <categories>
+        <category>面试题</category>
+      </categories>
       <tags>
-        <tag>面试题</tag>
-        <tag>Redis</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
 </search>
