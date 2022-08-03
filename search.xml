@@ -408,6 +408,185 @@
 ]]></content>
   </entry>
   <entry>
+    <title>hexo-Next主题美化</title>
+    <url>/2022/08/03/hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲述如何对搭建的hexo博客美化。hexo博客默认主题是landscape，hexo支持很多不同的主题，本文主要介绍Next主题的美化。</p>
+<span id="more"></span>
+
+
+
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>文章中的站点配置文件是博客根目录下的_config.yml文件，主题配置文件是\themes\next中的_config.yml文件。</li>
+<li>建议在文章中的单个部分完成后，本地部署成功后再上传到GitHub。具体操作如下:<br>博客根目录下打开Git Bash，输入如下命令：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>然后将Git Bash窗口最小化(不是关闭)，在浏览器地址栏输入：localhost:4000，进入查看是否含有添加的效果。如果本地部署成功，通过依次输入如下命令部署到GitHub：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在部署到GitHub后可能需要重新登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名，点击save保存。</li>
+</ul>
+<h1 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h1><h2 id="安装Next主题"><a href="#安装Next主题" class="headerlink" title="安装Next主题"></a>安装Next主题</h2><ul>
+<li>进入博客根目录，打开Git Bash，输入如下命名:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开站点配置文件，将landscape改为hexo</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<h2 id="选择主题样式"><a href="#选择主题样式" class="headerlink" title="选择主题样式"></a>选择主题样式</h2><p>Next提供了四种主题风格scheme，可以在主题配置文件中找到如下内容配置:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+
+<p>通过删减scheme前面的#号进行修改，这里我采用的Gemini。</p>
+<h1 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h1><h2 id="更改博客favicon图标"><a href="#更改博客favicon图标" class="headerlink" title="更改博客favicon图标"></a>更改博客favicon图标</h2><p>博客favicon图标获取网址：<a href="https://www.iconfont.cn/">https://www.iconfont.cn</a>, 选择你喜欢的图标，下载后放置在&#x2F;themes&#x2F;next&#x2F;sources&#x2F;images目录下，将图标名称改为icon.png，并在主题配置文件中进行如下配置，只需要设置small和medium两个就可以：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: /images/icon.png</span><br><span class="line">  medium: /images/icon.png</span><br><span class="line">  apple_touch_icon: /images/128x128.png</span><br><span class="line">  safari_pinned_tab: /images/logo2.svg</span><br></pre></td></tr></table></figure>
+
+<h2 id="更改站点属性-作者，语言等"><a href="#更改站点属性-作者，语言等" class="headerlink" title="更改站点属性(作者，语言等)"></a>更改站点属性(作者，语言等)</h2><p>打开站点配置文件，修改如下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Site:</span><br><span class="line">title: 房东的猫 #网站标题（博客站点名字）。</span><br><span class="line">subtitle: 人间理想 #网站副标题，显示在标题下方</span><br><span class="line">description: 偏绿少年 #个人描述，类似签名</span><br><span class="line">keywords: </span><br><span class="line">author: 房东的猫 #博客文章作者</span><br><span class="line">language: zh-CN  #设置博客站点语言为中文</span><br><span class="line">timezone:  #设置时区，默认当前电脑时区</span><br></pre></td></tr></table></figure>
+
+<h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><h3 id="设置菜单"><a href="#设置菜单" class="headerlink" title="设置菜单"></a>设置菜单</h3><p>打开主题配置文件，修改如下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+
+<p>删减#号即可添加相关内容。设置完菜单需要新建页面，以标签为例介绍。</p>
+<p>添加标签页面:</p>
+<ul>
+<li>进入博客根目录，打开Git Bash，输入如下命令:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开根目录下的source文件夹，打开新生成的tags文件夹，打开生成的index.md文件。修改其中的内容为如下内容:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2020-5-20 12:40:00</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加搜索功能"><a href="#增加搜索功能" class="headerlink" title="增加搜索功能"></a>增加搜索功能</h3><ul>
+<li>安装插件<br>打开博客根目录，打开Git Bash，输入如下命名:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开站点配置文件添加以下内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开主题配置文件找到local_search改为true：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="侧边栏"><a href="#侧边栏" class="headerlink" title="侧边栏"></a>侧边栏</h2><h3 id="社交信息设置"><a href="#社交信息设置" class="headerlink" title="社交信息设置"></a>社交信息设置</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/yourname || fab fa-github</span><br><span class="line">  E-Mail: mailto:yourname@gmail.com || fa fa-envelope</span><br><span class="line">  #Weibo: https://weibo.com/yourname || fab fa-weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || fab fa-google</span><br><span class="line">  #Twitter: https://twitter.com/yourname || fab fa-twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || fab fa-facebook</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || fab fa-youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || fab fa-instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || fab fa-skype</span><br></pre></td></tr></table></figure>
+
+<p>Next 默认给出了一些模板，我们只要删减前面的#号并将其中的链接改为自己的链接就可以了，当然你也可以自己定义，格式为:</p>
+<p>名字: 链接 || 图标名，图标必须是FontAwesome网站中能找到的图标名。</p>
+<h3 id="头像设置"><a href="#头像设置" class="headerlink" title="头像设置"></a>头像设置</h3><ul>
+<li>选取你想要的头像，改名为author.jpg放在\themes\next\source\images中。</li>
+<li>打开主题配置文件，找到并修改如下内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /images/author.jpg #头像文件目录</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: true #设置鼠标放在头像上面是否旋转</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: true #头像是否设为圆形</span><br></pre></td></tr></table></figure>
+
+<h2 id="页面设置"><a href="#页面设置" class="headerlink" title="页面设置"></a>页面设置</h2><h3 id="顶部加载条"><a href="#顶部加载条" class="headerlink" title="顶部加载条"></a>顶部加载条</h3><p>打开主题配置文件，找到pace改为true，并从上面提供的样式中选择一种填入pace_theme中即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  # Themes list:</span><br><span class="line">  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple</span><br><span class="line">  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览文章时显示浏览进度"><a href="#浏览文章时显示浏览进度" class="headerlink" title="浏览文章时显示浏览进度"></a>浏览文章时显示浏览进度</h3><p>主题设置文件查找scrollpercent修改为true:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">back2top:</span><br><span class="line">  enable: true</span><br><span class="line">  # Back to top in sidebar.</span><br><span class="line">  sidebar: false</span><br><span class="line">  # Scroll percent label in b2t button.</span><br><span class="line">  scrollpercent: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="鼠标点击出现小红心"><a href="#鼠标点击出现小红心" class="headerlink" title="鼠标点击出现小红心"></a>鼠标点击出现小红心</h3><ul>
+<li>themes&#x2F;next&#x2F;source&#x2F;js&#x2F;下新建clicklove.js，内容如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">!function(e,t,a)&#123;function n()&#123;c(&quot;.heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: &#x27;&#x27;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;&quot;),o(),r()&#125;function r()&#123;for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&quot;left:&quot;+d[e].x+&quot;px;top:&quot;+d[e].y+&quot;px;opacity:&quot;+d[e].alpha+&quot;;transform:scale(&quot;+d[e].scale+&quot;,&quot;+d[e].scale+&quot;) rotate(45deg);background:&quot;+d[e].color+&quot;;z-index:99999&quot;);requestAnimationFrame(r)&#125;function o()&#123;var t=&quot;function&quot;==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e)&#123;t&amp;&amp;t(),i(e)&#125;&#125;function i(e)&#123;var a=t.createElement(&quot;div&quot;);a.className=&quot;heart&quot;,d.push(&#123;el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()&#125;),t.body.appendChild(a)&#125;function c(e)&#123;var a=t.createElement(&quot;style&quot;);a.type=&quot;text/css&quot;;try&#123;a.appendChild(t.createTextNode(e))&#125;catch(t)&#123;a.styleSheet.cssText=e&#125;t.getElementsByTagName(&quot;head&quot;)[0].appendChild(a)&#125;function s()&#123;return&quot;rgb(&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;)&quot;&#125;var d=[];e.requestAnimationFrame=function()&#123;return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e)&#123;setTimeout(e,1e3/60)&#125;&#125;(),n()&#125;(window,document);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改themes&#x2F;next&#x2F;layout&#x2F;_layout.swig 文件末尾添加:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 页面点击小红心 --&gt;</span><br><span class="line">&#123;% if theme.clicklove %&#125;</span><br><span class="line">      &lt;script type=&quot;text/javascript&quot; src=&quot;/js/clicklove.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>确定无误后在主题配置文件末尾添加：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 显示页面红心</span><br><span class="line">clicklove: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改tag图标"><a href="#修改tag图标" class="headerlink" title="修改tag图标"></a>修改tag图标</h3><p>打开主题配置文件，找到并修改以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Use icon instead of the symbol # to indicate the tag at the bottom of the post</span><br><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="文章底部布局"><a href="#文章底部布局" class="headerlink" title="文章底部布局"></a>文章底部布局</h3><p>按照如下注释自行修改:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 博客底部布局</span><br><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  #since: 2015 #设置建站时间，不设置则默认为当前年份</span><br><span class="line"></span><br><span class="line">  # Icon between year and copyright info.</span><br><span class="line">  icon:</span><br><span class="line">    # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/</span><br><span class="line">    # `heart` is recommended with animation in red (#ff0000).</span><br><span class="line">    name: heart  # 作者图标，默认为author，自定义的图标需来自fontawesome中</span><br><span class="line">    # If you want to animate the icon, set it to true.</span><br><span class="line">    animated: true  # 图标是否闪动</span><br><span class="line">    # Change the color of icon, using Hex Code.</span><br><span class="line">    color: &quot;#808080&quot; # 图标颜色</span><br><span class="line"></span><br><span class="line">  # If not defined, `author` from Hexo `_config.yml` will be used.</span><br><span class="line">  copyright: 房东的猫 #设置底部显示的名字，默认为站点配置文件的author名字</span><br><span class="line"></span><br><span class="line">  powered:</span><br><span class="line">    # Hexo link (Powered by Hexo).</span><br><span class="line">    enable: false # 是否显示 Powered By Hexo</span><br><span class="line">    # Version info of Hexo after Hexo link (vX.X.X).</span><br><span class="line">    version: false # 是否显示 Hexo 版本</span><br><span class="line"></span><br><span class="line">  theme:</span><br><span class="line">    # Theme &amp; scheme info link (Theme - NexT.scheme).</span><br><span class="line">    enable: false # 是否显示主题信息</span><br><span class="line">    # Version info of NexT after scheme info (vX.X.X).</span><br><span class="line">    version: false # 是否显示主题版本</span><br><span class="line"></span><br><span class="line">  # Beian ICP information for Chinese users. See: http://www.beian.miit.gov.cn</span><br><span class="line">  beian:</span><br><span class="line">    enable: false # 是否显示网站备案信息</span><br><span class="line">    icp:</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加宠物看版娘"><a href="#添加宠物看版娘" class="headerlink" title="添加宠物看版娘"></a>添加宠物看版娘</h3><ul>
+<li>安装插件</li>
+</ul>
+<p>博客根目录下打开Git Bash，输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载相应模型<br>在Git Bash输入如下命令，下载相应模型，将packagename更换成模型名称即可，更多模型可访问：<a href="https://github.com/xiazeyu/live2d-widget-models">https://github.com/xiazeyu/live2d-widget-models</a> 。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install packagename</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开站点配置文件，添加如下内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  pluginModelPath: assets/</span><br><span class="line">  model:</span><br><span class="line">    use: packagename  </span><br><span class="line">  display:</span><br><span class="line">    position: right</span><br><span class="line">    width: 150 </span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: false   </span><br><span class="line">  rect:</span><br><span class="line">    opacity:0.7</span><br></pre></td></tr></table></figure>
+
+<h2 id="文章内容相关设置"><a href="#文章内容相关设置" class="headerlink" title="文章内容相关设置"></a>文章内容相关设置</h2><h3 id="显示全文"><a href="#显示全文" class="headerlink" title="显示全文"></a>显示全文</h3><ul>
+<li>自动形成摘要</li>
+</ul>
+<p>打开主题配置文件，修改内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true  </span><br><span class="line">  length: 150 # 截取的内容长度</span><br><span class="line">  </span><br><span class="line"># Read more button</span><br><span class="line"># If true, the read more button would be displayed in excerpt section.</span><br><span class="line">read_more_btn: true # 是否显示阅读全文按钮</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>手动生成摘要</li>
+</ul>
+<p>在你写的文章想要截取的内容之后添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码块设置"><a href="#代码块设置" class="headerlink" title="代码块设置"></a>代码块设置</h3><p>打开主题配置文件按照如下注释内容自行修改:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  # 代码块主题, 可选的值为 normal; night; night eighties; night blue; night bright</span><br><span class="line">  highlight_theme: night</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  # 显示复制按钮</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style: # 按钮显示格式</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加版权信息"><a href="#添加版权信息" class="headerlink" title="添加版权信息"></a>添加版权信息</h3><p>打开hexo配置文件找到并修改如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># URL</span><br><span class="line">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span><br><span class="line">url: http://example.com</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: true # Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br><span class="line">  trailing_html: true # Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></pre></td></tr></table></figure>
+
+<p>打开主题配置文件找到并修改如下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Creative Commons 4.0 International License.</span><br><span class="line"># See: https://creativecommons.org/share-your-work/licensing-types-examples</span><br><span class="line"># Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero</span><br><span class="line"># You can set a language value if you prefer a translated version of CC license, e.g. deed.zh</span><br><span class="line"># CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org</span><br><span class="line">creative_commons:</span><br><span class="line">  license: by-nc-sa</span><br><span class="line">  sidebar: false</span><br><span class="line">  post: true</span><br><span class="line">  language:</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加博客字数和阅读时间统计功能"><a href="#添加博客字数和阅读时间统计功能" class="headerlink" title="添加博客字数和阅读时间统计功能"></a>添加博客字数和阅读时间统计功能</h3><ul>
+<li>安装插件</li>
+</ul>
+<p>在hexo根目录下打开Git Bash，输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>站点配置文件添加如下内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  symbols: true </span><br><span class="line">  time: true</span><br><span class="line">  total_symbols: true</span><br><span class="line">  total_time: true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主题配置文件找到并修改如下内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  separated_meta: true</span><br><span class="line">  item_text_post: true</span><br><span class="line">  item_text_total: true</span><br><span class="line">  awl: 4</span><br><span class="line">  wpm: 275</span><br></pre></td></tr></table></figure>
+
+<h3 id="本文结束标记"><a href="#本文结束标记" class="headerlink" title="本文结束标记"></a>本文结束标记</h3><p>在路径 \themes\next\layout_macro 中新建 passage-end-tag.swig 文件,并添加以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">        &lt;div style=&quot;text-align:center;color: #ccc;font-size:14px;&quot;&gt;-------------本文结束&lt;i class=&quot;fa fa-paw&quot;&gt;&lt;/i&gt;感谢您的阅读-------------&lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其次打开\themes\next\layout_macro\post.swig文件，在post-body 之后， post-footer 之前添加代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &#x27;passage-end-tag.swig&#x27; %&#125;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开主题配置文件（<code>_config.yml</code>)，在末尾添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 文章末尾添加“本文结束”标记</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+
+<p>原作者：</p>
+<p><a href="https://www.fangdongdemao.com/">https://www.fangdongdemao.com/</a></p>
+]]></content>
+      <categories>
+        <category>hexo博客</category>
+      </categories>
+      <tags>
+        <tag>主题美化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo搭建博客</title>
     <url>/2022/08/03/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要讲述Windows系统下hexo博客的搭建</p>
@@ -472,7 +651,8 @@
 </ol>
 </li>
 </ul>
-<p>转自：<a href="https://www.fangdongdemao.com/2020/05/22/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/">https://www.fangdongdemao.com/2020/05/22/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</a></p>
+<p>原作者：</p>
+<p><a href="https://www.fangdongdemao.com/">https://www.fangdongdemao.com/</a></p>
 ]]></content>
       <categories>
         <category>hexo博客</category>
