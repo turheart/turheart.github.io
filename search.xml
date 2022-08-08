@@ -21,81 +21,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>hexo搭建博客</title>
-    <url>/2022/08/03/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要讲述Windows系统下hexo博客的搭建</p>
-<span id="more"></span>
-
-
-
-<h1 id="hexo博客的搭建"><a href="#hexo博客的搭建" class="headerlink" title="hexo博客的搭建"></a>hexo博客的搭建</h1><h2 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h2><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>下载地址: <a href="https://nodejs.org/">https://nodejs.org</a>, 选择长期支持版(LTS),小白式安装。</p>
-<p>为确保安装成功可以在cmd命令行工具(win+R输入cmd回车)依次输入如下命令验证:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
-
-<p>若显示版本号说明安装成功</p>
-<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>下载地址: <a href="https://git-scm.com/">https://git-scm.com</a>, 由于官网过于慢,不建议官网下载,推荐在淘包镜像下载: <a href="https://npm.taobao.org/mirrors/git-for-windows%E3%80%82">https://npm.taobao.org/mirrors/git-for-windows。</a> 同样小白式安装。若右击屏幕空白处含有如下内容说明安装成功:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git GUI here</span><br><span class="line">Git BASH here</span><br></pre></td></tr></table></figure>
-
-<h2 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h2><h3 id="设置user-name和user-email配置信息，鼠标右击打开Git-Bash-Here依次输入如下命令"><a href="#设置user-name和user-email配置信息，鼠标右击打开Git-Bash-Here依次输入如下命令" class="headerlink" title="设置user.name和user.email配置信息，鼠标右击打开Git Bash Here依次输入如下命令:"></a>设置user.name和user.email配置信息，鼠标右击打开Git Bash Here依次输入如下命令:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;yourusername&quot;</span><br><span class="line">git config --global user.email &quot;youruseremail&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件:"></a>生成ssh密钥文件:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youruseremail&quot;</span><br></pre></td></tr></table></figure>
-
-<p>然后找到生成的.ssh的文件夹中的id_rsa.pub密钥，将全部内容复制。打开GitHub_Settings_key页面，新建new SSH Key。Title为标题，任意填即可，将刚刚复制的id_rsa.pub中的内容粘贴到Key中，最后点击Add SSH Key。可以打开Git Bash，输入如下命令验证:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="配置hexo全局控制命令"><a href="#配置hexo全局控制命令" class="headerlink" title="配置hexo全局控制命令"></a>配置hexo全局控制命令</h3><p>在cmd命令行输入:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><p>准备一个目录存放博客的相关文件，例如我的是E盘，打开Git Bash，在Git Bash 输入如下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-
-<p>为了检测网站生成，依次输入如下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p>最小化Git Bash窗口(注意不要关闭)，然后打开浏览器输入<a href="http://localhost:4000，/">http://localhost:4000，</a></p>
-<h3 id="部署到GitHub"><a href="#部署到GitHub" class="headerlink" title="部署到GitHub"></a>部署到GitHub</h3><h4 id="新建Github仓库"><a href="#新建Github仓库" class="headerlink" title="新建Github仓库"></a>新建Github仓库</h4><p>打开 Github官网 登陆你的Github账号，点击页面右上角的 + 、New repository新建一个repository仓库。填写仓库名，格式必须为:yourusername.github.io，然后点击Create repository。</p>
-<h4 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h4><p>进入你建立的博客目录打开Git Bash，输入如下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>然后打开站点的配置文件_config.yml，找到并修改一下内容:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com//yourusername/yourusername.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<h4 id="完成部署"><a href="#完成部署" class="headerlink" title="完成部署"></a>完成部署</h4><p>打开Git Bash，依次输入如下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>完成后可以在浏览器打开:yourusername.github.io看到部署好的博客。</p>
-<h3 id="绑定域名-非必须内容"><a href="#绑定域名-非必须内容" class="headerlink" title="绑定域名(非必须内容)"></a>绑定域名(非必须内容)</h3><p>虽然在Internet上可以访问我们的网站，但是网址是GitHub提供的:yourusername.github.io，如果我们想使用自己的个性化域名，这就需要绑定域名。此处演示阿里云的域名绑定。</p>
-<h4 id="个人域名获取"><a href="#个人域名获取" class="headerlink" title="个人域名获取"></a>个人域名获取</h4><p>域名购买网址:<a href="https://cn.aliyun.com/">https://cn.aliyun.com</a> (阿里云官网)</p>
-<h4 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h4><p>打开阿里云管理控制台，找到你的个性化域名，进入解析，然后添加解析，包括三条解析记录。</p>
-<p>第一条:记录类型:A，主机记录:@，记录值:192.30.252.154</p>
-<p>第二条:记录类型:A，主机记录:@，记录值:192.30.252.153</p>
-<p>第三条:记录类型:CNAME，主机记录:www，记录值:yourusername.github.io</p>
-<p>然后登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名，点击save保存。</p>
-<h4 id="hexo设置"><a href="#hexo设置" class="headerlink" title="hexo设置"></a>hexo设置</h4><p>进入本地博客文件夹，进入blog&#x2F;sorce目录下，新建一个记事本文件，输入你的域名即可。然后保存，命名为CNAME，注意保存成所有文件而不是txt文件</p>
-<p>完成上述几步，进入blog目录，打开Git Bash，依次输入如下命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>然后在浏览器地址栏输入你的个性化域名将会直接进入你的博客网站。</p>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
-<li>在执行hexo d命令登录GitHub时，需要生成token替换密码登录。token生成步骤如下：<ol>
-<li>登录github账号，点击头像选择Settings</li>
-<li>在settings中选择Developer setting</li>
-<li>选择Personal access tokens，然后选中生成令牌Generate new token</li>
-<li>选择repo，最后生成令牌 Generate token</li>
-</ol>
-</li>
-</ul>
-<p>原作者：</p>
-<p><a href="https://www.fangdongdemao.com/">https://www.fangdongdemao.com/</a></p>
-]]></content>
-      <categories>
-        <category>hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo-Next主题美化</title>
     <url>/2022/08/03/hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲述如何对搭建的hexo博客美化。hexo博客默认主题是landscape，hexo支持很多不同的主题，本文主要介绍Next主题的美化。</p>
@@ -272,6 +197,81 @@
       </categories>
       <tags>
         <tag>主题美化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建博客</title>
+    <url>/2022/08/03/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要讲述Windows系统下hexo博客的搭建</p>
+<span id="more"></span>
+
+
+
+<h1 id="hexo博客的搭建"><a href="#hexo博客的搭建" class="headerlink" title="hexo博客的搭建"></a>hexo博客的搭建</h1><h2 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h2><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>下载地址: <a href="https://nodejs.org/">https://nodejs.org</a>, 选择长期支持版(LTS),小白式安装。</p>
+<p>为确保安装成功可以在cmd命令行工具(win+R输入cmd回车)依次输入如下命令验证:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<p>若显示版本号说明安装成功</p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>下载地址: <a href="https://git-scm.com/">https://git-scm.com</a>, 由于官网过于慢,不建议官网下载,推荐在淘包镜像下载: <a href="https://npm.taobao.org/mirrors/git-for-windows%E3%80%82">https://npm.taobao.org/mirrors/git-for-windows。</a> 同样小白式安装。若右击屏幕空白处含有如下内容说明安装成功:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git GUI here</span><br><span class="line">Git BASH here</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h2><h3 id="设置user-name和user-email配置信息，鼠标右击打开Git-Bash-Here依次输入如下命令"><a href="#设置user-name和user-email配置信息，鼠标右击打开Git-Bash-Here依次输入如下命令" class="headerlink" title="设置user.name和user.email配置信息，鼠标右击打开Git Bash Here依次输入如下命令:"></a>设置user.name和user.email配置信息，鼠标右击打开Git Bash Here依次输入如下命令:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;yourusername&quot;</span><br><span class="line">git config --global user.email &quot;youruseremail&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件:"></a>生成ssh密钥文件:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youruseremail&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后找到生成的.ssh的文件夹中的id_rsa.pub密钥，将全部内容复制。打开GitHub_Settings_key页面，新建new SSH Key。Title为标题，任意填即可，将刚刚复制的id_rsa.pub中的内容粘贴到Key中，最后点击Add SSH Key。可以打开Git Bash，输入如下命令验证:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="配置hexo全局控制命令"><a href="#配置hexo全局控制命令" class="headerlink" title="配置hexo全局控制命令"></a>配置hexo全局控制命令</h3><p>在cmd命令行输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><p>准备一个目录存放博客的相关文件，例如我的是E盘，打开Git Bash，在Git Bash 输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+
+<p>为了检测网站生成，依次输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>最小化Git Bash窗口(注意不要关闭)，然后打开浏览器输入<a href="http://localhost:4000，/">http://localhost:4000，</a></p>
+<h3 id="部署到GitHub"><a href="#部署到GitHub" class="headerlink" title="部署到GitHub"></a>部署到GitHub</h3><h4 id="新建Github仓库"><a href="#新建Github仓库" class="headerlink" title="新建Github仓库"></a>新建Github仓库</h4><p>打开 Github官网 登陆你的Github账号，点击页面右上角的 + 、New repository新建一个repository仓库。填写仓库名，格式必须为:yourusername.github.io，然后点击Create repository。</p>
+<h4 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h4><p>进入你建立的博客目录打开Git Bash，输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后打开站点的配置文件_config.yml，找到并修改一下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com//yourusername/yourusername.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h4 id="完成部署"><a href="#完成部署" class="headerlink" title="完成部署"></a>完成部署</h4><p>打开Git Bash，依次输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>完成后可以在浏览器打开:yourusername.github.io看到部署好的博客。</p>
+<h3 id="绑定域名-非必须内容"><a href="#绑定域名-非必须内容" class="headerlink" title="绑定域名(非必须内容)"></a>绑定域名(非必须内容)</h3><p>虽然在Internet上可以访问我们的网站，但是网址是GitHub提供的:yourusername.github.io，如果我们想使用自己的个性化域名，这就需要绑定域名。此处演示阿里云的域名绑定。</p>
+<h4 id="个人域名获取"><a href="#个人域名获取" class="headerlink" title="个人域名获取"></a>个人域名获取</h4><p>域名购买网址:<a href="https://cn.aliyun.com/">https://cn.aliyun.com</a> (阿里云官网)</p>
+<h4 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h4><p>打开阿里云管理控制台，找到你的个性化域名，进入解析，然后添加解析，包括三条解析记录。</p>
+<p>第一条:记录类型:A，主机记录:@，记录值:192.30.252.154</p>
+<p>第二条:记录类型:A，主机记录:@，记录值:192.30.252.153</p>
+<p>第三条:记录类型:CNAME，主机记录:www，记录值:yourusername.github.io</p>
+<p>然后登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名，点击save保存。</p>
+<h4 id="hexo设置"><a href="#hexo设置" class="headerlink" title="hexo设置"></a>hexo设置</h4><p>进入本地博客文件夹，进入blog&#x2F;sorce目录下，新建一个记事本文件，输入你的域名即可。然后保存，命名为CNAME，注意保存成所有文件而不是txt文件</p>
+<p>完成上述几步，进入blog目录，打开Git Bash，依次输入如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>然后在浏览器地址栏输入你的个性化域名将会直接进入你的博客网站。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>在执行hexo d命令登录GitHub时，需要生成token替换密码登录。token生成步骤如下：<ol>
+<li>登录github账号，点击头像选择Settings</li>
+<li>在settings中选择Developer setting</li>
+<li>选择Personal access tokens，然后选中生成令牌Generate new token</li>
+<li>选择repo，最后生成令牌 Generate token</li>
+</ol>
+</li>
+</ul>
+<p>原作者：</p>
+<p><a href="https://www.fangdongdemao.com/">https://www.fangdongdemao.com/</a></p>
+]]></content>
+      <categories>
+        <category>hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo博客</tag>
       </tags>
   </entry>
 </search>
