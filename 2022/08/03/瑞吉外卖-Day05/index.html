@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="瑞吉外卖-第五天课程内容 新增套餐  套餐分页查询  删除套餐  短信发送  手机验证码登录   1. 新增套餐1.1 需求分析套餐就是菜品的集合。 后台系统中可以管理套餐信息，通过新增套餐功能来添加一个新的套餐，在添加套餐时需要选择当前套餐所属的套餐分类和包含的菜品，并且需要上传套餐对应的图片，在移动端会按照套餐分类来展示对应的套餐。      1.2 数据模型新增套餐，其实就是将新增页面录入的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瑞吉外卖-Day05">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="瑞吉外卖-第五天课程内容 新增套餐  套餐分页查询  删除套餐  短信发送  手机验证码登录   1. 新增套餐1.1 需求分析套餐就是菜品的集合。 后台系统中可以管理套餐信息，通过新增套餐功能来添加一个新的套餐，在添加套餐时需要选择当前套餐所属的套餐分类和包含的菜品，并且需要上传套餐对应的图片，在移动端会按照套餐分类来展示对应的套餐。      1.2 数据模型新增套餐，其实就是将新增页面录入的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210805232711418.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210805233615067.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210805234059563.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210805233807009.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806002144537.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806002730820.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806003318531.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806004116496.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806004434277.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806005028874.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806012153982.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806014328575.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806014508310.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806014807017.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806073710653.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210806074846550.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806075231072.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806082542473.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806083346578.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806214443507.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806215911878.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806220406587.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806221603303.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806224121877.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806224603405.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806224807108.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210806225505074.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806231422923.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210806231821334.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807074911618.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807074934251.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807075321250.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807075620990.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807080406104.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807080659337.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807081839908.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807082453655.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807082639900.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807083306928.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807130218414.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807131340003.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807183735533.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807190005367.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807190304136.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807193047220.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807193829131.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807232653592.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807231948412.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807233018171.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210807233336029.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807234828051.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210807235349089.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210808001952043.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210808002356092.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210808002501618.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2022-08-29T14:24:12.937Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="瑞吉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/assets/image-20210805232711418.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>瑞吉外卖-Day05 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          瑞吉外卖-Day05
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-29 22:24:12" itemprop="dateModified" datetime="2022-08-29T22:24:12+08:00">2022-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>23k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>21 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="瑞吉外卖-第五天"><a href="#瑞吉外卖-第五天" class="headerlink" title="瑞吉外卖-第五天"></a>瑞吉外卖-第五天</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><ul>
+<li><p>新增套餐</p>
+</li>
+<li><p>套餐分页查询</p>
+</li>
+<li><p>删除套餐</p>
+</li>
+<li><p>短信发送</p>
+</li>
+<li><p>手机验证码登录</p>
+</li>
+</ul>
+<h2 id="1-新增套餐"><a href="#1-新增套餐" class="headerlink" title="1. 新增套餐"></a>1. 新增套餐</h2><h3 id="1-1-需求分析"><a href="#1-1-需求分析" class="headerlink" title="1.1 需求分析"></a>1.1 需求分析</h3><p>套餐就是菜品的集合。</p>
+<p>后台系统中可以管理套餐信息，通过新增套餐功能来添加一个新的套餐，在添加套餐时需要选择当前套餐所属的套餐分类和包含的菜品，并且需要上传套餐对应的图片，在移动端会按照套餐分类来展示对应的套餐。</p>
+<img src="assets/image-20210805232711418.png" alt="image-20210805232711418" style="zoom:80%;" /> 
+
+
+
+<h3 id="1-2-数据模型"><a href="#1-2-数据模型" class="headerlink" title="1.2 数据模型"></a>1.2 数据模型</h3><p>新增套餐，其实就是将新增页面录入的套餐信息插入到setmeal表，还需要向setmeal_dish表插入套餐和菜品关联数据。所以在新增套餐时，涉及到两个表：</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setmeal</td>
+<td>套餐表</td>
+<td>存储套餐的基本信息</td>
+</tr>
+<tr>
+<td>setmeal_dish</td>
+<td>套餐菜品关系表</td>
+<td>存储套餐关联的菜品的信息(一个套餐可以关联多个菜品)</td>
+</tr>
+</tbody></table>
+<p>两张表具体的表结构如下: </p>
+<p><strong>1). 套餐表setmeal</strong></p>
+<p><img src="/assets/image-20210805233615067.png" alt="image-20210805233615067"> </p>
+<p>在该表中，套餐名称name字段是不允许重复的，在建表时，已经创建了唯一索引。</p>
+<p><img src="/assets/image-20210805234059563.png" alt="image-20210805234059563"> </p>
+<p><strong>2). 套餐菜品关系表setmeal_dish</strong></p>
+<p><img src="/assets/image-20210805233807009.png" alt="image-20210805233807009"> </p>
+<p>在该表中，菜品的名称name,菜品的原价price 实际上都是冗余字段,因为我们在这张表中存储了菜品的ID(dish_id),根据该ID我们就可以查询出name,price的数据信息,而这里我们又存储了name,price,这样的话,我们在后续的查询展示操作中,就不需要再去查询数据库获取菜品名称和原价了,这样可以简化我们的操作。</p>
+<h3 id="1-3-准备工作"><a href="#1-3-准备工作" class="headerlink" title="1.3 准备工作"></a>1.3 准备工作</h3><p>在开发业务功能前，先将需要用到的类和接口基本结构创建好，在做这一块儿的准备工作时，我们无需准备Setmeal的相关实体类、Mapper接口、Service接口及实现，因为之前在做分类管理的时候，我们已经引入了Setmeal的相关基础代码。 接下来，我们就来完成以下的几步准备工作： </p>
+<p><strong>1). 实体类 SetmealDish</strong></p>
+<p>ps.直接从课程资料中导入即可，Setmeal实体前面课程中已经导入过了。</p>
+<p>所属包： com.itheima.reggie.entity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.FieldFill;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 套餐菜品关系</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetmealDish</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//套餐id</span></span><br><span class="line">    <span class="keyword">private</span> Long setmealId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//菜品id</span></span><br><span class="line">    <span class="keyword">private</span> Long dishId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//菜品名称 （冗余字段）</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//菜品原价</span></span><br><span class="line">    <span class="keyword">private</span> BigDecimal price;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//份数</span></span><br><span class="line">    <span class="keyword">private</span> Integer copies;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//排序</span></span><br><span class="line">    <span class="keyword">private</span> Integer sort;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line">    <span class="keyword">private</span> LocalDateTime createTime;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line">    <span class="keyword">private</span> LocalDateTime updateTime;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line">    <span class="keyword">private</span> Long createUser;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line">    <span class="keyword">private</span> Long updateUser;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//是否删除</span></span><br><span class="line">    <span class="keyword">private</span> Integer isDeleted;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2). DTO SetmealDto</strong></p>
+<p>该数据传输对象DTO,主要用于封装页面在新增套餐时传递过来的json格式的数据,其中包含套餐的基本信息,还包含套餐关联的菜品集合。直接从课程资料中导入即可。</p>
+<p>所属包： com.itheima.reggie.dto</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.Setmeal;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.SetmealDish;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetmealDto</span> <span class="keyword">extends</span> <span class="title class_">Setmeal</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;SetmealDish&gt; setmealDishes;<span class="comment">//套餐关联的菜品集合</span></span><br><span class="line">	</span><br><span class="line">    <span class="keyword">private</span> String categoryName;<span class="comment">//分类名称</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3). Mapper接口 SetmealDishMapper</strong></p>
+<p>所属包: com.itheima.reggie.mapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.mapper.BaseMapper;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.SetmealDish;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SetmealDishMapper</span> <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;SetmealDish&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>4). 业务层接口 SetmealDishService</strong></p>
+<p>所属包： com.itheima.reggie.service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.IService;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.SetmealDish;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SetmealDishService</span> <span class="keyword">extends</span> <span class="title class_">IService</span>&lt;SetmealDish&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>5). 业务层实现类 SetmealDishServiceImpl</strong></p>
+<p>所属包： com.itheima.reggie.service.impl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.SetmealDish;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.mapper.SetmealDishMapper;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.service.SetmealDishService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetmealDishServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">ServiceImpl</span>&lt;SetmealDishMapper,SetmealDish&gt; <span class="keyword">implements</span> <span class="title class_">SetmealDishService</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>6). 控制层 SetmealController</strong></p>
+<p>套餐管理的相关业务，我们都统一在 SetmealController 中进行统一处理操作。</p>
+<p>所属包: com.itheima.reggie.service.impl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itheima.reggie.service.SetmealDishService;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.service.SetmealService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 套餐管理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/setmeal&quot;)</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetmealController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SetmealService setmealService;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SetmealDishService setmealDishService;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="1-4-前端页面分析"><a href="#1-4-前端页面分析" class="headerlink" title="1.4 前端页面分析"></a>1.4 前端页面分析</h3><p>服务端的基础准备工作我们准备完毕之后，在进行代码开发之前，需要梳理一下新增套餐时前端页面和服务端的交互过程：</p>
+<p>1). 点击新建套餐按钮，访问页面(backend&#x2F;page&#x2F;combo&#x2F;add.html)，页面加载发送ajax请求，请求服务端获取<strong>套餐分类</strong>数据并展示到下拉框中(&#x3D;&#x3D;已实现&#x3D;&#x3D;)</p>
+<p><img src="/assets/image-20210806002144537.png" alt="image-20210806002144537"> </p>
+<p>获取套餐分类列表的功能我们不用开发，之前已经开发完成了，之前查询时type传递的是1，查询菜品分类; 本次查询时，传递的type为2，查询套餐分类列表。</p>
+<p>2). 访问页面(backend&#x2F;page&#x2F;combo&#x2F;add.html)，页面加载时发送ajax请求，请求服务端获取<strong>菜品分类</strong>数据并展示到添加菜品窗口中(&#x3D;&#x3D;已实现&#x3D;&#x3D;)</p>
+<p><img src="/assets/image-20210806002730820.png" alt="image-20210806002730820"> </p>
+<p>本次查询分类列表，传递的type为1，表示需要查询的是菜品的分类。查询菜品分类的目的，是添加套餐关联的菜品时，我们需要根据菜品分类，来过滤查询菜品信息。查询菜品分类列表的代码已经实现， 具体展示效果如下： </p>
+<p><img src="/assets/image-20210806003318531.png" alt="image-20210806003318531">  </p>
+<p>3). 当点击添加菜品窗口左侧菜单的某一个分类, 页面发送ajax请求，请求服务端，根据菜品分类查询对应的<strong>菜品</strong>数据并展示到添加菜品窗口中</p>
+<p><img src="/assets/image-20210806004116496.png" alt="image-20210806004116496"> </p>
+<p>4). 页面发送请求进行<strong>图片上传</strong>，请求服务端将图片保存到服务器(&#x3D;&#x3D;已实现&#x3D;&#x3D;)</p>
+<p>5). 页面发送请求进行<strong>图片下载</strong>，将上传的图片进行回显(&#x3D;&#x3D;已实现&#x3D;&#x3D;)</p>
+<p><img src="/assets/image-20210806004434277.png" alt="image-20210806004434277"> </p>
+<p>6). 点击保存按钮，发送ajax请求，将<strong>套餐</strong>相关数据以json形式提交到服务端</p>
+<p><img src="/assets/image-20210806005028874.png" alt="image-20210806005028874"> </p>
+<p>经过上述的页面解析及流程分析，我们发送这里需要发送的请求有5个，分别是 ：</p>
+<p>A. 根据传递的参数,查询套餐分类列表</p>
+<p>B. 根据传递的参数,查询菜品分类列表</p>
+<p>C. 图片上传</p>
+<p>D. 图片下载展示</p>
+<p>E. 根据菜品分类ID,查询菜品列表</p>
+<p>F. 保存套餐信息</p>
+<p>而对于以上的前4个功能我们都已经实现, 所以我们接下来需要开发的功能主要是最后两项, 具体的请求信息如下:</p>
+<p><strong>1). 根据分类ID查询菜品列表</strong></p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;dish&#x2F;list</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>?categoryId&#x3D;1397844263642378242</td>
+</tr>
+</tbody></table>
+<p><strong>2). 保存套餐信息</strong></p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;setmeal</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>json格式数据</td>
+</tr>
+</tbody></table>
+<p>传递的json格式数据如下: </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;营养超值工作餐&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;categoryId&quot;</span><span class="punctuation">:</span><span class="string">&quot;1399923597874081794&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">3800</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span><span class="string">&quot;9cd7a80a-da54-4f46-bf33-af3576514cec.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;营养超值工作餐&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dishList&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;idType&quot;</span><span class="punctuation">:</span><span class="string">&quot;1399923597874081794&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;setmealDishes&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">    	<span class="punctuation">&#123;</span><span class="attr">&quot;copies&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;dishId&quot;</span><span class="punctuation">:</span><span class="string">&quot;1423329009705463809&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;米饭&quot;</span><span class="punctuation">,</span><span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">200</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    	<span class="punctuation">&#123;</span><span class="attr">&quot;copies&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;dishId&quot;</span><span class="punctuation">:</span><span class="string">&quot;1423328152549109762&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;可乐&quot;</span><span class="punctuation">,</span><span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">500</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    	<span class="punctuation">&#123;</span><span class="attr">&quot;copies&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;dishId&quot;</span><span class="punctuation">:</span><span class="string">&quot;1397853890262118402&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;鱼香肉丝&quot;</span><span class="punctuation">,</span><span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">3800</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-5-代码开发"><a href="#1-5-代码开发" class="headerlink" title="1.5 代码开发"></a>1.5 代码开发</h3><p>上面我们已经分析了接下来我们需要实现的两个功能，接下来我们就需要根据上述的分析，来完成具体的功能实现。</p>
+<h4 id="1-5-1-根据分类查询菜品"><a href="#1-5-1-根据分类查询菜品" class="headerlink" title="1.5.1 根据分类查询菜品"></a>1.5.1 根据分类查询菜品</h4><h5 id="1-5-1-1-功能实现"><a href="#1-5-1-1-功能实现" class="headerlink" title="1.5.1.1 功能实现"></a>1.5.1.1 功能实现</h5><p>在当前的需求中，我们只需要根据页面传递的菜品分类的ID(categoryId)来查询菜品列表即可，我们可以直接定义一个DishController的方法，声明一个Long类型的categoryId，这样做是没问题的。但是考虑到该方法的拓展性，我们在这里定义方法时，通过Dish这个实体来接收参数。</p>
+<p>在DishController中定义方法list，接收Dish类型的参数：</p>
+<p>在查询时，需要根据菜品分类categoryId进行查询，并且还要限定菜品的状态为起售状态(status为1)，然后对查询的结果进行排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 根据条件查询对应的菜品数据</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> dish</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/list&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R&lt;List&lt;Dish&gt;&gt; <span class="title function_">list</span><span class="params">(Dish dish)</span>&#123;</span><br><span class="line">    <span class="comment">//构造查询条件</span></span><br><span class="line">    LambdaQueryWrapper&lt;Dish&gt; queryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>&lt;&gt;();</span><br><span class="line">    queryWrapper.eq(dish.getCategoryId() != <span class="literal">null</span> ,Dish::getCategoryId,dish.getCategoryId());</span><br><span class="line">    <span class="comment">//添加条件，查询状态为1（起售状态）的菜品</span></span><br><span class="line">    queryWrapper.eq(Dish::getStatus,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//添加排序条件</span></span><br><span class="line">    queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);</span><br><span class="line">	</span><br><span class="line">    List&lt;Dish&gt; list = dishService.list(queryWrapper);</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">return</span> R.success(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="1-5-1-2-功能测试"><a href="#1-5-1-2-功能测试" class="headerlink" title="1.5.1.2 功能测试"></a>1.5.1.2 功能测试</h5><p>代码编写完毕，我们重新启动服务器，进行测试，可以通过debug断点跟踪的形式查看页面传递的参数封装情况，及响应给页面的数据信息。</p>
+<p><img src="/assets/image-20210806012153982.png" alt="image-20210806012153982"> </p>
+<h4 id="1-5-2-保存套餐"><a href="#1-5-2-保存套餐" class="headerlink" title="1.5.2 保存套餐"></a>1.5.2 保存套餐</h4><h5 id="1-5-2-1-功能实现"><a href="#1-5-2-1-功能实现" class="headerlink" title="1.5.2.1 功能实现"></a>1.5.2.1 功能实现</h5><p>在进行套餐信息保存时，前端提交的数据，不仅包含套餐的基本信息，还包含套餐关联的菜品列表数据 setmealDishes。所以这个时候我们使用Setmeal就不能完成参数的封装了，我们需要在Setmeal的基本属性的基础上，再扩充一个属性 setmealDishes 来接收页面传递的套餐关联的菜品列表，而我们在准备工作中，导入进来的SetmealDto能够满足这个需求。</p>
+<p>1). SetmealController中定义方法save，新增套餐</p>
+<p>在该Controller的方法中,我们不仅需要保存套餐的基本信息，还需要保存套餐关联的菜品数据，所以我们需要再该方法中调用业务层方法,完成两块数据的保存。</p>
+<p>页面传递的数据是json格式，需要在方法形参前面加上@RequestBody注解, 完成参数封装。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="keyword">public</span> R&lt;String&gt; <span class="title function_">save</span><span class="params">(<span class="meta">@RequestBody</span> SetmealDto setmealDto)</span>&#123;</span><br><span class="line">    log.info(<span class="string">&quot;套餐信息：&#123;&#125;&quot;</span>,setmealDto);</span><br><span class="line"></span><br><span class="line">    setmealService.saveWithDish(setmealDto);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> R.success(<span class="string">&quot;新增套餐成功&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2). SetmealService中定义方法saveWithDish</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增套餐，同时需要保存套餐和菜品的关联关系</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> setmealDto</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">saveWithDish</span><span class="params">(SetmealDto setmealDto)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3). SetmealServiceImpl实现方法saveWithDish</p>
+<p>具体逻辑: </p>
+<p>A. 保存套餐基本信息</p>
+<p>B. 获取套餐关联的菜品集合，并为集合中的每一个元素赋值套餐ID(setmealId)</p>
+<p>C. 批量保存套餐关联的菜品集合</p>
+<p>代码实现: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 新增套餐，同时需要保存套餐和菜品的关联关系</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> setmealDto</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">saveWithDish</span><span class="params">(SetmealDto setmealDto)</span> &#123;</span><br><span class="line">    <span class="comment">//保存套餐的基本信息，操作setmeal，执行insert操作</span></span><br><span class="line">    <span class="built_in">this</span>.save(setmealDto);</span><br><span class="line"></span><br><span class="line">    List&lt;SetmealDish&gt; setmealDishes = setmealDto.getSetmealDishes();</span><br><span class="line">    setmealDishes.stream().map((item) -&gt; &#123;</span><br><span class="line">        item.setSetmealId(setmealDto.getId());</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//保存套餐和菜品的关联信息，操作setmeal_dish,执行insert操作</span></span><br><span class="line">    setmealDishService.saveBatch(setmealDishes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="1-5-2-2-功能测试"><a href="#1-5-2-2-功能测试" class="headerlink" title="1.5.2.2 功能测试"></a>1.5.2.2 功能测试</h5><p>代码编写完毕，我们重新启动服务器，进行测试，可以通过debug断点跟踪的形式查看页面传递的参数封装情况，及套餐相关数据的保存情况。</p>
+<p>录入表单数据: </p>
+<p><img src="/assets/image-20210806014328575.png" alt="image-20210806014328575"> </p>
+<p>debug跟踪数据封装:</p>
+<p><img src="/assets/image-20210806014508310.png" alt="image-20210806014508310"> </p>
+<p>跟踪数据库保存的数据:</p>
+<p><img src="/assets/image-20210806014807017.png" alt="image-20210806014807017"> </p>
+<h2 id="2-套餐分页查询"><a href="#2-套餐分页查询" class="headerlink" title="2. 套餐分页查询"></a>2. 套餐分页查询</h2><h3 id="2-1-需求分析"><a href="#2-1-需求分析" class="headerlink" title="2.1 需求分析"></a>2.1 需求分析</h3><p>系统中的套餐数据很多的时候，如果在一个页面中全部展示出来会显得比较乱，不便于查看，所以一般的系统中都会以分页的方式来展示列表数据。</p>
+<p><img src="/assets/image-20210806073710653.png" alt="image-20210806073710653"> </p>
+<p>在进行套餐数据的分页查询时，除了传递分页参数以外，还可以传递一个可选的条件(套餐名称)。查询返回的字段中，包含套餐的基本信息之外，还有一个套餐的分类名称，在查询时，需要关联查询这个字段。</p>
+<h3 id="2-2-前端页面分析"><a href="#2-2-前端页面分析" class="headerlink" title="2.2 前端页面分析"></a>2.2 前端页面分析</h3><p>在开发代码之前，需要梳理一下套餐分页查询时前端页面和服务端的交互过程：</p>
+<p>1). 访问页面(backend&#x2F;page&#x2F;combo&#x2F;list.html)，页面加载时，会自动发送ajax请求，将分页查询参数(page、pageSize、name)提交到服务端，获取分页数据</p>
+<img src="assets/image-20210806074846550.png" alt="image-20210806074846550" style="zoom:80%;" /> 
+
+
+
+<p>2). 在列表渲染展示时，页面发送请求，请求服务端进行图片下载，用于页面图片展示(<strong>已实现</strong>)</p>
+<p><img src="/assets/image-20210806075231072.png" alt="image-20210806075231072"> </p>
+<p>而对于以上的流程中涉及到2个功能,文件下载功能我们已经实现,本小节我们主要实现列表分页查询功能, 具体的请求信息如下:</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;setmeal&#x2F;page</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>?page&#x3D;1&amp;pageSize&#x3D;10&amp;name&#x3D;xxx</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-代码开发"><a href="#2-3-代码开发" class="headerlink" title="2.3 代码开发"></a>2.3 代码开发</h3><h4 id="2-3-1-基本信息查询"><a href="#2-3-1-基本信息查询" class="headerlink" title="2.3.1 基本信息查询"></a>2.3.1 基本信息查询</h4><p>上述我们已经分析列表分页查询功能的请求信息，接下来我们就在SetmealController中创建套餐分页查询方法。</p>
+<p>该方法的逻辑如下： </p>
+<p>1). 构建分页条件对象</p>
+<p>2). 构建查询条件对象，如果传递了套餐名称，根据套餐名称模糊查询， 并对结果按修改时间降序排序</p>
+<p>3). 执行分页查询</p>
+<p>4). 组装数据并返回</p>
+<p>代码实现 : </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 套餐分页查询</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> page</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> pageSize</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/page&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R&lt;Page&gt; <span class="title function_">page</span><span class="params">(<span class="type">int</span> page,<span class="type">int</span> pageSize,String name)</span>&#123;</span><br><span class="line">    <span class="comment">//分页构造器对象</span></span><br><span class="line">    Page&lt;Setmeal&gt; pageInfo = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(page,pageSize);</span><br><span class="line">	</span><br><span class="line">    LambdaQueryWrapper&lt;Setmeal&gt; queryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//添加查询条件，根据name进行like模糊查询</span></span><br><span class="line">    queryWrapper.like(name != <span class="literal">null</span>,Setmeal::getName,name);</span><br><span class="line">    <span class="comment">//添加排序条件，根据更新时间降序排列</span></span><br><span class="line">    queryWrapper.orderByDesc(Setmeal::getUpdateTime);</span><br><span class="line"></span><br><span class="line">    setmealService.page(pageInfo,queryWrapper);</span><br><span class="line">    <span class="keyword">return</span> R.success(pageInfo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-2-问题分析"><a href="#2-3-2-问题分析" class="headerlink" title="2.3.2 问题分析"></a>2.3.2 问题分析</h4><p>基本分页查询代码编写完毕后，重启服务，测试列表查询，我们发现, 列表页面的数据可以展示出来, 但是套餐分类名称没有展示出来。</p>
+<p><img src="/assets/image-20210806082542473.png" alt="image-20210806082542473"> </p>
+<p>这是因为在服务端仅返回分类ID(categoryId), 而页面展示需要的是categoryName属性。 </p>
+<h4 id="2-3-3-功能完善"><a href="#2-3-3-功能完善" class="headerlink" title="2.3.3 功能完善"></a>2.3.3 功能完善</h4><p>在查询套餐信息时, 只包含套餐的基本信息, 并不包含套餐的分类名称, 所以在这里查询到套餐的基本信息后, 还需要根据分类ID(categoryId), 查询套餐分类名称(categoryName)，并最终将套餐的基本信息及分类名称信息封装到SetmealDto(在第一小节已经导入)中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetmealDto</span> <span class="keyword">extends</span> <span class="title class_">Setmeal</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;SetmealDish&gt; setmealDishes; <span class="comment">//套餐关联菜品列表</span></span><br><span class="line">    <span class="keyword">private</span> String categoryName;<span class="comment">//套餐分类名称</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>完善后代码: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 套餐分页查询</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> page</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> pageSize</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/page&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R&lt;Page&gt; <span class="title function_">page</span><span class="params">(<span class="type">int</span> page,<span class="type">int</span> pageSize,String name)</span>&#123;</span><br><span class="line">    <span class="comment">//分页构造器对象</span></span><br><span class="line">    Page&lt;Setmeal&gt; pageInfo = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(page,pageSize);</span><br><span class="line">    Page&lt;SetmealDto&gt; dtoPage = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    LambdaQueryWrapper&lt;Setmeal&gt; queryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//添加查询条件，根据name进行like模糊查询</span></span><br><span class="line">    queryWrapper.like(name != <span class="literal">null</span>,Setmeal::getName,name);</span><br><span class="line">    <span class="comment">//添加排序条件，根据更新时间降序排列</span></span><br><span class="line">    queryWrapper.orderByDesc(Setmeal::getUpdateTime);</span><br><span class="line"></span><br><span class="line">    setmealService.page(pageInfo,queryWrapper);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对象拷贝</span></span><br><span class="line">    BeanUtils.copyProperties(pageInfo,dtoPage,<span class="string">&quot;records&quot;</span>);</span><br><span class="line">    List&lt;Setmeal&gt; records = pageInfo.getRecords();</span><br><span class="line"></span><br><span class="line">    List&lt;SetmealDto&gt; list = records.stream().map((item) -&gt; &#123;</span><br><span class="line">        <span class="type">SetmealDto</span> <span class="variable">setmealDto</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SetmealDto</span>();</span><br><span class="line">        <span class="comment">//对象拷贝</span></span><br><span class="line">        BeanUtils.copyProperties(item,setmealDto);</span><br><span class="line">        <span class="comment">//分类id</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">categoryId</span> <span class="operator">=</span> item.getCategoryId();</span><br><span class="line">        <span class="comment">//根据分类id查询分类对象</span></span><br><span class="line">        <span class="type">Category</span> <span class="variable">category</span> <span class="operator">=</span> categoryService.getById(categoryId);</span><br><span class="line">        <span class="keyword">if</span>(category != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//分类名称</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">categoryName</span> <span class="operator">=</span> category.getName();</span><br><span class="line">            setmealDto.setCategoryName(categoryName);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> setmealDto;</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">    dtoPage.setRecords(list);</span><br><span class="line">    <span class="keyword">return</span> R.success(dtoPage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-功能测试"><a href="#2-4-功能测试" class="headerlink" title="2.4 功能测试"></a>2.4 功能测试</h3><p>代码完善后，重启服务，测试列表查询，我们发现, 抓取浏览器的请求响应数据，我们可以获取到套餐分类名称categoryName，也可以在列表页面展示出来 。</p>
+<p><img src="/assets/image-20210806083346578.png" alt="image-20210806083346578"> </p>
+<h2 id="3-删除套餐"><a href="#3-删除套餐" class="headerlink" title="3. 删除套餐"></a>3. 删除套餐</h2><h3 id="3-1-需求分析"><a href="#3-1-需求分析" class="headerlink" title="3.1 需求分析"></a>3.1 需求分析</h3><p>在套餐管理列表页面,点击删除按钮，可以删除对应的套餐信息。也可以通过复选框选择多个套餐，点击批量删除按钮一次删除多个套餐。注意，对于状态为售卖中的套餐不能删除，需要先停售，然后才能删除。</p>
+<p><img src="/assets/image-20210806214443507.png" alt="image-20210806214443507"> </p>
+<h3 id="3-2-前端页面分析"><a href="#3-2-前端页面分析" class="headerlink" title="3.2 前端页面分析"></a>3.2 前端页面分析</h3><p>在开发代码之前，需要梳理一下删除套餐时前端页面和服务端的交互过程：</p>
+<p>1). 点击删除, 删除单个套餐时，页面发送ajax请求，根据套餐id删除对应套餐</p>
+<p><img src="/assets/image-20210806215911878.png" alt="image-20210806215911878"> </p>
+<p>2). 删除多个套餐时，页面发送ajax请求，根据提交的多个套餐id删除对应套餐</p>
+<p><img src="/assets/image-20210806220406587.png" alt="image-20210806220406587"> </p>
+<p>开发删除套餐功能，其实就是在服务端编写代码去处理前端页面发送的这2次请求即可，一次请求为根据ID删除，一次请求为根据ID批量删除。</p>
+<p>观察删除单个套餐和批量删除套餐的请求信息可以发现，两种请求的<strong>地址</strong>和<strong>请求方式</strong>都是相同的，不同的则是传递的id个数，所以在服务端可以提供一个方法来统一处理。</p>
+<p>具体的请求信息如下： </p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;setmeal</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>?ids&#x3D;1423640210125656065,1423338765002256385</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-代码开发"><a href="#3-3-代码开发" class="headerlink" title="3.3 代码开发"></a>3.3 代码开发</h3><p>删除套餐的流程及请求信息，我们分析完毕之后，就来完成服务端的逻辑开发。在服务端的逻辑中, 删除套餐时, 我们不仅要删除套餐, 还要删除套餐与菜品的关联关系。</p>
+<p><strong>1). 在SetmealController中创建delete方法</strong></p>
+<p>我们可以先测试在delete方法中接收页面提交的参数，具体逻辑后续再完善：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除套餐</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@DeleteMapping</span></span><br><span class="line"><span class="keyword">public</span> R&lt;String&gt; <span class="title function_">delete</span><span class="params">(<span class="meta">@RequestParam</span> List&lt;Long&gt; ids)</span>&#123;</span><br><span class="line">    log.info(<span class="string">&quot;ids:&#123;&#125;&quot;</span>,ids);</span><br><span class="line">    <span class="keyword">return</span> R.success(<span class="string">&quot;套餐数据删除成功&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写完代码，我们重启服务之后，访问套餐列表页面，勾选复选框，然后点击”批量删除”,我们可以看到服务端可以接收到集合参数ids，并且在控制台也可以输出对应的数据 。</p>
+<p><img src="/assets/image-20210806221603303.png" alt="image-20210806221603303"> </p>
+<p><strong>2). SetmealService接口定义方法removeWithDish</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除套餐，同时需要删除套餐和菜品的关联数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removeWithDish</span><span class="params">(List&lt;Long&gt; ids)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3). SetmealServiceImpl中实现方法removeWithDish</strong></p>
+<p>该业务层方法具体的逻辑为: </p>
+<p>A. 查询该批次套餐中是否存在售卖中的套餐, 如果存在, 不允许删除</p>
+<p>B. 删除套餐数据</p>
+<p>C. 删除套餐关联的菜品数据</p>
+<p>代码实现为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 删除套餐，同时需要删除套餐和菜品的关联数据</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removeWithDish</span><span class="params">(List&lt;Long&gt; ids)</span> &#123;</span><br><span class="line">    <span class="comment">//select count(*) from setmeal where id in (1,2,3) and status = 1</span></span><br><span class="line">    <span class="comment">//查询套餐状态，确定是否可用删除</span></span><br><span class="line">    LambdaQueryWrapper&lt;Setmeal&gt; queryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>();</span><br><span class="line">    queryWrapper.in(Setmeal::getId,ids);</span><br><span class="line">    queryWrapper.eq(Setmeal::getStatus,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="built_in">this</span>.count(queryWrapper);</span><br><span class="line">    <span class="keyword">if</span>(count &gt; <span class="number">0</span>)&#123;</span><br><span class="line">   	 	<span class="comment">//如果不能删除，抛出一个业务异常</span></span><br><span class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">CustomException</span>(<span class="string">&quot;套餐正在售卖中，不能删除&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果可以删除，先删除套餐表中的数据---setmeal</span></span><br><span class="line">    <span class="built_in">this</span>.removeByIds(ids);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//delete from setmeal_dish where setmeal_id in (1,2,3)</span></span><br><span class="line">    LambdaQueryWrapper&lt;SetmealDish&gt; lambdaQueryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>&lt;&gt;();</span><br><span class="line">    lambdaQueryWrapper.in(SetmealDish::getSetmealId,ids);</span><br><span class="line">    <span class="comment">//删除关系表中的数据----setmeal_dish</span></span><br><span class="line">    setmealDishService.remove(lambdaQueryWrapper);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于当前的业务方法中存在多次数据库操作，为了保证事务的完整性，需要在方法上加注解 @Transactional 来控制事务。</p>
+<p><strong>4). 完善SetmealController代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除套餐</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@DeleteMapping</span></span><br><span class="line"><span class="keyword">public</span> R&lt;String&gt; <span class="title function_">delete</span><span class="params">(<span class="meta">@RequestParam</span> List&lt;Long&gt; ids)</span>&#123;</span><br><span class="line">    log.info(<span class="string">&quot;ids:&#123;&#125;&quot;</span>,ids);</span><br><span class="line">    setmealService.removeWithDish(ids);</span><br><span class="line">    <span class="keyword">return</span> R.success(<span class="string">&quot;套餐数据删除成功&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="3-4-功能测试"><a href="#3-4-功能测试" class="headerlink" title="3.4 功能测试"></a>3.4 功能测试</h3><p>代码完善后，重启服务，测试套餐的删除功能，主要测试以下几种情况。</p>
+<p>1). 删除正在启用的套餐</p>
+<p><img src="/assets/image-20210806224121877.png" alt="image-20210806224121877"> </p>
+<p>2). 执行批量操作, 删除两条记录, 一个启售的, 一个停售的</p>
+<p>由于当前我们并未实现启售&#x2F;停售功能，所以我们需要手动修改数据库表结构的status状态，将其中的一条记录status修改为0。</p>
+<p><img src="/assets/image-20210806224603405.png" alt="image-20210806224603405"> </p>
+<p>3). 删除已经停售的套餐信息，执行删除之后， 检查数据库表结构 setmeal ， setmeal_dish表中的数据</p>
+<p><img src="/assets/image-20210806224807108.png" alt="image-20210806224807108"> </p>
+<h2 id="4-短信发送"><a href="#4-短信发送" class="headerlink" title="4. 短信发送"></a>4. 短信发送</h2><img src="assets/image-20210806225505074.png" alt="image-20210806225505074" style="zoom:80%;" /> 
+
+<p>在我们接下来要实现的移动端的业务开发中，第一块儿我们需要开发的功能就是移动端的登录功能，而移动端的登录功能，比较流行的方式就是基于短信验证码进行登录，那么这里涉及到了短信发送的知识，所以本章节，我们就来讲解，在项目开发中，我们如何发送短信。</p>
+<h3 id="4-1-短信服务介绍"><a href="#4-1-短信服务介绍" class="headerlink" title="4.1 短信服务介绍"></a>4.1 短信服务介绍</h3><p>在项目中，如果我们要实现短信发送功能，我们无需自己实现，也无需和运营商直接对接，只需要调用第三方提供的短信服务即可。目前市面上有很多第三方提供的短信服务，这些第三方短信服务会和各个运营商（移动、联通、电信）对接，我们只需要注册成为会员，并且按照提供的开发文档进行调用就可以发送短信。需要说明的是，这些短信服务一般都是收费服务。</p>
+<p>常用短信服务：</p>
+<ul>
+<li><p>阿里云</p>
+</li>
+<li><p>华为云</p>
+</li>
+<li><p>腾讯云</p>
+</li>
+<li><p>京东</p>
+</li>
+<li><p>梦网</p>
+</li>
+<li><p>乐信</p>
+</li>
+</ul>
+<p>本项目在选择短信服务的第三方服务提供商时，选择的是阿里云短信服务。</p>
+<h3 id="4-2-阿里云短信服务介绍"><a href="#4-2-阿里云短信服务介绍" class="headerlink" title="4.2 阿里云短信服务介绍"></a>4.2 阿里云短信服务介绍</h3><p>阿里云短信服务（Short Message Service）是广大企业客户快速触达手机用户所优选使用的通信能力。调用API或用群发助手，即可发送验证码、通知类和营销类短信；国内验证短信秒级触达，到达率最高可达99%；国际&#x2F;港澳台短信覆盖200多个国家和地区，安全稳定，广受出海企业选用。</p>
+<p>应用场景： </p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>验证码</td>
+<td>APP、网站注册账号，向手机下发验证码； 登录账户、异地登录时的安全提醒； 找回密码时的安全验证； 支付认证、身份校验、手机绑定等。</td>
+</tr>
+<tr>
+<td>短信通知</td>
+<td>向注册用户下发系统相关信息，包括： 升级或维护、服务开通、价格调整、 订单确认、物流动态、消费确认、 支付通知等普通通知短信。</td>
+</tr>
+<tr>
+<td>推广短信</td>
+<td>向注册用户和潜在客户发送通知和推广信息，包括促销活动通知、业务推广等商品与活动的推广信息。增加企业产品曝光率、提高产品的知名度。</td>
+</tr>
+</tbody></table>
+<p><img src="/assets/image-20210806231422923.png" alt="image-20210806231422923"> </p>
+<p>阿里云短信服务官方网站： <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/sms?spm=5176.19720258.J_8058803260.52.5c432c4a11Dcwf">https://www.aliyun.com/product/sms?spm=5176.19720258.J_8058803260.52.5c432c4a11Dcwf</a></p>
+<p>可以访问官网，熟悉一下短信服务： </p>
+<p><img src="/assets/image-20210806231821334.png" alt="image-20210806231821334">  </p>
+<h3 id="4-3-阿里云短信服务准备"><a href="#4-3-阿里云短信服务准备" class="headerlink" title="4.3 阿里云短信服务准备"></a>4.3 阿里云短信服务准备</h3><h4 id="4-3-1-注册账号"><a href="#4-3-1-注册账号" class="headerlink" title="4.3.1 注册账号"></a>4.3.1 注册账号</h4><p>阿里云官网：<a target="_blank" rel="noopener" href="https://www.aliyun.com/">https://www.aliyun.com/</a></p>
+<img src="assets/image-20210807074911618.png" alt="image-20210807074911618" style="zoom:80%;" /> 
+
+<p>点击官网首页注册按钮，跳转到如下注册页面：</p>
+<img src="assets/image-20210807074934251.png" alt="image-20210807074934251" style="zoom:80%;" /> 
+
+
+
+<p>当我们把账号注册完毕之后，我们就可以登录到阿里云系统控制台。</p>
+<h4 id="4-3-2-开通短信服务"><a href="#4-3-2-开通短信服务" class="headerlink" title="4.3.2 开通短信服务"></a>4.3.2 开通短信服务</h4><p>注册成功后，点击登录按钮进行登录。登录后进入控制台, 在左上角的菜单栏中搜索短信服务。第一次使用，需要点击，并开通短信服务。</p>
+<p><img src="/assets/image-20210807075321250.png" alt="image-20210807075321250"> </p>
+<img src="assets/image-20210807075620990.png" alt="image-20210807075620990" style="zoom:80%;" /> 
+
+
+
+<h4 id="4-3-3-设置短信签名"><a href="#4-3-3-设置短信签名" class="headerlink" title="4.3.3 设置短信签名"></a>4.3.3 设置短信签名</h4><p>开通短信服务之后，进入短信服务管理页面，选择国内消息菜单，我们需要在这里添加短信签名。</p>
+<p><img src="/assets/image-20210807080406104.png" alt="image-20210807080406104"> </p>
+<p><strong>那么什么是短信签名呢?</strong></p>
+<p>短信签名是短信发送者的署名，表示发送方的身份。我们要调用阿里云短信服务发送短信，签名是比不可少的部分。</p>
+<img src="assets/image-20210807080659337.png" alt="image-20210807080659337" style="zoom:80%;" /> 
+
+
+
+<p>那么接下来，我们就需要来添加短信签名。</p>
+<p><img src="/assets/image-20210807081839908.png" alt="image-20210807081839908"> </p>
+<blockquote>
+<p><font color='red'>注意：</font> </p>
+<p>​	<font color='red'>目前，阿里云短信服务申请签名主要针对企业开发，个人申请时有一定难度的，在审核时，会审核资质，需要上传营业执照 ；</font> </p>
+<p>​	<font color='red'>所以，我们课程中，主要是演示一下短信验证码如何发送，大家只需要学习这块儿的开发流程、实现方式即可，无需真正的发送短信。如果以后在企业中做项目，需要发送短信，我们会以公司的资质去申请对应的签名。</font> </p>
+</blockquote>
+<h4 id="4-3-4-设置短信模板"><a href="#4-3-4-设置短信模板" class="headerlink" title="4.3.4 设置短信模板"></a>4.3.4 设置短信模板</h4><p>切换到【模板管理】标签页：</p>
+<p><img src="/assets/image-20210807082453655.png" alt="image-20210807082453655"> </p>
+<p><strong>那么什么是模板呢?</strong></p>
+<p>短信模板包含短信发送内容、场景、变量信息。模板的详情如下:</p>
+<img src="assets/image-20210807082639900.png" alt="image-20210807082639900" style="zoom: 80%;" /> 
+
+<p>最终我们，给用户发送的短信中，具体的短信内容，就是上面配置的这个模板内容，将${code}占位符替换成对应的验证码数据即可。如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【xxxxx】您好,您的验证码为173822,5分钟之内有效,不要泄露给他人!</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们可以点击右上角的按钮,添加模板,然后填写模板的基本信息及设置的模板内容:</p>
+<img src="assets/image-20210807083306928.png" alt="image-20210807083306928" style="zoom:80%;" /> 
+
+<p><font color='red'>添加的短信模板，也是需要进行审核的只有审核通过，才可以正常使用。</font></p>
+<h4 id="4-3-5-设置AccessKey"><a href="#4-3-5-设置AccessKey" class="headerlink" title="4.3.5 设置AccessKey"></a>4.3.5 设置AccessKey</h4><p>AccessKey 是访问阿里云 API 的密钥，具有账户的完全权限，我们要想在后面通过API调用阿里云短信服务的接口发送短信，那么就必须要设置AccessKey。</p>
+<p>我们点击右上角的用户头像，选择”AccessKey管理”，这时就可以进入到AccessKey的管理界面。</p>
+<p><img src="/assets/image-20210807130218414.png" alt="image-20210807130218414"></p>
+<p>进入到AccessKey的管理界面之后，提示两个选项 “继续使用AccessKey” 和 “开始使用子用户AccessKey”，两个区别如下:</p>
+<p><strong>1). 继续使用AccessKey</strong></p>
+<p>如果选择的是该选项，我们创建的是阿里云账号的AccessKey，是具有账户的完全权限，有了这个AccessKey以后，我们就可以通过API调用阿里云的服务，不仅是短信服务，其他服务(OSS，语音服务，内容安全服务，视频点播服务…等)也可以调用。 相对来说，并不安全，当前的AccessKey泄露，会影响到我当前账户的其他云服务。</p>
+<p><strong>2). 开始使用子用户AccessKey</strong></p>
+<p>可以创建一个子用户,这个子用户我们可以分配比较低的权限,比如仅分配短信发送的权限，不具备操作其他的服务的权限，即使这个AccessKey泄漏了,也不会影响其他的云服务, 相对安全。</p>
+<p>接下来就来演示一下，如何创建子用户AccessKey。</p>
+<p><img src="/assets/image-20210807131340003.png" alt="image-20210807131340003"> </p>
+<h4 id="4-3-6-配置权限"><a href="#4-3-6-配置权限" class="headerlink" title="4.3.6 配置权限"></a>4.3.6 配置权限</h4><p>上述我们已经创建了子用户, 但是这个子用户,目前没有任何权限,接下来,我们需要为创建的这个用户来分配权限。</p>
+<p><img src="/assets/image-20210807183735533.png" alt="image-20210807183735533"> </p>
+<p><font color='red'>经过上述的权限配置之后，那么新创建的这个 reggie 用户，仅有短信服务操作的权限，不具备别的权限，即使当前的AccessKey泄漏了，也只会影响短信服务，其他服务是不受影响的。</font></p>
+<h4 id="4-3-7-禁用-x2F-删除AccessKey"><a href="#4-3-7-禁用-x2F-删除AccessKey" class="headerlink" title="4.3.7 禁用&#x2F;删除AccessKey"></a>4.3.7 禁用&#x2F;删除AccessKey</h4><p>如果在使用的过程中 AccessKey 不小心泄漏了,我们可以在阿里云控制台中, 禁用或者删除该AccessKey。</p>
+<p><img src="/assets/image-20210807190005367.png" alt="image-20210807190005367"> </p>
+<p>然后再创建一个新的AccessKey, 保存好AccessKeyId和AccessKeySecret。</p>
+<p><img src="/assets/image-20210807190304136.png" alt="image-20210807190304136"> </p>
+<p>&#x3D;&#x3D;注意： 创建好了AccessKey后，请及时保存AccessKeyId 和 AccessKeySecret ，弹窗关闭后将无法再次获取该信息，但您可以随时创建新的 AccessKey。&#x3D;&#x3D;</p>
+<h3 id="4-4-代码开发"><a href="#4-4-代码开发" class="headerlink" title="4.4 代码开发"></a>4.4 代码开发</h3><p>使用阿里云短信服务发送短信，可以参照官方提供的文档即可。</p>
+<p>官方文档: <a target="_blank" rel="noopener" href="https://help.aliyun.com/product/44282.html?spm=5176.12212571.help.dexternal.57a91cbewHHjKq">https://help.aliyun.com/product/44282.html?spm=5176.12212571.help.dexternal.57a91cbewHHjKq</a></p>
+<p><img src="/assets/image-20210807193047220.png" alt="image-20210807193047220"> </p>
+<p>我们根据官方文档的提示，引入对应的依赖，然后再引入对应的java代码，就可以发送消息了。</p>
+<p><img src="/assets/image-20210807193829131.png" alt="image-20210807193829131"> </p>
+<blockquote>
+<p>SDK : SDK 就是 Software Development Kit 的缩写，翻译过来——软件开发工具包，辅助开发某一类软件的相关文档、范例和工具的集合都可以叫做SDK。在我们与第三方接口相互时， 一般都会提供对应的SDK，来简化我们的开发。</p>
+</blockquote>
+<p><strong>具体实现：</strong></p>
+<p>1). pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-java-sdk-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.5.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-java-sdk-dysmsapi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2). 将官方提供的main方法封装为一个工具类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.aliyuncs.DefaultAcsClient;</span><br><span class="line"><span class="keyword">import</span> com.aliyuncs.IAcsClient;</span><br><span class="line"><span class="keyword">import</span> com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;</span><br><span class="line"><span class="keyword">import</span> com.aliyuncs.exceptions.ClientException;</span><br><span class="line"><span class="keyword">import</span> com.aliyuncs.profile.DefaultProfile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 短信发送工具类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SMSUtils</span> &#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 发送短信</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> signName 签名</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> templateCode 模板</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> phoneNumbers 手机号</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> param 参数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">(String signName, String templateCode,String phoneNumbers,String param)</span>&#123;</span><br><span class="line">      <span class="type">DefaultProfile</span> <span class="variable">profile</span> <span class="operator">=</span> DefaultProfile.getProfile(<span class="string">&quot;cn-hangzhou&quot;</span>, <span class="string">&quot;xxxxxxxxxxxxxxxx&quot;</span>, <span class="string">&quot;xxxxxxxxxxxxxx&quot;</span>);</span><br><span class="line">      <span class="type">IAcsClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultAcsClient</span>(profile);</span><br><span class="line"></span><br><span class="line">      <span class="type">SendSmsRequest</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SendSmsRequest</span>();</span><br><span class="line">      request.setSysRegionId(<span class="string">&quot;cn-hangzhou&quot;</span>);</span><br><span class="line">      request.setPhoneNumbers(phoneNumbers);</span><br><span class="line">      request.setSignName(signName);</span><br><span class="line">      request.setTemplateCode(templateCode);</span><br><span class="line">      request.setTemplateParam(<span class="string">&quot;&#123;\&quot;code\&quot;:\&quot;&quot;</span>+param+<span class="string">&quot;\&quot;&#125;&quot;</span>);</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">         <span class="type">SendSmsResponse</span> <span class="variable">response</span> <span class="operator">=</span> client.getAcsResponse(request);</span><br><span class="line">         System.out.println(<span class="string">&quot;短信发送成功&quot;</span>);</span><br><span class="line">      &#125;<span class="keyword">catch</span> (ClientException e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>备注 : 由于我们个人目前无法申请阿里云短信服务，所以这里我们只需要把流程跑通，具体的短信发送可以实现。</p>
+</blockquote>
+<h2 id="5-手机验证码登录"><a href="#5-手机验证码登录" class="headerlink" title="5. 手机验证码登录"></a>5. 手机验证码登录</h2><h3 id="5-1-需求分析"><a href="#5-1-需求分析" class="headerlink" title="5.1 需求分析"></a>5.1 需求分析</h3><p>为了方便用户登录，移动端通常都会提供通过手机验证码登录的功能。手机验证码登录有如下优点：</p>
+<p>1). 方便快捷，无需注册，直接登录</p>
+<p>2). 使用短信验证码作为登录凭证，无需记忆密码</p>
+<p>3). 安全</p>
+<img src="assets/image-20210807232653592.png" alt="image-20210807232653592" style="zoom:80%;" />  
+
+
+
+<p><strong>登录流程：</strong></p>
+<p>输入手机号 &gt; 获取验证码 &gt; 输入验证码 &gt; 点击登录 &gt; 登录成功</p>
+<blockquote>
+<p>注意：通过手机验证码登录，手机号是区分不同用户的标识。</p>
+</blockquote>
+<h3 id="5-2-数据模型"><a href="#5-2-数据模型" class="headerlink" title="5.2 数据模型"></a>5.2 数据模型</h3><p>通过手机验证码登录时，涉及的表为user表，即用户表。结构如下:</p>
+<p><img src="/assets/image-20210807231948412.png" alt="image-20210807231948412"> </p>
+<h3 id="5-3-前端页面分析"><a href="#5-3-前端页面分析" class="headerlink" title="5.3 前端页面分析"></a>5.3 前端页面分析</h3><p>在开发代码之前，需要梳理一下登录时前端页面和服务端的交互过程：</p>
+<p>1). 在登录页面(front&#x2F;page&#x2F;login.html)输入手机号，点击【获取验证码】按钮，页面发送ajax请求，在服务端调用短信服务API给指定手机号发送验证码短信。</p>
+<img src="assets/image-20210807233018171.png" alt="image-20210807233018171" style="zoom:80%;" /> 
+
+
+
+<p>2). 在登录页面输入验证码，点击【登录】按钮，发送ajax请求，在服务端处理登录请求。</p>
+<img src="assets/image-20210807233336029.png" alt="image-20210807233336029" style="zoom:80%;" /> 
+
+<p>如果服务端返回的登录成功，页面将会把当前登录用户的手机号存储在sessionStorage中，并跳转到移动的首页页面。</p>
+<p>开发手机验证码登录功能，其实就是在服务端编写代码去处理前端页面发送的这2次请求即可，分别是获取短信验证码 和 登录请求，具体的请求信息如下： </p>
+<p>1). 获取短信验证码</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;user&#x2F;sendMsg</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>{“phone”:”13100001111”}</td>
+</tr>
+</tbody></table>
+<p>2). 登录</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求方式</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>请求路径</td>
+<td>&#x2F;user&#x2F;login</td>
+</tr>
+<tr>
+<td>请求参数</td>
+<td>{“phone”:”13100001111”, “code”:”1111”}</td>
+</tr>
+</tbody></table>
+<h3 id="5-4-代码开发"><a href="#5-4-代码开发" class="headerlink" title="5.4 代码开发"></a>5.4 代码开发</h3><h4 id="5-4-1-准备工作"><a href="#5-4-1-准备工作" class="headerlink" title="5.4.1 准备工作"></a>5.4.1 准备工作</h4><p>在开发业务功能前，先将需要用到的类和接口基本结构创建好：</p>
+<p>1). 实体类 User（直接从课程资料中导入即可）</p>
+<p>所属包: com.itheima.reggie.entity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户信息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//手机号</span></span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//性别 0 女 1 男</span></span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//身份证号</span></span><br><span class="line">    <span class="keyword">private</span> String idNumber;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//头像</span></span><br><span class="line">    <span class="keyword">private</span> String avatar;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//状态 0:禁用，1:正常</span></span><br><span class="line">    <span class="keyword">private</span> Integer status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2). Mapper接口 UserMapper</p>
+<p>所属包: com.itheima.reggie.mapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.mapper.BaseMapper;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;User&gt;&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3). 业务层接口 UserService</p>
+<p>所属包: com.itheima.reggie.service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.IService;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.User;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserService</span> <span class="keyword">extends</span> <span class="title class_">IService</span>&lt;User&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4). 业务层实现类 UserServiceImpl</p>
+<p>所属包: com.itheima.reggie.service.impl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.entity.User;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.itheima.reggie.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">ServiceImpl</span>&lt;UserMapper,User&gt; <span class="keyword">implements</span> <span class="title class_">UserService</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5). 控制层 UserController</p>
+<p>所属包: com.itheima.reggie.controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itheima.reggie.service.UserService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>6). 工具类SMSUtils、ValidateCodeUtils（直接从课程资料中导入即可）</p>
+<p>所属包: com.itheima.reggie.utils</p>
+<p><img src="/assets/image-20210807234828051.png" alt="image-20210807234828051"> </p>
+<p>SMSUtils : 是我们上面改造的阿里云短信发送的工具类 ;</p>
+<p>ValidateCodeUtils : 是验证码生成的工具类 ;</p>
+<h4 id="5-4-2-功能实现"><a href="#5-4-2-功能实现" class="headerlink" title="5.4.2 功能实现"></a>5.4.2 功能实现</h4><h5 id="5-4-2-1-修改LoginCheckFilter"><a href="#5-4-2-1-修改LoginCheckFilter" class="headerlink" title="5.4.2.1 修改LoginCheckFilter"></a>5.4.2.1 修改LoginCheckFilter</h5><p>前面我们已经完成了LoginCheckFilter过滤器的开发，此过滤器用于检查用户的登录状态。我们在进行手机验证码登录时，发送的两个请求(获取验证码和登录)需要在此过滤器处理时直接放行。</p>
+<p><img src="/assets/image-20210807235349089.png" alt="image-20210807235349089"> </p>
+<p>对于移动的端的页面，也是用户登录之后，才可以访问的，那么这个时候就需要在 LoginCheckFilter 中进行判定，如果移动端用户已登录，我们获取到用户登录信息，存入ThreadLocal中(在后续的业务处理中，如果需要获取当前登录用户ID，直接从ThreadLocal中获取)，然后放行。</p>
+<p>增加如下逻辑: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4-2、判断登录状态，如果已登录，则直接放行</span></span><br><span class="line"><span class="keyword">if</span>(request.getSession().getAttribute(<span class="string">&quot;user&quot;</span>) != <span class="literal">null</span>)&#123;</span><br><span class="line">    log.info(<span class="string">&quot;用户已登录，用户id为：&#123;&#125;&quot;</span>,request.getSession().getAttribute(<span class="string">&quot;user&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="type">Long</span> <span class="variable">userId</span> <span class="operator">=</span> (Long) request.getSession().getAttribute(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">    BaseContext.setCurrentId(userId);</span><br><span class="line"></span><br><span class="line">    filterChain.doFilter(request,response);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-4-2-2-发送短信验证码"><a href="#5-4-2-2-发送短信验证码" class="headerlink" title="5.4.2.2 发送短信验证码"></a>5.4.2.2 发送短信验证码</h5><p>在UserController中创建方法，处理登录页面的请求，为指定手机号发送短信验证码，同时需要将手机号对应的验证码保存到Session，方便后续登录时进行比对。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发送手机短信验证码</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;/sendMsg&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R&lt;String&gt; <span class="title function_">sendMsg</span><span class="params">(<span class="meta">@RequestBody</span> User user, HttpSession session)</span>&#123;</span><br><span class="line">    <span class="comment">//获取手机号</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> user.getPhone();</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isNotEmpty(phone))&#123;</span><br><span class="line">        <span class="comment">//生成随机的4位验证码</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> ValidateCodeUtils.generateValidateCode(<span class="number">4</span>).toString();</span><br><span class="line">        log.info(<span class="string">&quot;code=&#123;&#125;&quot;</span>,code);</span><br><span class="line">			</span><br><span class="line">        <span class="comment">//调用阿里云提供的短信服务API完成发送短信</span></span><br><span class="line">        <span class="comment">//SMSUtils.sendMessage(&quot;瑞吉外卖&quot;,&quot;&quot;,phone,code);</span></span><br><span class="line">		</span><br><span class="line">        <span class="comment">//需要将生成的验证码保存到Session</span></span><br><span class="line">        session.setAttribute(phone,code);</span><br><span class="line">        <span class="keyword">return</span> R.success(<span class="string">&quot;手机验证码短信发送成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> R.error(<span class="string">&quot;短信发送失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><font color='red'>备注: </font></p>
+<p>​	<font color='red'>这里发送短信我们只需要调用封装的工具类中的方法即可，我们这个功能流程跑通，在测试中我们不用真正的发送短信，只需要将验证码信息，通过日志输出，登录时，我们直接从控制台就可以看到生成的验证码(实际上也就是发送到我们手机上的验证码)</font></p>
+</blockquote>
+<h5 id="5-4-2-3-验证码登录"><a href="#5-4-2-3-验证码登录" class="headerlink" title="5.4.2.3 验证码登录"></a>5.4.2.3 验证码登录</h5><p>在UserController中增加登录的方法 login，该方法的具体逻辑为： </p>
+<p>1). 获取前端传递的手机号和验证码</p>
+<p>2). 从Session中获取到手机号对应的正确的验证码</p>
+<p>3). 进行验证码的比对 , 如果比对失败, 直接返回错误信息</p>
+<p>4). 如果比对成功, 需要根据手机号查询当前用户, 如果用户不存在, 则自动注册一个新用户</p>
+<p>5). 将登录用户的ID存储Session中</p>
+<p>具体代码实现: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 移动端用户登录</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> map</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> session</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R&lt;User&gt; <span class="title function_">login</span><span class="params">(<span class="meta">@RequestBody</span> Map map, HttpSession session)</span>&#123;</span><br><span class="line">    log.info(map.toString());</span><br><span class="line">    <span class="comment">//获取手机号</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> map.get(<span class="string">&quot;phone&quot;</span>).toString();</span><br><span class="line">    <span class="comment">//获取验证码</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> map.get(<span class="string">&quot;code&quot;</span>).toString();</span><br><span class="line">    <span class="comment">//从Session中获取保存的验证码</span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">codeInSession</span> <span class="operator">=</span> session.getAttribute(phone);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进行验证码的比对（页面提交的验证码和Session中保存的验证码比对）</span></span><br><span class="line">    <span class="keyword">if</span>(codeInSession != <span class="literal">null</span> &amp;&amp; codeInSession.equals(code))&#123;</span><br><span class="line">        <span class="comment">//如果能够比对成功，说明登录成功</span></span><br><span class="line"></span><br><span class="line">        LambdaQueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> <span class="title class_">LambdaQueryWrapper</span>&lt;&gt;();</span><br><span class="line">        queryWrapper.eq(User::getPhone,phone);</span><br><span class="line"></span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userService.getOne(queryWrapper);</span><br><span class="line">        <span class="keyword">if</span>(user == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//判断当前手机号对应的用户是否为新用户，如果是新用户就自动完成注册</span></span><br><span class="line">            user = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">            user.setPhone(phone);</span><br><span class="line">            user.setStatus(<span class="number">1</span>);</span><br><span class="line">            userService.save(user);</span><br><span class="line">        &#125;</span><br><span class="line">        session.setAttribute(<span class="string">&quot;user&quot;</span>,user.getId());</span><br><span class="line">        <span class="keyword">return</span> R.success(user);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> R.error(<span class="string">&quot;登录失败&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="5-5-功能测试"><a href="#5-5-功能测试" class="headerlink" title="5.5 功能测试"></a>5.5 功能测试</h3><p>代码完成后，重启服务，测试短信验证码的发送及登录功能。</p>
+<p>1). 测试错误验证码的情况</p>
+<img src="assets/image-20210808001952043.png" alt="image-20210808001952043" style="zoom:80%;" /> 
+
+
+
+<p>2). 测试正确验证码的情况</p>
+<p><img src="/assets/image-20210808002356092.png" alt="image-20210808002356092"> </p>
+<p>检查user表，用户的数据也插入进来了： </p>
+<p><img src="/assets/image-20210808002501618.png" alt="image-20210808002501618"> </p>
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day05/" title="瑞吉外卖-Day05">https://turheart.github.io/2022/08/03/瑞吉外卖-Day05/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%91%9E%E5%90%89/" rel="tag"><i class="fa fa-tag"></i> 瑞吉</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day06/" rel="prev" title="瑞吉外卖-Day06">
+      <i class="fa fa-chevron-left"></i> 瑞吉外卖-Day06
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-Day03/" rel="next" title="瑞吉外卖-Day03">
+      瑞吉外卖-Day03 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%91%9E%E5%90%89%E5%A4%96%E5%8D%96-%E7%AC%AC%E4%BA%94%E5%A4%A9"><span class="nav-number">1.</span> <span class="nav-text">瑞吉外卖-第五天</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">课程内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%B0%E5%A2%9E%E5%A5%97%E9%A4%90"><span class="nav-number">1.2.</span> <span class="nav-text">1. 新增套餐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 前端页面分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 代码开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-%E6%A0%B9%E6%8D%AE%E5%88%86%E7%B1%BB%E6%9F%A5%E8%AF%A2%E8%8F%9C%E5%93%81"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1.5.1 根据分类查询菜品</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-1-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text">1.5.1.1 功能实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-2-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.5.1.2.</span> <span class="nav-text">1.5.1.2 功能测试</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-%E4%BF%9D%E5%AD%98%E5%A5%97%E9%A4%90"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">1.5.2 保存套餐</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-1-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.5.2.1.</span> <span class="nav-text">1.5.2.1 功能实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-2-2-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.5.2.2.</span> <span class="nav-text">1.5.2.2 功能测试</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A5%97%E9%A4%90%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.3.</span> <span class="nav-text">2. 套餐分页查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 前端页面分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 代码开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">2.3.1 基本信息查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">2.3.2 问题分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">2.3.3 功能完善</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4 功能测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%A0%E9%99%A4%E5%A5%97%E9%A4%90"><span class="nav-number">1.4.</span> <span class="nav-text">3. 删除套餐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 前端页面分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 代码开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.4 功能测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81"><span class="nav-number">1.5.</span> <span class="nav-text">4. 短信发送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 短信服务介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 阿里云短信服务介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1%E5%87%86%E5%A4%87"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 阿里云短信服务准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">4.3.1 注册账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E5%BC%80%E9%80%9A%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">4.3.2 开通短信服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E8%AE%BE%E7%BD%AE%E7%9F%AD%E4%BF%A1%E7%AD%BE%E5%90%8D"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">4.3.3 设置短信签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4-%E8%AE%BE%E7%BD%AE%E7%9F%AD%E4%BF%A1%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">4.3.4 设置短信模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-5-%E8%AE%BE%E7%BD%AEAccessKey"><span class="nav-number">1.5.3.5.</span> <span class="nav-text">4.3.5 设置AccessKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-6-%E9%85%8D%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-number">1.5.3.6.</span> <span class="nav-text">4.3.6 配置权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-7-%E7%A6%81%E7%94%A8-x2F-%E5%88%A0%E9%99%A4AccessKey"><span class="nav-number">1.5.3.7.</span> <span class="nav-text">4.3.7 禁用&#x2F;删除AccessKey</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91"><span class="nav-number">1.5.4.</span> <span class="nav-text">4.4 代码开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">5. 手机验证码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 前端页面分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.4 代码开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">5.4.1 准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-2-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">5.4.2 功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-2-1-%E4%BF%AE%E6%94%B9LoginCheckFilter"><span class="nav-number">1.6.4.2.1.</span> <span class="nav-text">5.4.2.1 修改LoginCheckFilter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-2-2-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">1.6.4.2.2.</span> <span class="nav-text">5.4.2.2 发送短信验证码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-2-3-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.6.4.2.3.</span> <span class="nav-text">5.4.2.3 验证码登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.6.5.</span> <span class="nav-text">5.5 功能测试</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">226k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:26</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
