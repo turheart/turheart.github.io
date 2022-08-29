@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 简答题1.1 简答题一请说明下述程序执行完成以后会输出几个学生的姓名和年龄并说明原因？如果只想保留一个姓名为”黑马”年龄为16的学生应该怎么处理？【业务要求：如果两个学生对象的姓名和年龄都相同则认为 是同一个对象】        1234答：输出结果：会输出4个学生的姓名和年龄原因：使用HashSet集合存储自定义对象，如果要保证数据的唯一性，要求自定义对象所对应的类必须重写Object类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day08作业">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="1 简答题1.1 简答题一请说明下述程序执行完成以后会输出几个学生的姓名和年龄并说明原因？如果只想保留一个姓名为”黑马”年龄为16的学生应该怎么处理？【业务要求：如果两个学生对象的姓名和年龄都相同则认为 是同一个对象】        1234答：输出结果：会输出4个学生的姓名和年龄原因：使用HashSet集合存储自定义对象，如果要保证数据的唯一性，要求自定义对象所对应的类必须重写Object类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220116142128090.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/images/image-20191206144804748.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/images/image-20191206145032121.png">
+<meta property="og:image" content="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/images/image-20191206145115699.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20191205173213225.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20191205173725461.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220116145705899.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220116150321690.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220114142118152.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220116190037738.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220116191817867.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220117085244700.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220117100211873.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220117110924493.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220117105942290.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220117105701705.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2022-08-29T14:41:59.204Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/images/image-20220116142128090.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>day08作业 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          day08作业
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-29 22:41:59" itemprop="dateModified" datetime="2022-08-29T22:41:59+08:00">2022-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index"><span itemprop="name">JavaSE</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请说明下述程序执行完成以后会输出几个学生的姓名和年龄并说明原因？如果只想保留一个姓名为”黑马”年龄为16的学生应该怎么处理？【业务要求：如果两个学生对象的姓名和年龄都相同则认为</p>
+<p>是同一个对象】</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220116142128090.png" alt="image-20220116142128090"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">输出结果：会输出<span class="number">4</span>个学生的姓名和年龄</span><br><span class="line">原因：使用HashSet集合存储自定义对象，如果要保证数据的唯一性，要求自定义对象所对应的类必须重写Object类中的hashCode和equals方法，但是Student并没有进行重写，因此会在控制台      输出<span class="number">4</span>个学生的姓名和年龄</span><br><span class="line">只想保留一个姓名为<span class="string">&quot;黑马&quot;</span>年龄为<span class="number">16</span>的学生处理方案：重写Object类中的hashCode和equals方法。如下所示   </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重写equals方法</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> (Student) o;</span><br><span class="line">    <span class="keyword">return</span> age == student.age &amp;&amp; name.equals(student.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重写hashCode方法</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> Objects.hash(name, age);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">上述代码可以直接使用idea开发工具生，如下所示：</span><br></pre></td></tr></table></figure>
+
+<p>在Student类的空白处按快捷键 alt + insert，此时会弹出一个菜单，如下图所示：</p>
+<img src="images/image-20191206144804748.png" alt="image-20191206144804748" style="zoom:25%;" />  
+
+<p>然后选择equals() and hashCode()此时会弹出如下菜单：</p>
+<img src="images/image-20191206145032121.png" alt="image-20191206145032121" style="zoom:25%;" />  
+
+<p>然后点击Next，会出现如下菜单</p>
+<img src="images/image-20191206145115699.png" alt="image-20191206145115699" style="zoom:25%;" />  
+
+<p>然后点击两次Next就可以生产hashCode方法和equals方法了。</p>
+<h2 id="1-2-简答题二"><a href="#1-2-简答题二" class="headerlink" title="1.2 简答题二"></a>1.2 简答题二</h2><p>简述HashSet集合底层的数据结构、扩容原理以及JDK1.8引入红黑树的意义？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br></pre></td></tr></table></figure>
+
+<p> ① Jdk1.7之前(包含Jdk1.7)哈希表的实现是<font color="red" size="3"><strong>数组 + 链表</strong></font>，可以说是一个元素为链表的数组， 如下图所示：    <img src="/images/image-20191205173213225.png" alt="image-20191205173213225"> </p>
+<p>每一个Entry可以看做成是一个元素。默认情况下数组的长度为16。</p>
+<p>② Jdk1.8之后(包含Jdk1.8)哈希表的实现是<font color="red" size="3"><strong>数组 + 链表 + 红黑树</strong></font>，如下图所示：</p>
+<p><img src="/images/image-20191205173725461.png" alt="image-20191205173725461"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">每一个Node可以看做成是一个元素。默认情况下数组的长度为<span class="number">16</span>。当某一个链表的长度超过一定值得时候，此时会将链表变成<span class="string">&quot;红黑树&quot;</span>。</span><br><span class="line"></span><br><span class="line">③ 扩容原理：</span><br><span class="line">	<span class="number">1.</span> 首先根据hash表的长度计算出来一个阈值： 阈值 = hash表的长度 * 比例因子(<span class="number">0.75</span>);</span><br><span class="line">	<span class="number">2.</span> 当每一次添加完元素以后，就会判断当前集合中的元素个数(集合的长度)是否大于这个阈值，如果是，进行扩容，每一次进行<span class="number">2</span>倍扩容</span><br><span class="line">	初始化的阈值 = <span class="number">16</span> （哈希表的默认初始化长度）* <span class="number">0.75</span> = <span class="number">12</span> ；</span><br><span class="line">④ Jdk1<span class="number">.8</span>引入红黑树的意义：为了提高搜索效率。因为采用<span class="string">&quot;红黑树&quot;</span>对元素进行存储，可以将元素分为两部分。那么在进行元素查找的时候类似于<span class="string">&quot;二分思想&quot;</span>进行查找。</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-简答题三"><a href="#1-3-简答题三" class="headerlink" title="1.3 简答题三"></a>1.3 简答题三</h2><p>请说明下面程序执行完毕以后在控制台的输出结果是什么？并说明原因？</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220116145705899.png" alt="image-20220116145705899"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 控制台输出结果如下所示：  </span><br><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.ClassCastException: com.itheima.treemap.demo01.Student cannot be cast to java.lang.Comparable</span><br><span class="line">	at java.util.TreeMap.compare(TreeMap.java:<span class="number">1294</span>)</span><br><span class="line">	at java.util.TreeMap.put(TreeMap.java:<span class="number">538</span>)</span><br><span class="line">	at com.itheima.treemap.demo01.TreeMapDemo01.main(Student.java:<span class="number">30</span>)</span><br><span class="line">② 原因说明：在创建TreeMap集合对象的时候，使用的无参数的构造方法创建，说明要对Map中的键使用自然排序方法进行排序。而自然排序对要求元素所对应的类必须实现Comparable接口，但是案例中的Student类没有实现Comparable接口，因此会报错。 </span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-简答题四"><a href="#1-4-简答题四" class="headerlink" title="1.4 简答题四"></a>1.4 简答题四</h2><p>请说明下述程序执行完毕以后在控制台会输出几个元素并且元素的内容是什么？并说明原因？如果想对学生进行先按照年龄从小到大排序，如果年龄相同则按照姓名从小到大进行排序应该怎么实</p>
+<p>现？</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220116150321690.png" alt="image-20220116150321690"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 会输出<span class="number">1</span>个元素					原因：compareTo方法的返回值为<span class="number">0</span>，说明要添加的元素在集合中已经存在了，因此集合中只有一个元素。</span><br><span class="line">② 元素的内容：传智，<span class="number">16</span>，西安    	原因：键相同值替换</span><br><span class="line">③ 想对学生进行先按照年龄从小到大排序，可以对compareTo方法进行如下改造：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Student o)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result1</span> <span class="operator">=</span> <span class="built_in">this</span>.age - o.age ;                                        <span class="comment">// 先比较年龄</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">result2</span> <span class="operator">=</span> result1 == <span class="number">0</span> ? <span class="built_in">this</span>.name.compareTo(o.name) : result1 ;    <span class="comment">// 年龄相同比较姓名</span></span><br><span class="line">    <span class="keyword">return</span> result2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-简答题五"><a href="#1-5-简答题五" class="headerlink" title="1.5 简答题五"></a>1.5 简答题五</h2><p>请分析下述程序存在的问题并说明原因？</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220114142118152.png" alt="image-20220114142118152"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">答：程序编译不通过，因为可变参数不是方法参数的最后一个参数，违背了Java中可变参数的语法规则。</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-简答题六"><a href="#1-6-简答题六" class="headerlink" title="1.6 简答题六"></a>1.6 简答题六</h2><p>下述程序执行完毕以后在控制台输出的结果是什么？请从源码的角度分析产生该问题的原因！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个ArrayList集合对象，并向其中添加元素</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;传智播客&quot;</span>) ;</span><br><span class="line">list.add(<span class="string">&quot;黑马程序员&quot;</span>) ;</span><br><span class="line">list.add(<span class="string">&quot;传智教育&quot;</span>) ;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把上述ArrayList集合转换成不可变的list集合</span></span><br><span class="line">List&lt;String&gt; unmodifiableList = Collections.unmodifiableList(list);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向unmodifiableList集合中再次添加元素</span></span><br><span class="line">unmodifiableList.add(<span class="string">&quot;itheima&quot;</span>) ;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历集合</span></span><br><span class="line"><span class="keyword">for</span>(String s : unmodifiableList) &#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">上述程序执行完毕以后，在控制台会输入如下异常：Exception in thread &quot;main&quot; java.lang.UnsupportedOperationException</span><br><span class="line">Collections中的unmodifiableList方法的源码如下所示：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; List&lt;T&gt; <span class="title function_">unmodifiableList</span><span class="params">(List&lt;? extends T&gt; list)</span> &#123;</span><br><span class="line">    <span class="comment">// 判断list集合是否是RandomAccess类型的，如果是创建一个UnmodifiableRandomAccessList集合对象，如果不是创建一个UnmodifiableList集合对象</span></span><br><span class="line">    <span class="keyword">return</span> (list <span class="keyword">instanceof</span> RandomAccess ? <span class="keyword">new</span> <span class="title class_">UnmodifiableRandomAccessList</span>&lt;&gt;(list) : <span class="keyword">new</span> <span class="title class_">UnmodifiableList</span>&lt;&gt;(list));				</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看UnmodifiableList部分源码</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">UnmodifiableList</span>&lt;E&gt; <span class="keyword">extends</span> <span class="title class_">UnmodifiableCollection</span>&lt;E&gt; <span class="keyword">implements</span> <span class="title class_">List</span>&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> -<span class="number">283967356065247728L</span>;</span><br><span class="line">		</span><br><span class="line">    	<span class="comment">// 定义成员变量，接收构造方法参数</span></span><br><span class="line">        <span class="keyword">final</span> List&lt;? <span class="keyword">extends</span> <span class="title class_">E</span>&gt; list;</span><br><span class="line"></span><br><span class="line">        UnmodifiableList(List&lt;? <span class="keyword">extends</span> <span class="title class_">E</span>&gt; list) &#123;</span><br><span class="line">            <span class="built_in">super</span>(list);</span><br><span class="line">            <span class="built_in">this</span>.list = list;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 添加元素方法直接抛出异常</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> index, E element)</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-编程题"><a href="#2-编程题" class="headerlink" title="2 编程题"></a>2 编程题</h1><h2 id="2-1-编程题目一"><a href="#2-1-编程题目一" class="headerlink" title="2.1 编程题目一"></a>2.1 编程题目一</h2><p><strong>训练目标</strong>：掌握Java中Map集合的使用，以及理解其在实际开发中的应用</p>
+<p><strong>需求背景</strong>：在京东商城上进行商品搜索的时候，往往会有一个搜索的面板用来展示搜索条件供用户实现按照条件搜索的功能，如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220116190037738.png" alt="image-20220116190037738"></th>
+</tr>
+</thead>
+</table>
+<p><strong>需求描述</strong>: 请选择Java中合适的集合对象来存储上述搜索面板中的数据，并进行遍历。效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220116191817867.png" alt="image-20220116191817867"></th>
+</tr>
+</thead>
+</table>
+<p><strong>实现提示</strong>：</p>
+<p>1、搜索类别和搜索条件之间存在对应关系，可以考虑使用Map集合进行存储</p>
+<p>2、一个搜索类别对应多个搜索条件并且不能重复，因此搜索条件可以考虑使用Set集合进行存储</p>
+<p><strong>代码实现</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HashMapDemo01</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个HashMap来存储京东商城上搜索页面中搜索面板的数据 , 一个类筛选条件对应多个值并且不能重复，因此针对值的部分可以考虑使用Set集合</span></span><br><span class="line">        HashMap&lt;String , Set&lt;String&gt;&gt; searchPanel = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;() ;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建存储品牌搜索条件的Set集合对象</span></span><br><span class="line">        Set&lt;String&gt; brands = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        brands.add(<span class="string">&quot;电子工业出版社&quot;</span>);</span><br><span class="line">        brands.add(<span class="string">&quot;异步图书&quot;</span>);</span><br><span class="line">        brands.add(<span class="string">&quot;清华大学出版社&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将品牌数据存储到集合中</span></span><br><span class="line">        searchPanel.put(<span class="string">&quot;品牌&quot;</span> , brands) ;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建计算机与互联网搜索条件的Set集合对象</span></span><br><span class="line">        Set&lt;String&gt; computer = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        computer.add(<span class="string">&quot;编程语言与程序设计&quot;</span>);</span><br><span class="line">        computer.add(<span class="string">&quot;网络与通讯&quot;</span>);</span><br><span class="line">        computer.add(<span class="string">&quot;数据库&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将计算机与互联网数据存储到集合中</span></span><br><span class="line">        searchPanel.put(<span class="string">&quot;计算机与互联网&quot;</span> , computer) ;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建上市时间搜索条件的Set集合对象</span></span><br><span class="line">        Set&lt;String&gt; upDate = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        upDate.add(<span class="string">&quot;往季&quot;</span>) ;</span><br><span class="line">        upDate.add(<span class="string">&quot;2019年春季&quot;</span>) ;</span><br><span class="line">        upDate.add(<span class="string">&quot;2019年冬季&quot;</span>) ;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将上市时间数据存储到集合中</span></span><br><span class="line">        searchPanel.put(<span class="string">&quot;上市时间&quot;</span> , upDate) ;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历searchPanel集合对象</span></span><br><span class="line">        searchPanel.forEach((key , value) -&gt; &#123;</span><br><span class="line">            System.out.print(key + <span class="string">&quot;:&quot;</span>);</span><br><span class="line">            value.forEach( s -&gt; &#123;</span><br><span class="line">                System.out.print(s + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-2-编程题目二"><a href="#2-2-编程题目二" class="headerlink" title="2.2 编程题目二"></a>2.2 编程题目二</h2><p><strong>训练目标</strong>：掌握Java中Map集合的使用，以及理解其在实际开发中的应用</p>
+<p><strong>需求背景</strong>：在真实的开发中为了保证数据的安全性，往往需要将数据存储到磁盘上(内存保存中的数据，当程序重启以后数据就丢失了)。每一次在使用的时候都是通过某种技术从磁盘上读取数据到</p>
+<p>内存中，然后进行使用。磁盘数据的读取速度是远远的小于内存的，因此为了提高数据的读取效率，可以将读取到的数据存储到内存中，然后先从内存中读取数据，如果内存中有数据直接进行返</p>
+<p>回；如果内存中没有数据再次从磁盘上读取数据，并且将磁盘上读取到的数据再次存储到内存中，供下次进行数据的读取。这样就大大的提高了程序的读取数据效率(从磁盘上读取数据的次数大大</p>
+<p>降低了)，这种思想就是<font color='red'>缓存思想</font>。整体的数据读取流程如下图所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220117085244700.png" alt="image-20220117085244700"></th>
+</tr>
+</thead>
+</table>
+<p>在设计缓存的时候往往会使用到Map集合进行数据的存储，因为存储在内存中的数据需要设置一个名字，后期就可以根据这个名字获取到对应的数据。这个Map的键的类型是字符串，值的类型可</p>
+<p>以有多种：String、List 、Set、HashMap …</p>
+<p><strong>需求描述</strong>: 在素材的cache项目中设计了一个缓存工具类RedisTemplate，请在指定的位置补全代码，使Entry程序可以进行正常运行。案例效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220117100211873.png" alt="image-20220117100211873"></th>
+</tr>
+</thead>
+</table>
+<p><strong>实现提示</strong>：</p>
+<p>1、在DefaultValueOperations类中补全代码(成员变量位置创建一个HashMap集合对象：键为String类型，值为String类型)</p>
+<p>2、在DefaultHashOperations类中补全代码(成员变量位置创建一个HashMap集合对象：键为String类型，值为HashMap&lt;String , String&gt;类型)</p>
+<p><strong>代码实现</strong>：见《答案&#x2F;代码&#x2F;cache》</p>
+<h2 id="2-3-编程题目三"><a href="#2-3-编程题目三" class="headerlink" title="2.3 编程题目三"></a>2.3 编程题目三</h2><p><strong>训练目标</strong>：掌握给程序添加缓存的思想，以及理解其在实际开发中的应用</p>
+<p><strong>需求背景</strong>: 在素材的use-cache项目中Entry这个类中提供了一个根据商品的条码查询商品数据的方法(getSkuBySn),商品的数据来源于sku01.xlsx表格，读取表格中数据到一个List集合中的代码</p>
+<p>已经实现，如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220117110924493.png" alt="image-20220117110924493"></th>
+</tr>
+</thead>
+</table>
+<p>但是目前这种方式每一次读取数据的时候都是从磁盘中进行读取，效率较低。程序的执行效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220117105942290.png" alt="image-20220117105942290"></th>
+</tr>
+</thead>
+</table>
+<p><strong>需求描述</strong>：现需要对Entry类中的getSkuBySn方法添加查询缓存的逻辑代码以提高数据的查询效率。程序执行完毕以后效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220117105701705.png" alt="image-20220117105701705"></th>
+</tr>
+</thead>
+</table>
+<p><strong>实现提示</strong>：</p>
+<p>1、将编程题目二中的cache项目打包成一个jar加入到use-cache项目中的lib目录下</p>
+<p>2、在进行查询的时候先从缓存中进行查询，缓存中如果有数据直接返回</p>
+<p>3、缓存中没有数据读取磁盘excel文件数据，然后在将获取到的数据存储到缓存中</p>
+<p><strong>代码实现</strong>：见《答案&#x2F;代码&#x2F;use-cache》</p>
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" title="day08作业">https://turheart.github.io/2022/08/03/第8天作业题答案/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"><i class="fa fa-tag"></i> 作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%AC%AC9%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" rel="prev" title="day09作业">
+      <i class="fa fa-chevron-left"></i> day09作业
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%AC%AC7%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" rel="next" title="day07作业">
+      day07作业 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AE%80%E7%AD%94%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1 简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AE%80%E7%AD%94%E9%A2%98%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 简答题一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%AE%80%E7%AD%94%E9%A2%98%E4%BA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 简答题二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%AE%80%E7%AD%94%E9%A2%98%E4%B8%89"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 简答题三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E7%AE%80%E7%AD%94%E9%A2%98%E5%9B%9B"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 简答题四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E7%AE%80%E7%AD%94%E9%A2%98%E4%BA%94"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 简答题五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E7%AE%80%E7%AD%94%E9%A2%98%E5%85%AD"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 简答题六</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">2 编程题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 编程题目一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 编程题目二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 编程题目三</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">290k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 简答题1.1 简答题一简述类的加载过程？ 1答: 一个类被加载到虚拟机中需要经过如下几个过程：加载，验证，准备，解析和初始化。其中验证、准备、解析统称之为链接。如下图所示：         12345678加载：”加载“是”类加载“过程的一个阶段，在加载阶段虚拟机需要完成以下3件事情：	① 通过一个类的全限定名来获取定义此类的二进制字节流	② 将这个字节流所代表的静态存储结构转化为运行时数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day15作业">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/%E7%AC%AC15%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="1 简答题1.1 简答题一简述类的加载过程？ 1答: 一个类被加载到虚拟机中需要经过如下几个过程：加载，验证，准备，解析和初始化。其中验证、准备、解析统称之为链接。如下图所示：         12345678加载：”加载“是”类加载“过程的一个阶段，在加载阶段虚拟机需要完成以下3件事情：	① 通过一个类的全限定名来获取定义此类的二进制字节流	② 将这个字节流所代表的静态存储结构转化为运行时数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220104141459687.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220102185610674.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220102185712937.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220104141129770.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220104143841892.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220103182548428.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220104095445933.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20220104120912842.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2022-08-29T14:42:40.059Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="作业">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/images/image-20220104141459687.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/%E7%AC%AC15%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>day15作业 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/%E7%AC%AC15%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          day15作业
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-29 22:42:40" itemprop="dateModified" datetime="2022-08-29T22:42:40+08:00">2022-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index"><span itemprop="name">JavaSE</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述类的加载过程？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">答: 一个类被加载到虚拟机中需要经过如下几个过程：加载，验证，准备，解析和初始化。其中验证、准备、解析统称之为链接。如下图所示：</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220104141459687.png" alt="image-20220104141459687"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">加载：”加载“是”类加载“过程的一个阶段，在加载阶段虚拟机需要完成以下<span class="number">3</span>件事情：</span><br><span class="line">	① 通过一个类的全限定名来获取定义此类的二进制字节流</span><br><span class="line">	② 将这个字节流所代表的静态存储结构转化为运行时数据结构</span><br><span class="line">	③ 在内存中生成一个代表这个类的java.lang.Class对象，任何类被使用时，系统都会为之建立一个 java.lang.Class 对象</span><br><span class="line">验证：验证是链接阶段的第一步，这一阶段的目的是为了确保Class文件字节流中包含的信息符号当前虚拟机的要求，并且不会危害虚拟机自身安全</span><br><span class="line">准备：负责为类的类变量（被<span class="keyword">static</span>修饰的变量）分配内存，并设置默认初始化值</span><br><span class="line">解析：将类的二进制数据流中的符号引用替换为直接引用</span><br><span class="line">初始化：则根据程序员通过程序制定的主观计划去初始化类变量和其他资源。比如静态成员变量：<span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">23</span> ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-简答题二"><a href="#1-2-简答题二" class="headerlink" title="1.2 简答题二"></a>1.2 简答题二</h2><p>简述(JDK8)类加载器的分类以及每一种类加载器所加载的类？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 启动类加载器（BootStrap ClassLoader）  ：它是虚拟机的内置类加载器，通过表示为null，用来加载 %JAVA_HOME%/jre/lib下的类, 如rt.jar中的class文件。</span><br><span class="line">② 扩展类加载器（Extension Classloader）  ：它是平台类加载器； 用来加载 %JAVA_HOME%/jre/lib/ext 中的class文件。</span><br><span class="line">③ 系统类加载器（AppClassLoader）         ：它被称为应用程序类加载器， 它负责加载用户类路径上所指定的类库，一般情况下这个就是程序中默认的类加载器</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-简答题三"><a href="#1-3-简答题三" class="headerlink" title="1.3 简答题三"></a>1.3 简答题三</h2><p>如下程序：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220102185610674.png" alt="image-20220102185610674"></th>
+</tr>
+</thead>
+</table>
+<p>上述程序执行完毕在控制台输出如下错误内容：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220102185712937.png" alt="image-20220102185712937"></th>
+</tr>
+</thead>
+</table>
+<p>请分析出现该错误的原因是什么？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">当使用String类的时候，就需要将这个String类加载器到JVM中。系统类加载器先获取到加载这个类的请求，然后根据类加载器的双亲委派机制，系统类加载器会委托父类加载器(扩展内加载器)进行加载，扩展类加载器此时会委托其父类加载器(引导类加载器)进行加载，因为类加载器获取到这个请求以后，就开始从自己所负载的加载范围查找该类进行加载，由于上述程序所定义的String类和jdk中所提供的String类是同名同包的。因此引导类加载器就将JDK中的String类进行了加载，那么在Jdk中所提供的String类中是没有main方法的，因此控制台输出找不到main方法。</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-简答题四"><a href="#1-4-简答题四" class="headerlink" title="1.4 简答题四"></a>1.4 简答题四</h2><p>请分析如下程序在控制台输出的结果并说明原因？</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220104141129770.png" alt="image-20220104141129770"></th>
+</tr>
+</thead>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 输出结果：false ， true</span><br><span class="line">② 原因说明：决定一个类在JVM中的唯一性是由其类加载器和类的全限定名一同决定的。clazz1获取到的字节码文件对象是通过自定义的类加载器加载的，而clazz2和clazz3是通过系统类加载器(应用类加载器)加载的。因此在控制台输出的内容为：false ，true</span><br><span class="line"></span><br><span class="line">验证代码如下所示：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过匿名内部类的方式创建一个ClassLoader对象</span></span><br><span class="line">        <span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassLoader</span>() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 从Classpath路径中读取当前要加载的类名称相同的class文件数据</span></span><br><span class="line">                    <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> name.substring(name.lastIndexOf(<span class="string">&quot;.&quot;</span>) + <span class="number">1</span>) + <span class="string">&quot;.class&quot;</span>;</span><br><span class="line">                    <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> getClass().getResourceAsStream(fileName);</span><br><span class="line">                    <span class="keyword">if</span> (is == <span class="literal">null</span>) &#123;  <span class="comment">// 如果不存在对应的class文件，调用父类加载器完成类的加载</span></span><br><span class="line">                        <span class="keyword">return</span> <span class="built_in">super</span>.loadClass(name);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 存在就读取字节码文件数据到字节数组中</span></span><br><span class="line">                    <span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[is.available()];</span><br><span class="line">                    is.read(b);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);  <span class="comment">// 调用父类的defineClass方法将字节数组加载到JVM中</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ClassNotFoundException</span>(name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用上述的类加载器完成类的加载</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz1</span> <span class="operator">=</span> classLoader.loadClass(<span class="string">&quot;com.itheima.reflect.domain.Hello&quot;</span>);</span><br><span class="line">        System.out.println(clazz1.getClassLoader());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取Hello类的字节码文件对象</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz2</span> <span class="operator">=</span> Hello.class;</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz3</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;com.itheima.reflect.domain.Hello&quot;</span>);</span><br><span class="line">        System.out.println(clazz2.getClassLoader());</span><br><span class="line">        System.out.println(clazz3.getClassLoader());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 比较Class对象是否相等</span></span><br><span class="line">        System.out.println(clazz1 == clazz2);</span><br><span class="line">        System.out.println(clazz2 == clazz3);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出结果为：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220104143841892.png" alt="image-20220104143841892"></th>
+</tr>
+</thead>
+</table>
+<h2 id="1-5-简答题五"><a href="#1-5-简答题五" class="headerlink" title="1.5 简答题五"></a>1.5 简答题五</h2><p>简述您对反射的理解以及使用反射的思想步骤？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 反射的理解：反射的就是使用类的另外一种方式，通过这种方式使用类可以大大的提高程序的灵活性和后期的维护性</span><br><span class="line">② 使用反射的思想步骤：</span><br><span class="line">	1、获取指定的类的字节码文件对象</span><br><span class="line">	2、调用字节码文件对象的方法获取构造方法对象(Constructor)、成员变量对象(Field)、成员方法对象(Method)</span><br><span class="line">	3、调用构造方法对象的方法创建对象/调用成员变量对象的方法获取成员变量的值或者给成员变量赋值/调用成员方法对象的方法执行该方法</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-简答题六"><a href="#1-6-简答题六" class="headerlink" title="1.6 简答题六"></a>1.6 简答题六</h2><p>简述获取一个类的字节码文件对象存在哪几种方式？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：</span><br><span class="line">① 使用类的静态class属性来获取该类对应的Class对象</span><br><span class="line">② 调用对象的getClass()方法，返回该对象所属类对应的Class对象，该方法是Object类中的方法，所有的Java对象都可以调用该方法</span><br><span class="line">③ 使用Class类中的静态方法forName(String className)，方法参数表示的是类的全限定名（带包名的类名）</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-编程题"><a href="#2-编程题" class="headerlink" title="2 编程题"></a>2 编程题</h1><h2 id="2-1-编程题目一"><a href="#2-1-编程题目一" class="headerlink" title="2.1 编程题目一"></a>2.1 编程题目一</h2><p><strong>训练目标</strong>：掌握反射代码书写，以及理解其在实际开发中的应用</p>
+<p><strong>需求背景</strong>：Java语言是面向对象的语言。要使用一个类，首先就需要创建类的对象，然后才可以调用类中的相关方法。但是如果每一次要使用这个类的时候都去创建一个全新的对象，那么就比较</p>
+<p>消耗内存(每new一个对象都会在堆内存中开辟新的内存空间)。因此需要考虑对这一部分的代码进行优化，优化的思想：在程序启动的时候，创建一个对象，并且将这个对象存储到一个容器中，后</p>
+<p>期要使用该类直接从容器中进行对象的获取即可。</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220103182548428.png" alt="image-20220103182548428"></th>
+</tr>
+</thead>
+</table>
+<p><strong>需求描述</strong>：在素材中reflect项目中的指定位置补全代码，使程序Entry可以正常运行。程序的运行效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220104095445933.png" alt="image-20220104095445933"></th>
+</tr>
+</thead>
+</table>
+<p><strong>实现提示</strong>：</p>
+<p>1、ClasspathApplicationContext构造方法</p>
+<p>​	① 读取classpath路径下的applicationContext.properties文件中的内容到Properties集合中</p>
+<p>​	② 遍历集合通过反射创建对应类的对象存储到beans集合中</p>
+<p>3、getBean方法：遍历beans集合获取value的Class类型和传入的Class类型进行比对，如果相等直接返回该对象</p>
+<p><strong>代码实现</strong>：见《答案&#x2F;代码&#x2F;reflect》</p>
+<h2 id="2-2-编程题目二"><a href="#2-2-编程题目二" class="headerlink" title="2.2 编程题目二"></a>2.2 编程题目二</h2><p><strong>训练目标</strong>：掌握自定义类加载器的代码书写，理解其在实际开发中的应用</p>
+<p><strong>需求背景</strong>：”热加载”就是在不重启程序的情况下，让修改的代码可以立即生效。这样就可以大大的提高程序的测试效率。实现原理：当字节码文件修改了以后，重新加载该字节码文件到Jvm中。一</p>
+<p>般情况下，类的加载都是由系统自带的类加载器完成，且对于同一个全限定名的java类，只能被加载一次，而且很难被卸载。可以使用自定义的 ClassLoader 替换系统的加载器，创建一个新的 </p>
+<p>ClassLoader，再用它加载 Class，得到的 Class 对象就是新的（因为不是同一个类加载器），再用该 Class 对象创建一个实例，从而实现动态更新。</p>
+<p><strong>需求描述</strong>：在素材中的classload项目中指定位置补全代码，使程序Entry可以正常运行。程序的运行效果如下所示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/image-20220104120912842.png" alt="image-20220104120912842"></th>
+</tr>
+</thead>
+</table>
+<p><strong>实现提示</strong>：</p>
+<p>1、开启两个线程</p>
+<ul>
+<li>线程1：每间隔1秒对要热加载的源文件进行编译(已经实现)</li>
+<li>线程2：每间隔1秒使用自定义类加载器加载需要热加载的class文件(部分代码已经实现)</li>
+</ul>
+<p>2、通过自定义加载器加载指定的class文件到JVM中，并得到Class对象，通过反射执行所有的方法(只考虑无参数无返回值的方法)</p>
+<p>3、自定义类加载器</p>
+<ul>
+<li>继承ClassLoader类</li>
+<li>重写loadClass方法<ul>
+<li>判断是否是自定义的类，如果不是调用父类加载器的loadClass方法进行进行加载，如果是执行下一步操作</li>
+<li>通过流读取class文件数据，得到字节数组</li>
+<li>调用父类的defineClass方法将字节数组加载到JVM中</li>
+</ul>
+</li>
+</ul>
+<p><strong>代码实现</strong>：见《答案&#x2F;代码&#x2F;classload》</p>
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/%E7%AC%AC15%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" title="day15作业">https://turheart.github.io/2022/08/03/第15天作业题答案/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"><i class="fa fa-tag"></i> 作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%AC%AC16%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" rel="prev" title="day16作业">
+      <i class="fa fa-chevron-left"></i> day16作业
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/%E7%AC%AC14%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/" rel="next" title="day14作业">
+      day14作业 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AE%80%E7%AD%94%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1 简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AE%80%E7%AD%94%E9%A2%98%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 简答题一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%AE%80%E7%AD%94%E9%A2%98%E4%BA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 简答题二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%AE%80%E7%AD%94%E9%A2%98%E4%B8%89"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 简答题三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E7%AE%80%E7%AD%94%E9%A2%98%E5%9B%9B"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 简答题四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E7%AE%80%E7%AD%94%E9%A2%98%E4%BA%94"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 简答题五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E7%AE%80%E7%AD%94%E9%A2%98%E5%85%AD"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 简答题六</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">2 编程题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 编程题目一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 编程题目二</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">290k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
