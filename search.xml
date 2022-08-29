@@ -6930,7 +6930,8 @@
   <entry>
     <title>day01作业</title>
     <url>/2022/08/03/%E7%AC%AC1%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day01作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>通过idea在创建某一个类的时候可能会出现如下错误，请说明产生该错误的原因是什么？</p>
 <table>
@@ -7023,7 +7024,8 @@
   <entry>
     <title>day02作业</title>
     <url>/2022/08/03/%E7%AC%AC2%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day02作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>下面程序编译是否会报错并说明原因？</p>
 <table>
@@ -7156,7 +7158,8 @@
   <entry>
     <title>day03作业</title>
     <url>/2022/08/03/%E7%AC%AC3%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day03作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请分析如下程序是否会报错(编译版本JDK1.8)并说明原因？并给出正确的代码！</p>
 <table>
@@ -7361,7 +7364,8 @@
   <entry>
     <title>day04作业</title>
     <url>/2022/08/03/%E7%AC%AC4%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day04作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请分析如下程序是否会报错并说明原因？</p>
 <table>
@@ -7558,7 +7562,8 @@
   <entry>
     <title>day05作业</title>
     <url>/2022/08/03/%E7%AC%AC5%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day05作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请说明自动装箱和自动拆箱时底层所调用的方法分别是什么(使用javap解析字节码内容)？</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">答：</span><br><span class="line">① 自动装箱调用的是Integer类中的valueOf方法，自动拆箱调用的是Integer类中的intValue方法</span><br><span class="line">② 原理分析，如下代码</span><br></pre></td></tr></table></figure>
@@ -7764,7 +7769,8 @@
   <entry>
     <title>day06作业</title>
     <url>/2022/08/03/%E7%AC%AC6%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day06作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请说明下述程序执行完毕以后在控制台的输出结果是什么并说明原因？</p>
 <table>
@@ -7902,7 +7908,8 @@
   <entry>
     <title>day07作业</title>
     <url>/2022/08/03/%E7%AC%AC7%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day07作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请分析下面程序的运行结果是什么并说明原因？如果想让错误提前到编译期应该对代码进行如何处理？</p>
 <table>
@@ -8055,7 +8062,8 @@
   <entry>
     <title>day08作业</title>
     <url>/2022/08/03/%E7%AC%AC8%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day08作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>请说明下述程序执行完成以后会输出几个学生的姓名和年龄并说明原因？如果只想保留一个姓名为”黑马”年龄为16的学生应该怎么处理？【业务要求：如果两个学生对象的姓名和年龄都相同则认为</p>
 <p>是同一个对象】</p>
@@ -8224,7 +8232,8 @@
   <entry>
     <title>day09作业</title>
     <url>/2022/08/03/%E7%AC%AC9%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day09作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述Stream流的使用思想以及获取Stream流的常见方式？</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">答：</span><br><span class="line">使用思想：</span><br><span class="line"> ① 生成流： 通过数据源（集合,数组等）生成流</span><br><span class="line"> ② 中间操作：一个流后面可以跟随零个或多个中间操作，其目的主要是打开流，做出某种程度的数据过滤/映射，然后返回一个新的流，交给下一个操作使用</span><br><span class="line"> ③ 终结操作：一个流只能有一个终结操作，当这个操作执行后，流就被使用“光”了，无法再被操作。所以这必定是流的最后一个操作</span><br><span class="line">获取Stream流的常见方式：</span><br><span class="line"> ① Collection体系的集合可以直接调用Collection接口中的默认方法stream()去生成流</span><br><span class="line"> ② Map体系的集合可以通过间接的方式去生成流，具体步骤如下所示：</span><br><span class="line">	<span class="number">1.</span>  获取所有的键所对应的Set集合</span><br><span class="line">	<span class="number">2.</span>  然后通过Set集合对象调用Stream方法生成流</span><br><span class="line"> ③ 数组可以通过Stream接口的静态方法of方法生成流</span><br></pre></td></tr></table></figure>
@@ -8359,7 +8368,8 @@
   <entry>
     <title>day10作业</title>
     <url>/2022/08/03/%E7%AC%AC10%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day10作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述IO流的分类以及输入流和输出流作用？</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">答：</span><br><span class="line">① </span><br><span class="line">  按照数据的流向划分：  输入流和输出流</span><br><span class="line">  按照操作数据类型划分：字节流和字符流</span><br><span class="line">  将上述的两种划分方式进行结合划分：</span><br><span class="line">    - 字节输入流和字节输出流</span><br><span class="line">    - 字符输入流和字符输出流</span><br><span class="line">② 作用：输入流负责读取数据，输出流负责写数据</span><br></pre></td></tr></table></figure>
@@ -8458,7 +8468,8 @@
   <entry>
     <title>day11作业</title>
     <url>/2022/08/03/%E7%AC%AC11%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day11作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>如下程序执行完毕以后，a.txt文件中的内容是什么并说明原因？</p>
 <table>
@@ -8532,7 +8543,7 @@
 </tr>
 </thead>
 </table>
-<p>上述代码实现了：通过网易邮箱<a href="mailto:&#x69;&#116;&#99;&#97;&#115;&#x74;&#95;&#x68;&#x6c;&#121;&#95;&#48;&#49;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#116;&#99;&#97;&#115;&#x74;&#95;&#x68;&#x6c;&#121;&#95;&#48;&#49;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;</a>向<a href="mailto:&#x33;&#52;&#50;&#50;&#x34;&#53;&#x32;&#x30;&#x39;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x33;&#52;&#50;&#50;&#x34;&#53;&#x32;&#x30;&#x39;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>发送了一份邮件。效果如下所示：</p>
+<p>上述代码实现了：通过网易邮箱<a href="mailto:&#x69;&#x74;&#99;&#x61;&#115;&#x74;&#95;&#x68;&#108;&#x79;&#x5f;&#x30;&#x31;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#x74;&#99;&#x61;&#115;&#x74;&#95;&#x68;&#108;&#x79;&#x5f;&#x30;&#x31;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a>向<a href="mailto:&#51;&#x34;&#50;&#x32;&#x34;&#53;&#x32;&#48;&#57;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#51;&#x34;&#50;&#x32;&#x34;&#53;&#x32;&#48;&#57;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>发送了一份邮件。效果如下所示：</p>
 <table>
 <thead>
 <tr>
@@ -8607,7 +8618,8 @@
   <entry>
     <title>day12作业</title>
     <url>/2022/08/03/%E7%AC%AC12%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day12作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述一下并发和并行的区别？</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">答: </span><br><span class="line">①并行：在同一时刻，有多个指令在多个CPU上同时执行。</span><br><span class="line">②并发：在同一时刻，有多个指令在单个CPU上交替执行。</span><br></pre></td></tr></table></figure>
@@ -8759,7 +8771,8 @@
   <entry>
     <title>day13作业</title>
     <url>/2022/08/03/%E7%AC%AC13%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day13作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>在素材的文件夹中给大家提供了一个可运行的程序包(threadState.jar),请运行该java包，如下图所示：</p>
 <table>
@@ -8908,7 +8921,8 @@
   <entry>
     <title>day14作业</title>
     <url>/2022/08/03/%E7%AC%AC14%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day14作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述TCP协议的特点？</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">答：</span><br><span class="line">TCP协议的特点：</span><br><span class="line">  1. TCP协议是一种面向连接的协议</span><br><span class="line">  2. TCP协议是一种可靠的协议</span><br><span class="line">  3. TCP协议是基于IO流进行数据传输,传输数据无大小限制</span><br><span class="line">  4. TCP协议的它的通信效率比较低</span><br></pre></td></tr></table></figure>
@@ -9076,7 +9090,8 @@
   <entry>
     <title>day15作业</title>
     <url>/2022/08/03/%E7%AC%AC15%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day15作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>简述类的加载过程？</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">答: 一个类被加载到虚拟机中需要经过如下几个过程：加载，验证，准备，解析和初始化。其中验证、准备、解析统称之为链接。如下图所示：</span><br></pre></td></tr></table></figure>
@@ -9204,7 +9219,8 @@
   <entry>
     <title>day16作业</title>
     <url>/2022/08/03/%E7%AC%AC16%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>day16作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>指出下述xml中标签出现的语法错误的位置并且说明原因？</p>
 <table>

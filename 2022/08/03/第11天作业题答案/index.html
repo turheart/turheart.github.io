@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1 简答题1.1 简答题一如下程序执行完毕以后，a.txt文件中的内容是什么并说明原因？        123答：执行效果：在a.txt文件中没有任何内容原因说明：使用字符流写数据并不是直接将数据写入到磁盘中，而是先写入到了缓存区中。而代码中没有对缓存区进行刷新也没有关闭流对象，因此数据就没有被写入到磁盘中。      1.2 简答题二简述flush方法和close方法的区别？ 123答：①">
+  <meta name="description" content="day11作业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day11作业">
 <meta property="og:url" content="https://turheart.github.io/2022/08/03/%E7%AC%AC11%E5%A4%A9%E4%BD%9C%E4%B8%9A%E9%A2%98%E7%AD%94%E6%A1%88/index.html">
 <meta property="og:site_name" content="一把小桨">
-<meta property="og:description" content="1 简答题1.1 简答题一如下程序执行完毕以后，a.txt文件中的内容是什么并说明原因？        123答：执行效果：在a.txt文件中没有任何内容原因说明：使用字符流写数据并不是直接将数据写入到磁盘中，而是先写入到了缓存区中。而代码中没有对缓存区进行刷新也没有关闭流对象，因此数据就没有被写入到磁盘中。      1.2 简答题二简述flush方法和close方法的区别？ 123答：①">
+<meta property="og:description" content="day11作业">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://turheart.github.io/images/image-20220212213845991.png">
 <meta property="og:image" content="https://turheart.github.io/images/image-20220110181727085.png">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://turheart.github.io/images/image-20220111133429604.png">
 <meta property="og:image" content="https://turheart.github.io/images/image-20220111134152327.png">
 <meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
-<meta property="article:modified_time" content="2022-08-29T14:42:16.241Z">
+<meta property="article:modified_time" content="2022-08-29T14:45:55.594Z">
 <meta property="article:author" content="浊心">
 <meta property="article:tag" content="作业">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-29 22:42:16" itemprop="dateModified" datetime="2022-08-29T22:42:16+08:00">2022-08-29</time>
+                <time title="修改时间：2022-08-29 22:45:55" itemprop="dateModified" datetime="2022-08-29T22:45:55+08:00">2022-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +272,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <span id="more"></span>
+        <p>day11作业</p>
+<span id="more"></span>
 
 <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h1><h2 id="1-1-简答题一"><a href="#1-1-简答题一" class="headerlink" title="1.1 简答题一"></a>1.1 简答题一</h2><p>如下程序执行完毕以后，a.txt文件中的内容是什么并说明原因？</p>
 <table>
@@ -346,7 +347,7 @@
 </tr>
 </thead>
 </table>
-<p>上述代码实现了：通过网易邮箱<a href="mailto:&#x69;&#116;&#99;&#97;&#115;&#x74;&#95;&#x68;&#x6c;&#121;&#95;&#48;&#49;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#116;&#99;&#97;&#115;&#x74;&#95;&#x68;&#x6c;&#121;&#95;&#48;&#49;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;</a>向<a href="mailto:&#x33;&#52;&#50;&#50;&#x34;&#53;&#x32;&#x30;&#x39;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x33;&#52;&#50;&#50;&#x34;&#53;&#x32;&#x30;&#x39;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>发送了一份邮件。效果如下所示：</p>
+<p>上述代码实现了：通过网易邮箱<a href="mailto:&#x69;&#x74;&#99;&#x61;&#115;&#x74;&#95;&#x68;&#108;&#x79;&#x5f;&#x30;&#x31;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#x74;&#99;&#x61;&#115;&#x74;&#95;&#x68;&#108;&#x79;&#x5f;&#x30;&#x31;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a>向<a href="mailto:&#51;&#x34;&#50;&#x32;&#x34;&#53;&#x32;&#48;&#57;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#51;&#x34;&#50;&#x32;&#x34;&#53;&#x32;&#48;&#57;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>发送了一份邮件。效果如下所示：</p>
 <table>
 <thead>
 <tr>
