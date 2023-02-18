@@ -22,30 +22,73 @@
     var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="山鬼不识字，西风不解情">
-<meta property="og:type" content="website">
+  <meta name="description" content="SpringCloud实用篇020.学习目标1.Nacos配置管理Nacos除了可以做注册中心，同样可以做配置管理来使用。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="一把小桨">
-<meta property="og:url" content="https://turheart.github.io/index.html">
+<meta property="og:url" content="https://turheart.github.io/2022/06/01/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/index.html">
 <meta property="og:site_name" content="一把小桨">
-<meta property="og:description" content="山鬼不识字，西风不解情">
+<meta property="og:description" content="SpringCloud实用篇020.学习目标1.Nacos配置管理Nacos除了可以做注册中心，同样可以做配置管理来使用。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714164426792.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714164742924.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714164856664.png">
+<meta property="og:image" content="https://turheart.github.io/assets/L0iFYNF.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714170845901.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714170337448.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714170449612.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714171036335.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714171316124.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714173233650.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714173324231.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714173721309.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714173538538.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714173519963.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174313344.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174424818.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174623557.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174728042.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174814204.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714174918088.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714175102524.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714175415087.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714185925910.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714190041542.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714190542730.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714190528450.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714190640857.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714214041796.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714204557771.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714204656214.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714205221970.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714205623048.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714210131152.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714210919458.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714211908341.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714211742956.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714212312871.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714214228409.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714215713563.png">
+<meta property="og:image" content="https://turheart.github.io/assets/image-20210714215832675.png">
+<meta property="article:published_time" content="2022-06-01T01:40:13.719Z">
+<meta property="article:modified_time" content="2023-02-18T08:44:37.358Z">
 <meta property="article:author" content="浊心">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/assets/image-20210714164426792.png">
 
-<link rel="canonical" href="https://turheart.github.io/">
+<link rel="canonical" href="https://turheart.github.io/2022/06/01/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>一把小桨</title>
+  <title> | 一把小桨</title>
   
 
 
@@ -182,13 +225,14 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/06/01/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -200,10 +244,9 @@
       <meta itemprop="name" content="一把小桨">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -211,10 +254,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-18 23:10:05 / 修改时间：22:57:30" itemprop="dateCreated datePublished" datetime="2023-02-18T23:10:05+08:00">2023-02-18</time>
+              <time title="创建时间：2022-06-01 09:40:13" itemprop="dateCreated datePublished" datetime="2022-06-01T09:40:13+08:00">2022-06-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-18 16:44:37" itemprop="dateModified" datetime="2023-02-18T16:44:37+08:00">2023-02-18</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -241,21 +290,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="SpringCloud实用篇02"><a href="#SpringCloud实用篇02" class="headerlink" title="SpringCloud实用篇02"></a>SpringCloud实用篇02</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Nacos配置管理"><a href="#1-Nacos配置管理" class="headerlink" title="1.Nacos配置管理"></a>1.Nacos配置管理</h1><p>Nacos除了可以做注册中心，同样可以做配置管理来使用。</p>
+        <h1 id="SpringCloud实用篇02"><a href="#SpringCloud实用篇02" class="headerlink" title="SpringCloud实用篇02"></a>SpringCloud实用篇02</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Nacos配置管理"><a href="#1-Nacos配置管理" class="headerlink" title="1.Nacos配置管理"></a>1.Nacos配置管理</h1><p>Nacos除了可以做注册中心，同样可以做配置管理来使用。</p>
+<span id="more"></span>
+
+
+
 <h2 id="1-1-统一配置管理"><a href="#1-1-统一配置管理" class="headerlink" title="1.1.统一配置管理"></a>1.1.统一配置管理</h2><p>当微服务部署的实例越来越多，达到数十、数百时，逐个修改微服务配置就会让人抓狂，而且很容易出错。我们需要一种统一配置管理方案，可以集中管理所有实例的配置。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872114-0003e8f8-223a-4d1a-8248-3733dfeca93e.png" alt="image"></p>
+<p><img src="/assets/image-20210714164426792.png" alt="image-20210714164426792"></p>
 <p>Nacos一方面可以将配置集中管理，另一方可以在配置变更时，及时通知微服务，实现配置的热更新。</p>
 <h3 id="1-1-1-在nacos中添加配置文件"><a href="#1-1-1-在nacos中添加配置文件" class="headerlink" title="1.1.1.在nacos中添加配置文件"></a>1.1.1.在nacos中添加配置文件</h3><p>如何在nacos中管理配置呢？</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872133-808f0f20-8769-4bc8-9c22-7244092a58b7.png" alt="image"></p>
+<p><img src="/assets/image-20210714164742924.png" alt="image-20210714164742924"></p>
 <p>然后在弹出的表单中，填写配置信息：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872150-5bc43c85-55de-445f-806a-fb3a0b275046.png" alt="image"></p>
+<p><img src="/assets/image-20210714164856664.png" alt="image-20210714164856664"></p>
 <blockquote>
 <p>注意：项目的核心配置，需要热更新的配置才有放到nacos管理的必要。基本不会变更的一些配置还是保存在微服务本地比较好。</p>
 </blockquote>
 <h3 id="1-1-2-从微服务拉取配置"><a href="#1-1-2-从微服务拉取配置" class="headerlink" title="1.1.2.从微服务拉取配置"></a>1.1.2.从微服务拉取配置</h3><p>微服务要拉取nacos中管理的配置，并且与本地的application.yml配置合并，才能完成项目启动。</p>
 <p>但如果尚未读取application.yml，又如何得知nacos地址呢？</p>
 <p>因此spring引入了一种新的配置文件：bootstrap.yaml文件，会在application.yml之前被读取，流程如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872167-d081f81a-ac49-4e0e-9eba-1ac4a00575bb.png" alt="image"></p>
+<p><img src="/assets/L0iFYNF.png" alt="img"></p>
 <p>1）引入nacos-config依赖</p>
 <p>首先，在user-service服务中，引入nacos-config的客户端依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos配置管理依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -267,21 +320,21 @@
 <p>这里会根据spring.cloud.nacos.server-addr获取nacos地址，再根据</p>
 <p><code>$&#123;spring.application.name&#125;-$&#123;spring.profiles.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</code>作为文件id，来读取配置。</p>
 <p>本例中，就是去读取<code>userservice-dev.yaml</code>：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872183-eef1e0a9-6e55-4566-b398-ad86942f6252.png" alt="image"></p>
+<p><img src="/assets/image-20210714170845901.png" alt="image-20210714170845901"></p>
 <p>3）读取nacos配置</p>
 <p>在user-service中的UserController中添加业务逻辑，读取pattern.dateformat配置：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872195-57fad4dd-748a-489c-95bf-39ec0933a766.png" alt="image"></p>
+<p><img src="/assets/image-20210714170337448.png" alt="image-20210714170337448"></p>
 <p>完整代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.service.UserService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;pattern.dateformat&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;now&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">now</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>在页面访问，可以看到效果：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872207-12b5f7fa-4924-4373-bc00-f42eec982974.png" alt="image"></p>
+<p><img src="/assets/image-20210714170449612.png" alt="image-20210714170449612"></p>
 <h2 id="1-2-配置热更新"><a href="#1-2-配置热更新" class="headerlink" title="1.2.配置热更新"></a>1.2.配置热更新</h2><p>我们最终的目的，是修改nacos中的配置后，微服务中无需重启即可让配置生效，也就是<strong>配置热更新</strong>。</p>
 <p>要实现配置热更新，可以使用两种方式：</p>
 <h3 id="1-2-1-方式一"><a href="#1-2-1-方式一" class="headerlink" title="1.2.1.方式一"></a>1.2.1.方式一</h3><p>在@Value注入的变量所在类上添加注解@RefreshScope：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872216-1bcc4c77-e38d-430b-a7b4-9978e55dc993.png" alt="image"></p>
+<p><img src="/assets/image-20210714171036335.png" alt="image-20210714171036335"></p>
 <h3 id="1-2-2-方式二"><a href="#1-2-2-方式二" class="headerlink" title="1.2.2.方式二"></a>1.2.2.方式二</h3><p>使用@ConfigurationProperties注解代替@Value注解。</p>
 <p>在user-service服务中，添加一个类，读取patterrn.dateformat属性：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;pattern&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PatternProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -289,7 +342,7 @@
 
 
 <p>在UserController中使用这个类代替@Value：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872221-ea88665b-e1dd-49ec-8b5d-c283e9bbbeeb.png" alt="image"></p>
+<p><img src="/assets/image-20210714171316124.png" alt="image-20210714171316124"></p>
 <p>完整代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.config.PatternProperties;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.service.UserService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> PatternProperties patternProperties;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;now&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">now</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(patternProperties.getDateformat()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -307,33 +360,33 @@
 <p>而<code>[spring.application.name].yaml</code>不包含环境，因此可以被多个环境共享。</p>
 <p>下面我们通过案例来测试配置共享</p>
 <h3 id="1）添加一个环境共享配置"><a href="#1）添加一个环境共享配置" class="headerlink" title="1）添加一个环境共享配置"></a>1）添加一个环境共享配置</h3><p>我们在nacos中添加一个userservice.yaml文件：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872230-5ad88057-da55-4874-a268-6b24023ef898.png" alt="image"></p>
+<p><img src="/assets/image-20210714173233650.png" alt="image-20210714173233650"></p>
 <h3 id="2）在user-service中读取共享配置"><a href="#2）在user-service中读取共享配置" class="headerlink" title="2）在user-service中读取共享配置"></a>2）在user-service中读取共享配置</h3><p>在user-service服务中，修改PatternProperties类，读取新添加的属性：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872241-3ad329b6-4185-413d-b88c-8df2b0377bb2.png" alt="image"></p>
+<p><img src="/assets/image-20210714173324231.png" alt="image-20210714173324231"></p>
 <p>在user-service服务中，修改UserController，添加一个方法：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872253-02953581-14c1-4583-aeec-dbed6c679a07.png" alt="image"></p>
+<p><img src="/assets/image-20210714173721309.png" alt="image-20210714173721309"></p>
 <h3 id="3）运行两个UserApplication，使用不同的profile"><a href="#3）运行两个UserApplication，使用不同的profile" class="headerlink" title="3）运行两个UserApplication，使用不同的profile"></a>3）运行两个UserApplication，使用不同的profile</h3><p>修改UserApplication2这个启动项，改变其profile值：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872262-1f1473ab-6c2c-444f-85fb-00118e0d55cb.png" alt="image"></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872278-c8c32698-d88a-4e4e-8fbb-f18aa68dd358.png" alt="image"></p>
+<p><img src="/assets/image-20210714173538538.png" alt="image-20210714173538538"></p>
+<p><img src="/assets/image-20210714173519963.png" alt="image-20210714173519963"></p>
 <p>这样，UserApplication(8081)使用的profile是dev，UserApplication2(8082)使用的profile是test。</p>
 <p>启动UserApplication和UserApplication2</p>
 <p>访问<a target="_blank" rel="noopener" href="http://localhost:8081/user/prop%EF%BC%8C%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:8081/user/prop，结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872293-2c774bf9-916a-4003-bec9-32544811b91e.png" alt="image"></p>
+<p><img src="/assets/image-20210714174313344.png" alt="image-20210714174313344"></p>
 <p>访问<a target="_blank" rel="noopener" href="http://localhost:8082/user/prop%EF%BC%8C%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:8082/user/prop，结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872301-b8045519-770d-46a6-8ba3-1625a993454c.png" alt="image"></p>
+<p><img src="/assets/image-20210714174424818.png" alt="image-20210714174424818"></p>
 <p>可以看出来，不管是dev，还是test环境，都读取到了envSharedValue这个属性的值。</p>
 <h3 id="4）配置共享的优先级"><a href="#4）配置共享的优先级" class="headerlink" title="4）配置共享的优先级"></a>4）配置共享的优先级</h3><p>当nacos、服务本地同时出现相同属性时，优先级有高低之分：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872311-b2a8ad72-5916-4677-b71a-5e224f3bd538.png" alt="image"></p>
+<p><img src="/assets/image-20210714174623557.png" alt="image-20210714174623557"></p>
 <h2 id="1-4-搭建Nacos集群"><a href="#1-4-搭建Nacos集群" class="headerlink" title="1.4.搭建Nacos集群"></a>1.4.搭建Nacos集群</h2><p>Nacos生产环境下一定要部署为集群状态，部署方式参考课前资料中的文档：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872332-089375fb-d56d-4e53-9c45-d31eed1143dd.png" alt="image"></p>
+<p><img src="/assets/image-20210714174728042.png" alt="image-20210714174728042"></p>
 <h1 id="2-Feign远程调用"><a href="#2-Feign远程调用" class="headerlink" title="2.Feign远程调用"></a>2.Feign远程调用</h1><p>先来看我们以前利用RestTemplate发起远程调用的代码：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872345-0d0967a1-774e-4d88-9376-8a8974539435.png" alt="image"></p>
+<p><img src="/assets/image-20210714174814204.png" alt="image-20210714174814204"></p>
 <p>存在下面的问题：</p>
 <p>•代码可读性差，编程体验不统一</p>
 <p>•参数复杂URL难以维护</p>
 <p>Feign是一个声明式的http客户端，官方地址：<a target="_blank" rel="noopener" href="https://github.com/OpenFeign/feign">https://github.com/OpenFeign/feign</a></p>
 <p>其作用就是帮助我们优雅的实现http请求的发送，解决上面提到的问题。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872355-ed05d055-5d7a-428b-abd9-833f9337c8f5.png" alt="image"></p>
+<p><img src="/assets/image-20210714174918088.png" alt="image-20210714174918088"></p>
 <h2 id="2-1-Feign替代RestTemplate"><a href="#2-1-Feign替代RestTemplate" class="headerlink" title="2.1.Feign替代RestTemplate"></a>2.1.Feign替代RestTemplate</h2><p>Fegin的使用步骤如下：</p>
 <h3 id="1）引入依赖"><a href="#1）引入依赖" class="headerlink" title="1）引入依赖"></a>1）引入依赖</h3><p>我们在order-service服务的pom文件中引入feign的依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -341,7 +394,7 @@
 
 
 <h3 id="2）添加注解"><a href="#2）添加注解" class="headerlink" title="2）添加注解"></a>2）添加注解</h3><p>在order-service的启动类添加注解开启Feign的功能：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872367-60380828-924f-4b1a-8a5d-853a8a7bd35e.png" alt="image"></p>
+<p><img src="/assets/image-20210714175102524.png" alt="image-20210714175102524"></p>
 <h3 id="3）编写Feign的客户端"><a href="#3）编写Feign的客户端" class="headerlink" title="3）编写Feign的客户端"></a>3）编写Feign的客户端</h3><p>在order-service中新建一个接口，内容如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.order.client;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.order.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FeignClient(&quot;userservice&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">findById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -357,7 +410,7 @@
 </ul>
 <p>这样，Feign就可以帮助我们发送http请求，无需自己使用RestTemplate来发送了。</p>
 <h3 id="4）测试"><a href="#4）测试" class="headerlink" title="4）测试"></a>4）测试</h3><p>修改order-service中的OrderService类中的queryOrderById方法，使用Feign客户端代替RestTemplate：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872385-80a4072b-f068-466f-9c51-b436f5939b1e.png" alt="image"></p>
+<p><img src="/assets/image-20210714175415087.png" alt="image-20210714175415087"></p>
 <p>是不是看起来优雅多了。</p>
 <h3 id="5）总结"><a href="#5）总结" class="headerlink" title="5）总结"></a>5）总结</h3><p>使用Feign的步骤：</p>
 <p>① 引入依赖</p>
@@ -454,9 +507,9 @@
 
 
 <p>接下来，在FeignClientFactoryBean中的loadBalance方法中打断点：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872393-4d99bf37-f0f9-4937-b57f-6101229191b6.png" alt="image"></p>
+<p><img src="/assets/image-20210714185925910.png" alt="image-20210714185925910"></p>
 <p>Debug方式启动order-service服务，可以看到这里的client，底层就是Apache HttpClient：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872405-8287d874-2b8f-4b24-b135-a79edd5c0382.png" alt="image"></p>
+<p><img src="/assets/image-20210714190041542.png" alt="image-20210714190041542"></p>
 <p>总结，Feign的优化：</p>
 <p>1.日志级别尽量用basic</p>
 <p>2.使用HttpClient或OKHttp代替URLConnection</p>
@@ -465,14 +518,14 @@
 <h2 id="2-4-最佳实践"><a href="#2-4-最佳实践" class="headerlink" title="2.4.最佳实践"></a>2.4.最佳实践</h2><p>所谓最近实践，就是使用过程中总结的经验，最好的一种使用方式。</p>
 <p>自习观察可以发现，Feign的客户端与服务提供者的controller代码非常相似：</p>
 <p>feign客户端：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872414-6af3e726-95ca-4f22-87e0-2a4cc8085bfa.png" alt="image"></p>
+<p><img src="/assets/image-20210714190542730.png" alt="image-20210714190542730"></p>
 <p>UserController：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872428-68decd8e-c4ab-4eab-9983-4ccff763f654.png" alt="image"></p>
+<p><img src="/assets/image-20210714190528450.png" alt="image-20210714190528450"></p>
 <p>有没有一种办法简化这种重复的代码编写呢？</p>
 <h3 id="2-4-1-继承方式"><a href="#2-4-1-继承方式" class="headerlink" title="2.4.1.继承方式"></a>2.4.1.继承方式</h3><p>一样的代码可以通过继承来共享：</p>
 <p>1）定义一个API接口，利用定义方法，并基于SpringMVC注解做声明。</p>
 <p>2）Feign客户端和Controller都集成改接口</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872439-8dde8041-abe7-4ffb-8f20-9d117370c267.png" alt="image"></p>
+<p><img src="/assets/image-20210714190640857.png" alt="image-20210714190640857"></p>
 <p>优点：</p>
 <ul>
 <li>简单</li>
@@ -487,18 +540,18 @@
 </ul>
 <h3 id="2-4-2-抽取方式"><a href="#2-4-2-抽取方式" class="headerlink" title="2.4.2.抽取方式"></a>2.4.2.抽取方式</h3><p>将Feign的Client抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
 <p>例如，将UserClient、User、Feign的默认配置都抽取到一个feign-api包中，所有微服务引用该依赖包，即可直接使用。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872452-6e0c010d-ca71-40e9-8526-c989cc8385c1.png" alt="image"></p>
+<p><img src="/assets/image-20210714214041796.png" alt="image-20210714214041796"></p>
 <h3 id="2-4-3-实现基于抽取的最佳实践"><a href="#2-4-3-实现基于抽取的最佳实践" class="headerlink" title="2.4.3.实现基于抽取的最佳实践"></a>2.4.3.实现基于抽取的最佳实践</h3><h4 id="1）抽取"><a href="#1）抽取" class="headerlink" title="1）抽取"></a>1）抽取</h4><p>首先创建一个module，命名为feign-api：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872461-030a49b3-c828-4379-a3d5-31be2c7bb5e7.png" alt="image"></p>
+<p><img src="/assets/image-20210714204557771.png" alt="image-20210714204557771"></p>
 <p>项目结构：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872472-83ec25fd-eb2f-446e-b76d-a6592813c180.png" alt="image"></p>
+<p><img src="/assets/image-20210714204656214.png" alt="image-20210714204656214"></p>
 <p>在feign-api中然后引入feign的starter依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
 <p>然后，order-service中编写的UserClient、User、DefaultFeignConfiguration都复制到feign-api项目中</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872481-d038d1a8-a4a1-4197-b093-7c8239101581.png" alt="image"></p>
+<p><img src="/assets/image-20210714205221970.png" alt="image-20210714205221970"></p>
 <h4 id="2）在order-service中使用feign-api"><a href="#2）在order-service中使用feign-api" class="headerlink" title="2）在order-service中使用feign-api"></a>2）在order-service中使用feign-api</h4><p>首先，删除order-service中的UserClient、User、DefaultFeignConfiguration等类或接口。</p>
 <p>在order-service的pom文件中中引入feign-api的依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.itcast.demo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -507,7 +560,7 @@
 
 <p>修改order-service中的所有与上述三个组件有关的导包部分，改成导入feign-api中的包</p>
 <h4 id="3）重启测试"><a href="#3）重启测试" class="headerlink" title="3）重启测试"></a>3）重启测试</h4><p>重启后，发现服务报错了：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872495-92124b68-790e-4978-b79e-08112a33eb23.png" alt="image"></p>
+<p><img src="/assets/image-20210714205623048.png" alt="image-20210714205623048"></p>
 <p>这是因为UserClient现在在cn.itcast.feign.clients包下，</p>
 <p>而order-service的@EnableFeignClients注解是在cn.itcast.order包下，不在同一个包，无法扫描到UserClient。</p>
 <h4 id="4）解决扫描包问题"><a href="#4）解决扫描包问题" class="headerlink" title="4）解决扫描包问题"></a>4）解决扫描包问题</h4><p>方式一：</p>
@@ -537,7 +590,7 @@
 <li>限流</li>
 </ul>
 <p>架构图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872511-f182e60a-6635-49da-81d3-2f404d7486ae.png" alt="image"></p>
+<p><img src="/assets/image-20210714210131152.png" alt="image-20210714210131152"></p>
 <p><strong>权限控制</strong>：网关作为微服务入口，需要校验用户是是否有请求资格，如果没有则进行拦截。</p>
 <p><strong>路由和负载均衡</strong>：一切请求都必须先经过gateway，但网关不处理业务，而是根据某种规则，把请求转发到某个微服务，这个过程叫做路由。当然路由的目标服务有多个时，还需要做负载均衡。</p>
 <p><strong>限流</strong>：当请求流量过高时，在网关中按照下流的微服务能够接受的速度来放行请求，避免服务压力过大。</p>
@@ -555,7 +608,7 @@
 <li>启动网关服务进行测试</li>
 </ol>
 <h3 id="1）创建gateway服务，引入依赖"><a href="#1）创建gateway服务，引入依赖" class="headerlink" title="1）创建gateway服务，引入依赖"></a>1）创建gateway服务，引入依赖</h3><p>创建服务：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872518-a1d93619-a877-4cce-a34a-269685d59258.png" alt="image"></p>
+<p><img src="/assets/image-20210714210919458.png" alt="image-20210714210919458"></p>
 <p>引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--网关--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--nacos服务发现依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -573,9 +626,9 @@
 <p>我们将符合<code>Path</code> 规则的一切请求，都代理到 <code>uri</code>参数指定的地址。</p>
 <p>本例中，我们将 <code>/user/**</code>开头的请求，代理到<code>lb://userservice</code>，lb是负载均衡，根据服务名拉取服务列表，实现负载均衡。</p>
 <h3 id="4）重启测试"><a href="#4）重启测试" class="headerlink" title="4）重启测试"></a>4）重启测试</h3><p>重启网关，访问<a target="_blank" rel="noopener" href="http://localhost:10010/user/1%E6%97%B6%EF%BC%8C%E7%AC%A6%E5%90%88%60/user/**%60%E8%A7%84%E5%88%99%EF%BC%8C%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0uri%EF%BC%9Ahttp://userservice/user/1%EF%BC%8C%E5%BE%97%E5%88%B0%E4%BA%86%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:10010/user/1时，符合`/user/**`规则，请求转发到uri：http://userservice/user/1，得到了结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872525-d34f9c9d-65c9-4b5f-b6a5-f23d9ff0ce1f.png" alt="image"></p>
+<p><img src="/assets/image-20210714211908341.png" alt="image-20210714211908341"></p>
 <h3 id="5）网关路由的流程图"><a href="#5）网关路由的流程图" class="headerlink" title="5）网关路由的流程图"></a>5）网关路由的流程图</h3><p>整个访问的流程如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872539-4f76900a-3bce-42c7-98e5-a1a214bcaedd.png" alt="image"></p>
+<p><img src="/assets/image-20210714211742956.png" alt="image-20210714211742956"></p>
 <p>总结：</p>
 <p>网关搭建步骤：</p>
 <ol>
@@ -666,7 +719,7 @@
 </tbody></table>
 <p>我们只需要掌握Path这种路由工程就可以了。</p>
 <h2 id="3-4-过滤器工厂"><a href="#3-4-过滤器工厂" class="headerlink" title="3.4.过滤器工厂"></a>3.4.过滤器工厂</h2><p>GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872550-fe778a28-fa8f-4dfa-baa8-7c7f722f1845.png" alt="image"></p>
+<p><img src="/assets/image-20210714212312871.png" alt="image-20210714212312871"></p>
 <h3 id="3-4-1-路由过滤器的种类"><a href="#3-4-1-路由过滤器的种类" class="headerlink" title="3.4.1.路由过滤器的种类"></a>3.4.1.路由过滤器的种类</h3><p>Spring提供了31种不同的路由过滤器工厂。例如：</p>
 <table>
 <thead>
@@ -745,7 +798,7 @@
 
 <h3 id="3-5-3-过滤器执行顺序"><a href="#3-5-3-过滤器执行顺序" class="headerlink" title="3.5.3.过滤器执行顺序"></a>3.5.3.过滤器执行顺序</h3><p>请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter</p>
 <p>请求路由后，会将当前路由过滤器和DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872566-b4ca5faf-5ec0-42e4-b45f-5681e0acca1f.png" alt="image"></p>
+<p><img src="/assets/image-20210714214228409.png" alt="image-20210714214228409"></p>
 <p>排序的规则是什么呢？</p>
 <ul>
 <li>每一个过滤器都必须指定一个int类型的order值，<strong>order值越小，优先级越高，执行顺序越靠前</strong>。</li>
@@ -766,10 +819,10 @@
 <p>跨域问题：浏览器禁止请求的发起者与服务端发生跨域ajax请求，请求被浏览器拦截的问题</p>
 <p>解决方案：CORS，这个以前应该学习过，这里不再赘述了。不知道的小伙伴可以查看<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/04/cors.html">https://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
 <h3 id="3-6-2-模拟跨域问题"><a href="#3-6-2-模拟跨域问题" class="headerlink" title="3.6.2.模拟跨域问题"></a>3.6.2.模拟跨域问题</h3><p>找到课前资料的页面文件：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872576-6854923e-74a2-4323-af8a-2c1710dab773.png" alt="image"></p>
+<p><img src="/assets/image-20210714215713563.png" alt="image-20210714215713563"></p>
 <p>放入tomcat或者nginx这样的web服务器中，启动并访问。</p>
 <p>可以在浏览器控制台看到下面的错误：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872607-dc1e2f7e-e3dd-4fe5-af13-c460d00b509f.png" alt="image"></p>
+<p><img src="/assets/image-20210714215832675.png" alt="image-20210714215832675"></p>
 <p>从localhost:8090访问localhost:10010，端口不同，显然是跨域的请求。</p>
 <h3 id="3-6-3-解决跨域问题"><a href="#3-6-3-解决跨域问题" class="headerlink" title="3.6.3.解决跨域问题"></a>3.6.3.解决跨域问题</h3><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="comment"># 。。。</span></span><br><span class="line">      <span class="attr">globalcors:</span> <span class="comment"># 全局的跨域处理</span></span><br><span class="line">        <span class="attr">add-to-simple-url-handler-mapping:</span> <span class="literal">true</span> <span class="comment"># 解决options请求被拦截问题</span></span><br><span class="line">        <span class="attr">corsConfigurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOrigins:</span> <span class="comment"># 允许哪些网站的跨域请求 </span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;http://localhost:8090&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="comment"># 允许的跨域ajax的请求方式</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;GET&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;POST&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;DELETE&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;PUT&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;OPTIONS&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span> <span class="comment"># 允许在请求中携带的头信息</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span> <span class="comment"># 是否允许携带cookie</span></span><br><span class="line">            <span class="attr">maxAge:</span> <span class="number">360000</span> <span class="comment"># 这次跨域检测的有效期</span></span><br></pre></td></tr></table></figure>
@@ -783,816 +836,59 @@
 
 
 
-      
     </div>
 	
 	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
 	  
 	</div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:02:34 / 修改时间：16:45:44" itemprop="dateCreated datePublished" datetime="2023-02-18T16:02:34+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>17k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>16 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="微服务保护"><a href="#微服务保护" class="headerlink" title="微服务保护"></a>微服务保护</h1><h1 id="1-初识Sentinel"><a href="#1-初识Sentinel" class="headerlink" title="1.初识Sentinel"></a>1.初识Sentinel</h1><h2 id="1-1-雪崩问题及解决方案"><a href="#1-1-雪崩问题及解决方案" class="headerlink" title="1.1.雪崩问题及解决方案"></a>1.1.雪崩问题及解决方案</h2><h3 id="1-1-1-雪崩问题"><a href="#1-1-1-雪崩问题" class="headerlink" title="1.1.1.雪崩问题"></a>1.1.1.雪崩问题</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
-	
-	<div>
-	  
-	</div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:02:24 / 修改时间：16:44:47" itemprop="dateCreated datePublished" datetime="2023-02-18T16:02:24+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>27k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>25 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-什么是多级缓存"><a href="#1-什么是多级缓存" class="headerlink" title="1.什么是多级缓存"></a>1.什么是多级缓存</h1><p>传统的缓存策略一般是请求到达Tomcat后，先查询Redis，如果未命中则查询数据库，如图：</p>
-<p><img src="/assets/image-20210821075259137.png" alt="image-20210821075259137"></p>
-<p>存在下面的问题：</p>
-<p>•请求要经过Tomcat处理，Tomcat的性能成为整个系统的瓶颈</p>
-<p>•Redis缓存失效时，会对数据库产生冲击</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:02:06 / 修改时间：16:45:34" itemprop="dateCreated datePublished" datetime="2023-02-18T16:02:06+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>21k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>19 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="分布式搜索引擎03"><a href="#分布式搜索引擎03" class="headerlink" title="分布式搜索引擎03"></a>分布式搜索引擎03</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-数据聚合"><a href="#1-数据聚合" class="headerlink" title="1.数据聚合"></a>1.数据聚合</h1><p>**<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">聚合（</a><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">aggregations</a><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">）</a>**可以让我们极其方便的实现对数据的统计、分析、运算。例如：</p>
-<ul>
-<li>什么品牌的手机最受欢迎？</li>
-<li>这些手机的平均价格、最高价格、最低价格？</li>
-<li>这些手机每月的销售情况如何？</li>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/06/01/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" title="">https://turheart.github.io/2022/06/01/SpringCloud实用篇02/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<p>实现这些统计功能的比数据库的sql要方便的多，而且查询速度非常快，可以实现近实时搜索效果。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
+</div>
 
-    
-    
-    
+	  
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/01/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:01:59 / 修改时间：16:45:22" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:59+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>27k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>25 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="分布式搜索引擎02"><a href="#分布式搜索引擎02" class="headerlink" title="分布式搜索引擎02"></a>分布式搜索引擎02</h1><p>在昨天的学习中，我们已经导入了大量数据到elasticsearch中，实现了elasticsearch的数据存储功能。但elasticsearch最擅长的还是搜索和数据分析。</p>
-<p>所以今天，我们研究下elasticsearch的数据搜索功能。我们会分别使用<strong>DSL</strong>和<strong>RestClient</strong>实现搜索。</p>
-<h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-DSL查询文档"><a href="#1-DSL查询文档" class="headerlink" title="1.DSL查询文档"></a>1.DSL查询文档</h1><p>elasticsearch的查询依然是基于JSON风格的DSL来实现的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:01:52 / 修改时间：16:45:13" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:52+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>21k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>19 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="分布式搜索引擎01"><a href="#分布式搜索引擎01" class="headerlink" title="分布式搜索引擎01"></a>分布式搜索引擎01</h1><p>– elasticsearch基础</p>
-<h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-初识elasticsearch"><a href="#1-初识elasticsearch" class="headerlink" title="1.初识elasticsearch"></a>1.初识elasticsearch</h1><h2 id="1-1-了解ES"><a href="#1-1-了解ES" class="headerlink" title="1.1.了解ES"></a>1.1.了解ES</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:01:44 / 修改时间：16:45:04" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:44+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-分布式事务问题"><a href="#1-分布式事务问题" class="headerlink" title="1.分布式事务问题"></a>1.分布式事务问题</h1><h2 id="1-1-本地事务"><a href="#1-1-本地事务" class="headerlink" title="1.1.本地事务"></a>1.1.本地事务</h2><p>本地事务，也就是传统的<strong>单机事务</strong>。在传统数据库事务中，必须要满足四个原则：</p>
-<p><img src="/assets/image-20210724165045186.png" alt="image-20210724165045186"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:01:34 / 修改时间：16:44:55" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:34+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="分布式缓存-redis"><a href="#分布式缓存-redis" class="headerlink" title="分布式缓存(redis)"></a>分布式缓存(redis)</h1><p>– 基于Redis集群解决单机Redis存在的问题</p>
-<p>单机的Redis存在四大问题：</p>
-<p><img src="/assets/image-20210725144240631.png" alt="image-20210725144240631"></p>
-<h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Redis持久化"><a href="#1-Redis持久化" class="headerlink" title="1.Redis持久化"></a>1.Redis持久化</h1><p>Redis有两种持久化方案：</p>
-<ul>
-<li>RDB持久化</li>
-<li>AOF持久化</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-02-18 16:01:25 / 修改时间：16:44:21" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:25+08:00">2023-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="服务异步通信-高级篇"><a href="#服务异步通信-高级篇" class="headerlink" title="服务异步通信-高级篇"></a>服务异步通信-高级篇</h1><p>消息队列在使用过程中，面临着很多实际问题需要思考：</p>
-<p><img src="/assets/image-20210718155003157.png" alt="image-20210718155003157"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="浊心">
-      <meta itemprop="description" content="山鬼不识字，西风不解情">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一把小桨">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/03/hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/" class="post-title-link" itemprop="url">hexo-Next主题美化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-03 17:08:00 / 修改时间：17:10:30" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">hexo博客</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲述如何对搭建的hexo博客美化。hexo博客默认主题是landscape，hexo支持很多不同的主题，本文主要介绍Next主题的美化。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/03/hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1644,6 +940,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702"><span class="nav-number">1.</span> <span class="nav-text">SpringCloud实用篇02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">0.学习目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Nacos%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">1.Nacos配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%BB%9F%E4%B8%80%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">1.1.统一配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E5%9C%A8nacos%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1.1.在nacos中添加配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E4%BB%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%89%E5%8F%96%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.1.2.从微服务拉取配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E9%85%8D%E7%BD%AE%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-number">3.2.</span> <span class="nav-text">1.2.配置热更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.2.1.方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-number">3.2.2.</span> <span class="nav-text">1.2.2.方式二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E9%85%8D%E7%BD%AE%E5%85%B1%E4%BA%AB"><span class="nav-number">3.3.</span> <span class="nav-text">1.3.配置共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%A2%83%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.1.</span> <span class="nav-text">1）添加一个环境共享配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E5%9C%A8user-service%E4%B8%AD%E8%AF%BB%E5%8F%96%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.2.</span> <span class="nav-text">2）在user-service中读取共享配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89%E8%BF%90%E8%A1%8C%E4%B8%A4%E4%B8%AAUserApplication%EF%BC%8C%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84profile"><span class="nav-number">3.3.3.</span> <span class="nav-text">3）运行两个UserApplication，使用不同的profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89%E9%85%8D%E7%BD%AE%E5%85%B1%E4%BA%AB%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.3.4.</span> <span class="nav-text">4）配置共享的优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%90%AD%E5%BB%BANacos%E9%9B%86%E7%BE%A4"><span class="nav-number">3.4.</span> <span class="nav-text">1.4.搭建Nacos集群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">2.Feign远程调用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Feign%E6%9B%BF%E4%BB%A3RestTemplate"><span class="nav-number">4.1.</span> <span class="nav-text">2.1.Feign替代RestTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">4.1.1.</span> <span class="nav-text">1）引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.1.2.</span> <span class="nav-text">2）添加注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89%E7%BC%96%E5%86%99Feign%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">4.1.3.</span> <span class="nav-text">3）编写Feign的客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89%E6%B5%8B%E8%AF%95"><span class="nav-number">4.1.4.</span> <span class="nav-text">4）测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%BC%89%E6%80%BB%E7%BB%93"><span class="nav-number">4.1.5.</span> <span class="nav-text">5）总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">2.2.自定义配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.2.1.配置文件方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Java%E4%BB%A3%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2.2.Java代码方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Feign%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">2.3.Feign使用优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.4.</span> <span class="nav-text">2.4.最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F"><span class="nav-number">4.4.1.</span> <span class="nav-text">2.4.1.继承方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-%E6%8A%BD%E5%8F%96%E6%96%B9%E5%BC%8F"><span class="nav-number">4.4.2.</span> <span class="nav-text">2.4.2.抽取方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8E%E6%8A%BD%E5%8F%96%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.4.3.</span> <span class="nav-text">2.4.3.实现基于抽取的最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%89%E6%8A%BD%E5%8F%96"><span class="nav-number">4.4.3.1.</span> <span class="nav-text">1）抽取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%89%E5%9C%A8order-service%E4%B8%AD%E4%BD%BF%E7%94%A8feign-api"><span class="nav-number">4.4.3.2.</span> <span class="nav-text">2）在order-service中使用feign-api</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%89%E9%87%8D%E5%90%AF%E6%B5%8B%E8%AF%95"><span class="nav-number">4.4.3.3.</span> <span class="nav-text">3）重启测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%EF%BC%89%E8%A7%A3%E5%86%B3%E6%89%AB%E6%8F%8F%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">4.4.3.4.</span> <span class="nav-text">4）解决扫描包问题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Gateway%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3"><span class="nav-number">5.</span> <span class="nav-text">3.Gateway服务网关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BD%91%E5%85%B3"><span class="nav-number">5.1.</span> <span class="nav-text">3.1.为什么需要网关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-gateway%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-number">5.2.</span> <span class="nav-text">3.2.gateway快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89%E5%88%9B%E5%BB%BAgateway%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">5.2.1.</span> <span class="nav-text">1）创建gateway服务，引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E7%BC%96%E5%86%99%E5%90%AF%E5%8A%A8%E7%B1%BB"><span class="nav-number">5.2.2.</span> <span class="nav-text">2）编写启动类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E5%92%8C%E8%B7%AF%E7%94%B1%E8%A7%84%E5%88%99"><span class="nav-number">5.2.3.</span> <span class="nav-text">3）编写基础配置和路由规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89%E9%87%8D%E5%90%AF%E6%B5%8B%E8%AF%95"><span class="nav-number">5.2.4.</span> <span class="nav-text">4）重启测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%BC%89%E7%BD%91%E5%85%B3%E8%B7%AF%E7%94%B1%E7%9A%84%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">5.2.5.</span> <span class="nav-text">5）网关路由的流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%96%AD%E8%A8%80%E5%B7%A5%E5%8E%82"><span class="nav-number">5.3.</span> <span class="nav-text">3.3.断言工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%B7%A5%E5%8E%82"><span class="nav-number">5.4.</span> <span class="nav-text">3.4.过滤器工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">5.4.1.</span> <span class="nav-text">3.4.1.路由过滤器的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.4.2.</span> <span class="nav-text">3.4.2.请求头过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-%E9%BB%98%E8%AE%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.4.3.</span> <span class="nav-text">3.4.3.默认过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-%E6%80%BB%E7%BB%93"><span class="nav-number">5.4.4.</span> <span class="nav-text">3.4.4.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.5.</span> <span class="nav-text">3.5.全局过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8%E4%BD%9C%E7%94%A8"><span class="nav-number">5.5.1.</span> <span class="nav-text">3.5.1.全局过滤器作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.5.2.</span> <span class="nav-text">3.5.2.自定义全局过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-%E8%BF%87%E6%BB%A4%E5%99%A8%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="nav-number">5.5.3.</span> <span class="nav-text">3.5.3.过滤器执行顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">5.6.</span> <span class="nav-text">3.6.跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">5.6.1.</span> <span class="nav-text">3.6.1.什么是跨域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-%E6%A8%A1%E6%8B%9F%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">5.6.2.</span> <span class="nav-text">3.6.2.模拟跨域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-3-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">5.6.3.</span> <span class="nav-text">3.6.3.解决跨域问题</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
