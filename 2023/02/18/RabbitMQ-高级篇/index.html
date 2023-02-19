@@ -22,50 +22,50 @@
     var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="服务异步通信-高级篇消息队列在使用过程中，面临着很多实际问题需要思考：">
+  <meta name="description" content="服务异步通信-高级篇消息队列在使用过程中，面临着很多实际问题需要思考：  1.消息可靠性消息从发送，到消费者接收，会经理多个过程：  其中的每一步都可能导致消息丢失，常见的丢失原因包括：  发送时丢失： 生产者发送的消息未送达exchange 消息到达exchange后未到达queue   MQ宕机，queue将消息丢失 consumer接收到消息后未消费就宕机  针对这些问题，RabbitMQ分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一把小桨">
 <meta property="og:url" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/index.html">
 <meta property="og:site_name" content="一把小桨">
-<meta property="og:description" content="服务异步通信-高级篇消息队列在使用过程中，面临着很多实际问题需要思考：">
+<meta property="og:description" content="服务异步通信-高级篇消息队列在使用过程中，面临着很多实际问题需要思考：  1.消息可靠性消息从发送，到消费者接收，会经理多个过程：  其中的每一步都可能导致消息丢失，常见的丢失原因包括：  发送时丢失： 生产者发送的消息未送达exchange 消息到达exchange后未到达queue   MQ宕机，queue将消息丢失 consumer接收到消息后未消费就宕机  针对这些问题，RabbitMQ分">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718155003157.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718155059371.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718155328927.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718155448734.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718160907166.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718161707992.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718164412450.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718164729543.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718165100016.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718171705383.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718171759179.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718172746378.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718174328383.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718174416160.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718174506856.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210821073801398.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718174506856.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718182643311.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718191657478.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718191738706.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718191939140.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718192004662.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718192529342.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718193409812.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718193747649.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718193831076.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718193917009.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718194040498.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718194522223.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210718194539054.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718220843323.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/assets/image-20210718221039542.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907551-bc14b362-69b8-48db-8a4e-c0290222f2c3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907555-e858ddfd-9036-49d3-b5be-feca58654d79.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907557-f3a5b160-863c-441e-9811-adfec2b33905.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907561-112c38fe-850f-4da7-a6a5-83bec2689a30.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907568-ac4280ca-9a75-48e3-82c8-735c0abe5a54.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907573-cf8da4bc-1051-4e2c-81c9-61c1b0be43ea.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907577-ece6d482-23a8-4292-8ccb-ccf4800aeff7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907586-b9f69366-2f65-43bd-8dc5-e583749b286a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907589-a3f72819-33ab-4aae-9112-56439a647c72.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907593-ef8f6dc3-964c-4313-9635-7e19c07f7e05.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907596-9d7e63d2-9c24-47af-89a3-7f268efa8d0f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907599-4fd20e8f-5f30-4983-99d9-b649026fbc1f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907606-a7c555a1-bc48-4eec-b21a-2860f0bff5a2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907609-bda6c9fd-ea1a-4911-af95-849420f908b5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907615-43140f8a-49df-4473-b1e9-493ce9c347f9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907618-58c8ed6a-fec2-48c7-a815-51d1c7c0fb66.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907621-eda22e81-dbbb-419b-affc-569536f6341f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907624-601566e4-5b78-4e67-b89a-084daf623e28.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907631-0cb15c91-3e40-44c7-8e7f-b76b48389c66.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907633-17d4b2c7-dba6-498b-830a-7240f60d7c27.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907640-b8fec9c5-cd60-477f-816d-cd16ec645f2e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907646-9d7f5ba4-9d1f-41cf-b439-109b72a18e07.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907653-b778b8e5-9b52-4849-acff-30045522d47a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907659-4b5d494a-da7d-4633-beb1-6945dacc5203.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907665-c1cc30ca-bac9-481f-b223-cc8fdfbb8d6d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907668-4b92a7f4-dd9c-40ff-8ff1-dd6483692ab1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907673-21c7abab-9df0-4016-afcf-f60d72ad405e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907678-eda5b8e2-b382-4fec-a084-bc85c548bc91.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907686-171bc53d-cfc2-4a97-941b-f4578705f2fd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907690-5079e238-d912-49fa-9c73-65e77c4c3e3d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907697-a725d355-071d-4fb4-82f5-5ade96d438ad.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907702-9b6fb465-790b-473b-8d8f-49a1187597ba.png">
 <meta property="article:published_time" content="2023-02-18T08:01:25.097Z">
-<meta property="article:modified_time" content="2023-02-18T08:44:21.818Z">
+<meta property="article:modified_time" content="2023-02-19T01:46:29.052Z">
 <meta property="article:author" content="浊心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://turheart.github.io/assets/image-20210718155003157.png">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/102344939/219907551-bc14b362-69b8-48db-8a4e-c0290222f2c3.png">
 
 <link rel="canonical" href="https://turheart.github.io/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/">
 
@@ -246,10 +246,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-18 16:01:25 / 修改时间：16:44:21" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:25+08:00">2023-02-18</time>
+              <time title="创建时间：2023-02-18 16:01:25" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:25+08:00">2023-02-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-19 09:46:29" itemprop="dateModified" datetime="2023-02-19T09:46:29+08:00">2023-02-19</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -277,13 +283,9 @@
 
       
         <h1 id="服务异步通信-高级篇"><a href="#服务异步通信-高级篇" class="headerlink" title="服务异步通信-高级篇"></a>服务异步通信-高级篇</h1><p>消息队列在使用过程中，面临着很多实际问题需要思考：</p>
-<p><img src="/assets/image-20210718155003157.png" alt="image-20210718155003157"></p>
-<span id="more"></span>
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907551-bc14b362-69b8-48db-8a4e-c0290222f2c3.png" alt="image"></p>
 <h1 id="1-消息可靠性"><a href="#1-消息可靠性" class="headerlink" title="1.消息可靠性"></a>1.消息可靠性</h1><p>消息从发送，到消费者接收，会经理多个过程：</p>
-<p><img src="/assets/image-20210718155059371.png" alt="image-20210718155059371"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907555-e858ddfd-9036-49d3-b5be-feca58654d79.png" alt="image"></p>
 <p>其中的每一步都可能导致消息丢失，常见的丢失原因包括：</p>
 <ul>
 <li>发送时丢失：<ul>
@@ -303,14 +305,9 @@
 </ul>
 <p>下面我们就通过案例来演示每一个步骤。</p>
 <p>首先，导入课前资料提供的demo工程：</p>
-<img src="assets/image-20210718155328927.png" alt="image-20210718155328927" style="zoom:25%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907557-f3a5b160-863c-441e-9811-adfec2b33905.png" alt="image"> </p>
 <p>项目结构如下：</p>
-<img src="assets/image-20210718155448734.png" alt="image-20210718155448734" style="zoom: 50%;" /> 
-
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907561-112c38fe-850f-4da7-a6a5-83bec2689a30.png" alt="image"> </p>
 <h2 id="1-1-生产者消息确认"><a href="#1-1-生产者消息确认" class="headerlink" title="1.1 生产者消息确认"></a>1.1 生产者消息确认</h2><p>RabbitMQ提供了publisher confirm机制来避免消息发送到MQ过程中丢失。这种机制必须给每个消息指定一个唯一ID。消息发送到MQ以后，会返回一</p>
 <p>个结果给发送者，表示消息是否处理成功。</p>
 <p>返回结果有两种方式：</p>
@@ -325,12 +322,9 @@
 </ul>
 </li>
 </ul>
-<p><img src="/assets/image-20210718160907166.png" alt="image-20210718160907166"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907568-ac4280ca-9a75-48e3-82c8-735c0abe5a54.png" alt="image"></p>
 <p>注意：</p>
-<img src="assets/image-20210718161707992.png" alt="image-20210718161707992" style="zoom: 50%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907573-cf8da4bc-1051-4e2c-81c9-61c1b0be43ea.png" alt="image"> </p>
 <h3 id="1-1-1-修改配置"><a href="#1-1-1-修改配置" class="headerlink" title="1.1.1.修改配置"></a>1.1.1.修改配置</h3><p>首先，修改publisher服务中的application.yml文件，添加下面的内容：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">publisher-confirm-type:</span> <span class="string">correlated</span></span><br><span class="line">    <span class="attr">publisher-returns:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">template:</span></span><br><span class="line">      <span class="attr">mandatory:</span> <span class="literal">true</span> </span><br></pre></td></tr></table></figure>
 
@@ -373,21 +367,21 @@
 
 <p>事实上，默认情况下，由SpringAMQP声明的交换机都是持久化的。</p>
 <p>可以在RabbitMQ控制台看到持久化的交换机都会带上<code>D</code>的标示：</p>
-<p><img src="/assets/image-20210718164412450.png" alt="image-20210718164412450"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907577-ece6d482-23a8-4292-8ccb-ccf4800aeff7.png" alt="image"></p>
 <h3 id="1-2-2-队列持久化"><a href="#1-2-2-队列持久化" class="headerlink" title="1.2.2.队列持久化"></a>1.2.2.队列持久化</h3><p>RabbitMQ中队列默认是非持久化的，mq重启后就丢失。</p>
 <p>SpringAMQP中可以通过代码指定交换机持久化：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">simpleQueue</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">// 使用QueueBuilder构建队列，durable就是持久化的</span></span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;simple.queue&quot;</span>).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>事实上，默认情况下，由SpringAMQP声明的队列都是持久化的。</p>
 <p>可以在RabbitMQ控制台看到持久化的队列都会带上<code>D</code>的标示：</p>
-<p><img src="/assets/image-20210718164729543.png" alt="image-20210718164729543"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907586-b9f69366-2f65-43bd-8dc5-e583749b286a.png" alt="image"></p>
 <h3 id="1-2-3-消息持久化"><a href="#1-2-3-消息持久化" class="headerlink" title="1.2.3.消息持久化"></a>1.2.3.消息持久化</h3><p>利用SpringAMQP发送消息时，可以设置消息的属性（MessageProperties），指定delivery-mode：</p>
 <ul>
 <li>1：非持久化</li>
 <li>2：持久化</li>
 </ul>
 <p>用java代码指定：</p>
-<p><img src="/assets/image-20210718165100016.png" alt="image-20210718165100016"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907589-a3f72819-33ab-4aae-9112-56439a647c72.png" alt="image"></p>
 <p>默认情况下，SpringAMQP发出的任何消息都是持久化的，不用特意指定。</p>
 <h2 id="1-3-消费者消息确认"><a href="#1-3-消费者消息确认" class="headerlink" title="1.3 消费者消息确认"></a>1.3 消费者消息确认</h2><p>RabbitMQ是<strong>阅后即焚</strong>机制，RabbitMQ确认消息被消费者消费后会立刻删除。</p>
 <p>而RabbitMQ是通过消费者回执来确认消费者是否成功处理消息的：消费者获取消息后，应该向RabbitMQ发送ACK回执，表明自己已经处理消息。</p>
@@ -421,12 +415,12 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">acknowledge-mode:</span> <span class="string">auto</span> <span class="comment"># 关闭ack</span></span><br></pre></td></tr></table></figure>
 
 <p>在异常位置打断点，再次发送消息，程序卡在断点时，可以发现此时消息状态为unack（未确定状态）：</p>
-<p><img src="/assets/image-20210718171705383.png" alt="image-20210718171705383"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907593-ef8f6dc3-964c-4313-9635-7e19c07f7e05.png" alt="image"></p>
 <p>抛出异常后，因为Spring会自动返回nack，所以消息恢复至Ready状态，并且没有被RabbitMQ删除：</p>
-<p><img src="/assets/image-20210718171759179.png" alt="image-20210718171759179"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907596-9d7e63d2-9c24-47af-89a3-7f268efa8d0f.png" alt="image"></p>
 <h2 id="1-4-消费失败重试机制"><a href="#1-4-消费失败重试机制" class="headerlink" title="1.4 消费失败重试机制"></a>1.4 消费失败重试机制</h2><p>当消费者出现异常后，消息会不断requeue（重入队）到队列，再重新发送给消费者，然后再次异常，再次requeue，无限循环，导致mq的消息处理飙</p>
 <p>升，带来不必要的压力：</p>
-<p><img src="/assets/image-20210718172746378.png" alt="image-20210718172746378"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907599-4fd20e8f-5f30-4983-99d9-b649026fbc1f.png" alt="image"></p>
 <p>怎么办呢？</p>
 <h3 id="1-4-1-本地重试"><a href="#1-4-1-本地重试" class="headerlink" title="1.4.1 本地重试"></a>1.4.1 本地重试</h3><p>我们可以利用Spring的retry机制，在消费者出现异常时利用本地重试，而不是无限制的requeue到mq队列。</p>
 <p>修改consumer服务的application.yml文件，添加内容：</p>
@@ -488,21 +482,21 @@
 </ul>
 <p>如果这个包含死信的队列配置了<code>dead-letter-exchange</code>属性，指定了一个交换机，那么队列中的死信就会投递到这个交换机中，而这个交换机称为<strong>死信交换机</strong>（Dead Letter Exchange，检查DLX）。</p>
 <p>如图，一个消息被消费者拒绝了，变成了死信：</p>
-<p><img src="/assets/image-20210718174328383.png" alt="image-20210718174328383"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907606-a7c555a1-bc48-4eec-b21a-2860f0bff5a2.png" alt="image"></p>
 <p>因为simple.queue绑定了死信交换机 dl.direct，因此死信会投递给这个交换机：</p>
-<p><img src="/assets/image-20210718174416160.png" alt="image-20210718174416160"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907609-bda6c9fd-ea1a-4911-af95-849420f908b5.png" alt="image"></p>
 <p>如果这个死信交换机也绑定了一个队列，则消息最终会进入这个存放死信的队列：</p>
-<p><img src="/assets/image-20210718174506856.png" alt="image-20210718174506856"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907615-43140f8a-49df-4473-b1e9-493ce9c347f9.png" alt="image"></p>
 <p>另外，队列将死信投递给死信交换机时，必须知道两个信息：</p>
 <ul>
 <li>死信交换机名称</li>
 <li>死信交换机与死信队列绑定的RoutingKey</li>
 </ul>
 <p>这样才能确保投递的消息能到达死信交换机，并且正确的路由到死信队列。</p>
-<p><img src="/assets/image-20210821073801398.png" alt="image-20210821073801398"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907618-58c8ed6a-fec2-48c7-a815-51d1c7c0fb66.png" alt="image"></p>
 <h3 id="2-1-2-利用死信交换机接收死信（拓展）"><a href="#2-1-2-利用死信交换机接收死信（拓展）" class="headerlink" title="2.1.2.利用死信交换机接收死信（拓展）"></a>2.1.2.利用死信交换机接收死信（拓展）</h3><p>在失败重试策略中，默认的RejectAndDontRequeueRecoverer会在本地重试次数耗尽后，发送reject给RabbitMQ，消息变成死信，被丢弃。</p>
 <p>我们可以给simple.queue添加一个死信交换机，给死信交换机绑定一个队列。这样消息变成死信后也不会丢弃，而是最终投递到死信交换机，路由到与死信交换机绑定的队列。</p>
-<p><img src="/assets/image-20210718174506856.png" alt="image-20210718174506856"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907621-eda22e81-dbbb-419b-affc-569536f6341f.png" alt="image"></p>
 <p>我们在consumer服务中，定义一组死信交换机、死信队列：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明普通的 simple.queue队列，并且为其指定死信交换机：dl.direct</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">simpleQueue2</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;simple.queue&quot;</span>) <span class="comment">// 指定队列名称，并持久化</span></span><br><span class="line">        .deadLetterExchange(<span class="string">&quot;dl.direct&quot;</span>) 		<span class="comment">// 指定死信交换机</span></span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明死信交换机 dl.direct</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DirectExchange <span class="title function_">dlExchange</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;dl.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明存储死信的队列 dl.queue</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">dlQueue</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;dl.queue&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将死信队列 与 死信交换机绑定</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Binding <span class="title function_">dlBinding</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> BindingBuilder.bind(dlQueue()).to(dlExchange()).with(<span class="string">&quot;simple&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -530,7 +524,7 @@
 <li>消息所在的队列设置了超时时间</li>
 <li>消息本身设置了超时时间</li>
 </ul>
-<p><img src="/assets/image-20210718182643311.png" alt="image-20210718182643311"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907624-601566e4-5b78-4e67-b89a-084daf623e28.png" alt="image"></p>
 <h3 id="2-2-1-接收超时死信的死信交换机"><a href="#2-2-1-接收超时死信的死信交换机" class="headerlink" title="2.2.1.接收超时死信的死信交换机"></a>2.2.1.接收超时死信的死信交换机</h3><p>在consumer服务的SpringRabbitListener中，定义一个新的消费者，并且声明 死信交换机、死信队列：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;dl.ttl.queue&quot;, durable = &quot;true&quot;),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;dl.ttl.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;ttl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenDlQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    log.info(<span class="string">&quot;接收到 dl.ttl.queue的延迟消息：&#123;&#125;&quot;</span>, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -549,9 +543,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testTTLQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建消息</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;hello, ttl queue&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 消息ID，需要封装到CorrelationData中</span></span><br><span class="line">    <span class="type">CorrelationData</span> <span class="variable">correlationData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorrelationData</span>(UUID.randomUUID().toString());</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 发送消息</span></span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">&quot;ttl.direct&quot;</span>, <span class="string">&quot;ttl&quot;</span>, message, correlationData);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记录日志</span></span><br><span class="line">    log.debug(<span class="string">&quot;发送消息成功&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>发送消息的日志：</p>
-<p><img src="/assets/image-20210718191657478.png" alt="image-20210718191657478"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907631-0cb15c91-3e40-44c7-8e7f-b76b48389c66.png" alt="image"></p>
 <p>查看下接收消息的日志：</p>
-<p><img src="/assets/image-20210718191738706.png" alt="image-20210718191738706"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907633-17d4b2c7-dba6-498b-830a-7240f60d7c27.png" alt="image"></p>
 <p>因为队列的TTL值是10000ms，也就是10秒。可以看到消息发送与接收之间的时差刚好是10秒。</p>
 <h3 id="2-2-3-发送消息时，设定TTL"><a href="#2-2-3-发送消息时，设定TTL" class="headerlink" title="2.2.3.发送消息时，设定TTL"></a>2.2.3.发送消息时，设定TTL</h3><p>在发送消息时，也可以指定TTL：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testTTLMsg</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建消息</span></span><br><span class="line">    <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder</span><br><span class="line">        .withBody(<span class="string">&quot;hello, ttl message&quot;</span>.getBytes(StandardCharsets.UTF_8))</span><br><span class="line">        .setExpiration(<span class="string">&quot;5000&quot;</span>)</span><br><span class="line">        .build();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 消息ID，需要封装到CorrelationData中</span></span><br><span class="line">    <span class="type">CorrelationData</span> <span class="variable">correlationData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorrelationData</span>(UUID.randomUUID().toString());</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 发送消息</span></span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">&quot;ttl.direct&quot;</span>, <span class="string">&quot;ttl&quot;</span>, message, correlationData);</span><br><span class="line">    log.debug(<span class="string">&quot;发送消息成功&quot;</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -559,9 +553,9 @@
 
 
 <p>查看发送消息日志：</p>
-<p><img src="/assets/image-20210718191939140.png" alt="image-20210718191939140"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907640-b8fec9c5-cd60-477f-816d-cd16ec645f2e.png" alt="image"></p>
 <p>接收消息日志：</p>
-<p><img src="/assets/image-20210718192004662.png" alt="image-20210718192004662"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907646-9d7f5ba4-9d1f-41cf-b439-109b72a18e07.png" alt="image"></p>
 <p>这次，发送与接收的延迟只有5秒。说明当队列、消息都设置了TTL时，任意一个到期就会成为死信。</p>
 <h3 id="2-2-4-总结"><a href="#2-2-4-总结" class="headerlink" title="2.2.4.总结"></a>2.2.4.总结</h3><p>消息超时的两种方式是？</p>
 <ul>
@@ -583,10 +577,10 @@
 </ul>
 <p>因为延迟队列的需求非常多，所以RabbitMQ的官方也推出了一个插件，原生支持延迟队列效果。</p>
 <p>这个插件就是DelayExchange插件。参考RabbitMQ的插件列表页面：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/community-plugins.html">https://www.rabbitmq.com/community-plugins.html</a></p>
-<p><img src="/assets/image-20210718192529342.png" alt="image-20210718192529342"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907653-b778b8e5-9b52-4849-acff-30045522d47a.png" alt="image"></p>
 <p>使用方式可以参考官网地址：<a target="_blank" rel="noopener" href="https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq">https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq</a></p>
 <h3 id="2-3-1-安装DelayExchange插件"><a href="#2-3-1-安装DelayExchange插件" class="headerlink" title="2.3.1.安装DelayExchange插件"></a>2.3.1.安装DelayExchange插件</h3><p>参考课前资料：</p>
-<p><img src="/assets/image-20210718193409812.png" alt="image-20210718193409812"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907659-4b5d494a-da7d-4633-beb1-6945dacc5203.png" alt="image"></p>
 <h3 id="2-3-2-DelayExchange原理"><a href="#2-3-2-DelayExchange原理" class="headerlink" title="2.3.2.DelayExchange原理"></a>2.3.2.DelayExchange原理</h3><p>DelayExchange需要将一个交换机声明为delayed类型。当我们发送消息到delayExchange时，流程如下：</p>
 <ul>
 <li>接收消息</li>
@@ -597,21 +591,16 @@
 </ul>
 <h3 id="2-3-3-使用DelayExchange"><a href="#2-3-3-使用DelayExchange" class="headerlink" title="2.3.3.使用DelayExchange"></a>2.3.3.使用DelayExchange</h3><p>插件的使用也非常简单：声明一个交换机，交换机的类型可以是任意类型，只需要设定delayed属性为true即可，然后声明队列与其绑定即可。</p>
 <h4 id="1）声明DelayExchange交换机"><a href="#1）声明DelayExchange交换机" class="headerlink" title="1）声明DelayExchange交换机"></a>1）声明DelayExchange交换机</h4><p>基于注解方式（推荐）：</p>
-<p><img src="/assets/image-20210718193747649.png" alt="image-20210718193747649"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907665-c1cc30ca-bac9-481f-b223-cc8fdfbb8d6d.png" alt="image"></p>
 <p>也可以基于@Bean的方式：</p>
-<p><img src="/assets/image-20210718193831076.png" alt="image-20210718193831076"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907668-4b92a7f4-dd9c-40ff-8ff1-dd6483692ab1.png" alt="image"></p>
 <h4 id="2）发送消息"><a href="#2）发送消息" class="headerlink" title="2）发送消息"></a>2）发送消息</h4><p>发送消息时，一定要携带x-delay属性，指定延迟的时间：</p>
-<p><img src="/assets/image-20210718193917009.png" alt="image-20210718193917009"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907673-21c7abab-9df0-4016-afcf-f60d72ad405e.png" alt="image"></p>
 <h3 id="2-3-4-总结"><a href="#2-3-4-总结" class="headerlink" title="2.3.4.总结"></a>2.3.4.总结</h3><p>延迟队列插件的使用步骤包括哪些？</p>
 <p>•声明一个交换机，添加delayed属性为true</p>
 <p>•发送消息时，添加x-delay头，值为超时时间</p>
 <h1 id="3-惰性队列"><a href="#3-惰性队列" class="headerlink" title="3.惰性队列"></a>3.惰性队列</h1><h2 id="3-1-消息堆积问题"><a href="#3-1-消息堆积问题" class="headerlink" title="3.1.消息堆积问题"></a>3.1.消息堆积问题</h2><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。之后发送的消息就会成为死信，可能会被丢弃，这就是消息堆积问题。</p>
-<img src="assets/image-20210718194040498.png" alt="image-20210718194040498" style="zoom:50%;" /> 
-
-
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907678-eda5b8e2-b382-4fec-a084-bc85c548bc91.png" alt="image"> </p>
 <p>解决消息堆积有两种思路：</p>
 <ul>
 <li>增加更多消费者，提高消费速度。也就是我们之前说的work queue模式</li>
@@ -636,8 +625,8 @@
 <li><code>&#39;&#123;&quot;queue-mode&quot;:&quot;lazy&quot;&#125;&#39;</code> ：设置队列模式为lazy模式</li>
 <li><code>--apply-to queues  </code>：策略的作用对象，是所有的队列</li>
 </ul>
-<h3 id="3-2-2-基于-Bean声明lazy-queue"><a href="#3-2-2-基于-Bean声明lazy-queue" class="headerlink" title="3.2.2.基于@Bean声明lazy-queue"></a>3.2.2.基于@Bean声明lazy-queue</h3><p><img src="/assets/image-20210718194522223.png" alt="image-20210718194522223"></p>
-<h3 id="3-2-3-基于-RabbitListener声明LazyQueue"><a href="#3-2-3-基于-RabbitListener声明LazyQueue" class="headerlink" title="3.2.3.基于@RabbitListener声明LazyQueue"></a>3.2.3.基于@RabbitListener声明LazyQueue</h3><p><img src="/assets/image-20210718194539054.png" alt="image-20210718194539054"></p>
+<h3 id="3-2-2-基于-Bean声明lazy-queue"><a href="#3-2-2-基于-Bean声明lazy-queue" class="headerlink" title="3.2.2.基于@Bean声明lazy-queue"></a>3.2.2.基于@Bean声明lazy-queue</h3><p><img src="https://user-images.githubusercontent.com/102344939/219907686-171bc53d-cfc2-4a97-941b-f4578705f2fd.png" alt="image"></p>
+<h3 id="3-2-3-基于-RabbitListener声明LazyQueue"><a href="#3-2-3-基于-RabbitListener声明LazyQueue" class="headerlink" title="3.2.3.基于@RabbitListener声明LazyQueue"></a>3.2.3.基于@RabbitListener声明LazyQueue</h3><p><img src="https://user-images.githubusercontent.com/102344939/219907690-5079e238-d912-49fa-9c73-65e77c4c3e3d.png" alt="image"></p>
 <h3 id="3-3-总结"><a href="#3-3-总结" class="headerlink" title="3.3.总结"></a>3.3.总结</h3><p>消息堆积问题的解决方案？</p>
 <ul>
 <li>队列上绑定多个消费者，提高消费速度</li>
@@ -665,10 +654,7 @@
 <li>队列所在节点宕机，队列中的消息就会丢失</li>
 </ul>
 <p>结构如图：</p>
-<img src="assets/image-20210718220843323.png" alt="image-20210718220843323" style="zoom: 50%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907697-a725d355-071d-4fb4-82f5-5ade96d438ad.png" alt="image"> </p>
 <h3 id="4-2-2-部署"><a href="#4-2-2-部署" class="headerlink" title="4.2.2.部署"></a>4.2.2.部署</h3><p>参考课前资料：《RabbitMQ部署指南.md》</p>
 <h2 id="4-3-镜像集群"><a href="#4-3-镜像集群" class="headerlink" title="4.3.镜像集群"></a>4.3.镜像集群</h2><h3 id="4-3-1-集群结构和特征"><a href="#4-3-1-集群结构和特征" class="headerlink" title="4.3.1.集群结构和特征"></a>4.3.1.集群结构和特征</h3><p>镜像集群：本质是主从模式，具备下面的特征：</p>
 <ul>
@@ -679,12 +665,7 @@
 <li>主宕机后，镜像节点会替代成新的主</li>
 </ul>
 <p>结构如图：</p>
-<img src="assets/image-20210718221039542.png" alt="image-20210718221039542" style="zoom: 33%;" /> 
-
-
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907702-9b6fb465-790b-473b-8d8f-49a1187597ba.png" alt="image"> </p>
 <h3 id="4-3-2-部署"><a href="#4-3-2-部署" class="headerlink" title="4.3.2.部署"></a>4.3.2.部署</h3><p>参考课前资料：《RabbitMQ部署指南.md》</p>
 <h2 id="4-4-仲裁队列"><a href="#4-4-仲裁队列" class="headerlink" title="4.4.仲裁队列"></a>4.4.仲裁队列</h2><h3 id="4-4-1-集群特征"><a href="#4-4-1-集群特征" class="headerlink" title="4.4.1.集群特征"></a>4.4.1.集群特征</h3><p>仲裁队列：仲裁队列是3.8版本以后才有的新功能，用来替代镜像队列，具备下列特征：</p>
 <ul>

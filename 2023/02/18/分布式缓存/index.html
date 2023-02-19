@@ -22,69 +22,69 @@
     var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="分布式缓存(redis)– 基于Redis集群解决单机Redis存在的问题 单机的Redis存在四大问题：  0.学习目标1.Redis持久化Redis有两种持久化方案：  RDB持久化 AOF持久化">
+  <meta name="description" content="分布式缓存(redis)– 基于Redis集群解决单机Redis存在的问题 单机的Redis存在四大问题：  0.学习目标1.Redis持久化Redis有两种持久化方案：  RDB持久化 AOF持久化  1.1.RDB持久化RDB全称Redis Database Backup file（Redis数据备份文件），也被叫做Redis数据快照。简单来说就是把内存中的所有数据都记录到磁盘中。当Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一把小桨">
 <meta property="og:url" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="一把小桨">
-<meta property="og:description" content="分布式缓存(redis)– 基于Redis集群解决单机Redis存在的问题 单机的Redis存在四大问题：  0.学习目标1.Redis持久化Redis有两种持久化方案：  RDB持久化 AOF持久化">
+<meta property="og:description" content="分布式缓存(redis)– 基于Redis集群解决单机Redis存在的问题 单机的Redis存在四大问题：  0.学习目标1.Redis持久化Redis有两种持久化方案：  RDB持久化 AOF持久化  1.1.RDB持久化RDB全称Redis Database Backup file（Redis数据备份文件），也被叫做Redis数据快照。简单来说就是把内存中的所有数据都记录到磁盘中。当Redis">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725144240631.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725144536958.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725144725943.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725151319695.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725151543640.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725151654046.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725151729118.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725151940515.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725152037611.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725152052501.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725152222497.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725152700914.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725153201086.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725153359022.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725153524190.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725153715910.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725153937031.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725154155984.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725154216392.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725154405899.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725154528072.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725154632354.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725154816841.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907758-a80169fa-cd4f-4bbf-9f79-1d7b0fdd5bec.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907761-c21517b0-ffe4-42be-b581-885023b055dc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907765-71f8e9cb-226e-4e25-a49b-d94008d0f7c7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907772-68d7af2c-18cf-4556-ab13-2f43a882ea44.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907777-5c257759-13b6-458f-85fe-5d23001c0b97.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907781-c732fed8-2903-4a09-83a5-0acc6f98f883.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907787-5b861422-ce3f-4d86-b5e3-ee7a41e8a93b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907790-60e65888-1aba-4932-b44a-5eb7ea4f0eba.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907795-7ec01be6-8cef-490f-bd9a-211019ecf55b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907802-2c9576c9-c621-41fa-aa6f-78dd631ad243.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907806-a388be81-d9e7-4272-843d-0f88e667958f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907809-f023b897-99a4-4ec3-92ff-5570e0ee17cb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907814-7c5a0f03-4dbd-4530-8ef3-85f494644d44.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907818-1d863ae4-e685-4d5b-9367-690cc8996fc9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907823-ac706085-ad12-485f-bce6-2ba3ea92f47b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907828-f518c5d8-6686-481e-9592-d05dadef4deb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907831-9fd6c9b6-ecd8-4850-8f86-1a1082d908b5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907834-f74a2ff0-1ff3-4e3d-ab00-5df8123e41ca.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907838-c7b6a1a3-cf2d-46fe-8c07-f2ec4bb3c118.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907841-eb2b3744-7508-421d-b3ef-171b01ce72ba.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907844-a8512543-5134-4f76-8a7e-3977bec720cc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907848-12b646ee-f7f8-4449-b6bc-c71bfd121f22.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907850-095930ff-fb47-4a70-896f-fcf6706bb98b.png">
 <meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725155019276.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725155124958.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725155747294.png">
-<meta property="og:image" content="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/assets/image-20210725155806288.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725155820320.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725155850200.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725160138290.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725160448139.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725160448139.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161007099.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161241793.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161401925.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161506241.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161540841.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161637152.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161731738.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725161817642.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162030478.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162101228.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162145497.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162224058.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210727161152065.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162319490.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162408979.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210727160803386.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210725162441407.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210727160037766.png">
-<meta property="og:image" content="https://turheart.github.io/assets/image-20210727161152065.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907857-2309d761-eaa2-4283-97e1-b220e0b1a787.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907861-9c7d4909-8f04-44fa-80ce-539e7c6de518.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907865-3accb8f6-9e61-46db-a625-94e1db1e158c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907872-221dd7e8-d854-4c12-a3e9-1400165b6761.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907877-116fde3f-186e-49d1-83e3-1738d89db869.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907882-cfc43bcf-b8ef-4af7-a39e-713e5be1bd5a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907885-85080499-bbcf-42e0-a842-ccfc4e193812.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907892-e801ac94-4235-484a-8f46-6fad585edcc3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907899-17c7ce45-551f-4f95-8106-17562432ded0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907907-f89ae593-83af-439f-b77d-2d3d37e94381.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907914-eff1b777-01ec-47b2-ab0c-b6ad29e70b37.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907919-f9dace02-63e3-496d-8244-6be9b9d38a1b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907926-33241585-64f9-4b4f-a563-51727d75d1cd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907929-29ddbfbb-1465-4052-9263-d4e93c47ef77.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907930-860b3c1a-4960-409b-84c4-ef75aa06f047.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907937-e75fcf2b-d3a2-420a-aad2-81609a9b3a44.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907939-87eec492-a384-4104-ae13-a65ef951aef5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907947-2a9608bd-b363-46da-b75c-a9f0c5ae2320.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907948-d18325d3-5a95-4525-b4c2-68479360b0ed.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907951-30e8cd29-1066-4fe0-86b4-67bdc51e9d7f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907955-5d3c6ec9-fa30-4fe2-87c6-6b4099457ce4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219907959-0bf1b057-e671-47dc-a140-656ab9fd812d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219922694-b4a2b55c-ece5-41ac-8c17-b848adb78c11.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219922702-15f4dfa9-849c-473c-b57c-7f9ae8c7dc9d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219922718-3db4e04d-bc26-49d9-abf6-6538ac597d7f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219922726-ad0892cc-7807-44d6-9f50-489884f30354.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/102344939/219922732-89a6ed6c-f952-45b5-aaf7-0a464824d2e2.png">
 <meta property="article:published_time" content="2023-02-18T08:01:34.286Z">
-<meta property="article:modified_time" content="2023-02-18T08:44:55.820Z">
+<meta property="article:modified_time" content="2023-02-19T04:45:28.208Z">
 <meta property="article:author" content="浊心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://turheart.github.io/assets/image-20210725144240631.png">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/102344939/219907758-a80169fa-cd4f-4bbf-9f79-1d7b0fdd5bec.png">
 
 <link rel="canonical" href="https://turheart.github.io/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/">
 
@@ -265,10 +265,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-18 16:01:34 / 修改时间：16:44:55" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:34+08:00">2023-02-18</time>
+              <time title="创建时间：2023-02-18 16:01:34" itemprop="dateCreated datePublished" datetime="2023-02-18T16:01:34+08:00">2023-02-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-19 12:45:28" itemprop="dateModified" datetime="2023-02-19T12:45:28+08:00">2023-02-19</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -297,16 +303,12 @@
       
         <h1 id="分布式缓存-redis"><a href="#分布式缓存-redis" class="headerlink" title="分布式缓存(redis)"></a>分布式缓存(redis)</h1><p>– 基于Redis集群解决单机Redis存在的问题</p>
 <p>单机的Redis存在四大问题：</p>
-<p><img src="/assets/image-20210725144240631.png" alt="image-20210725144240631"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907758-a80169fa-cd4f-4bbf-9f79-1d7b0fdd5bec.png" alt="image"></p>
 <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Redis持久化"><a href="#1-Redis持久化" class="headerlink" title="1.Redis持久化"></a>1.Redis持久化</h1><p>Redis有两种持久化方案：</p>
 <ul>
 <li>RDB持久化</li>
 <li>AOF持久化</li>
 </ul>
-<span id="more"></span>
-
-
-
 <h2 id="1-1-RDB持久化"><a href="#1-1-RDB持久化" class="headerlink" title="1.1.RDB持久化"></a>1.1.RDB持久化</h2><p>RDB全称Redis Database Backup file（Redis数据备份文件），也被叫做Redis数据快照。简单来说就是把内存中的所有数据都记录到磁盘中。当Redis</p>
 <p>实例故障重启后，从磁盘读取快照文件，恢复数据。快照文件称为RDB文件，默认是保存在当前运行目录。</p>
 <h3 id="1-1-1-执行时机"><a href="#1-1-1-执行时机" class="headerlink" title="1.1.1.执行时机"></a>1.1.1.执行时机</h3><p>RDB持久化在四种情况下会执行：</p>
@@ -318,11 +320,11 @@
 </ul>
 <p><strong>1）save命令</strong></p>
 <p>执行下面的命令，可以立即执行一次RDB：</p>
-<p><img src="/assets/image-20210725144536958.png" alt="image-20210725144536958"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907761-c21517b0-ffe4-42be-b581-885023b055dc.png" alt="image"></p>
 <p>save命令会导致主进程执行RDB，这个过程中其它所有命令都会被阻塞。只有在数据迁移时可能用到。</p>
 <p><strong>2）bgsave命令</strong></p>
 <p>下面的命令可以异步执行RDB：</p>
-<p><img src="/assets/image-20210725144725943.png" alt="image-20210725144725943"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907765-71f8e9cb-226e-4e25-a49b-d94008d0f7c7.png" alt="image"></p>
 <p>这个命令执行后会开启独立进程完成RDB，主进程可以持续处理用户请求，不受影响。</p>
 <p><strong>3）停机时</strong></p>
 <p>Redis停机时会执行一次save命令，实现RDB持久化。</p>
@@ -343,7 +345,7 @@
 <li>当主进程执行读操作时，访问共享内存；</li>
 <li>当主进程执行写操作时，则会拷贝一份数据，执行写操作。</li>
 </ul>
-<p><img src="/assets/image-20210725151319695.png" alt="image-20210725151319695"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907772-68d7af2c-18cf-4556-ab13-2f43a882ea44.png" alt="image"></p>
 <h3 id="1-1-3-小结"><a href="#1-1-3-小结" class="headerlink" title="1.1.3.小结"></a>1.1.3.小结</h3><p>RDB方式bgsave的基本流程？</p>
 <ul>
 <li>fork主进程得到一个子进程，共享内存空间</li>
@@ -361,10 +363,7 @@
 <li>fork子进程、压缩、写出RDB文件都比较耗时</li>
 </ul>
 <h2 id="1-2-AOF持久化"><a href="#1-2-AOF持久化" class="headerlink" title="1.2 AOF持久化"></a>1.2 AOF持久化</h2><h3 id="1-2-1-AOF原理"><a href="#1-2-1-AOF原理" class="headerlink" title="1.2.1.AOF原理"></a>1.2.1.AOF原理</h3><p>AOF全称为Append Only File（追加文件）。Redis处理的每一个写命令都会记录在AOF文件，可以看做是命令日志文件。</p>
-<img src="assets/image-20210725151543640.png" alt="image-20210725151543640" style="zoom: 50%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907777-5c257759-13b6-458f-85fe-5d23001c0b97.png" alt="image"> </p>
 <h3 id="1-2-2-AOF配置"><a href="#1-2-2-AOF配置" class="headerlink" title="1.2.2.AOF配置"></a>1.2.2.AOF配置</h3><p>AOF默认是关闭的，需要修改redis.conf配置文件来开启AOF：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 是否开启AOF功能，默认是no</span></span><br><span class="line"><span class="attr">appendonly</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># AOF文件的名称</span></span><br><span class="line"><span class="attr">appendfilename</span> <span class="string">&quot;appendonly.aof&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -376,9 +375,9 @@
 
 
 <p>三种策略对比：</p>
-<p><img src="/assets/image-20210725151654046.png" alt="image-20210725151654046"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907781-c732fed8-2903-4a09-83a5-0acc6f98f883.png" alt="image"></p>
 <h3 id="1-2-3-AOF文件重写"><a href="#1-2-3-AOF文件重写" class="headerlink" title="1.2.3.AOF文件重写"></a>1.2.3.AOF文件重写</h3><p>因为是记录命令，AOF文件会比RDB文件大的多。而且AOF会记录对同一个key的多次写操作，但只有最后一次写操作才有意义。通过执行<strong>bgrewriteaof</strong>命令，可以让AOF文件执行重写功能，用最少的命令达到相同效果。</p>
-<p><img src="/assets/image-20210725151729118.png" alt="image-20210725151729118"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907787-5b861422-ce3f-4d86-b5e3-ee7a41e8a93b.png" alt="image"></p>
 <p>如图，AOF原本有三个命令，但是<code>set num 123 和 set num 666</code>都是对num的操作，第二次会覆盖第一次的值，因此第一个命令记录下来没有意义。</p>
 <p>所以重写命令后，AOF文件内容就是：<code>mset name jack num 666</code></p>
 <p>Redis也会在触发阈值时自动去重写AOF文件。阈值也可以在redis.conf中配置：</p>
@@ -387,18 +386,13 @@
 
 
 <h2 id="1-3-RDB与AOF对比"><a href="#1-3-RDB与AOF对比" class="headerlink" title="1.3 RDB与AOF对比"></a>1.3 RDB与AOF对比</h2><p>RDB和AOF各有自己的优缺点，如果对数据安全性要求较高，在实际开发中往往会<strong>结合</strong>两者来使用。</p>
-<p><img src="/assets/image-20210725151940515.png" alt="image-20210725151940515"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907790-60e65888-1aba-4932-b44a-5eb7ea4f0eba.png" alt="image"></p>
 <h1 id="2-Redis主从"><a href="#2-Redis主从" class="headerlink" title="2.Redis主从"></a>2.Redis主从</h1><h2 id="2-1-搭建主从架构"><a href="#2-1-搭建主从架构" class="headerlink" title="2.1.搭建主从架构"></a>2.1.搭建主从架构</h2><p>单节点Redis的并发能力是有上限的，要进一步提高Redis的并发能力，就需要搭建主从集群，实现读写分离。</p>
-<p><img src="/assets/image-20210725152037611.png" alt="image-20210725152037611"> </p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907795-7ec01be6-8cef-490f-bd9a-211019ecf55b.png" alt="image"> </p>
 <p>具体搭建流程参考课前资料《Redis集群.md》：</p>
-<img src="assets/image-20210725152052501.png" alt="image-20210725152052501" style="zoom:25%;" />  
-
-
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907802-2c9576c9-c621-41fa-aa6f-78dd631ad243.png" alt="image">  </p>
 <h2 id="2-2-主从数据同步原理"><a href="#2-2-主从数据同步原理" class="headerlink" title="2.2.主从数据同步原理"></a>2.2.主从数据同步原理</h2><h3 id="2-2-1-全量同步"><a href="#2-2-1-全量同步" class="headerlink" title="2.2.1.全量同步"></a>2.2.1.全量同步</h3><p>主从第一次建立连接时，会执行<strong>全量同步</strong>，将master节点的所有数据都拷贝给slave节点，流程：</p>
-<p><img src="/assets/image-20210725152222497.png" alt="image-20210725152222497"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907806-a388be81-d9e7-4272-843d-0f88e667958f.png" alt="image"></p>
 <p>这里有一个问题，master如何得知salve是第一次来连接呢？？</p>
 <p>有几个概念，可以作为判断依据：</p>
 <ul>
@@ -414,7 +408,7 @@
 <p>master会将自己的replid和offset都发送给这个slave，slave保存这些信息。以后slave的replid就与master一致了。</p>
 <p>因此，<strong>master判断一个节点是否是第一次同步的依据，就是看replid是否一致</strong>。</p>
 <p>如图：</p>
-<p><img src="/assets/image-20210725152700914.png" alt="image-20210725152700914"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907809-f023b897-99a4-4ec3-92ff-5570e0ee17cb.png" alt="image"></p>
 <p>完整流程描述：</p>
 <ul>
 <li>slave节点请求增量同步</li>
@@ -427,34 +421,25 @@
 <h3 id="2-2-2-增量同步"><a href="#2-2-2-增量同步" class="headerlink" title="2.2.2 增量同步"></a>2.2.2 增量同步</h3><p>全量同步需要先做RDB，然后将RDB文件通过网络传输个slave，成本太高了。因此除了第一次做全量同步，其它大多数时候slave与master都是做<strong>增量</strong></p>
 <p><strong>同步</strong>。</p>
 <p>什么是增量同步？就是只更新slave与master存在差异的部分数据。如图：</p>
-<p><img src="/assets/image-20210725153201086.png" alt="image-20210725153201086"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907814-7c5a0f03-4dbd-4530-8ef3-85f494644d44.png" alt="image"></p>
 <p>那么master怎么知道slave与自己的数据差异在哪里呢?</p>
 <h3 id="2-2-3-repl-backlog原理"><a href="#2-2-3-repl-backlog原理" class="headerlink" title="2.2.3.repl_backlog原理"></a>2.2.3.repl_backlog原理</h3><p>master怎么知道slave与自己的数据差异在哪里呢?</p>
 <p>这就要说到全量同步时的repl_baklog文件了。</p>
 <p>这个文件是一个固定大小的数组，只不过数组是环形，也就是说<strong>角标到达数组末尾后，会再次从0开始读写</strong>，这样数组头部的数据就会被覆盖。</p>
 <p>repl_baklog中会记录Redis处理过的命令日志及offset，包括master当前的offset，和slave已经拷贝到的offset：</p>
-<img src="assets/image-20210725153359022.png" alt="image-20210725153359022" style="zoom:25%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907818-1d863ae4-e685-4d5b-9367-690cc8996fc9.png" alt="image"> </p>
 <p>slave与master的offset之间的差异，就是salve需要增量拷贝的数据了。</p>
 <p>随着不断有数据写入，master的offset逐渐变大，slave也不断的拷贝，追赶master的offset：</p>
-<img src="assets/image-20210725153524190.png" alt="image-20210725153524190" style="zoom:25%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907823-ac706085-ad12-485f-bce6-2ba3ea92f47b.png" alt="image"> </p>
 <p>直到数组被填满：</p>
-<img src="assets/image-20210725153715910.png" alt="image-20210725153715910" style="zoom:25%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907828-f518c5d8-6686-481e-9592-d05dadef4deb.png" alt="image"> </p>
 <p>此时，如果有新的数据写入，就会覆盖数组中的旧数据。不过，旧的数据只要是绿色的，说明是已经被同步到slave的数据，即便被覆盖了也没什么影响。因为未同步的仅仅是红色部分。</p>
 <p>但是，如果slave出现网络阻塞，导致master的offset远远超过了slave的offset： </p>
-<img src="assets/image-20210725153937031.png" alt="image-20210725153937031" style="zoom:25%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907831-9fd6c9b6-ecd8-4850-8f86-1a1082d908b5.png" alt="image"> </p>
 <p>如果master继续写入新数据，其offset就会覆盖旧的数据，直到将slave现在的offset也覆盖：</p>
-<img src="assets/image-20210725154155984.png" alt="image-20210725154155984" style="zoom:25%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907834-f74a2ff0-1ff3-4e3d-ab00-5df8123e41ca.png" alt="image"> </p>
 <p>棕色框中的红色部分，就是尚未同步，但是却已经被覆盖的数据。此时如果slave恢复，需要同步，却发现自己的offset都没有了，无法完成增量同步了。只能做全量同步。</p>
-<p><img src="/assets/image-20210725154216392.png" alt="image-20210725154216392"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907838-c7b6a1a3-cf2d-46fe-8c07-f2ec4bb3c118.png" alt="image"></p>
 <h2 id="2-3-主从同步优化"><a href="#2-3-主从同步优化" class="headerlink" title="2.3.主从同步优化"></a>2.3.主从同步优化</h2><p>主从同步可以保证主从数据的一致性，非常重要。</p>
 <p>可以从以下几个方面来优化Redis主从就集群：</p>
 <ul>
@@ -464,7 +449,7 @@
 <li>限制一个master上的slave节点数量，如果实在是太多slave，则可以采用主-从-从链式结构，减少master压力</li>
 </ul>
 <p>主从从架构图：</p>
-<p><img src="/assets/image-20210725154405899.png" alt="image-20210725154405899"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907841-eb2b3744-7508-421d-b3ef-171b01ce72ba.png" alt="image"></p>
 <h2 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4.小结"></a>2.4.小结</h2><p>简述全量同步和增量同步区别？</p>
 <ul>
 <li>全量同步：master将完整内存数据生成RDB，发送RDB到slave。后续命令则记录在repl_baklog，逐个发送给slave。</li>
@@ -481,8 +466,7 @@
 </ul>
 <h1 id="3-Redis哨兵"><a href="#3-Redis哨兵" class="headerlink" title="3.Redis哨兵"></a>3.Redis哨兵</h1><p>Redis提供了哨兵（Sentinel）机制来实现主从集群的自动故障恢复。</p>
 <h2 id="3-1-哨兵原理"><a href="#3-1-哨兵原理" class="headerlink" title="3.1.哨兵原理"></a>3.1.哨兵原理</h2><h3 id="3-1-1-集群结构和作用"><a href="#3-1-1-集群结构和作用" class="headerlink" title="3.1.1.集群结构和作用"></a>3.1.1.集群结构和作用</h3><p>哨兵的结构如图：</p>
-<img src="assets/image-20210725154528072.png" alt="image-20210725154528072" style="zoom: 50%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907844-a8512543-5134-4f76-8a7e-3977bec720cc.png" alt="image"> </p>
 <p>哨兵的作用如下：</p>
 <ul>
 <li><strong>监控</strong>：Sentinel 会不断检查您的master和slave是否按预期工作</li>
@@ -492,10 +476,7 @@
 <h3 id="3-1-2-集群监控原理"><a href="#3-1-2-集群监控原理" class="headerlink" title="3.1.2.集群监控原理"></a>3.1.2.集群监控原理</h3><p>Sentinel基于心跳机制监测服务状态，每隔1秒向集群的每个实例发送ping命令：</p>
 <p>•主观下线：如果某sentinel节点发现某实例未在规定时间响应，则认为该实例<strong>主观下线</strong>。</p>
 <p>•客观下线：若超过指定数量（quorum）的sentinel都认为该实例主观下线，则该实例<strong>客观下线</strong>。quorum值最好超过Sentinel实例数量的一半。</p>
-<img src="assets/image-20210725154632354.png" alt="image-20210725154632354" style="zoom:50%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907848-12b646ee-f7f8-4449-b6bc-c71bfd121f22.png" alt="image"> </p>
 <h3 id="3-1-3-集群故障恢复原理"><a href="#3-1-3-集群故障恢复原理" class="headerlink" title="3.1.3.集群故障恢复原理"></a>3.1.3.集群故障恢复原理</h3><p>一旦发现master故障，sentinel需要在salve中选择一个作为新的master，选择依据是这样的：</p>
 <ul>
 <li>首先会判断slave节点与master节点断开时间长短，如果超过指定值（down-after-milliseconds * 10）则会排除该slave节点</li>
@@ -510,8 +491,7 @@
 <li>sentinel给所有其它slave发送slaveof 192.168.150.101 7002 命令，让这些slave成为新master的从节点，开始从新的master上同步数据。</li>
 <li>最后，sentinel将故障节点标记为slave，当故障节点恢复后会自动成为新的master的slave节点</li>
 </ul>
-<img src="assets/image-20210725154816841.png" alt="image-20210725154816841" style="zoom: 50%;" /> 
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907850-095930ff-fb47-4a70-896f-fcf6706bb98b.png" alt="image"> </p>
 <h3 id="3-1-4-小结"><a href="#3-1-4-小结" class="headerlink" title="3.1.4.小结"></a>3.1.4.小结</h3><p>Sentinel的三个作用是什么？</p>
 <ul>
 <li>监控</li>
@@ -537,10 +517,7 @@
 <h2 id="3-3-RedisTemplate"><a href="#3-3-RedisTemplate" class="headerlink" title="3.3 RedisTemplate"></a>3.3 RedisTemplate</h2><p>在Sentinel集群监管下的Redis主从集群，其节点会因为自动故障转移而发生变化，Redis的客户端必须感知这种变化，及时更新连接信息。Spring的RedisTemplate底层利用lettuce实现了节点的感知和自动切换。</p>
 <p>下面，我们通过一个测试来实现RedisTemplate集成哨兵机制。</p>
 <h3 id="3-3-1-导入Demo工程"><a href="#3-3-1-导入Demo工程" class="headerlink" title="3.3.1.导入Demo工程"></a>3.3.1.导入Demo工程</h3><p>首先，我们引入课前资料提供的Demo工程：</p>
-<img src="assets/image-20210725155124958.png" alt="image-20210725155124958" style="zoom: 25%;" />  
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907857-2309d761-eaa2-4283-97e1-b220e0b1a787.png" alt="image">  </p>
 <h3 id="3-3-2-引入依赖"><a href="#3-3-2-引入依赖" class="headerlink" title="3.3.2.引入依赖"></a>3.3.2.引入依赖</h3><p>在项目的pom文件中引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -567,10 +544,7 @@
 </li>
 </ul>
 <p>使用分片集群可以解决上述问题，如图:</p>
-<img src="assets/image-20210725155747294.png" alt="image-20210725155747294" style="zoom: 50%;" /> 
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907861-9c7d4909-8f04-44fa-80ce-539e7c6de518.png" alt="image"> </p>
 <p>分片集群特征：</p>
 <ul>
 <li><p>集群中有多个master，每个master保存不同数据</p>
@@ -583,19 +557,16 @@
 </li>
 </ul>
 <p>具体搭建流程参考课前资料《Redis集群.md》：</p>
-<img src="assets/image-20210725155806288.png" alt="image-20210725155806288" style="zoom: 25%;" />  
-
-
-
+<p><img src="https://user-images.githubusercontent.com/102344939/219907865-3accb8f6-9e61-46db-a625-94e1db1e158c.png" alt="image">  </p>
 <h2 id="4-2-散列插槽"><a href="#4-2-散列插槽" class="headerlink" title="4.2.散列插槽"></a>4.2.散列插槽</h2><h3 id="4-2-1-插槽原理"><a href="#4-2-1-插槽原理" class="headerlink" title="4.2.1.插槽原理"></a>4.2.1.插槽原理</h3><p>Redis会把每一个master节点映射到0~16383共16384个插槽（hash slot）上，查看集群信息时就能看到：</p>
-<p><img src="/assets/image-20210725155820320.png" alt="image-20210725155820320"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907872-221dd7e8-d854-4c12-a3e9-1400165b6761.png" alt="image"></p>
 <p>数据key不是与节点绑定，而是与插槽绑定。redis会根据key的有效部分计算插槽值，分两种情况：</p>
 <ul>
 <li>key中包含”{}”，且“{}”中至少包含1个字符，“{}”中的部分是有效部分</li>
 <li>key中不包含“{}”，整个key都是有效部分</li>
 </ul>
 <p>例如：key是num，那么就根据num计算，如果是{itcast}num，则根据itcast计算。计算方式是利用CRC16算法得到一个hash值，然后对16384取余，得到的结果就是slot值。</p>
-<p><img src="/assets/image-20210725155850200.png" alt="image-20210725155850200"> </p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907877-116fde3f-186e-49d1-83e3-1738d89db869.png" alt="image"> </p>
 <p>如图，在7001这个节点执行set a 1时，对a做hash运算，对16384取余，得到的结果是15495，因此要存储到103节点。</p>
 <p>到了7003后，执行<code>get num</code>时，对num做hash运算，对16384取余，得到的结果是2765，因此需要切换到7001节点</p>
 <h3 id="4-2-1-小结"><a href="#4-2-1-小结" class="headerlink" title="4.2.1.小结"></a>4.2.1.小结</h3><p>Redis如何判断某个key应该在哪个实例？</p>
@@ -609,9 +580,9 @@
 <li>这一类数据使用相同的有效部分，例如key都以{typeId}为前缀</li>
 </ul>
 <h2 id="4-3-集群伸缩"><a href="#4-3-集群伸缩" class="headerlink" title="4.3.集群伸缩"></a>4.3.集群伸缩</h2><p>redis-cli –cluster提供了很多操作集群的命令，可以通过下面方式查看：</p>
-<p><img src="/assets/image-20210725160138290.png" alt="image-20210725160138290"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907882-cfc43bcf-b8ef-4af7-a39e-713e5be1bd5a.png" alt="image"></p>
 <p>比如，添加节点的命令：</p>
-<p><img src="/assets/image-20210725160448139.png" alt="image-20210725160448139"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907885-85080499-bbcf-42e0-a842-ccfc4e193812.png" alt="image"></p>
 <h3 id="4-3-1-需求分析"><a href="#4-3-1-需求分析" class="headerlink" title="4.3.1.需求分析"></a>4.3.1.需求分析</h3><p>需求：向集群中添加一个新的master节点，并向其中存储 num &#x3D; 10</p>
 <ul>
 <li>启动一个新的redis实例，端口为7004</li>
@@ -638,7 +609,7 @@
 
 
 <h3 id="4-3-3-添加新节点到redis"><a href="#4-3-3-添加新节点到redis" class="headerlink" title="4.3.3.添加新节点到redis"></a>4.3.3.添加新节点到redis</h3><p>添加节点的语法如下：</p>
-<p><img src="/assets/image-20210725160448139.png" alt="image-20210725160448139"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907892-e801ac94-4235-484a-8f46-6fad585edcc3.png" alt="image"></p>
 <p>执行命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster add-node  192.168.150.101:7004 192.168.150.101:7001</span><br></pre></td></tr></table></figure>
 
@@ -650,26 +621,26 @@
 
 
 <p>如图，7004加入了集群，并且默认是一个master节点：</p>
-<p><img src="/assets/image-20210725161007099.png" alt="image-20210725161007099"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907899-17c7ce45-551f-4f95-8106-17562432ded0.png" alt="image"></p>
 <p>但是，可以看到7004节点的插槽数量为0，因此没有任何数据可以存储到7004上</p>
 <h3 id="4-3-4-转移插槽"><a href="#4-3-4-转移插槽" class="headerlink" title="4.3.4.转移插槽"></a>4.3.4.转移插槽</h3><p>我们要将num存储到7004节点，因此需要先看看num的插槽是多少：</p>
-<p><img src="/assets/image-20210725161241793.png" alt="image-20210725161241793"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907907-f89ae593-83af-439f-b77d-2d3d37e94381.png" alt="image"></p>
 <p>如上图所示，num的插槽为2765.</p>
 <p>我们可以将0~3000的插槽从7001转移到7004，命令格式如下：</p>
-<p><img src="/assets/image-20210725161401925.png" alt="image-20210725161401925"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907914-eff1b777-01ec-47b2-ab0c-b6ad29e70b37.png" alt="image"></p>
 <p>具体命令如下：</p>
 <p>建立连接：</p>
-<p><img src="/assets/image-20210725161506241.png" alt="image-20210725161506241"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907919-f9dace02-63e3-496d-8244-6be9b9d38a1b.png" alt="image"></p>
 <p>得到下面的反馈：</p>
-<p><img src="/assets/image-20210725161540841.png" alt="image-20210725161540841"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907926-33241585-64f9-4b4f-a563-51727d75d1cd.png" alt="image"></p>
 <p>询问要移动多少个插槽，我们计划是3000个：</p>
 <p>新的问题来了：</p>
-<p><img src="/assets/image-20210725161637152.png" alt="image-20210725161637152"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907929-29ddbfbb-1465-4052-9263-d4e93c47ef77.png" alt="image"></p>
 <p>那个node来接收这些插槽？？</p>
 <p>显然是7004，那么7004节点的id是多少呢？</p>
-<p><img src="/assets/image-20210725161731738.png" alt="image-20210725161731738"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907930-860b3c1a-4960-409b-84c4-ef75aa06f047.png" alt="image"></p>
 <p>复制这个id，然后拷贝到刚才的控制台后：</p>
-<p><img src="/assets/image-20210725161817642.png" alt="image-20210725161817642"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907937-e75fcf2b-d3a2-420a-aad2-81609a9b3a44.png" alt="image"></p>
 <p>这里询问，你的插槽是从哪里移动过来的？</p>
 <ul>
 <li>all：代表全部，也就是三个节点各转移一部分</li>
@@ -677,17 +648,17 @@
 <li>done：没有了</li>
 </ul>
 <p>这里我们要从7001获取，因此填写7001的id：</p>
-<p><img src="/assets/image-20210725162030478.png" alt="image-20210725162030478"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907939-87eec492-a384-4104-ae13-a65ef951aef5.png" alt="image"></p>
 <p>填完后，点击done，这样插槽转移就准备好了：</p>
-<p><img src="/assets/image-20210725162101228.png" alt="image-20210725162101228"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907947-2a9608bd-b363-46da-b75c-a9f0c5ae2320.png" alt="image"></p>
 <p>确认要转移吗？输入yes：</p>
 <p>然后，通过命令查看结果：</p>
-<p><img src="/assets/image-20210725162145497.png" alt="image-20210725162145497"> </p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907948-d18325d3-5a95-4525-b4c2-68479360b0ed.png" alt="image"> </p>
 <p>可以看到： </p>
-<p><img src="/assets/image-20210725162224058.png" alt="image-20210725162224058"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907951-30e8cd29-1066-4fe0-86b4-67bdc51e9d7f.png" alt="image"></p>
 <p>目的达成。</p>
 <h2 id="4-4-故障转移"><a href="#4-4-故障转移" class="headerlink" title="4.4.故障转移"></a>4.4.故障转移</h2><p>集群初识状态是这样的：</p>
-<p><img src="/assets/image-20210727161152065.png" alt="image-20210727161152065"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907955-5d3c6ec9-fa30-4fe2-87c6-6b4099457ce4.png" alt="image"></p>
 <p>其中7001、7002、7003都是master，我们计划让7002宕机。</p>
 <h3 id="4-4-1-自动故障转移"><a href="#4-4-1-自动故障转移" class="headerlink" title="4.4.1.自动故障转移"></a>4.4.1.自动故障转移</h3><p>当集群中有一个master宕机会发生什么呢？</p>
 <p>直接停止一个redis实例，例如7002：</p>
@@ -697,13 +668,13 @@
 
 <p>1）首先是该实例与其它实例失去连接</p>
 <p>2）然后是疑似宕机：</p>
-<p><img src="/assets/image-20210725162319490.png" alt="image-20210725162319490"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907959-0bf1b057-e671-47dc-a140-656ab9fd812d.png" alt="image"></p>
 <p>3）最后是确定下线，自动提升一个slave为新的master：</p>
-<p><img src="/assets/image-20210725162408979.png" alt="image-20210725162408979"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922694-b4a2b55c-ece5-41ac-8c17-b848adb78c11.png" alt="image"></p>
 <p>4）当7002再次启动，就会变为一个slave节点了：</p>
-<p><img src="/assets/image-20210727160803386.png" alt="image-20210727160803386"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922702-15f4dfa9-849c-473c-b57c-7f9ae8c7dc9d.png" alt="image"></p>
 <h3 id="4-4-2-手动故障转移"><a href="#4-4-2-手动故障转移" class="headerlink" title="4.4.2.手动故障转移"></a>4.4.2.手动故障转移</h3><p>利用cluster failover命令可以手动让集群中的某个master宕机，切换到执行cluster failover命令的这个slave节点，实现无感知的数据迁移。其流程如下：</p>
-<p><img src="/assets/image-20210725162441407.png" alt="image-20210725162441407"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922718-3db4e04d-bc26-49d9-abf6-6538ac597d7f.png" alt="image"></p>
 <p>这种failover命令可以指定三种模式：</p>
 <ul>
 <li>缺省：默认的流程，如图1~6歩</li>
@@ -715,9 +686,9 @@
 <p>1）利用redis-cli连接7002这个节点</p>
 <p>2）执行cluster failover命令</p>
 <p>如图：</p>
-<p><img src="/assets/image-20210727160037766.png" alt="image-20210727160037766"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922726-ad0892cc-7807-44d6-9f50-489884f30354.png" alt="image"></p>
 <p>效果：</p>
-<p><img src="/assets/image-20210727161152065.png" alt="image-20210727161152065"></p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922732-89a6ed6c-f952-45b5-aaf7-0a464824d2e2.png" alt="image"></p>
 <h2 id="4-5-RedisTemplate访问分片集群"><a href="#4-5-RedisTemplate访问分片集群" class="headerlink" title="4.5.RedisTemplate访问分片集群"></a>4.5.RedisTemplate访问分片集群</h2><p>RedisTemplate底层同样基于lettuce实现了分片集群的支持，而使用的步骤与哨兵模式基本一致：</p>
 <p>1）引入redis的starter依赖</p>
 <p>2）配置分片集群地址</p>
