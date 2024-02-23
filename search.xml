@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2022/06/01/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/</url>
+    <title>Docker实用篇</title>
+    <url>/2022/08/03/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/</url>
     <content><![CDATA[<h1 id="Docker实用篇"><a href="#Docker实用篇" class="headerlink" title="Docker实用篇"></a>Docker实用篇</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-初识Docker"><a href="#1-初识Docker" class="headerlink" title="1.初识Docker"></a>1.初识Docker</h1><h2 id="1-1-什么是Docker"><a href="#1-1-什么是Docker" class="headerlink" title="1.1.什么是Docker"></a>1.1.什么是Docker</h2><p>微服务虽然具备各种各样的优势，但服务的拆分通用给部署带来了很大的麻烦。</p>
 <ul>
 <li>分布式系统中，依赖的组件非常多，不同组件之间部署时往往会产生一些冲突。</li>
 <li>在数百上千台服务中重复部署，环境不一定一致，会遇到各种问题</li>
 </ul>
+<span id="more"></span>
+
+
+
+
+
 <h3 id="1-1-1-应用部署的环境问题"><a href="#1-1-1-应用部署的环境问题" class="headerlink" title="1.1.1.应用部署的环境问题"></a>1.1.1.应用部署的环境问题</h3><p>大型项目组件较多，运行环境也较为复杂，部署时会碰到一些问题：</p>
 <ul>
 <li><p>依赖关系复杂，容易出现兼容性问题</p>
@@ -555,12 +561,22 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull 192.168.150.101:8080/nginx:1.0 </span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/02/18/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/</url>
+    <title>RabbitMQ-高级篇</title>
+    <url>/2022/08/03/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/</url>
     <content><![CDATA[<h1 id="服务异步通信-高级篇"><a href="#服务异步通信-高级篇" class="headerlink" title="服务异步通信-高级篇"></a>服务异步通信-高级篇</h1><p>消息队列在使用过程中，面临着很多实际问题需要思考：</p>
 <p><img src="https://user-images.githubusercontent.com/102344939/219907551-bc14b362-69b8-48db-8a4e-c0290222f2c3.png" alt="image"></p>
+<span id="more"></span>
+
+
+
 <h1 id="1-消息可靠性"><a href="#1-消息可靠性" class="headerlink" title="1.消息可靠性"></a>1.消息可靠性</h1><p>消息从发送，到消费者接收，会经理多个过程：</p>
 <p><img src="https://user-images.githubusercontent.com/102344939/219907555-e858ddfd-9036-49d3-b5be-feca58654d79.png" alt="image"></p>
 <p>其中的每一步都可能导致消息丢失，常见的丢失原因包括：</p>
@@ -965,15 +981,25 @@
 
 
 ]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/06/01/RabbitMQ/</url>
+    <title>RabbitMQ</title>
+    <url>/2022/08/03/RabbitMQ/</url>
     <content><![CDATA[<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h1 id="1-初识MQ"><a href="#1-初识MQ" class="headerlink" title="1.初识MQ"></a>1.初识MQ</h1><h2 id="1-1-同步和异步通讯"><a href="#1-1-同步和异步通讯" class="headerlink" title="1.1.同步和异步通讯"></a>1.1.同步和异步通讯</h2><p>微服务间通讯有同步和异步两种方式：</p>
 <p>同步通讯：就像打电话，需要实时响应。</p>
 <p>异步通讯：就像发邮件，不需要马上回复。</p>
 <p><img src="/assets/image-20210717161939695.png" alt="image-20210717161939695"></p>
 <p>两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发送邮件可以同时与多个人收发邮件，但是往往响应会有延迟。</p>
+<span id="more"></span>
+
+
+
 <h3 id="1-1-1-同步通讯"><a href="#1-1-1-同步通讯" class="headerlink" title="1.1.1.同步通讯"></a>1.1.1.同步通讯</h3><p>我们之前学习的Feign调用就属于同步方式，虽然调用可以实时得到结果，但存在下面的问题：</p>
 <p><img src="/assets/image-20210717162004285.png" alt="image-20210717162004285"></p>
 <p>总结：</p>
@@ -1430,12 +1456,22 @@
 
 
 ]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/06/08/SpringCloud01/</url>
+    <title>SpringCloud</title>
+    <url>/2022/08/03/SpringCloud01/</url>
     <content><![CDATA[<h1 id="SpringCloud01"><a href="#SpringCloud01" class="headerlink" title="SpringCloud01"></a>SpringCloud01</h1><h1 id="1-认识微服务"><a href="#1-认识微服务" class="headerlink" title="1.认识微服务"></a>1.认识微服务</h1><p>随着互联网行业的发展，对服务的要求也越来越高，服务架构也从单体架构逐渐演变为现在流行的微服务架构。这些架构之间有怎样的差别呢？</p>
 <h2 id="1-0-学习目标"><a href="#1-0-学习目标" class="headerlink" title="1.0.学习目标"></a>1.0.学习目标</h2><p>了解微服务架构的优缺点</p>
+<span id="more"></span>
+
+
+
 <h2 id="1-1-单体架构"><a href="#1-1-单体架构" class="headerlink" title="1.1.单体架构"></a>1.1.单体架构</h2><p><strong>单体架构</strong>：将业务的所有功能集中在一个项目中开发，打成一个包部署。</p>
 <p><a href="https://user-images.githubusercontent.com/102344939/219849554-58da9e31-a33b-420e-8b4c-eb4f71bf94cb.png">https://user-images.githubusercontent.com/102344939/219849554-58da9e31-a33b-420e-8b4c-eb4f71bf94cb.png</a></p>
 <p>单体架构的优缺点如下：</p>
@@ -1901,6 +1937,12 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>SpringCloud</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
     <title>SpringCloud实用篇02</title>
@@ -2460,10 +2502,10 @@
 
 ]]></content>
       <categories>
-        <category>hexo博客</category>
+        <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>hexo博客</tag>
+        <tag>实用篇</tag>
       </tags>
   </entry>
   <entry>
@@ -2639,10 +2681,10 @@
 <p><a href="https://www.fangdongdemao.com/">https://www.fangdongdemao.com/</a></p>
 ]]></content>
       <categories>
-        <category>hexo博客</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>主题美化</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2712,17 +2754,19 @@
 </ul>
 ]]></content>
       <categories>
-        <category>hexo博客</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo博客</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
     <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</url>
+    <url>/2022/08/03/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</url>
     <content><![CDATA[<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-分布式事务问题"><a href="#1-分布式事务问题" class="headerlink" title="1.分布式事务问题"></a>1.分布式事务问题</h1><h2 id="1-1-本地事务"><a href="#1-1-本地事务" class="headerlink" title="1.1.本地事务"></a>1.1.本地事务</h2><p>本地事务，也就是传统的<strong>单机事务</strong>。在传统数据库事务中，必须要满足四个原则：</p>
 <p><img src="https://user-images.githubusercontent.com/102344939/219922753-424e9016-f7b7-49a7-805b-97e7259fdd4c.png" alt="image"></p>
+<span id="more"></span>
+
 <h2 id="1-2-分布式事务"><a href="#1-2-分布式事务" class="headerlink" title="1.2.分布式事务"></a>1.2.分布式事务</h2><p><strong>分布式事务</strong>，就是指不是在单个服务或单个数据库架构下，产生的事务，例如：</p>
 <ul>
 <li>跨数据源的分布式事务</li>
@@ -3152,11 +3196,16 @@
 <p>第三章节：</p>
 <p><img src="https://user-images.githubusercontent.com/102344939/219922988-05138e2b-b08e-43de-a884-aed647d9f54c.png" alt="image"></p>
 ]]></content>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/</url>
+    <title>分布式搜索引擎01</title>
+    <url>/2022/08/03/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/</url>
     <content><![CDATA[<h1 id="分布式搜索引擎01"><a href="#分布式搜索引擎01" class="headerlink" title="分布式搜索引擎01"></a>分布式搜索引擎01</h1><p>– elasticsearch基础</p>
+<span id="more"></span>
+
 <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-初识elasticsearch"><a href="#1-初识elasticsearch" class="headerlink" title="1.初识elasticsearch"></a>1.初识elasticsearch</h1><h2 id="1-1-了解ES"><a href="#1-1-了解ES" class="headerlink" title="1.1.了解ES"></a>1.1.了解ES</h2><h3 id="1-1-1-elasticsearch的作用"><a href="#1-1-1-elasticsearch的作用" class="headerlink" title="1.1.1.elasticsearch的作用"></a>1.1.1.elasticsearch的作用</h3><p>elasticsearch是一款非常强大的开源搜索引擎，具备非常多强大功能，可以帮助我们从海量数据中快速找到需要的内容</p>
 <p>例如：</p>
 <ul>
@@ -3816,12 +3865,20 @@
 <li>解析结果（Get时需要）</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>分布式搜索引擎</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/</url>
+    <title>分布式搜索引擎02</title>
+    <url>/2022/08/03/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/</url>
     <content><![CDATA[<h1 id="分布式搜索引擎02"><a href="#分布式搜索引擎02" class="headerlink" title="分布式搜索引擎02"></a>分布式搜索引擎02</h1><p>在昨天的学习中，我们已经导入了大量数据到elasticsearch中，实现了elasticsearch的数据存储功能。但elasticsearch最擅长的还是搜索和数据分析。</p>
 <p>所以今天，我们研究下elasticsearch的数据搜索功能。我们会分别使用<strong>DSL</strong>和<strong>RestClient</strong>实现搜索。</p>
+<span id="more"></span>
+
 <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-DSL查询文档"><a href="#1-DSL查询文档" class="headerlink" title="1.DSL查询文档"></a>1.DSL查询文档</h1><p>elasticsearch的查询依然是基于JSON风格的DSL来实现的。</p>
 <h2 id="1-1-DSL查询分类"><a href="#1-1-DSL查询分类" class="headerlink" title="1.1.DSL查询分类"></a>1.1.DSL查询分类</h2><p>Elasticsearch提供了基于JSON的DSL（<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Domain Specific Language</a>）来定义查询。常见的查询类型包括：</p>
 <ul>
@@ -4581,10 +4638,16 @@
 
 
 ]]></content>
+      <categories>
+        <category>分布式搜索引擎</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/</url>
+    <title>分布式搜索引擎03</title>
+    <url>/2022/08/03/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/</url>
     <content><![CDATA[<h1 id="分布式搜索引擎03"><a href="#分布式搜索引擎03" class="headerlink" title="分布式搜索引擎03"></a>分布式搜索引擎03</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-数据聚合"><a href="#1-数据聚合" class="headerlink" title="1.数据聚合"></a>1.数据聚合</h1><p>**<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">聚合（</a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">aggregations</a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">）</a>**可以让我们极其方便的实现对数据的统计、分析、运算。例如：</p>
 <ul>
 <li>什么品牌的手机最受欢迎？</li>
@@ -4592,6 +4655,8 @@
 <li>这些手机每月的销售情况如何？</li>
 </ul>
 <p>实现这些统计功能的比数据库的sql要方便的多，而且查询速度非常快，可以实现近实时搜索效果。</p>
+<span id="more"></span>
+
 <h2 id="1-1-聚合的种类"><a href="#1-1-聚合的种类" class="headerlink" title="1.1.聚合的种类"></a>1.1.聚合的种类</h2><p>聚合常见的有三类：</p>
 <ul>
 <li><p><strong>桶（Bucket）</strong>聚合：用来对文档做分组</p>
@@ -5082,412 +5147,16 @@
 <p>node2成为主节点后，会检测集群监控状态，发现：shard-1、shard-0没有副本节点。因此需要将node1上的数据迁移到node2、node3：</p>
 <p><img src="https://user-images.githubusercontent.com/102344939/219932259-8e937132-bfe8-48bb-bc12-dc367c21f981.png" alt="image"></p>
 ]]></content>
+      <categories>
+        <category>分布式搜索引擎</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</url>
-    <content><![CDATA[<h1 id="分布式缓存-redis"><a href="#分布式缓存-redis" class="headerlink" title="分布式缓存(redis)"></a>分布式缓存(redis)</h1><p>– 基于Redis集群解决单机Redis存在的问题</p>
-<p>单机的Redis存在四大问题：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907758-a80169fa-cd4f-4bbf-9f79-1d7b0fdd5bec.png" alt="image"></p>
-<h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Redis持久化"><a href="#1-Redis持久化" class="headerlink" title="1.Redis持久化"></a>1.Redis持久化</h1><p>Redis有两种持久化方案：</p>
-<ul>
-<li>RDB持久化</li>
-<li>AOF持久化</li>
-</ul>
-<h2 id="1-1-RDB持久化"><a href="#1-1-RDB持久化" class="headerlink" title="1.1.RDB持久化"></a>1.1.RDB持久化</h2><p>RDB全称Redis Database Backup file（Redis数据备份文件），也被叫做Redis数据快照。简单来说就是把内存中的所有数据都记录到磁盘中。当Redis</p>
-<p>实例故障重启后，从磁盘读取快照文件，恢复数据。快照文件称为RDB文件，默认是保存在当前运行目录。</p>
-<h3 id="1-1-1-执行时机"><a href="#1-1-1-执行时机" class="headerlink" title="1.1.1.执行时机"></a>1.1.1.执行时机</h3><p>RDB持久化在四种情况下会执行：</p>
-<ul>
-<li>执行save命令</li>
-<li>执行bgsave命令</li>
-<li>Redis停机时</li>
-<li>触发RDB条件时</li>
-</ul>
-<p><strong>1）save命令</strong></p>
-<p>执行下面的命令，可以立即执行一次RDB：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907761-c21517b0-ffe4-42be-b581-885023b055dc.png" alt="image"></p>
-<p>save命令会导致主进程执行RDB，这个过程中其它所有命令都会被阻塞。只有在数据迁移时可能用到。</p>
-<p><strong>2）bgsave命令</strong></p>
-<p>下面的命令可以异步执行RDB：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907765-71f8e9cb-226e-4e25-a49b-d94008d0f7c7.png" alt="image"></p>
-<p>这个命令执行后会开启独立进程完成RDB，主进程可以持续处理用户请求，不受影响。</p>
-<p><strong>3）停机时</strong></p>
-<p>Redis停机时会执行一次save命令，实现RDB持久化。</p>
-<p><strong>4）触发RDB条件</strong></p>
-<p>Redis内部有触发RDB的机制，可以在redis.conf文件中找到，格式如下：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 900秒内，如果至少有1个key被修改，则执行bgsave ， 如果是save &quot;&quot; 则表示禁用RDB</span></span><br><span class="line"><span class="attr">save</span> <span class="string">900 1  </span></span><br><span class="line"><span class="attr">save</span> <span class="string">300 10  </span></span><br><span class="line"><span class="attr">save</span> <span class="string">60 10000 </span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>RDB的其它配置也可以在redis.conf文件中设置：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 是否压缩 ,建议不开启，压缩也会消耗cpu，磁盘的话不值钱</span></span><br><span class="line"><span class="attr">rdbcompression</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># RDB文件名称</span></span><br><span class="line"><span class="attr">dbfilename</span> <span class="string">dump.rdb  </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 文件保存的路径目录</span></span><br><span class="line"><span class="attr">dir</span> <span class="string">./ </span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1-1-2-RDB原理"><a href="#1-1-2-RDB原理" class="headerlink" title="1.1.2.RDB原理"></a>1.1.2.RDB原理</h3><p>bgsave开始时会fork主进程得到子进程，子进程共享主进程的内存数据。完成fork后读取内存数据并写入 RDB 文件。</p>
-<p>fork采用的是copy-on-write技术：</p>
-<ul>
-<li>当主进程执行读操作时，访问共享内存；</li>
-<li>当主进程执行写操作时，则会拷贝一份数据，执行写操作。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907772-68d7af2c-18cf-4556-ab13-2f43a882ea44.png" alt="image"></p>
-<h3 id="1-1-3-小结"><a href="#1-1-3-小结" class="headerlink" title="1.1.3.小结"></a>1.1.3.小结</h3><p>RDB方式bgsave的基本流程？</p>
-<ul>
-<li>fork主进程得到一个子进程，共享内存空间</li>
-<li>子进程读取内存数据并写入新的RDB文件</li>
-<li>用新RDB文件替换旧的RDB文件</li>
-</ul>
-<p>RDB会在什么时候执行？save 60 1000代表什么含义？</p>
-<ul>
-<li>默认是服务停止时</li>
-<li>代表60秒内至少执行1000次修改则触发RDB</li>
-</ul>
-<p>RDB的缺点？</p>
-<ul>
-<li>RDB执行间隔时间长，两次RDB之间写入数据有丢失的风险</li>
-<li>fork子进程、压缩、写出RDB文件都比较耗时</li>
-</ul>
-<h2 id="1-2-AOF持久化"><a href="#1-2-AOF持久化" class="headerlink" title="1.2 AOF持久化"></a>1.2 AOF持久化</h2><h3 id="1-2-1-AOF原理"><a href="#1-2-1-AOF原理" class="headerlink" title="1.2.1.AOF原理"></a>1.2.1.AOF原理</h3><p>AOF全称为Append Only File（追加文件）。Redis处理的每一个写命令都会记录在AOF文件，可以看做是命令日志文件。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907777-5c257759-13b6-458f-85fe-5d23001c0b97.png" alt="image"> </p>
-<h3 id="1-2-2-AOF配置"><a href="#1-2-2-AOF配置" class="headerlink" title="1.2.2.AOF配置"></a>1.2.2.AOF配置</h3><p>AOF默认是关闭的，需要修改redis.conf配置文件来开启AOF：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 是否开启AOF功能，默认是no</span></span><br><span class="line"><span class="attr">appendonly</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># AOF文件的名称</span></span><br><span class="line"><span class="attr">appendfilename</span> <span class="string">&quot;appendonly.aof&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>AOF的命令记录的频率也可以通过redis.conf文件来配：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表示每执行一次写命令，立即记录到AOF文件</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">always </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 写命令执行完先放入AOF缓冲区，然后表示每隔1秒将缓冲区数据写到AOF文件，是默认方案</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">everysec </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 写命令执行完先放入AOF缓冲区，由操作系统决定何时将缓冲区内容写回磁盘</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">no</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>三种策略对比：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907781-c732fed8-2903-4a09-83a5-0acc6f98f883.png" alt="image"></p>
-<h3 id="1-2-3-AOF文件重写"><a href="#1-2-3-AOF文件重写" class="headerlink" title="1.2.3.AOF文件重写"></a>1.2.3.AOF文件重写</h3><p>因为是记录命令，AOF文件会比RDB文件大的多。而且AOF会记录对同一个key的多次写操作，但只有最后一次写操作才有意义。通过执行<strong>bgrewriteaof</strong>命令，可以让AOF文件执行重写功能，用最少的命令达到相同效果。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907787-5b861422-ce3f-4d86-b5e3-ee7a41e8a93b.png" alt="image"></p>
-<p>如图，AOF原本有三个命令，但是<code>set num 123 和 set num 666</code>都是对num的操作，第二次会覆盖第一次的值，因此第一个命令记录下来没有意义。</p>
-<p>所以重写命令后，AOF文件内容就是：<code>mset name jack num 666</code></p>
-<p>Redis也会在触发阈值时自动去重写AOF文件。阈值也可以在redis.conf中配置：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># AOF文件比上次文件 增长超过多少百分比则触发重写</span></span><br><span class="line"><span class="attr">auto-aof-rewrite-percentage</span> <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># AOF文件体积最小多大以上才触发重写 </span></span><br><span class="line"><span class="attr">auto-aof-rewrite-min-size</span> <span class="string">64mb </span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="1-3-RDB与AOF对比"><a href="#1-3-RDB与AOF对比" class="headerlink" title="1.3 RDB与AOF对比"></a>1.3 RDB与AOF对比</h2><p>RDB和AOF各有自己的优缺点，如果对数据安全性要求较高，在实际开发中往往会<strong>结合</strong>两者来使用。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907790-60e65888-1aba-4932-b44a-5eb7ea4f0eba.png" alt="image"></p>
-<h1 id="2-Redis主从"><a href="#2-Redis主从" class="headerlink" title="2.Redis主从"></a>2.Redis主从</h1><h2 id="2-1-搭建主从架构"><a href="#2-1-搭建主从架构" class="headerlink" title="2.1.搭建主从架构"></a>2.1.搭建主从架构</h2><p>单节点Redis的并发能力是有上限的，要进一步提高Redis的并发能力，就需要搭建主从集群，实现读写分离。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907795-7ec01be6-8cef-490f-bd9a-211019ecf55b.png" alt="image"> </p>
-<p>具体搭建流程参考课前资料《Redis集群.md》：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907802-2c9576c9-c621-41fa-aa6f-78dd631ad243.png" alt="image">  </p>
-<h2 id="2-2-主从数据同步原理"><a href="#2-2-主从数据同步原理" class="headerlink" title="2.2.主从数据同步原理"></a>2.2.主从数据同步原理</h2><h3 id="2-2-1-全量同步"><a href="#2-2-1-全量同步" class="headerlink" title="2.2.1.全量同步"></a>2.2.1.全量同步</h3><p>主从第一次建立连接时，会执行<strong>全量同步</strong>，将master节点的所有数据都拷贝给slave节点，流程：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907806-a388be81-d9e7-4272-843d-0f88e667958f.png" alt="image"></p>
-<p>这里有一个问题，master如何得知salve是第一次来连接呢？？</p>
-<p>有几个概念，可以作为判断依据：</p>
-<ul>
-<li><p><strong>Replication Id</strong>：简称replid，是数据集的标记，id一致则说明是同一数据集。每一个master都有唯一的replid，slave则会继承master节点的replid</p>
-</li>
-<li><p><strong>offset</strong>：偏移量，随着记录在repl_baklog中的数据增多而逐渐增大。slave完成同步时也会记录当前同步的offset。如果slave的offset小于master的offset，说明slave数据落后于master，需要更</p>
-<p>新。</p>
-</li>
-</ul>
-<p>因此slave做数据同步，必须向master声明自己的replication id 和offset，master才可以判断到底需要同步哪些数据。</p>
-<p>因为slave原本也是一个master，有自己的replid和offset，当第一次变成slave，与master建立连接时，发送的replid和offset是自己的replid和offset。</p>
-<p>master判断发现slave发送来的replid与自己的不一致，说明这是一个全新的slave，就知道要做全量同步了。</p>
-<p>master会将自己的replid和offset都发送给这个slave，slave保存这些信息。以后slave的replid就与master一致了。</p>
-<p>因此，<strong>master判断一个节点是否是第一次同步的依据，就是看replid是否一致</strong>。</p>
-<p>如图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907809-f023b897-99a4-4ec3-92ff-5570e0ee17cb.png" alt="image"></p>
-<p>完整流程描述：</p>
-<ul>
-<li>slave节点请求增量同步</li>
-<li>master节点判断replid，发现不一致，拒绝增量同步</li>
-<li>master将完整内存数据生成RDB，发送RDB到slave</li>
-<li>slave清空本地数据，加载master的RDB</li>
-<li>master将RDB期间的命令记录在repl_baklog，并持续将log中的命令发送给slave</li>
-<li>slave执行接收到的命令，保持与master之间的同步</li>
-</ul>
-<h3 id="2-2-2-增量同步"><a href="#2-2-2-增量同步" class="headerlink" title="2.2.2 增量同步"></a>2.2.2 增量同步</h3><p>全量同步需要先做RDB，然后将RDB文件通过网络传输个slave，成本太高了。因此除了第一次做全量同步，其它大多数时候slave与master都是做<strong>增量</strong></p>
-<p><strong>同步</strong>。</p>
-<p>什么是增量同步？就是只更新slave与master存在差异的部分数据。如图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907814-7c5a0f03-4dbd-4530-8ef3-85f494644d44.png" alt="image"></p>
-<p>那么master怎么知道slave与自己的数据差异在哪里呢?</p>
-<h3 id="2-2-3-repl-backlog原理"><a href="#2-2-3-repl-backlog原理" class="headerlink" title="2.2.3.repl_backlog原理"></a>2.2.3.repl_backlog原理</h3><p>master怎么知道slave与自己的数据差异在哪里呢?</p>
-<p>这就要说到全量同步时的repl_baklog文件了。</p>
-<p>这个文件是一个固定大小的数组，只不过数组是环形，也就是说<strong>角标到达数组末尾后，会再次从0开始读写</strong>，这样数组头部的数据就会被覆盖。</p>
-<p>repl_baklog中会记录Redis处理过的命令日志及offset，包括master当前的offset，和slave已经拷贝到的offset：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907818-1d863ae4-e685-4d5b-9367-690cc8996fc9.png" alt="image"> </p>
-<p>slave与master的offset之间的差异，就是salve需要增量拷贝的数据了。</p>
-<p>随着不断有数据写入，master的offset逐渐变大，slave也不断的拷贝，追赶master的offset：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907823-ac706085-ad12-485f-bce6-2ba3ea92f47b.png" alt="image"> </p>
-<p>直到数组被填满：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907828-f518c5d8-6686-481e-9592-d05dadef4deb.png" alt="image"> </p>
-<p>此时，如果有新的数据写入，就会覆盖数组中的旧数据。不过，旧的数据只要是绿色的，说明是已经被同步到slave的数据，即便被覆盖了也没什么影响。因为未同步的仅仅是红色部分。</p>
-<p>但是，如果slave出现网络阻塞，导致master的offset远远超过了slave的offset： </p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907831-9fd6c9b6-ecd8-4850-8f86-1a1082d908b5.png" alt="image"> </p>
-<p>如果master继续写入新数据，其offset就会覆盖旧的数据，直到将slave现在的offset也覆盖：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907834-f74a2ff0-1ff3-4e3d-ab00-5df8123e41ca.png" alt="image"> </p>
-<p>棕色框中的红色部分，就是尚未同步，但是却已经被覆盖的数据。此时如果slave恢复，需要同步，却发现自己的offset都没有了，无法完成增量同步了。只能做全量同步。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907838-c7b6a1a3-cf2d-46fe-8c07-f2ec4bb3c118.png" alt="image"></p>
-<h2 id="2-3-主从同步优化"><a href="#2-3-主从同步优化" class="headerlink" title="2.3.主从同步优化"></a>2.3.主从同步优化</h2><p>主从同步可以保证主从数据的一致性，非常重要。</p>
-<p>可以从以下几个方面来优化Redis主从就集群：</p>
-<ul>
-<li>在master中配置repl-diskless-sync yes启用无磁盘复制，避免全量同步时的磁盘IO。</li>
-<li>Redis单节点上的内存占用不要太大，减少RDB导致的过多磁盘IO</li>
-<li>适当提高repl_baklog的大小，发现slave宕机时尽快实现故障恢复，尽可能避免全量同步</li>
-<li>限制一个master上的slave节点数量，如果实在是太多slave，则可以采用主-从-从链式结构，减少master压力</li>
-</ul>
-<p>主从从架构图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907841-eb2b3744-7508-421d-b3ef-171b01ce72ba.png" alt="image"></p>
-<h2 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4.小结"></a>2.4.小结</h2><p>简述全量同步和增量同步区别？</p>
-<ul>
-<li>全量同步：master将完整内存数据生成RDB，发送RDB到slave。后续命令则记录在repl_baklog，逐个发送给slave。</li>
-<li>增量同步：slave提交自己的offset到master，master获取repl_baklog中从offset之后的命令给slave</li>
-</ul>
-<p>什么时候执行全量同步？</p>
-<ul>
-<li>slave节点第一次连接master节点时</li>
-<li>slave节点断开时间太久，repl_baklog中的offset已经被覆盖时</li>
-</ul>
-<p>什么时候执行增量同步？</p>
-<ul>
-<li>slave节点断开又恢复，并且在repl_baklog中能找到offset时</li>
-</ul>
-<h1 id="3-Redis哨兵"><a href="#3-Redis哨兵" class="headerlink" title="3.Redis哨兵"></a>3.Redis哨兵</h1><p>Redis提供了哨兵（Sentinel）机制来实现主从集群的自动故障恢复。</p>
-<h2 id="3-1-哨兵原理"><a href="#3-1-哨兵原理" class="headerlink" title="3.1.哨兵原理"></a>3.1.哨兵原理</h2><h3 id="3-1-1-集群结构和作用"><a href="#3-1-1-集群结构和作用" class="headerlink" title="3.1.1.集群结构和作用"></a>3.1.1.集群结构和作用</h3><p>哨兵的结构如图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907844-a8512543-5134-4f76-8a7e-3977bec720cc.png" alt="image"> </p>
-<p>哨兵的作用如下：</p>
-<ul>
-<li><strong>监控</strong>：Sentinel 会不断检查您的master和slave是否按预期工作</li>
-<li><strong>自动故障恢复</strong>：如果master故障，Sentinel会将一个slave提升为master。当故障实例恢复后也以新的master为主</li>
-<li><strong>通知</strong>：Sentinel充当Redis客户端的服务发现来源，当集群发生故障转移时，会将最新信息推送给Redis的客户端</li>
-</ul>
-<h3 id="3-1-2-集群监控原理"><a href="#3-1-2-集群监控原理" class="headerlink" title="3.1.2.集群监控原理"></a>3.1.2.集群监控原理</h3><p>Sentinel基于心跳机制监测服务状态，每隔1秒向集群的每个实例发送ping命令：</p>
-<p>•主观下线：如果某sentinel节点发现某实例未在规定时间响应，则认为该实例<strong>主观下线</strong>。</p>
-<p>•客观下线：若超过指定数量（quorum）的sentinel都认为该实例主观下线，则该实例<strong>客观下线</strong>。quorum值最好超过Sentinel实例数量的一半。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907848-12b646ee-f7f8-4449-b6bc-c71bfd121f22.png" alt="image"> </p>
-<h3 id="3-1-3-集群故障恢复原理"><a href="#3-1-3-集群故障恢复原理" class="headerlink" title="3.1.3.集群故障恢复原理"></a>3.1.3.集群故障恢复原理</h3><p>一旦发现master故障，sentinel需要在salve中选择一个作为新的master，选择依据是这样的：</p>
-<ul>
-<li>首先会判断slave节点与master节点断开时间长短，如果超过指定值（down-after-milliseconds * 10）则会排除该slave节点</li>
-<li>然后判断slave节点的slave-priority值，越小优先级越高，如果是0则永不参与选举</li>
-<li>如果slave-prority一样，则判断slave节点的offset值，越大说明数据越新，优先级越高</li>
-<li>最后是判断slave节点的运行id大小，越小优先级越高。</li>
-</ul>
-<p>当选出一个新的master后，该如何实现切换呢？</p>
-<p>流程如下：</p>
-<ul>
-<li>sentinel给备选的slave1节点发送slaveof no one命令，让该节点成为master</li>
-<li>sentinel给所有其它slave发送slaveof 192.168.150.101 7002 命令，让这些slave成为新master的从节点，开始从新的master上同步数据。</li>
-<li>最后，sentinel将故障节点标记为slave，当故障节点恢复后会自动成为新的master的slave节点</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907850-095930ff-fb47-4a70-896f-fcf6706bb98b.png" alt="image"> </p>
-<h3 id="3-1-4-小结"><a href="#3-1-4-小结" class="headerlink" title="3.1.4.小结"></a>3.1.4.小结</h3><p>Sentinel的三个作用是什么？</p>
-<ul>
-<li>监控</li>
-<li>故障转移</li>
-<li>通知</li>
-</ul>
-<p>Sentinel如何判断一个redis实例是否健康以及将一个故障的master进行下线？</p>
-<ul>
-<li>每隔1秒发送一次ping命令，如果超过一定时间没有相向则认为是主观下线</li>
-<li>如果大多数sentinel都认为实例主观下线，则判定服务下线</li>
-</ul>
-<p>故障转移步骤有哪些？</p>
-<ul>
-<li>首先选定一个slave作为新的master，执行slaveof no one</li>
-<li>然后让所有节点都执行slaveof 新master</li>
-<li>修改故障节点配置，添加slaveof 新master</li>
-</ul>
-<h2 id="3-2-搭建哨兵集群"><a href="#3-2-搭建哨兵集群" class="headerlink" title="3.2 搭建哨兵集群"></a>3.2 搭建哨兵集群</h2><p>具体搭建流程参考课前资料《Redis集群.md》：</p>
-<img src="assets/image-20210725155019276.png" alt="image-20210725155019276" style="zoom: 25%;" />  
-
-
-
-<h2 id="3-3-RedisTemplate"><a href="#3-3-RedisTemplate" class="headerlink" title="3.3 RedisTemplate"></a>3.3 RedisTemplate</h2><p>在Sentinel集群监管下的Redis主从集群，其节点会因为自动故障转移而发生变化，Redis的客户端必须感知这种变化，及时更新连接信息。Spring的RedisTemplate底层利用lettuce实现了节点的感知和自动切换。</p>
-<p>下面，我们通过一个测试来实现RedisTemplate集成哨兵机制。</p>
-<h3 id="3-3-1-导入Demo工程"><a href="#3-3-1-导入Demo工程" class="headerlink" title="3.3.1.导入Demo工程"></a>3.3.1.导入Demo工程</h3><p>首先，我们引入课前资料提供的Demo工程：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907857-2309d761-eaa2-4283-97e1-b220e0b1a787.png" alt="image">  </p>
-<h3 id="3-3-2-引入依赖"><a href="#3-3-2-引入依赖" class="headerlink" title="3.3.2.引入依赖"></a>3.3.2.引入依赖</h3><p>在项目的pom文件中引入依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-3-配置Redis地址"><a href="#3-3-3-配置Redis地址" class="headerlink" title="3.3.3.配置Redis地址"></a>3.3.3.配置Redis地址</h3><p>然后在配置文件application.yml中指定redis的sentinel相关信息：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  redis:</span><br><span class="line">    sentinel:</span><br><span class="line">      master: mymaster</span><br><span class="line">      nodes:</span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27001</span></span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27002</span></span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27003</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-4-配置读写分离"><a href="#3-3-4-配置读写分离" class="headerlink" title="3.3.4.配置读写分离"></a>3.3.4.配置读写分离</h3><p>在项目的启动类中，添加一个新的bean：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> LettuceClientConfigurationBuilderCustomizer <span class="title function_">clientConfigurationBuilderCustomizer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> clientConfigurationBuilder -&gt; clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个bean中配置的就是读写策略，包括四种：</p>
-<ul>
-<li>MASTER：从主节点读取</li>
-<li>MASTER_PREFERRED：优先从master节点读取，master不可用才读取replica</li>
-<li>REPLICA：从slave（replica）节点读取</li>
-<li>REPLICA _PREFERRED：优先从slave（replica）节点读取，所有的slave都不可用才读取master</li>
-</ul>
-<h1 id="4-Redis分片集群"><a href="#4-Redis分片集群" class="headerlink" title="4.Redis分片集群"></a>4.Redis分片集群</h1><h2 id="4-1-搭建分片集群"><a href="#4-1-搭建分片集群" class="headerlink" title="4.1.搭建分片集群"></a>4.1.搭建分片集群</h2><p>主从和哨兵可以解决高可用、高并发读的问题。但是依然有两个问题没有解决：</p>
-<ul>
-<li><p>海量数据存储问题</p>
-</li>
-<li><p>高并发写的问题</p>
-</li>
-</ul>
-<p>使用分片集群可以解决上述问题，如图:</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907861-9c7d4909-8f04-44fa-80ce-539e7c6de518.png" alt="image"> </p>
-<p>分片集群特征：</p>
-<ul>
-<li><p>集群中有多个master，每个master保存不同数据</p>
-</li>
-<li><p>每个master都可以有多个slave节点</p>
-</li>
-<li><p>master之间通过ping监测彼此健康状态</p>
-</li>
-<li><p>客户端请求可以访问集群任意节点，最终都会被转发到正确节点</p>
-</li>
-</ul>
-<p>具体搭建流程参考课前资料《Redis集群.md》：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907865-3accb8f6-9e61-46db-a625-94e1db1e158c.png" alt="image">  </p>
-<h2 id="4-2-散列插槽"><a href="#4-2-散列插槽" class="headerlink" title="4.2.散列插槽"></a>4.2.散列插槽</h2><h3 id="4-2-1-插槽原理"><a href="#4-2-1-插槽原理" class="headerlink" title="4.2.1.插槽原理"></a>4.2.1.插槽原理</h3><p>Redis会把每一个master节点映射到0~16383共16384个插槽（hash slot）上，查看集群信息时就能看到：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907872-221dd7e8-d854-4c12-a3e9-1400165b6761.png" alt="image"></p>
-<p>数据key不是与节点绑定，而是与插槽绑定。redis会根据key的有效部分计算插槽值，分两种情况：</p>
-<ul>
-<li>key中包含”{}”，且“{}”中至少包含1个字符，“{}”中的部分是有效部分</li>
-<li>key中不包含“{}”，整个key都是有效部分</li>
-</ul>
-<p>例如：key是num，那么就根据num计算，如果是{itcast}num，则根据itcast计算。计算方式是利用CRC16算法得到一个hash值，然后对16384取余，得到的结果就是slot值。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907877-116fde3f-186e-49d1-83e3-1738d89db869.png" alt="image"> </p>
-<p>如图，在7001这个节点执行set a 1时，对a做hash运算，对16384取余，得到的结果是15495，因此要存储到103节点。</p>
-<p>到了7003后，执行<code>get num</code>时，对num做hash运算，对16384取余，得到的结果是2765，因此需要切换到7001节点</p>
-<h3 id="4-2-1-小结"><a href="#4-2-1-小结" class="headerlink" title="4.2.1.小结"></a>4.2.1.小结</h3><p>Redis如何判断某个key应该在哪个实例？</p>
-<ul>
-<li>将16384个插槽分配到不同的实例</li>
-<li>根据key的有效部分计算哈希值，对16384取余</li>
-<li>余数作为插槽，寻找插槽所在实例即可</li>
-</ul>
-<p>如何将同一类数据固定的保存在同一个Redis实例？</p>
-<ul>
-<li>这一类数据使用相同的有效部分，例如key都以{typeId}为前缀</li>
-</ul>
-<h2 id="4-3-集群伸缩"><a href="#4-3-集群伸缩" class="headerlink" title="4.3.集群伸缩"></a>4.3.集群伸缩</h2><p>redis-cli –cluster提供了很多操作集群的命令，可以通过下面方式查看：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907882-cfc43bcf-b8ef-4af7-a39e-713e5be1bd5a.png" alt="image"></p>
-<p>比如，添加节点的命令：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907885-85080499-bbcf-42e0-a842-ccfc4e193812.png" alt="image"></p>
-<h3 id="4-3-1-需求分析"><a href="#4-3-1-需求分析" class="headerlink" title="4.3.1.需求分析"></a>4.3.1.需求分析</h3><p>需求：向集群中添加一个新的master节点，并向其中存储 num &#x3D; 10</p>
-<ul>
-<li>启动一个新的redis实例，端口为7004</li>
-<li>添加7004到之前的集群，并作为一个master节点</li>
-<li>给7004节点分配插槽，使得num这个key可以存储到7004实例</li>
-</ul>
-<p>这里需要两个新的功能：</p>
-<ul>
-<li>添加一个节点到集群中</li>
-<li>将部分插槽分配到新插槽</li>
-</ul>
-<h3 id="4-3-2-创建新的redis实例"><a href="#4-3-2-创建新的redis实例" class="headerlink" title="4.3.2.创建新的redis实例"></a>4.3.2.创建新的redis实例</h3><p>创建一个文件夹：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> 7004</span><br></pre></td></tr></table></figure>
-
-<p>拷贝配置文件：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> redis.conf /7004</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sed /s/6379/7004/g 7004/redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>启动</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-server 7004/redis.conf</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-3-3-添加新节点到redis"><a href="#4-3-3-添加新节点到redis" class="headerlink" title="4.3.3.添加新节点到redis"></a>4.3.3.添加新节点到redis</h3><p>添加节点的语法如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907892-e801ac94-4235-484a-8f46-6fad585edcc3.png" alt="image"></p>
-<p>执行命令：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli --cluster add-node  192.168.150.101:7004 192.168.150.101:7001</span><br></pre></td></tr></table></figure>
-
-
-
-<p>通过命令查看集群状态：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli -p 7001 cluster nodes</span><br></pre></td></tr></table></figure>
-
-
-
-<p>如图，7004加入了集群，并且默认是一个master节点：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907899-17c7ce45-551f-4f95-8106-17562432ded0.png" alt="image"></p>
-<p>但是，可以看到7004节点的插槽数量为0，因此没有任何数据可以存储到7004上</p>
-<h3 id="4-3-4-转移插槽"><a href="#4-3-4-转移插槽" class="headerlink" title="4.3.4.转移插槽"></a>4.3.4.转移插槽</h3><p>我们要将num存储到7004节点，因此需要先看看num的插槽是多少：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907907-f89ae593-83af-439f-b77d-2d3d37e94381.png" alt="image"></p>
-<p>如上图所示，num的插槽为2765.</p>
-<p>我们可以将0~3000的插槽从7001转移到7004，命令格式如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907914-eff1b777-01ec-47b2-ab0c-b6ad29e70b37.png" alt="image"></p>
-<p>具体命令如下：</p>
-<p>建立连接：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907919-f9dace02-63e3-496d-8244-6be9b9d38a1b.png" alt="image"></p>
-<p>得到下面的反馈：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907926-33241585-64f9-4b4f-a563-51727d75d1cd.png" alt="image"></p>
-<p>询问要移动多少个插槽，我们计划是3000个：</p>
-<p>新的问题来了：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907929-29ddbfbb-1465-4052-9263-d4e93c47ef77.png" alt="image"></p>
-<p>那个node来接收这些插槽？？</p>
-<p>显然是7004，那么7004节点的id是多少呢？</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907930-860b3c1a-4960-409b-84c4-ef75aa06f047.png" alt="image"></p>
-<p>复制这个id，然后拷贝到刚才的控制台后：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907937-e75fcf2b-d3a2-420a-aad2-81609a9b3a44.png" alt="image"></p>
-<p>这里询问，你的插槽是从哪里移动过来的？</p>
-<ul>
-<li>all：代表全部，也就是三个节点各转移一部分</li>
-<li>具体的id：目标节点的id</li>
-<li>done：没有了</li>
-</ul>
-<p>这里我们要从7001获取，因此填写7001的id：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907939-87eec492-a384-4104-ae13-a65ef951aef5.png" alt="image"></p>
-<p>填完后，点击done，这样插槽转移就准备好了：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907947-2a9608bd-b363-46da-b75c-a9f0c5ae2320.png" alt="image"></p>
-<p>确认要转移吗？输入yes：</p>
-<p>然后，通过命令查看结果：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907948-d18325d3-5a95-4525-b4c2-68479360b0ed.png" alt="image"> </p>
-<p>可以看到： </p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907951-30e8cd29-1066-4fe0-86b4-67bdc51e9d7f.png" alt="image"></p>
-<p>目的达成。</p>
-<h2 id="4-4-故障转移"><a href="#4-4-故障转移" class="headerlink" title="4.4.故障转移"></a>4.4.故障转移</h2><p>集群初识状态是这样的：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907955-5d3c6ec9-fa30-4fe2-87c6-6b4099457ce4.png" alt="image"></p>
-<p>其中7001、7002、7003都是master，我们计划让7002宕机。</p>
-<h3 id="4-4-1-自动故障转移"><a href="#4-4-1-自动故障转移" class="headerlink" title="4.4.1.自动故障转移"></a>4.4.1.自动故障转移</h3><p>当集群中有一个master宕机会发生什么呢？</p>
-<p>直接停止一个redis实例，例如7002：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli -p 7002 shutdown</span><br></pre></td></tr></table></figure>
-
-
-
-<p>1）首先是该实例与其它实例失去连接</p>
-<p>2）然后是疑似宕机：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219907959-0bf1b057-e671-47dc-a140-656ab9fd812d.png" alt="image"></p>
-<p>3）最后是确定下线，自动提升一个slave为新的master：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219922694-b4a2b55c-ece5-41ac-8c17-b848adb78c11.png" alt="image"></p>
-<p>4）当7002再次启动，就会变为一个slave节点了：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219922702-15f4dfa9-849c-473c-b57c-7f9ae8c7dc9d.png" alt="image"></p>
-<h3 id="4-4-2-手动故障转移"><a href="#4-4-2-手动故障转移" class="headerlink" title="4.4.2.手动故障转移"></a>4.4.2.手动故障转移</h3><p>利用cluster failover命令可以手动让集群中的某个master宕机，切换到执行cluster failover命令的这个slave节点，实现无感知的数据迁移。其流程如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219922718-3db4e04d-bc26-49d9-abf6-6538ac597d7f.png" alt="image"></p>
-<p>这种failover命令可以指定三种模式：</p>
-<ul>
-<li>缺省：默认的流程，如图1~6歩</li>
-<li>force：省略了对offset的一致性校验</li>
-<li>takeover：直接执行第5歩，忽略数据一致性、忽略master状态和其它master的意见</li>
-</ul>
-<p><strong>案例需求</strong>：在7002这个slave节点执行手动故障转移，重新夺回master地位</p>
-<p>步骤如下：</p>
-<p>1）利用redis-cli连接7002这个节点</p>
-<p>2）执行cluster failover命令</p>
-<p>如图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219922726-ad0892cc-7807-44d6-9f50-489884f30354.png" alt="image"></p>
-<p>效果：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219922732-89a6ed6c-f952-45b5-aaf7-0a464824d2e2.png" alt="image"></p>
-<h2 id="4-5-RedisTemplate访问分片集群"><a href="#4-5-RedisTemplate访问分片集群" class="headerlink" title="4.5.RedisTemplate访问分片集群"></a>4.5.RedisTemplate访问分片集群</h2><p>RedisTemplate底层同样基于lettuce实现了分片集群的支持，而使用的步骤与哨兵模式基本一致：</p>
-<p>1）引入redis的starter依赖</p>
-<p>2）配置分片集群地址</p>
-<p>3）配置读写分离</p>
-<p>与哨兵模式相比，其中只有分片集群的配置方式略有差异，如下：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">cluster:</span></span><br><span class="line">      <span class="attr">nodes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7001</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7002</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7003</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8001</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8002</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8003</span></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/</url>
+    <title>多级缓存</title>
+    <url>/2022/08/03/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/</url>
     <content><![CDATA[<h1 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-什么是多级缓存"><a href="#1-什么是多级缓存" class="headerlink" title="1.什么是多级缓存"></a>1.什么是多级缓存</h1><p>传统的缓存策略一般是请求到达Tomcat后，先查询Redis，如果未命中则查询数据库，如图：</p>
 <p><img src="/assets/image-20210821075259137.png" alt="image-20210821075259137"></p>
 <p>存在下面的问题：</p>
@@ -6068,10 +5737,428 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.heima.item.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> com.heima.item.pojo.Item;</span><br><span class="line"><span class="keyword">import</span> com.heima.item.pojo.ItemStock;</span><br><span class="line"><span class="keyword">import</span> com.heima.item.service.IItemService;</span><br><span class="line"><span class="keyword">import</span> com.heima.item.service.IItemStockService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisHandler</span> <span class="keyword">implements</span> <span class="title class_">InitializingBean</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StringRedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> IItemService itemService;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> IItemStockService stockService;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ObjectMapper</span> <span class="variable">MAPPER</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 初始化缓存</span></span><br><span class="line">        <span class="comment">// 1.查询商品信息</span></span><br><span class="line">        List&lt;Item&gt; itemList = itemService.list();</span><br><span class="line">        <span class="comment">// 2.放入缓存</span></span><br><span class="line">        <span class="keyword">for</span> (Item item : itemList) &#123;</span><br><span class="line">            <span class="comment">// 2.1.item序列化为JSON</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> MAPPER.writeValueAsString(item);</span><br><span class="line">            <span class="comment">// 2.2.存入redis</span></span><br><span class="line">            redisTemplate.opsForValue().set(<span class="string">&quot;item:id:&quot;</span> + item.getId(), json);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.查询商品库存信息</span></span><br><span class="line">        List&lt;ItemStock&gt; stockList = stockService.list();</span><br><span class="line">        <span class="comment">// 4.放入缓存</span></span><br><span class="line">        <span class="keyword">for</span> (ItemStock stock : stockList) &#123;</span><br><span class="line">            <span class="comment">// 2.1.item序列化为JSON</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> MAPPER.writeValueAsString(stock);</span><br><span class="line">            <span class="comment">// 2.2.存入redis</span></span><br><span class="line">            redisTemplate.opsForValue().set(<span class="string">&quot;item:stock:id:&quot;</span> + stock.getId(), json);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">saveItem</span><span class="params">(Item item)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> MAPPER.writeValueAsString(item);</span><br><span class="line">            redisTemplate.opsForValue().set(<span class="string">&quot;item:id:&quot;</span> + item.getId(), json);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteItemById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        redisTemplate.delete(<span class="string">&quot;item:id:&quot;</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>多级缓存</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分布式缓存(redis)</title>
+    <url>/2022/08/03/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</url>
+    <content><![CDATA[<h1 id="分布式缓存-redis"><a href="#分布式缓存-redis" class="headerlink" title="分布式缓存(redis)"></a>分布式缓存(redis)</h1><p>– 基于Redis集群解决单机Redis存在的问题</p>
+<p>单机的Redis存在四大问题：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907758-a80169fa-cd4f-4bbf-9f79-1d7b0fdd5bec.png" alt="image"></p>
+<h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Redis持久化"><a href="#1-Redis持久化" class="headerlink" title="1.Redis持久化"></a>1.Redis持久化</h1><p>Redis有两种持久化方案：</p>
+<ul>
+<li>RDB持久化</li>
+<li>AOF持久化</li>
+</ul>
+<span id="more"></span>
+
+
+
+<h2 id="1-1-RDB持久化"><a href="#1-1-RDB持久化" class="headerlink" title="1.1.RDB持久化"></a>1.1.RDB持久化</h2><p>RDB全称Redis Database Backup file（Redis数据备份文件），也被叫做Redis数据快照。简单来说就是把内存中的所有数据都记录到磁盘中。当Redis</p>
+<p>实例故障重启后，从磁盘读取快照文件，恢复数据。快照文件称为RDB文件，默认是保存在当前运行目录。</p>
+<h3 id="1-1-1-执行时机"><a href="#1-1-1-执行时机" class="headerlink" title="1.1.1.执行时机"></a>1.1.1.执行时机</h3><p>RDB持久化在四种情况下会执行：</p>
+<ul>
+<li>执行save命令</li>
+<li>执行bgsave命令</li>
+<li>Redis停机时</li>
+<li>触发RDB条件时</li>
+</ul>
+<p><strong>1）save命令</strong></p>
+<p>执行下面的命令，可以立即执行一次RDB：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907761-c21517b0-ffe4-42be-b581-885023b055dc.png" alt="image"></p>
+<p>save命令会导致主进程执行RDB，这个过程中其它所有命令都会被阻塞。只有在数据迁移时可能用到。</p>
+<p><strong>2）bgsave命令</strong></p>
+<p>下面的命令可以异步执行RDB：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907765-71f8e9cb-226e-4e25-a49b-d94008d0f7c7.png" alt="image"></p>
+<p>这个命令执行后会开启独立进程完成RDB，主进程可以持续处理用户请求，不受影响。</p>
+<p><strong>3）停机时</strong></p>
+<p>Redis停机时会执行一次save命令，实现RDB持久化。</p>
+<p><strong>4）触发RDB条件</strong></p>
+<p>Redis内部有触发RDB的机制，可以在redis.conf文件中找到，格式如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 900秒内，如果至少有1个key被修改，则执行bgsave ， 如果是save &quot;&quot; 则表示禁用RDB</span></span><br><span class="line"><span class="attr">save</span> <span class="string">900 1  </span></span><br><span class="line"><span class="attr">save</span> <span class="string">300 10  </span></span><br><span class="line"><span class="attr">save</span> <span class="string">60 10000 </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>RDB的其它配置也可以在redis.conf文件中设置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 是否压缩 ,建议不开启，压缩也会消耗cpu，磁盘的话不值钱</span></span><br><span class="line"><span class="attr">rdbcompression</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># RDB文件名称</span></span><br><span class="line"><span class="attr">dbfilename</span> <span class="string">dump.rdb  </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 文件保存的路径目录</span></span><br><span class="line"><span class="attr">dir</span> <span class="string">./ </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-1-2-RDB原理"><a href="#1-1-2-RDB原理" class="headerlink" title="1.1.2.RDB原理"></a>1.1.2.RDB原理</h3><p>bgsave开始时会fork主进程得到子进程，子进程共享主进程的内存数据。完成fork后读取内存数据并写入 RDB 文件。</p>
+<p>fork采用的是copy-on-write技术：</p>
+<ul>
+<li>当主进程执行读操作时，访问共享内存；</li>
+<li>当主进程执行写操作时，则会拷贝一份数据，执行写操作。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907772-68d7af2c-18cf-4556-ab13-2f43a882ea44.png" alt="image"></p>
+<h3 id="1-1-3-小结"><a href="#1-1-3-小结" class="headerlink" title="1.1.3.小结"></a>1.1.3.小结</h3><p>RDB方式bgsave的基本流程？</p>
+<ul>
+<li>fork主进程得到一个子进程，共享内存空间</li>
+<li>子进程读取内存数据并写入新的RDB文件</li>
+<li>用新RDB文件替换旧的RDB文件</li>
+</ul>
+<p>RDB会在什么时候执行？save 60 1000代表什么含义？</p>
+<ul>
+<li>默认是服务停止时</li>
+<li>代表60秒内至少执行1000次修改则触发RDB</li>
+</ul>
+<p>RDB的缺点？</p>
+<ul>
+<li>RDB执行间隔时间长，两次RDB之间写入数据有丢失的风险</li>
+<li>fork子进程、压缩、写出RDB文件都比较耗时</li>
+</ul>
+<h2 id="1-2-AOF持久化"><a href="#1-2-AOF持久化" class="headerlink" title="1.2 AOF持久化"></a>1.2 AOF持久化</h2><h3 id="1-2-1-AOF原理"><a href="#1-2-1-AOF原理" class="headerlink" title="1.2.1.AOF原理"></a>1.2.1.AOF原理</h3><p>AOF全称为Append Only File（追加文件）。Redis处理的每一个写命令都会记录在AOF文件，可以看做是命令日志文件。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907777-5c257759-13b6-458f-85fe-5d23001c0b97.png" alt="image"> </p>
+<h3 id="1-2-2-AOF配置"><a href="#1-2-2-AOF配置" class="headerlink" title="1.2.2.AOF配置"></a>1.2.2.AOF配置</h3><p>AOF默认是关闭的，需要修改redis.conf配置文件来开启AOF：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 是否开启AOF功能，默认是no</span></span><br><span class="line"><span class="attr">appendonly</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># AOF文件的名称</span></span><br><span class="line"><span class="attr">appendfilename</span> <span class="string">&quot;appendonly.aof&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>AOF的命令记录的频率也可以通过redis.conf文件来配：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表示每执行一次写命令，立即记录到AOF文件</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">always </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 写命令执行完先放入AOF缓冲区，然后表示每隔1秒将缓冲区数据写到AOF文件，是默认方案</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">everysec </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 写命令执行完先放入AOF缓冲区，由操作系统决定何时将缓冲区内容写回磁盘</span></span><br><span class="line"><span class="attr">appendfsync</span> <span class="string">no</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>三种策略对比：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907781-c732fed8-2903-4a09-83a5-0acc6f98f883.png" alt="image"></p>
+<h3 id="1-2-3-AOF文件重写"><a href="#1-2-3-AOF文件重写" class="headerlink" title="1.2.3.AOF文件重写"></a>1.2.3.AOF文件重写</h3><p>因为是记录命令，AOF文件会比RDB文件大的多。而且AOF会记录对同一个key的多次写操作，但只有最后一次写操作才有意义。通过执行<strong>bgrewriteaof</strong>命令，可以让AOF文件执行重写功能，用最少的命令达到相同效果。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907787-5b861422-ce3f-4d86-b5e3-ee7a41e8a93b.png" alt="image"></p>
+<p>如图，AOF原本有三个命令，但是<code>set num 123 和 set num 666</code>都是对num的操作，第二次会覆盖第一次的值，因此第一个命令记录下来没有意义。</p>
+<p>所以重写命令后，AOF文件内容就是：<code>mset name jack num 666</code></p>
+<p>Redis也会在触发阈值时自动去重写AOF文件。阈值也可以在redis.conf中配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># AOF文件比上次文件 增长超过多少百分比则触发重写</span></span><br><span class="line"><span class="attr">auto-aof-rewrite-percentage</span> <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># AOF文件体积最小多大以上才触发重写 </span></span><br><span class="line"><span class="attr">auto-aof-rewrite-min-size</span> <span class="string">64mb </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-3-RDB与AOF对比"><a href="#1-3-RDB与AOF对比" class="headerlink" title="1.3 RDB与AOF对比"></a>1.3 RDB与AOF对比</h2><p>RDB和AOF各有自己的优缺点，如果对数据安全性要求较高，在实际开发中往往会<strong>结合</strong>两者来使用。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907790-60e65888-1aba-4932-b44a-5eb7ea4f0eba.png" alt="image"></p>
+<h1 id="2-Redis主从"><a href="#2-Redis主从" class="headerlink" title="2.Redis主从"></a>2.Redis主从</h1><h2 id="2-1-搭建主从架构"><a href="#2-1-搭建主从架构" class="headerlink" title="2.1.搭建主从架构"></a>2.1.搭建主从架构</h2><p>单节点Redis的并发能力是有上限的，要进一步提高Redis的并发能力，就需要搭建主从集群，实现读写分离。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907795-7ec01be6-8cef-490f-bd9a-211019ecf55b.png" alt="image"> </p>
+<p>具体搭建流程参考课前资料《Redis集群.md》：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907802-2c9576c9-c621-41fa-aa6f-78dd631ad243.png" alt="image">  </p>
+<h2 id="2-2-主从数据同步原理"><a href="#2-2-主从数据同步原理" class="headerlink" title="2.2.主从数据同步原理"></a>2.2.主从数据同步原理</h2><h3 id="2-2-1-全量同步"><a href="#2-2-1-全量同步" class="headerlink" title="2.2.1.全量同步"></a>2.2.1.全量同步</h3><p>主从第一次建立连接时，会执行<strong>全量同步</strong>，将master节点的所有数据都拷贝给slave节点，流程：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907806-a388be81-d9e7-4272-843d-0f88e667958f.png" alt="image"></p>
+<p>这里有一个问题，master如何得知salve是第一次来连接呢？？</p>
+<p>有几个概念，可以作为判断依据：</p>
+<ul>
+<li><p><strong>Replication Id</strong>：简称replid，是数据集的标记，id一致则说明是同一数据集。每一个master都有唯一的replid，slave则会继承master节点的replid</p>
+</li>
+<li><p><strong>offset</strong>：偏移量，随着记录在repl_baklog中的数据增多而逐渐增大。slave完成同步时也会记录当前同步的offset。如果slave的offset小于master的offset，说明slave数据落后于master，需要更</p>
+<p>新。</p>
+</li>
+</ul>
+<p>因此slave做数据同步，必须向master声明自己的replication id 和offset，master才可以判断到底需要同步哪些数据。</p>
+<p>因为slave原本也是一个master，有自己的replid和offset，当第一次变成slave，与master建立连接时，发送的replid和offset是自己的replid和offset。</p>
+<p>master判断发现slave发送来的replid与自己的不一致，说明这是一个全新的slave，就知道要做全量同步了。</p>
+<p>master会将自己的replid和offset都发送给这个slave，slave保存这些信息。以后slave的replid就与master一致了。</p>
+<p>因此，<strong>master判断一个节点是否是第一次同步的依据，就是看replid是否一致</strong>。</p>
+<p>如图：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907809-f023b897-99a4-4ec3-92ff-5570e0ee17cb.png" alt="image"></p>
+<p>完整流程描述：</p>
+<ul>
+<li>slave节点请求增量同步</li>
+<li>master节点判断replid，发现不一致，拒绝增量同步</li>
+<li>master将完整内存数据生成RDB，发送RDB到slave</li>
+<li>slave清空本地数据，加载master的RDB</li>
+<li>master将RDB期间的命令记录在repl_baklog，并持续将log中的命令发送给slave</li>
+<li>slave执行接收到的命令，保持与master之间的同步</li>
+</ul>
+<h3 id="2-2-2-增量同步"><a href="#2-2-2-增量同步" class="headerlink" title="2.2.2 增量同步"></a>2.2.2 增量同步</h3><p>全量同步需要先做RDB，然后将RDB文件通过网络传输个slave，成本太高了。因此除了第一次做全量同步，其它大多数时候slave与master都是做<strong>增量</strong></p>
+<p><strong>同步</strong>。</p>
+<p>什么是增量同步？就是只更新slave与master存在差异的部分数据。如图：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907814-7c5a0f03-4dbd-4530-8ef3-85f494644d44.png" alt="image"></p>
+<p>那么master怎么知道slave与自己的数据差异在哪里呢?</p>
+<h3 id="2-2-3-repl-backlog原理"><a href="#2-2-3-repl-backlog原理" class="headerlink" title="2.2.3.repl_backlog原理"></a>2.2.3.repl_backlog原理</h3><p>master怎么知道slave与自己的数据差异在哪里呢?</p>
+<p>这就要说到全量同步时的repl_baklog文件了。</p>
+<p>这个文件是一个固定大小的数组，只不过数组是环形，也就是说<strong>角标到达数组末尾后，会再次从0开始读写</strong>，这样数组头部的数据就会被覆盖。</p>
+<p>repl_baklog中会记录Redis处理过的命令日志及offset，包括master当前的offset，和slave已经拷贝到的offset：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907818-1d863ae4-e685-4d5b-9367-690cc8996fc9.png" alt="image"> </p>
+<p>slave与master的offset之间的差异，就是salve需要增量拷贝的数据了。</p>
+<p>随着不断有数据写入，master的offset逐渐变大，slave也不断的拷贝，追赶master的offset：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907823-ac706085-ad12-485f-bce6-2ba3ea92f47b.png" alt="image"> </p>
+<p>直到数组被填满：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907828-f518c5d8-6686-481e-9592-d05dadef4deb.png" alt="image"> </p>
+<p>此时，如果有新的数据写入，就会覆盖数组中的旧数据。不过，旧的数据只要是绿色的，说明是已经被同步到slave的数据，即便被覆盖了也没什么影响。因为未同步的仅仅是红色部分。</p>
+<p>但是，如果slave出现网络阻塞，导致master的offset远远超过了slave的offset： </p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907831-9fd6c9b6-ecd8-4850-8f86-1a1082d908b5.png" alt="image"> </p>
+<p>如果master继续写入新数据，其offset就会覆盖旧的数据，直到将slave现在的offset也覆盖：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907834-f74a2ff0-1ff3-4e3d-ab00-5df8123e41ca.png" alt="image"> </p>
+<p>棕色框中的红色部分，就是尚未同步，但是却已经被覆盖的数据。此时如果slave恢复，需要同步，却发现自己的offset都没有了，无法完成增量同步了。只能做全量同步。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907838-c7b6a1a3-cf2d-46fe-8c07-f2ec4bb3c118.png" alt="image"></p>
+<h2 id="2-3-主从同步优化"><a href="#2-3-主从同步优化" class="headerlink" title="2.3.主从同步优化"></a>2.3.主从同步优化</h2><p>主从同步可以保证主从数据的一致性，非常重要。</p>
+<p>可以从以下几个方面来优化Redis主从就集群：</p>
+<ul>
+<li>在master中配置repl-diskless-sync yes启用无磁盘复制，避免全量同步时的磁盘IO。</li>
+<li>Redis单节点上的内存占用不要太大，减少RDB导致的过多磁盘IO</li>
+<li>适当提高repl_baklog的大小，发现slave宕机时尽快实现故障恢复，尽可能避免全量同步</li>
+<li>限制一个master上的slave节点数量，如果实在是太多slave，则可以采用主-从-从链式结构，减少master压力</li>
+</ul>
+<p>主从从架构图：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907841-eb2b3744-7508-421d-b3ef-171b01ce72ba.png" alt="image"></p>
+<h2 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4.小结"></a>2.4.小结</h2><p>简述全量同步和增量同步区别？</p>
+<ul>
+<li>全量同步：master将完整内存数据生成RDB，发送RDB到slave。后续命令则记录在repl_baklog，逐个发送给slave。</li>
+<li>增量同步：slave提交自己的offset到master，master获取repl_baklog中从offset之后的命令给slave</li>
+</ul>
+<p>什么时候执行全量同步？</p>
+<ul>
+<li>slave节点第一次连接master节点时</li>
+<li>slave节点断开时间太久，repl_baklog中的offset已经被覆盖时</li>
+</ul>
+<p>什么时候执行增量同步？</p>
+<ul>
+<li>slave节点断开又恢复，并且在repl_baklog中能找到offset时</li>
+</ul>
+<h1 id="3-Redis哨兵"><a href="#3-Redis哨兵" class="headerlink" title="3.Redis哨兵"></a>3.Redis哨兵</h1><p>Redis提供了哨兵（Sentinel）机制来实现主从集群的自动故障恢复。</p>
+<h2 id="3-1-哨兵原理"><a href="#3-1-哨兵原理" class="headerlink" title="3.1.哨兵原理"></a>3.1.哨兵原理</h2><h3 id="3-1-1-集群结构和作用"><a href="#3-1-1-集群结构和作用" class="headerlink" title="3.1.1.集群结构和作用"></a>3.1.1.集群结构和作用</h3><p>哨兵的结构如图：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907844-a8512543-5134-4f76-8a7e-3977bec720cc.png" alt="image"> </p>
+<p>哨兵的作用如下：</p>
+<ul>
+<li><strong>监控</strong>：Sentinel 会不断检查您的master和slave是否按预期工作</li>
+<li><strong>自动故障恢复</strong>：如果master故障，Sentinel会将一个slave提升为master。当故障实例恢复后也以新的master为主</li>
+<li><strong>通知</strong>：Sentinel充当Redis客户端的服务发现来源，当集群发生故障转移时，会将最新信息推送给Redis的客户端</li>
+</ul>
+<h3 id="3-1-2-集群监控原理"><a href="#3-1-2-集群监控原理" class="headerlink" title="3.1.2.集群监控原理"></a>3.1.2.集群监控原理</h3><p>Sentinel基于心跳机制监测服务状态，每隔1秒向集群的每个实例发送ping命令：</p>
+<p>•主观下线：如果某sentinel节点发现某实例未在规定时间响应，则认为该实例<strong>主观下线</strong>。</p>
+<p>•客观下线：若超过指定数量（quorum）的sentinel都认为该实例主观下线，则该实例<strong>客观下线</strong>。quorum值最好超过Sentinel实例数量的一半。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907848-12b646ee-f7f8-4449-b6bc-c71bfd121f22.png" alt="image"> </p>
+<h3 id="3-1-3-集群故障恢复原理"><a href="#3-1-3-集群故障恢复原理" class="headerlink" title="3.1.3.集群故障恢复原理"></a>3.1.3.集群故障恢复原理</h3><p>一旦发现master故障，sentinel需要在salve中选择一个作为新的master，选择依据是这样的：</p>
+<ul>
+<li>首先会判断slave节点与master节点断开时间长短，如果超过指定值（down-after-milliseconds * 10）则会排除该slave节点</li>
+<li>然后判断slave节点的slave-priority值，越小优先级越高，如果是0则永不参与选举</li>
+<li>如果slave-prority一样，则判断slave节点的offset值，越大说明数据越新，优先级越高</li>
+<li>最后是判断slave节点的运行id大小，越小优先级越高。</li>
+</ul>
+<p>当选出一个新的master后，该如何实现切换呢？</p>
+<p>流程如下：</p>
+<ul>
+<li>sentinel给备选的slave1节点发送slaveof no one命令，让该节点成为master</li>
+<li>sentinel给所有其它slave发送slaveof 192.168.150.101 7002 命令，让这些slave成为新master的从节点，开始从新的master上同步数据。</li>
+<li>最后，sentinel将故障节点标记为slave，当故障节点恢复后会自动成为新的master的slave节点</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907850-095930ff-fb47-4a70-896f-fcf6706bb98b.png" alt="image"> </p>
+<h3 id="3-1-4-小结"><a href="#3-1-4-小结" class="headerlink" title="3.1.4.小结"></a>3.1.4.小结</h3><p>Sentinel的三个作用是什么？</p>
+<ul>
+<li>监控</li>
+<li>故障转移</li>
+<li>通知</li>
+</ul>
+<p>Sentinel如何判断一个redis实例是否健康以及将一个故障的master进行下线？</p>
+<ul>
+<li>每隔1秒发送一次ping命令，如果超过一定时间没有相向则认为是主观下线</li>
+<li>如果大多数sentinel都认为实例主观下线，则判定服务下线</li>
+</ul>
+<p>故障转移步骤有哪些？</p>
+<ul>
+<li>首先选定一个slave作为新的master，执行slaveof no one</li>
+<li>然后让所有节点都执行slaveof 新master</li>
+<li>修改故障节点配置，添加slaveof 新master</li>
+</ul>
+<h2 id="3-2-搭建哨兵集群"><a href="#3-2-搭建哨兵集群" class="headerlink" title="3.2 搭建哨兵集群"></a>3.2 搭建哨兵集群</h2><p>具体搭建流程参考课前资料《Redis集群.md》：</p>
+<img src="assets/image-20210725155019276.png" alt="image-20210725155019276" style="zoom: 25%;" />  
+
+
+
+<h2 id="3-3-RedisTemplate"><a href="#3-3-RedisTemplate" class="headerlink" title="3.3 RedisTemplate"></a>3.3 RedisTemplate</h2><p>在Sentinel集群监管下的Redis主从集群，其节点会因为自动故障转移而发生变化，Redis的客户端必须感知这种变化，及时更新连接信息。Spring的RedisTemplate底层利用lettuce实现了节点的感知和自动切换。</p>
+<p>下面，我们通过一个测试来实现RedisTemplate集成哨兵机制。</p>
+<h3 id="3-3-1-导入Demo工程"><a href="#3-3-1-导入Demo工程" class="headerlink" title="3.3.1.导入Demo工程"></a>3.3.1.导入Demo工程</h3><p>首先，我们引入课前资料提供的Demo工程：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907857-2309d761-eaa2-4283-97e1-b220e0b1a787.png" alt="image">  </p>
+<h3 id="3-3-2-引入依赖"><a href="#3-3-2-引入依赖" class="headerlink" title="3.3.2.引入依赖"></a>3.3.2.引入依赖</h3><p>在项目的pom文件中引入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-3-配置Redis地址"><a href="#3-3-3-配置Redis地址" class="headerlink" title="3.3.3.配置Redis地址"></a>3.3.3.配置Redis地址</h3><p>然后在配置文件application.yml中指定redis的sentinel相关信息：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  redis:</span><br><span class="line">    sentinel:</span><br><span class="line">      master: mymaster</span><br><span class="line">      nodes:</span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27001</span></span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27002</span></span><br><span class="line">        - <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span>:<span class="number">27003</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-4-配置读写分离"><a href="#3-3-4-配置读写分离" class="headerlink" title="3.3.4.配置读写分离"></a>3.3.4.配置读写分离</h3><p>在项目的启动类中，添加一个新的bean：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> LettuceClientConfigurationBuilderCustomizer <span class="title function_">clientConfigurationBuilderCustomizer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> clientConfigurationBuilder -&gt; clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个bean中配置的就是读写策略，包括四种：</p>
+<ul>
+<li>MASTER：从主节点读取</li>
+<li>MASTER_PREFERRED：优先从master节点读取，master不可用才读取replica</li>
+<li>REPLICA：从slave（replica）节点读取</li>
+<li>REPLICA _PREFERRED：优先从slave（replica）节点读取，所有的slave都不可用才读取master</li>
+</ul>
+<h1 id="4-Redis分片集群"><a href="#4-Redis分片集群" class="headerlink" title="4.Redis分片集群"></a>4.Redis分片集群</h1><h2 id="4-1-搭建分片集群"><a href="#4-1-搭建分片集群" class="headerlink" title="4.1.搭建分片集群"></a>4.1.搭建分片集群</h2><p>主从和哨兵可以解决高可用、高并发读的问题。但是依然有两个问题没有解决：</p>
+<ul>
+<li><p>海量数据存储问题</p>
+</li>
+<li><p>高并发写的问题</p>
+</li>
+</ul>
+<p>使用分片集群可以解决上述问题，如图:</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907861-9c7d4909-8f04-44fa-80ce-539e7c6de518.png" alt="image"> </p>
+<p>分片集群特征：</p>
+<ul>
+<li><p>集群中有多个master，每个master保存不同数据</p>
+</li>
+<li><p>每个master都可以有多个slave节点</p>
+</li>
+<li><p>master之间通过ping监测彼此健康状态</p>
+</li>
+<li><p>客户端请求可以访问集群任意节点，最终都会被转发到正确节点</p>
+</li>
+</ul>
+<p>具体搭建流程参考课前资料《Redis集群.md》：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907865-3accb8f6-9e61-46db-a625-94e1db1e158c.png" alt="image">  </p>
+<h2 id="4-2-散列插槽"><a href="#4-2-散列插槽" class="headerlink" title="4.2.散列插槽"></a>4.2.散列插槽</h2><h3 id="4-2-1-插槽原理"><a href="#4-2-1-插槽原理" class="headerlink" title="4.2.1.插槽原理"></a>4.2.1.插槽原理</h3><p>Redis会把每一个master节点映射到0~16383共16384个插槽（hash slot）上，查看集群信息时就能看到：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907872-221dd7e8-d854-4c12-a3e9-1400165b6761.png" alt="image"></p>
+<p>数据key不是与节点绑定，而是与插槽绑定。redis会根据key的有效部分计算插槽值，分两种情况：</p>
+<ul>
+<li>key中包含”{}”，且“{}”中至少包含1个字符，“{}”中的部分是有效部分</li>
+<li>key中不包含“{}”，整个key都是有效部分</li>
+</ul>
+<p>例如：key是num，那么就根据num计算，如果是{itcast}num，则根据itcast计算。计算方式是利用CRC16算法得到一个hash值，然后对16384取余，得到的结果就是slot值。</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907877-116fde3f-186e-49d1-83e3-1738d89db869.png" alt="image"> </p>
+<p>如图，在7001这个节点执行set a 1时，对a做hash运算，对16384取余，得到的结果是15495，因此要存储到103节点。</p>
+<p>到了7003后，执行<code>get num</code>时，对num做hash运算，对16384取余，得到的结果是2765，因此需要切换到7001节点</p>
+<h3 id="4-2-1-小结"><a href="#4-2-1-小结" class="headerlink" title="4.2.1.小结"></a>4.2.1.小结</h3><p>Redis如何判断某个key应该在哪个实例？</p>
+<ul>
+<li>将16384个插槽分配到不同的实例</li>
+<li>根据key的有效部分计算哈希值，对16384取余</li>
+<li>余数作为插槽，寻找插槽所在实例即可</li>
+</ul>
+<p>如何将同一类数据固定的保存在同一个Redis实例？</p>
+<ul>
+<li>这一类数据使用相同的有效部分，例如key都以{typeId}为前缀</li>
+</ul>
+<h2 id="4-3-集群伸缩"><a href="#4-3-集群伸缩" class="headerlink" title="4.3.集群伸缩"></a>4.3.集群伸缩</h2><p>redis-cli –cluster提供了很多操作集群的命令，可以通过下面方式查看：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907882-cfc43bcf-b8ef-4af7-a39e-713e5be1bd5a.png" alt="image"></p>
+<p>比如，添加节点的命令：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907885-85080499-bbcf-42e0-a842-ccfc4e193812.png" alt="image"></p>
+<h3 id="4-3-1-需求分析"><a href="#4-3-1-需求分析" class="headerlink" title="4.3.1.需求分析"></a>4.3.1.需求分析</h3><p>需求：向集群中添加一个新的master节点，并向其中存储 num &#x3D; 10</p>
+<ul>
+<li>启动一个新的redis实例，端口为7004</li>
+<li>添加7004到之前的集群，并作为一个master节点</li>
+<li>给7004节点分配插槽，使得num这个key可以存储到7004实例</li>
+</ul>
+<p>这里需要两个新的功能：</p>
+<ul>
+<li>添加一个节点到集群中</li>
+<li>将部分插槽分配到新插槽</li>
+</ul>
+<h3 id="4-3-2-创建新的redis实例"><a href="#4-3-2-创建新的redis实例" class="headerlink" title="4.3.2.创建新的redis实例"></a>4.3.2.创建新的redis实例</h3><p>创建一个文件夹：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> 7004</span><br></pre></td></tr></table></figure>
+
+<p>拷贝配置文件：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> redis.conf /7004</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sed /s/6379/7004/g 7004/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-server 7004/redis.conf</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-3-添加新节点到redis"><a href="#4-3-3-添加新节点到redis" class="headerlink" title="4.3.3.添加新节点到redis"></a>4.3.3.添加新节点到redis</h3><p>添加节点的语法如下：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907892-e801ac94-4235-484a-8f46-6fad585edcc3.png" alt="image"></p>
+<p>执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli --cluster add-node  192.168.150.101:7004 192.168.150.101:7001</span><br></pre></td></tr></table></figure>
+
+
+
+<p>通过命令查看集群状态：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli -p 7001 cluster nodes</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如图，7004加入了集群，并且默认是一个master节点：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907899-17c7ce45-551f-4f95-8106-17562432ded0.png" alt="image"></p>
+<p>但是，可以看到7004节点的插槽数量为0，因此没有任何数据可以存储到7004上</p>
+<h3 id="4-3-4-转移插槽"><a href="#4-3-4-转移插槽" class="headerlink" title="4.3.4.转移插槽"></a>4.3.4.转移插槽</h3><p>我们要将num存储到7004节点，因此需要先看看num的插槽是多少：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907907-f89ae593-83af-439f-b77d-2d3d37e94381.png" alt="image"></p>
+<p>如上图所示，num的插槽为2765.</p>
+<p>我们可以将0~3000的插槽从7001转移到7004，命令格式如下：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907914-eff1b777-01ec-47b2-ab0c-b6ad29e70b37.png" alt="image"></p>
+<p>具体命令如下：</p>
+<p>建立连接：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907919-f9dace02-63e3-496d-8244-6be9b9d38a1b.png" alt="image"></p>
+<p>得到下面的反馈：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907926-33241585-64f9-4b4f-a563-51727d75d1cd.png" alt="image"></p>
+<p>询问要移动多少个插槽，我们计划是3000个：</p>
+<p>新的问题来了：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907929-29ddbfbb-1465-4052-9263-d4e93c47ef77.png" alt="image"></p>
+<p>那个node来接收这些插槽？？</p>
+<p>显然是7004，那么7004节点的id是多少呢？</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907930-860b3c1a-4960-409b-84c4-ef75aa06f047.png" alt="image"></p>
+<p>复制这个id，然后拷贝到刚才的控制台后：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907937-e75fcf2b-d3a2-420a-aad2-81609a9b3a44.png" alt="image"></p>
+<p>这里询问，你的插槽是从哪里移动过来的？</p>
+<ul>
+<li>all：代表全部，也就是三个节点各转移一部分</li>
+<li>具体的id：目标节点的id</li>
+<li>done：没有了</li>
+</ul>
+<p>这里我们要从7001获取，因此填写7001的id：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907939-87eec492-a384-4104-ae13-a65ef951aef5.png" alt="image"></p>
+<p>填完后，点击done，这样插槽转移就准备好了：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907947-2a9608bd-b363-46da-b75c-a9f0c5ae2320.png" alt="image"></p>
+<p>确认要转移吗？输入yes：</p>
+<p>然后，通过命令查看结果：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907948-d18325d3-5a95-4525-b4c2-68479360b0ed.png" alt="image"> </p>
+<p>可以看到： </p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907951-30e8cd29-1066-4fe0-86b4-67bdc51e9d7f.png" alt="image"></p>
+<p>目的达成。</p>
+<h2 id="4-4-故障转移"><a href="#4-4-故障转移" class="headerlink" title="4.4.故障转移"></a>4.4.故障转移</h2><p>集群初识状态是这样的：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907955-5d3c6ec9-fa30-4fe2-87c6-6b4099457ce4.png" alt="image"></p>
+<p>其中7001、7002、7003都是master，我们计划让7002宕机。</p>
+<h3 id="4-4-1-自动故障转移"><a href="#4-4-1-自动故障转移" class="headerlink" title="4.4.1.自动故障转移"></a>4.4.1.自动故障转移</h3><p>当集群中有一个master宕机会发生什么呢？</p>
+<p>直接停止一个redis实例，例如7002：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">redis-cli -p 7002 shutdown</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1）首先是该实例与其它实例失去连接</p>
+<p>2）然后是疑似宕机：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219907959-0bf1b057-e671-47dc-a140-656ab9fd812d.png" alt="image"></p>
+<p>3）最后是确定下线，自动提升一个slave为新的master：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922694-b4a2b55c-ece5-41ac-8c17-b848adb78c11.png" alt="image"></p>
+<p>4）当7002再次启动，就会变为一个slave节点了：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922702-15f4dfa9-849c-473c-b57c-7f9ae8c7dc9d.png" alt="image"></p>
+<h3 id="4-4-2-手动故障转移"><a href="#4-4-2-手动故障转移" class="headerlink" title="4.4.2.手动故障转移"></a>4.4.2.手动故障转移</h3><p>利用cluster failover命令可以手动让集群中的某个master宕机，切换到执行cluster failover命令的这个slave节点，实现无感知的数据迁移。其流程如下：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922718-3db4e04d-bc26-49d9-abf6-6538ac597d7f.png" alt="image"></p>
+<p>这种failover命令可以指定三种模式：</p>
+<ul>
+<li>缺省：默认的流程，如图1~6歩</li>
+<li>force：省略了对offset的一致性校验</li>
+<li>takeover：直接执行第5歩，忽略数据一致性、忽略master状态和其它master的意见</li>
+</ul>
+<p><strong>案例需求</strong>：在7002这个slave节点执行手动故障转移，重新夺回master地位</p>
+<p>步骤如下：</p>
+<p>1）利用redis-cli连接7002这个节点</p>
+<p>2）执行cluster failover命令</p>
+<p>如图：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922726-ad0892cc-7807-44d6-9f50-489884f30354.png" alt="image"></p>
+<p>效果：</p>
+<p><img src="https://user-images.githubusercontent.com/102344939/219922732-89a6ed6c-f952-45b5-aaf7-0a464824d2e2.png" alt="image"></p>
+<h2 id="4-5-RedisTemplate访问分片集群"><a href="#4-5-RedisTemplate访问分片集群" class="headerlink" title="4.5.RedisTemplate访问分片集群"></a>4.5.RedisTemplate访问分片集群</h2><p>RedisTemplate底层同样基于lettuce实现了分片集群的支持，而使用的步骤与哨兵模式基本一致：</p>
+<p>1）引入redis的starter依赖</p>
+<p>2）配置分片集群地址</p>
+<p>3）配置读写分离</p>
+<p>与哨兵模式相比，其中只有分片集群的配置方式略有差异，如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">cluster:</span></span><br><span class="line">      <span class="attr">nodes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7001</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7002</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:7003</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8001</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8002</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span><span class="string">:8003</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>分布式缓存</category>
+      </categories>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
-    <url>/2023/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4/</url>
+    <url>/2022/08/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BF%9D%E6%8A%A4/</url>
     <content><![CDATA[<h1 id="微服务保护"><a href="#微服务保护" class="headerlink" title="微服务保护"></a>微服务保护</h1><h1 id="1-初识Sentinel"><a href="#1-初识Sentinel" class="headerlink" title="1.初识Sentinel"></a>1.初识Sentinel</h1><h2 id="1-1-雪崩问题及解决方案"><a href="#1-1-雪崩问题及解决方案" class="headerlink" title="1.1.雪崩问题及解决方案"></a>1.1.雪崩问题及解决方案</h2><h3 id="1-1-1-雪崩问题"><a href="#1-1-1-雪崩问题" class="headerlink" title="1.1.1.雪崩问题"></a>1.1.1.雪崩问题</h3><span id="more"></span>
 
 
@@ -6777,551 +6864,8 @@
 <h2 id="5-2-实现push模式"><a href="#5-2-实现push模式" class="headerlink" title="5.2.实现push模式"></a>5.2.实现push模式</h2><p>详细步骤可以参考课前资料的《sentinel规则持久化》：</p>
 <p><img src="/assets/image-20210716154255466.png" alt="image-20210716154255466"></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/02/18/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</url>
-    <content><![CDATA[<h1 id="SpringCloud实用篇02"><a href="#SpringCloud实用篇02" class="headerlink" title="SpringCloud实用篇02"></a>SpringCloud实用篇02</h1><h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Nacos配置管理"><a href="#1-Nacos配置管理" class="headerlink" title="1.Nacos配置管理"></a>1.Nacos配置管理</h1><p>Nacos除了可以做注册中心，同样可以做配置管理来使用。</p>
-<h2 id="1-1-统一配置管理"><a href="#1-1-统一配置管理" class="headerlink" title="1.1.统一配置管理"></a>1.1.统一配置管理</h2><p>当微服务部署的实例越来越多，达到数十、数百时，逐个修改微服务配置就会让人抓狂，而且很容易出错。我们需要一种统一配置管理方案，可以集中管理所有实例的配置。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872114-0003e8f8-223a-4d1a-8248-3733dfeca93e.png" alt="image"></p>
-<p>Nacos一方面可以将配置集中管理，另一方可以在配置变更时，及时通知微服务，实现配置的热更新。</p>
-<h3 id="1-1-1-在nacos中添加配置文件"><a href="#1-1-1-在nacos中添加配置文件" class="headerlink" title="1.1.1.在nacos中添加配置文件"></a>1.1.1.在nacos中添加配置文件</h3><p>如何在nacos中管理配置呢？</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872133-808f0f20-8769-4bc8-9c22-7244092a58b7.png" alt="image"></p>
-<p>然后在弹出的表单中，填写配置信息：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872150-5bc43c85-55de-445f-806a-fb3a0b275046.png" alt="image"></p>
-<blockquote>
-<p>注意：项目的核心配置，需要热更新的配置才有放到nacos管理的必要。基本不会变更的一些配置还是保存在微服务本地比较好。</p>
-</blockquote>
-<h3 id="1-1-2-从微服务拉取配置"><a href="#1-1-2-从微服务拉取配置" class="headerlink" title="1.1.2.从微服务拉取配置"></a>1.1.2.从微服务拉取配置</h3><p>微服务要拉取nacos中管理的配置，并且与本地的application.yml配置合并，才能完成项目启动。</p>
-<p>但如果尚未读取application.yml，又如何得知nacos地址呢？</p>
-<p>因此spring引入了一种新的配置文件：bootstrap.yaml文件，会在application.yml之前被读取，流程如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872167-d081f81a-ac49-4e0e-9eba-1ac4a00575bb.png" alt="image"></p>
-<p>1）引入nacos-config依赖</p>
-<p>首先，在user-service服务中，引入nacos-config的客户端依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos配置管理依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2）添加bootstrap.yaml</p>
-<p>然后，在user-service中添加一个bootstrap.yaml文件，内容如下：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment">#开发环境，这里是dev </span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># Nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br></pre></td></tr></table></figure>
-
-<p>这里会根据spring.cloud.nacos.server-addr获取nacos地址，再根据</p>
-<p><code>$&#123;spring.application.name&#125;-$&#123;spring.profiles.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</code>作为文件id，来读取配置。</p>
-<p>本例中，就是去读取<code>userservice-dev.yaml</code>：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872183-eef1e0a9-6e55-4566-b398-ad86942f6252.png" alt="image"></p>
-<p>3）读取nacos配置</p>
-<p>在user-service中的UserController中添加业务逻辑，读取pattern.dateformat配置：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872195-57fad4dd-748a-489c-95bf-39ec0933a766.png" alt="image"></p>
-<p>完整代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.service.UserService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;pattern.dateformat&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;now&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">now</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在页面访问，可以看到效果：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872207-12b5f7fa-4924-4373-bc00-f42eec982974.png" alt="image"></p>
-<h2 id="1-2-配置热更新"><a href="#1-2-配置热更新" class="headerlink" title="1.2.配置热更新"></a>1.2.配置热更新</h2><p>我们最终的目的，是修改nacos中的配置后，微服务中无需重启即可让配置生效，也就是<strong>配置热更新</strong>。</p>
-<p>要实现配置热更新，可以使用两种方式：</p>
-<h3 id="1-2-1-方式一"><a href="#1-2-1-方式一" class="headerlink" title="1.2.1.方式一"></a>1.2.1.方式一</h3><p>在@Value注入的变量所在类上添加注解@RefreshScope：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872216-1bcc4c77-e38d-430b-a7b4-9978e55dc993.png" alt="image"></p>
-<h3 id="1-2-2-方式二"><a href="#1-2-2-方式二" class="headerlink" title="1.2.2.方式二"></a>1.2.2.方式二</h3><p>使用@ConfigurationProperties注解代替@Value注解。</p>
-<p>在user-service服务中，添加一个类，读取patterrn.dateformat属性：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;pattern&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PatternProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在UserController中使用这个类代替@Value：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872221-ea88665b-e1dd-49ec-8b5d-c283e9bbbeeb.png" alt="image"></p>
-<p>完整代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.user.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.config.PatternProperties;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.user.service.UserService;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> PatternProperties patternProperties;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;now&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">now</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(patternProperties.getDateformat()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="1-3-配置共享"><a href="#1-3-配置共享" class="headerlink" title="1.3.配置共享"></a>1.3.配置共享</h2><p>其实微服务启动时，会去nacos读取多个配置文件，例如：</p>
-<ul>
-<li><p><code>[spring.application.name]-[spring.profiles.active].yaml</code>，例如：userservice-dev.yaml</p>
-</li>
-<li><p><code>[spring.application.name].yaml</code>，例如：userservice.yaml</p>
-</li>
-</ul>
-<p>而<code>[spring.application.name].yaml</code>不包含环境，因此可以被多个环境共享。</p>
-<p>下面我们通过案例来测试配置共享</p>
-<h3 id="1）添加一个环境共享配置"><a href="#1）添加一个环境共享配置" class="headerlink" title="1）添加一个环境共享配置"></a>1）添加一个环境共享配置</h3><p>我们在nacos中添加一个userservice.yaml文件：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872230-5ad88057-da55-4874-a268-6b24023ef898.png" alt="image"></p>
-<h3 id="2）在user-service中读取共享配置"><a href="#2）在user-service中读取共享配置" class="headerlink" title="2）在user-service中读取共享配置"></a>2）在user-service中读取共享配置</h3><p>在user-service服务中，修改PatternProperties类，读取新添加的属性：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872241-3ad329b6-4185-413d-b88c-8df2b0377bb2.png" alt="image"></p>
-<p>在user-service服务中，修改UserController，添加一个方法：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872253-02953581-14c1-4583-aeec-dbed6c679a07.png" alt="image"></p>
-<h3 id="3）运行两个UserApplication，使用不同的profile"><a href="#3）运行两个UserApplication，使用不同的profile" class="headerlink" title="3）运行两个UserApplication，使用不同的profile"></a>3）运行两个UserApplication，使用不同的profile</h3><p>修改UserApplication2这个启动项，改变其profile值：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872262-1f1473ab-6c2c-444f-85fb-00118e0d55cb.png" alt="image"></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872278-c8c32698-d88a-4e4e-8fbb-f18aa68dd358.png" alt="image"></p>
-<p>这样，UserApplication(8081)使用的profile是dev，UserApplication2(8082)使用的profile是test。</p>
-<p>启动UserApplication和UserApplication2</p>
-<p>访问<a href="http://localhost:8081/user/prop%EF%BC%8C%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:8081/user/prop，结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872293-2c774bf9-916a-4003-bec9-32544811b91e.png" alt="image"></p>
-<p>访问<a href="http://localhost:8082/user/prop%EF%BC%8C%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:8082/user/prop，结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872301-b8045519-770d-46a6-8ba3-1625a993454c.png" alt="image"></p>
-<p>可以看出来，不管是dev，还是test环境，都读取到了envSharedValue这个属性的值。</p>
-<h3 id="4）配置共享的优先级"><a href="#4）配置共享的优先级" class="headerlink" title="4）配置共享的优先级"></a>4）配置共享的优先级</h3><p>当nacos、服务本地同时出现相同属性时，优先级有高低之分：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872311-b2a8ad72-5916-4677-b71a-5e224f3bd538.png" alt="image"></p>
-<h2 id="1-4-搭建Nacos集群"><a href="#1-4-搭建Nacos集群" class="headerlink" title="1.4.搭建Nacos集群"></a>1.4.搭建Nacos集群</h2><p>Nacos生产环境下一定要部署为集群状态，部署方式参考课前资料中的文档：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872332-089375fb-d56d-4e53-9c45-d31eed1143dd.png" alt="image"></p>
-<h1 id="2-Feign远程调用"><a href="#2-Feign远程调用" class="headerlink" title="2.Feign远程调用"></a>2.Feign远程调用</h1><p>先来看我们以前利用RestTemplate发起远程调用的代码：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872345-0d0967a1-774e-4d88-9376-8a8974539435.png" alt="image"></p>
-<p>存在下面的问题：</p>
-<p>•代码可读性差，编程体验不统一</p>
-<p>•参数复杂URL难以维护</p>
-<p>Feign是一个声明式的http客户端，官方地址：<a href="https://github.com/OpenFeign/feign">https://github.com/OpenFeign/feign</a></p>
-<p>其作用就是帮助我们优雅的实现http请求的发送，解决上面提到的问题。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872355-ed05d055-5d7a-428b-abd9-833f9337c8f5.png" alt="image"></p>
-<h2 id="2-1-Feign替代RestTemplate"><a href="#2-1-Feign替代RestTemplate" class="headerlink" title="2.1.Feign替代RestTemplate"></a>2.1.Feign替代RestTemplate</h2><p>Fegin的使用步骤如下：</p>
-<h3 id="1）引入依赖"><a href="#1）引入依赖" class="headerlink" title="1）引入依赖"></a>1）引入依赖</h3><p>我们在order-service服务的pom文件中引入feign的依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2）添加注解"><a href="#2）添加注解" class="headerlink" title="2）添加注解"></a>2）添加注解</h3><p>在order-service的启动类添加注解开启Feign的功能：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872367-60380828-924f-4b1a-8a5d-853a8a7bd35e.png" alt="image"></p>
-<h3 id="3）编写Feign的客户端"><a href="#3）编写Feign的客户端" class="headerlink" title="3）编写Feign的客户端"></a>3）编写Feign的客户端</h3><p>在order-service中新建一个接口，内容如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.order.client;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.itcast.order.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FeignClient(&quot;userservice&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">findById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个客户端主要是基于SpringMVC的注解来声明远程调用的信息，比如：</p>
-<ul>
-<li>服务名称：userservice</li>
-<li>请求方式：GET</li>
-<li>请求路径：&#x2F;user&#x2F;{id}</li>
-<li>请求参数：Long id</li>
-<li>返回值类型：User</li>
-</ul>
-<p>这样，Feign就可以帮助我们发送http请求，无需自己使用RestTemplate来发送了。</p>
-<h3 id="4）测试"><a href="#4）测试" class="headerlink" title="4）测试"></a>4）测试</h3><p>修改order-service中的OrderService类中的queryOrderById方法，使用Feign客户端代替RestTemplate：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872385-80a4072b-f068-466f-9c51-b436f5939b1e.png" alt="image"></p>
-<p>是不是看起来优雅多了。</p>
-<h3 id="5）总结"><a href="#5）总结" class="headerlink" title="5）总结"></a>5）总结</h3><p>使用Feign的步骤：</p>
-<p>① 引入依赖</p>
-<p>② 添加@EnableFeignClients注解</p>
-<p>③ 编写FeignClient接口</p>
-<p>④ 使用FeignClient中定义的方法代替RestTemplate</p>
-<h2 id="2-2-自定义配置"><a href="#2-2-自定义配置" class="headerlink" title="2.2.自定义配置"></a>2.2.自定义配置</h2><p>Feign可以支持很多的自定义配置，如下表所示：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>作用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>feign.Logger.Level</strong></td>
-<td>修改日志级别</td>
-<td>包含四种不同的级别：NONE、BASIC、HEADERS、FULL</td>
-</tr>
-<tr>
-<td>feign.codec.Decoder</td>
-<td>响应结果的解析器</td>
-<td>http远程调用的结果做解析，例如解析json字符串为java对象</td>
-</tr>
-<tr>
-<td>feign.codec.Encoder</td>
-<td>请求参数编码</td>
-<td>将请求参数编码，便于通过http请求发送</td>
-</tr>
-<tr>
-<td>feign. Contract</td>
-<td>支持的注解格式</td>
-<td>默认是SpringMVC的注解</td>
-</tr>
-<tr>
-<td>feign. Retryer</td>
-<td>失败重试机制</td>
-<td>请求失败的重试机制，默认是没有，不过会使用Ribbon的重试</td>
-</tr>
-</tbody></table>
-<p>一般情况下，默认值就能满足我们使用，如果要自定义时，只需要创建自定义的@Bean覆盖默认Bean即可。</p>
-<p>下面以日志为例来演示如何自定义配置。</p>
-<h3 id="2-2-1-配置文件方式"><a href="#2-2-1-配置文件方式" class="headerlink" title="2.2.1.配置文件方式"></a>2.2.1.配置文件方式</h3><p>基于配置文件修改feign的日志级别可以针对单个服务：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span>  </span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span> </span><br><span class="line">      <span class="attr">userservice:</span> <span class="comment"># 针对某个微服务的配置</span></span><br><span class="line">        <span class="attr">loggerLevel:</span> <span class="string">FULL</span> <span class="comment">#  日志级别 </span></span><br></pre></td></tr></table></figure>
-
-<p>也可以针对所有服务：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span>  </span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span> </span><br><span class="line">      <span class="attr">default:</span> <span class="comment"># 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置</span></span><br><span class="line">        <span class="attr">loggerLevel:</span> <span class="string">FULL</span> <span class="comment">#  日志级别 </span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>而日志的级别分为四种：</p>
-<ul>
-<li>NONE：不记录任何日志信息，这是默认值。</li>
-<li>BASIC：仅记录请求的方法，URL以及响应状态码和执行时间</li>
-<li>HEADERS：在BASIC的基础上，额外记录了请求和响应的头信息</li>
-<li>FULL：记录所有请求和响应的明细，包括头信息、请求体、元数据。</li>
-</ul>
-<h3 id="2-2-2-Java代码方式"><a href="#2-2-2-Java代码方式" class="headerlink" title="2.2.2.Java代码方式"></a>2.2.2.Java代码方式</h3><p>也可以基于Java代码来修改日志级别，先声明一个类，然后声明一个Logger.Level的对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DefaultFeignConfiguration</span>  &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level <span class="title function_">feignLogLevel</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.BASIC; <span class="comment">// 日志级别为BASIC</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>如果要<strong>全局生效</strong>，将其放到启动类的@EnableFeignClients这个注解中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(defaultConfiguration = DefaultFeignConfiguration .class)</span> </span><br></pre></td></tr></table></figure>
-
-
-
-<p>如果是<strong>局部生效</strong>，则把它放到对应的@FeignClient这个注解中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;, configuration = DefaultFeignConfiguration .class)</span> </span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h2 id="2-3-Feign使用优化"><a href="#2-3-Feign使用优化" class="headerlink" title="2.3.Feign使用优化"></a>2.3.Feign使用优化</h2><p>Feign底层发起http请求，依赖于其它的框架。其底层客户端实现包括：</p>
-<p>•URLConnection：默认实现，不支持连接池</p>
-<p>•Apache HttpClient ：支持连接池</p>
-<p>•OKHttp：支持连接池</p>
-<p>因此提高Feign的性能主要手段就是使用<strong>连接池</strong>代替默认的URLConnection。</p>
-<p>这里我们用Apache的HttpClient来演示。</p>
-<p>1）引入依赖</p>
-<p>在order-service的pom文件中引入Apache的HttpClient依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--httpClient的依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>2）配置连接池</p>
-<p>在order-service的application.yml中添加配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="attr">default:</span> <span class="comment"># default全局的配置</span></span><br><span class="line">        <span class="attr">loggerLevel:</span> <span class="string">BASIC</span> <span class="comment"># 日志级别，BASIC就是基本的请求和响应信息</span></span><br><span class="line">  <span class="attr">httpclient:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 开启feign对HttpClient的支持</span></span><br><span class="line">    <span class="attr">max-connections:</span> <span class="number">200</span> <span class="comment"># 最大的连接数</span></span><br><span class="line">    <span class="attr">max-connections-per-route:</span> <span class="number">50</span> <span class="comment"># 每个路径的最大连接数</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>接下来，在FeignClientFactoryBean中的loadBalance方法中打断点：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872393-4d99bf37-f0f9-4937-b57f-6101229191b6.png" alt="image"></p>
-<p>Debug方式启动order-service服务，可以看到这里的client，底层就是Apache HttpClient：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872405-8287d874-2b8f-4b24-b135-a79edd5c0382.png" alt="image"></p>
-<p>总结，Feign的优化：</p>
-<p>1.日志级别尽量用basic</p>
-<p>2.使用HttpClient或OKHttp代替URLConnection</p>
-<p>①  引入feign-httpClient依赖</p>
-<p>②  配置文件开启httpClient功能，设置连接池参数</p>
-<h2 id="2-4-最佳实践"><a href="#2-4-最佳实践" class="headerlink" title="2.4.最佳实践"></a>2.4.最佳实践</h2><p>所谓最近实践，就是使用过程中总结的经验，最好的一种使用方式。</p>
-<p>自习观察可以发现，Feign的客户端与服务提供者的controller代码非常相似：</p>
-<p>feign客户端：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872414-6af3e726-95ca-4f22-87e0-2a4cc8085bfa.png" alt="image"></p>
-<p>UserController：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872428-68decd8e-c4ab-4eab-9983-4ccff763f654.png" alt="image"></p>
-<p>有没有一种办法简化这种重复的代码编写呢？</p>
-<h3 id="2-4-1-继承方式"><a href="#2-4-1-继承方式" class="headerlink" title="2.4.1.继承方式"></a>2.4.1.继承方式</h3><p>一样的代码可以通过继承来共享：</p>
-<p>1）定义一个API接口，利用定义方法，并基于SpringMVC注解做声明。</p>
-<p>2）Feign客户端和Controller都集成改接口</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872439-8dde8041-abe7-4ffb-8f20-9d117370c267.png" alt="image"></p>
-<p>优点：</p>
-<ul>
-<li>简单</li>
-<li>实现了代码共享</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li><p>服务提供方、服务消费方紧耦合</p>
-</li>
-<li><p>参数列表中的注解映射并不会继承，因此Controller中必须再次声明方法、参数列表、注解</p>
-</li>
-</ul>
-<h3 id="2-4-2-抽取方式"><a href="#2-4-2-抽取方式" class="headerlink" title="2.4.2.抽取方式"></a>2.4.2.抽取方式</h3><p>将Feign的Client抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
-<p>例如，将UserClient、User、Feign的默认配置都抽取到一个feign-api包中，所有微服务引用该依赖包，即可直接使用。</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872452-6e0c010d-ca71-40e9-8526-c989cc8385c1.png" alt="image"></p>
-<h3 id="2-4-3-实现基于抽取的最佳实践"><a href="#2-4-3-实现基于抽取的最佳实践" class="headerlink" title="2.4.3.实现基于抽取的最佳实践"></a>2.4.3.实现基于抽取的最佳实践</h3><h4 id="1）抽取"><a href="#1）抽取" class="headerlink" title="1）抽取"></a>1）抽取</h4><p>首先创建一个module，命名为feign-api：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872461-030a49b3-c828-4379-a3d5-31be2c7bb5e7.png" alt="image"></p>
-<p>项目结构：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872472-83ec25fd-eb2f-446e-b76d-a6592813c180.png" alt="image"></p>
-<p>在feign-api中然后引入feign的starter依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后，order-service中编写的UserClient、User、DefaultFeignConfiguration都复制到feign-api项目中</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872481-d038d1a8-a4a1-4197-b093-7c8239101581.png" alt="image"></p>
-<h4 id="2）在order-service中使用feign-api"><a href="#2）在order-service中使用feign-api" class="headerlink" title="2）在order-service中使用feign-api"></a>2）在order-service中使用feign-api</h4><p>首先，删除order-service中的UserClient、User、DefaultFeignConfiguration等类或接口。</p>
-<p>在order-service的pom文件中中引入feign-api的依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.itcast.demo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>修改order-service中的所有与上述三个组件有关的导包部分，改成导入feign-api中的包</p>
-<h4 id="3）重启测试"><a href="#3）重启测试" class="headerlink" title="3）重启测试"></a>3）重启测试</h4><p>重启后，发现服务报错了：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872495-92124b68-790e-4978-b79e-08112a33eb23.png" alt="image"></p>
-<p>这是因为UserClient现在在cn.itcast.feign.clients包下，</p>
-<p>而order-service的@EnableFeignClients注解是在cn.itcast.order包下，不在同一个包，无法扫描到UserClient。</p>
-<h4 id="4）解决扫描包问题"><a href="#4）解决扫描包问题" class="headerlink" title="4）解决扫描包问题"></a>4）解决扫描包问题</h4><p>方式一：</p>
-<p>指定Feign应该扫描的包：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(basePackages = &quot;cn.itcast.feign.clients&quot;)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>方式二：</p>
-<p>指定需要加载的Client接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(clients = &#123;UserClient.class&#125;)</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-<h1 id="3-Gateway服务网关"><a href="#3-Gateway服务网关" class="headerlink" title="3.Gateway服务网关"></a>3.Gateway服务网关</h1><p>Spring Cloud Gateway 是 Spring Cloud 的一个全新项目，该项目是基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等响应式编程和事件流技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。</p>
-<h2 id="3-1-为什么需要网关"><a href="#3-1-为什么需要网关" class="headerlink" title="3.1.为什么需要网关"></a>3.1.为什么需要网关</h2><p>Gateway网关是我们服务的守门神，所有微服务的统一入口。</p>
-<p>网关的<strong>核心功能特性</strong>：</p>
-<ul>
-<li>请求路由</li>
-<li>权限控制</li>
-<li>限流</li>
-</ul>
-<p>架构图：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872511-f182e60a-6635-49da-81d3-2f404d7486ae.png" alt="image"></p>
-<p><strong>权限控制</strong>：网关作为微服务入口，需要校验用户是是否有请求资格，如果没有则进行拦截。</p>
-<p><strong>路由和负载均衡</strong>：一切请求都必须先经过gateway，但网关不处理业务，而是根据某种规则，把请求转发到某个微服务，这个过程叫做路由。当然路由的目标服务有多个时，还需要做负载均衡。</p>
-<p><strong>限流</strong>：当请求流量过高时，在网关中按照下流的微服务能够接受的速度来放行请求，避免服务压力过大。</p>
-<p>在SpringCloud中网关的实现包括两种：</p>
-<ul>
-<li>gateway</li>
-<li>zuul</li>
-</ul>
-<p>Zuul是基于Servlet的实现，属于阻塞式编程。而SpringCloudGateway则是基于Spring5中提供的WebFlux，属于响应式编程的实现，具备更好的性能。</p>
-<h2 id="3-2-gateway快速入门"><a href="#3-2-gateway快速入门" class="headerlink" title="3.2.gateway快速入门"></a>3.2.gateway快速入门</h2><p>下面，我们就演示下网关的基本路由功能。基本步骤如下：</p>
-<ol>
-<li>创建SpringBoot工程gateway，引入网关依赖</li>
-<li>编写启动类</li>
-<li>编写基础配置和路由规则</li>
-<li>启动网关服务进行测试</li>
-</ol>
-<h3 id="1）创建gateway服务，引入依赖"><a href="#1）创建gateway服务，引入依赖" class="headerlink" title="1）创建gateway服务，引入依赖"></a>1）创建gateway服务，引入依赖</h3><p>创建服务：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872518-a1d93619-a877-4cce-a34a-269685d59258.png" alt="image"></p>
-<p>引入依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--网关--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--nacos服务发现依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2）编写启动类"><a href="#2）编写启动类" class="headerlink" title="2）编写启动类"></a>2）编写启动类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.gateway;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GatewayApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(GatewayApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3）编写基础配置和路由规则"><a href="#3）编写基础配置和路由规则" class="headerlink" title="3）编写基础配置和路由规则"></a>3）编写基础配置和路由规则</h3><p>创建application.yml文件，内容如下：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10010</span> <span class="comment"># 网关端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span> <span class="comment"># 网关路由配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由id，自定义，只要唯一即可</span></span><br><span class="line">          <span class="comment"># uri: http://127.0.0.1:8081 # 路由的目标地址 http就是固定地址</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment"># 路由的目标地址 lb就是负载均衡，后面跟服务名称</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，也就是判断请求是否符合路由规则的条件</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 这个是按照路径匹配，只要以/user/开头就符合要求</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>我们将符合<code>Path</code> 规则的一切请求，都代理到 <code>uri</code>参数指定的地址。</p>
-<p>本例中，我们将 <code>/user/**</code>开头的请求，代理到<code>lb://userservice</code>，lb是负载均衡，根据服务名拉取服务列表，实现负载均衡。</p>
-<h3 id="4）重启测试"><a href="#4）重启测试" class="headerlink" title="4）重启测试"></a>4）重启测试</h3><p>重启网关，访问<a href="http://localhost:10010/user/1%E6%97%B6%EF%BC%8C%E7%AC%A6%E5%90%88%60/user/**%60%E8%A7%84%E5%88%99%EF%BC%8C%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0uri%EF%BC%9Ahttp://userservice/user/1%EF%BC%8C%E5%BE%97%E5%88%B0%E4%BA%86%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:10010/user/1时，符合`/user/**`规则，请求转发到uri：http://userservice/user/1，得到了结果：</a></p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872525-d34f9c9d-65c9-4b5f-b6a5-f23d9ff0ce1f.png" alt="image"></p>
-<h3 id="5）网关路由的流程图"><a href="#5）网关路由的流程图" class="headerlink" title="5）网关路由的流程图"></a>5）网关路由的流程图</h3><p>整个访问的流程如下：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872539-4f76900a-3bce-42c7-98e5-a1a214bcaedd.png" alt="image"></p>
-<p>总结：</p>
-<p>网关搭建步骤：</p>
-<ol>
-<li><p>创建项目，引入nacos服务发现和gateway依赖</p>
-</li>
-<li><p>配置application.yml，包括服务基本信息、nacos地址、路由</p>
-</li>
-</ol>
-<p>路由配置包括：</p>
-<ol>
-<li><p>路由id：路由的唯一标示</p>
-</li>
-<li><p>路由目标（uri）：路由的目标地址，http代表固定地址，lb代表根据服务名负载均衡</p>
-</li>
-<li><p>路由断言（predicates）：判断路由的规则，</p>
-</li>
-<li><p>路由过滤器（filters）：对请求或响应做处理</p>
-</li>
-</ol>
-<p>接下来，就重点来学习路由断言和路由过滤器的详细知识</p>
-<h2 id="3-3-断言工厂"><a href="#3-3-断言工厂" class="headerlink" title="3.3.断言工厂"></a>3.3.断言工厂</h2><p>我们在配置文件中写的断言规则只是字符串，这些字符串会被Predicate Factory读取并处理，转变为路由判断的条件</p>
-<p>例如Path&#x3D;&#x2F;user&#x2F;**是按照路径匹配，这个规则是由</p>
-<p><code>org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory</code>类来</p>
-<p>处理的，像这样的断言工厂在SpringCloudGateway还有十几个:</p>
-<table>
-<thead>
-<tr>
-<th><strong>名称</strong></th>
-<th><strong>说明</strong></th>
-<th><strong>示例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>After</td>
-<td>是某个时间点后的请求</td>
-<td>-  After&#x3D;2037-01-20T17:42:47.789-07:00[America&#x2F;Denver]</td>
-</tr>
-<tr>
-<td>Before</td>
-<td>是某个时间点之前的请求</td>
-<td>-  Before&#x3D;2031-04-13T15:14:47.433+08:00[Asia&#x2F;Shanghai]</td>
-</tr>
-<tr>
-<td>Between</td>
-<td>是某两个时间点之前的请求</td>
-<td>-  Between&#x3D;2037-01-20T17:42:47.789-07:00[America&#x2F;Denver],  2037-01-21T17:42:47.789-07:00[America&#x2F;Denver]</td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>请求必须包含某些cookie</td>
-<td>- Cookie&#x3D;chocolate, ch.p</td>
-</tr>
-<tr>
-<td>Header</td>
-<td>请求必须包含某些header</td>
-<td>- Header&#x3D;X-Request-Id, \d+</td>
-</tr>
-<tr>
-<td>Host</td>
-<td>请求必须是访问某个host（域名）</td>
-<td>-  Host&#x3D;<strong>.somehost.org,</strong>.anotherhost.org</td>
-</tr>
-<tr>
-<td>Method</td>
-<td>请求方式必须是指定方式</td>
-<td>- Method&#x3D;GET,POST</td>
-</tr>
-<tr>
-<td>Path</td>
-<td>请求路径必须符合指定规则</td>
-<td>- Path&#x3D;&#x2F;red&#x2F;{segment},&#x2F;blue&#x2F;**</td>
-</tr>
-<tr>
-<td>Query</td>
-<td>请求参数必须包含指定参数</td>
-<td>- Query&#x3D;name, Jack或者-  Query&#x3D;name</td>
-</tr>
-<tr>
-<td>RemoteAddr</td>
-<td>请求者的ip必须是指定范围</td>
-<td>- RemoteAddr&#x3D;192.168.1.1&#x2F;24</td>
-</tr>
-<tr>
-<td>Weight</td>
-<td>权重处理</td>
-<td></td>
-</tr>
-</tbody></table>
-<p>我们只需要掌握Path这种路由工程就可以了。</p>
-<h2 id="3-4-过滤器工厂"><a href="#3-4-过滤器工厂" class="headerlink" title="3.4.过滤器工厂"></a>3.4.过滤器工厂</h2><p>GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872550-fe778a28-fa8f-4dfa-baa8-7c7f722f1845.png" alt="image"></p>
-<h3 id="3-4-1-路由过滤器的种类"><a href="#3-4-1-路由过滤器的种类" class="headerlink" title="3.4.1.路由过滤器的种类"></a>3.4.1.路由过滤器的种类</h3><p>Spring提供了31种不同的路由过滤器工厂。例如：</p>
-<table>
-<thead>
-<tr>
-<th><strong>名称</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AddRequestHeader</td>
-<td>给当前请求添加一个请求头</td>
-</tr>
-<tr>
-<td>RemoveRequestHeader</td>
-<td>移除请求中的一个请求头</td>
-</tr>
-<tr>
-<td>AddResponseHeader</td>
-<td>给响应结果中添加一个响应头</td>
-</tr>
-<tr>
-<td>RemoveResponseHeader</td>
-<td>从响应结果中移除有一个响应头</td>
-</tr>
-<tr>
-<td>RequestRateLimiter</td>
-<td>限制请求的流量</td>
-</tr>
-</tbody></table>
-<h3 id="3-4-2-请求头过滤器"><a href="#3-4-2-请求头过滤器" class="headerlink" title="3.4.2.请求头过滤器"></a>3.4.2.请求头过滤器</h3><p>下面我们以AddRequestHeader 为例来讲解。</p>
-<blockquote>
-<p><strong>需求</strong>：给所有进入userservice的请求添加一个请求头：Truth&#x3D;itcast is freaking awesome!</p>
-</blockquote>
-<p>只需要修改gateway服务的application.yml文件，添加路由过滤即可：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> </span><br><span class="line">        <span class="attr">uri:</span> <span class="string">lb://userservice</span> </span><br><span class="line">        <span class="attr">predicates:</span> </span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/user/**</span> </span><br><span class="line">        <span class="attr">filters:</span> <span class="comment"># 过滤器</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddRequestHeader=Truth,</span> <span class="string">Itcast</span> <span class="string">is</span> <span class="string">freaking</span> <span class="string">awesome!</span> <span class="comment"># 添加请求头</span></span><br></pre></td></tr></table></figure>
-
-<p>当前过滤器写在userservice路由下，因此仅仅对访问userservice的请求有效。</p>
-<h3 id="3-4-3-默认过滤器"><a href="#3-4-3-默认过滤器" class="headerlink" title="3.4.3.默认过滤器"></a>3.4.3.默认过滤器</h3><p>如果要对所有的路由都生效，则可以将过滤器工厂写到default下。格式如下：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> </span><br><span class="line">        <span class="attr">uri:</span> <span class="string">lb://userservice</span> </span><br><span class="line">        <span class="attr">predicates:</span> </span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/user/**</span></span><br><span class="line">      <span class="attr">default-filters:</span> <span class="comment"># 默认过滤项</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">AddRequestHeader=Truth,</span> <span class="string">Itcast</span> <span class="string">is</span> <span class="string">freaking</span> <span class="string">awesome!</span> </span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-4-4-总结"><a href="#3-4-4-总结" class="headerlink" title="3.4.4.总结"></a>3.4.4.总结</h3><p>过滤器的作用是什么？</p>
-<p>① 对路由的请求或响应做加工处理，比如添加请求头</p>
-<p>② 配置在路由下的过滤器只对当前路由的请求生效</p>
-<p>defaultFilters的作用是什么？</p>
-<p>① 对所有路由都生效的过滤器</p>
-<h2 id="3-5-全局过滤器"><a href="#3-5-全局过滤器" class="headerlink" title="3.5.全局过滤器"></a>3.5.全局过滤器</h2><p>上一节学习的过滤器，网关提供了31种，但每一种过滤器的作用都是固定的。如果我们希望拦截请求，做自己的业务逻辑则没办法实现。</p>
-<h3 id="3-5-1-全局过滤器作用"><a href="#3-5-1-全局过滤器作用" class="headerlink" title="3.5.1.全局过滤器作用"></a>3.5.1.全局过滤器作用</h3><p>全局过滤器的作用也是处理一切进入网关的请求和微服务响应，与GatewayFilter的作用一样。区别在于GatewayFilter通过配置定义，处理逻辑是固定的；而GlobalFilter的逻辑需要自己写代码实现。</p>
-<p>定义方式是实现GlobalFilter接口。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">GlobalFilter</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  处理当前请求，有必要的话通过&#123;<span class="doctag">@link</span> GatewayFilterChain&#125;将请求交给下一个过滤器处理</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exchange 请求上下文，里面可以获取Request、Response等信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> chain 用来把请求委托给下一个过滤器 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> Mono&lt;Void&gt;&#125; 返回标示当前过滤器业务结束</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Mono&lt;Void&gt; <span class="title function_">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在filter中编写自定义逻辑，可以实现下列功能：</p>
-<ul>
-<li>登录状态判断</li>
-<li>权限校验</li>
-<li>请求限流等</li>
-</ul>
-<h3 id="3-5-2-自定义全局过滤器"><a href="#3-5-2-自定义全局过滤器" class="headerlink" title="3.5.2.自定义全局过滤器"></a>3.5.2.自定义全局过滤器</h3><p>需求：定义全局过滤器，拦截请求，判断请求的参数是否满足下面条件：</p>
-<ul>
-<li><p>参数中是否有authorization，</p>
-</li>
-<li><p>authorization参数值是否为admin</p>
-</li>
-</ul>
-<p>如果同时满足则放行，否则拦截</p>
-<p>实现：</p>
-<p>在gateway中定义一个过滤器：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.gateway.filters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.GatewayFilterChain;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.GlobalFilter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.server.ServerWebExchange;</span><br><span class="line"><span class="keyword">import</span> reactor.core.publisher.Mono;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Order(-1)</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AuthorizeFilter</span> <span class="keyword">implements</span> <span class="title class_">GlobalFilter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Mono&lt;Void&gt; <span class="title function_">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> &#123;</span><br><span class="line">        <span class="comment">// 1.获取请求参数</span></span><br><span class="line">        MultiValueMap&lt;String, String&gt; params = exchange.getRequest().getQueryParams();</span><br><span class="line">        <span class="comment">// 2.获取authorization参数</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">auth</span> <span class="operator">=</span> params.getFirst(<span class="string">&quot;authorization&quot;</span>);</span><br><span class="line">        <span class="comment">// 3.校验</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;admin&quot;</span>.equals(auth)) &#123;</span><br><span class="line">            <span class="comment">// 放行</span></span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 4.拦截</span></span><br><span class="line">        <span class="comment">// 4.1.禁止访问，设置状态码</span></span><br><span class="line">        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);</span><br><span class="line">        <span class="comment">// 4.2.结束处理</span></span><br><span class="line">        <span class="keyword">return</span> exchange.getResponse().setComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="3-5-3-过滤器执行顺序"><a href="#3-5-3-过滤器执行顺序" class="headerlink" title="3.5.3.过滤器执行顺序"></a>3.5.3.过滤器执行顺序</h3><p>请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter</p>
-<p>请求路由后，会将当前路由过滤器和DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872566-b4ca5faf-5ec0-42e4-b45f-5681e0acca1f.png" alt="image"></p>
-<p>排序的规则是什么呢？</p>
-<ul>
-<li>每一个过滤器都必须指定一个int类型的order值，<strong>order值越小，优先级越高，执行顺序越靠前</strong>。</li>
-<li>GlobalFilter通过实现Ordered接口，或者添加@Order注解来指定order值，由我们自己指定</li>
-<li>路由过滤器和defaultFilter的order由Spring指定，默认是按照声明顺序从1递增。</li>
-<li>当过滤器的order值一样时，会按照 defaultFilter &gt; 路由过滤器 &gt; GlobalFilter的顺序执行。</li>
-</ul>
-<p>详细内容，可以查看源码：</p>
-<p><code>org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator#getFilters()</code>方法是先加载defaultFilters，然后再加载某个route的filters，然后合并。</p>
-<p><code>org.springframework.cloud.gateway.handler.FilteringWebHandler#handle()</code>方法会加载全局过滤器，与前面的过滤器合并后根据order排序，组织过滤器链</p>
-<h2 id="3-6-跨域问题"><a href="#3-6-跨域问题" class="headerlink" title="3.6.跨域问题"></a>3.6.跨域问题</h2><h3 id="3-6-1-什么是跨域问题"><a href="#3-6-1-什么是跨域问题" class="headerlink" title="3.6.1.什么是跨域问题"></a>3.6.1.什么是跨域问题</h3><p>跨域：域名不一致就是跨域，主要包括：</p>
-<ul>
-<li><p>域名不同： <a href="http://www.taobao.com/">www.taobao.com</a> 和 <a href="http://www.taobao.org/">www.taobao.org</a> 和 <a href="http://www.jd.com/">www.jd.com</a> 和 miaosha.jd.com</p>
-</li>
-<li><p>域名相同，端口不同：localhost:8080和localhost8081</p>
-</li>
-</ul>
-<p>跨域问题：浏览器禁止请求的发起者与服务端发生跨域ajax请求，请求被浏览器拦截的问题</p>
-<p>解决方案：CORS，这个以前应该学习过，这里不再赘述了。不知道的小伙伴可以查看<a href="https://www.ruanyifeng.com/blog/2016/04/cors.html">https://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
-<h3 id="3-6-2-模拟跨域问题"><a href="#3-6-2-模拟跨域问题" class="headerlink" title="3.6.2.模拟跨域问题"></a>3.6.2.模拟跨域问题</h3><p>找到课前资料的页面文件：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872576-6854923e-74a2-4323-af8a-2c1710dab773.png" alt="image"></p>
-<p>放入tomcat或者nginx这样的web服务器中，启动并访问。</p>
-<p>可以在浏览器控制台看到下面的错误：</p>
-<p><img src="https://user-images.githubusercontent.com/102344939/219872607-dc1e2f7e-e3dd-4fe5-af13-c460d00b509f.png" alt="image"></p>
-<p>从localhost:8090访问localhost:10010，端口不同，显然是跨域的请求。</p>
-<h3 id="3-6-3-解决跨域问题"><a href="#3-6-3-解决跨域问题" class="headerlink" title="3.6.3.解决跨域问题"></a>3.6.3.解决跨域问题</h3><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="comment"># 。。。</span></span><br><span class="line">      <span class="attr">globalcors:</span> <span class="comment"># 全局的跨域处理</span></span><br><span class="line">        <span class="attr">add-to-simple-url-handler-mapping:</span> <span class="literal">true</span> <span class="comment"># 解决options请求被拦截问题</span></span><br><span class="line">        <span class="attr">corsConfigurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOrigins:</span> <span class="comment"># 允许哪些网站的跨域请求 </span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;http://localhost:8090&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="comment"># 允许的跨域ajax的请求方式</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;GET&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;POST&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;DELETE&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;PUT&quot;</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">&quot;OPTIONS&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span> <span class="comment"># 允许在请求中携带的头信息</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span> <span class="comment"># 是否允许携带cookie</span></span><br><span class="line">            <span class="attr">maxAge:</span> <span class="number">360000</span> <span class="comment"># 这次跨域检测的有效期</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-]]></content>
+      <tags>
+        <tag>实用篇</tag>
+      </tags>
   </entry>
 </search>
