@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Web APIs - 第5天笔记 目标： 能够利用JS操作浏览器,具备利用本地存储实现学生就业表的能力   BOM操作 综合案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web APIs - 第5天">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="Web APIs - 第5天笔记 目标： 能够利用JS操作浏览器,具备利用本地存储实现学生就业表的能力   BOM操作 综合案例">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/assets/1676047389456.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676047436362.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676047834796.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676047846593.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676049635087.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2024-03-04T14:05:42.604Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/assets/1676047389456.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web APIs - 第5天 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web APIs - 第5天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-04 22:05:42" itemprop="dateModified" datetime="2024-03-04T22:05:42+08:00">2024-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-APIs/" itemprop="url" rel="index"><span itemprop="name">Web APIs</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Web-APIs-第5天笔记"><a href="#Web-APIs-第5天笔记" class="headerlink" title="Web APIs - 第5天笔记"></a>Web APIs - 第5天笔记</h1><blockquote>
+<p>目标： 能够利用JS操作浏览器,具备利用本地存储实现学生就业表的能力</p>
+</blockquote>
+<ul>
+<li>BOM操作</li>
+<li>综合案例</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="js组成"><a href="#js组成" class="headerlink" title="js组成"></a>js组成</h2><p>JavaScript的组成</p>
+<ul>
+<li><p>ECMAScript:</p>
+<ul>
+<li>规定了js基础语法核心知识。</li>
+<li>比如：变量、分支语句、循环语句、对象等等</li>
+</ul>
+</li>
+<li><p>Web APIs :</p>
+<ul>
+<li>DOM   文档对象模型， 定义了一套操作HTML文档的API</li>
+<li>BOM   浏览器对象模型，定义了一套操作浏览器窗口的API</li>
+</ul>
+</li>
+</ul>
+<p> <img src="/assets/1676047389456.png" alt="67604738945"></p>
+<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><p><strong>BOM</strong> (Browser Object Model ) 是浏览器对象模型</p>
+<ul>
+<li>window对象是一个全局对象，也可以说是JavaScript中的顶级对象</li>
+<li>像document、alert()、console.log()这些都是window的属性，基本BOM的属性和方法都是window的</li>
+<li>所有通过var定义在全局作用域中的变量、函数都会变成window对象的属性和方法</li>
+<li>window对象下的属性和方法调用的时候可以省略window</li>
+</ul>
+<p> <img src="/assets/1676047436362.png" alt="67604743636"></p>
+<h2 id="定时器-延迟函数"><a href="#定时器-延迟函数" class="headerlink" title="定时器-延迟函数"></a>定时器-延迟函数</h2><p>JavaScript 内置的一个用来让代码延迟执行的函数，叫 setTimeout</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(回调函数, 延迟时间)</span><br></pre></td></tr></table></figure>
+
+<p>setTimeout 仅仅只执行一次，所以可以理解为就是把一段代码延迟执行, 平时省略window</p>
+<p>间歇函数 setInterval : 每隔一段时间就执行一次， , 平时省略window</p>
+<p>清除延时函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">clearTimeout</span>(timerId)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意点</p>
+<ol>
+<li>延时函数需要等待,所以后面的代码先执行</li>
+<li>返回值是一个正整数，表示定时器的编号</li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 定时器之延迟函数</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 开启延迟函数</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> timerId = <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;我只执行一次&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="number">3000</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.1 延迟函数返回的还是一个正整数数字，表示延迟函数的编号</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(timerId)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.2 延迟函数需要等待时间，所以下面的代码优先执行</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 关闭延迟函数</span></span></span><br><span class="line"><span class="language-javascript">    <span class="built_in">clearTimeout</span>(timerId)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p>location (地址) 它拆分并保存了 URL 地址的各个组成部分， 它是一个对象</p>
+<table>
+<thead>
+<tr>
+<th>属性&#x2F;方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>href</td>
+<td>属性，获取完整的 URL 地址，赋值时用于地址的跳转</td>
+</tr>
+<tr>
+<td>search</td>
+<td>属性，获取地址中携带的参数，符号 ？后面部分</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>属性，获取地址中的啥希值，符号 # 后面部分</td>
+</tr>
+<tr>
+<td>reload()</td>
+<td>方法，用来刷新当前页面，传入参数 true 时表示强制刷新</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;search&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">button</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/music&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/download&quot;</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;reload&quot;</span>&gt;</span>刷新页面<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// location 对象  </span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. href属性 （重点） 得到完整地址，赋值则是跳转到新地址</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(location.<span class="property">href</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// location.href = &#x27;http://www.itcast.cn&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. search属性  得到 ? 后面的地址 </span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(location.<span class="property">search</span>)  <span class="comment">// ?search=笔记本</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 3. hash属性  得到 # 后面的地址</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(location.<span class="property">hash</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 4. reload 方法  刷新页面</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.reload&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// location.reload() // 页面刷新</span></span></span><br><span class="line"><span class="language-javascript">      location.<span class="title function_">reload</span>(<span class="literal">true</span>) <span class="comment">// 强制页面刷新 ctrl+f5</span></span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>navigator是对象，该对象下记录了浏览器自身的相关信息</p>
+<p>常用属性和方法：</p>
+<ul>
+<li>通过 userAgent 检测浏览器的版本及平台</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检测 userAgent（浏览器信息）</span></span><br><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> userAgent = navigator.<span class="property">userAgent</span></span><br><span class="line">  <span class="comment">// 验证是否为Android或iPhone</span></span><br><span class="line">  <span class="keyword">const</span> android = userAgent.<span class="title function_">match</span>(<span class="regexp">/(Android);?[\s\/]+([\d.]+)?/</span>)</span><br><span class="line">  <span class="keyword">const</span> iphone = userAgent.<span class="title function_">match</span>(<span class="regexp">/(iPhone\sOS)\s([\d_]+)/</span>)</span><br><span class="line">  <span class="comment">// 如果是Android或iPhone，则跳转至移动站点</span></span><br><span class="line">  <span class="keyword">if</span> (android || iphone) &#123;</span><br><span class="line">    location.<span class="property">href</span> = <span class="string">&#x27;http://m.itcast.cn&#x27;</span></span><br><span class="line">  &#125;&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h2 id="histroy对象"><a href="#histroy对象" class="headerlink" title="histroy对象"></a>histroy对象</h2><p>history (历史)是对象，主要管理历史记录， 该对象与浏览器地址栏的操作相对应，如前进、后退等</p>
+<p><strong>使用场景</strong></p>
+<p>history对象一般在实际开发中比较少用，但是会在一些OA 办公系统中见到。</p>
+<p> <img src="/assets/1676047834796.png" alt="67604783479"></p>
+<p>常见方法：</p>
+<p> <img src="/assets/1676047846593.png" alt="67604784659"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;back&quot;</span>&gt;</span>←后退<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;forward&quot;</span>&gt;</span>前进→<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// histroy对象</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.前进</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> forward = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.forward&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    forward.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// history.forward() </span></span></span><br><span class="line"><span class="language-javascript">      history.<span class="title function_">go</span>(<span class="number">1</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2.后退</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> back = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.back&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    back.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// history.back()</span></span></span><br><span class="line"><span class="language-javascript">      history.<span class="title function_">go</span>(-<span class="number">1</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="本地存储（今日重点）"><a href="#本地存储（今日重点）" class="headerlink" title="本地存储（今日重点）"></a>本地存储（今日重点）</h2><p>本地存储：将数据存储在本地浏览器中</p>
+<p>常见的使用场景：</p>
+<p><a target="_blank" rel="noopener" href="https://todomvc.com/examples/vanilla-es6/">https://todomvc.com/examples/vanilla-es6/</a>    页面刷新数据不丢失</p>
+<p>好处：</p>
+<p>1、页面刷新或者关闭不丢失数据，实现数据持久化</p>
+<p>2、容量较大，sessionStorage和 localStorage 约 5M 左右</p>
+<h3 id="localStorage（重点）"><a href="#localStorage（重点）" class="headerlink" title="localStorage（重点）"></a>localStorage（重点）</h3><p><strong>作用:</strong> 数据可以长期保留在本地浏览器中，刷新页面和关闭页面，数据也不会丢失</p>
+<p><strong>特性：</strong>以键值对的形式存储，并且存储的是字符串， 省略了window</p>
+<p><img src="/assets/1676049635087.png" alt="67604963508"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>本地存储-localstorage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 本地存储 - localstorage 存储的是字符串 </span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 存储</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;age&#x27;</span>, <span class="number">18</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 获取</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;age&#x27;</span>))</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 3. 删除</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;age&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sessionStorage（了解）"><a href="#sessionStorage（了解）" class="headerlink" title="sessionStorage（了解）"></a>sessionStorage（了解）</h3><p>特性：</p>
+<ul>
+<li>用法跟localStorage基本相同</li>
+<li>区别是：当页面浏览器被关闭时，存储在 sessionStorage 的数据会被清除</li>
+</ul>
+<p>存储：sessionStorage.setItem(key,value)</p>
+<p>获取：sessionStorage.getItem(key)</p>
+<p>删除：sessionStorage.removeItem(key)</p>
+<h3 id="localStorage-存储复杂数据类型"><a href="#localStorage-存储复杂数据类型" class="headerlink" title="localStorage 存储复杂数据类型"></a>localStorage 存储复杂数据类型</h3><p><strong>问题：</strong>本地只能存储字符串,无法存储复杂数据类型.</p>
+<p><strong>解决：</strong>需要将复杂数据类型转换成 JSON字符串,在存储到本地</p>
+<p><strong>语法：</strong>JSON.stringify(复杂数据类型)</p>
+<p>JSON字符串：</p>
+<ul>
+<li>首先是1个字符串</li>
+<li>属性名使用双引号引起来，不能单引号</li>
+<li>属性值如果是字符串型也必须双引号</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 本地存储复杂数据类型</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> goods = &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">name</span>: <span class="string">&#x27;小米&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">price</span>: <span class="number">1999</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// localStorage.setItem(&#x27;goods&#x27;, goods)</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// console.log(localStorage.getItem(&#x27;goods&#x27;))</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 把对象转换为JSON字符串  JSON.stringify</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;goods&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(goods))</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// console.log(typeof localStorage.getItem(&#x27;goods&#x27;))</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>问题：</strong>因为本地存储里面取出来的是字符串，不是对象，无法直接使用</p>
+<p>**解决： **把取出来的字符串转换为对象</p>
+<p><strong>语法：</strong>JSON.parse(JSON字符串)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 本地存储复杂数据类型</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> goods = &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">name</span>: <span class="string">&#x27;小米&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">price</span>: <span class="number">1999</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// localStorage.setItem(&#x27;goods&#x27;, goods)</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// console.log(localStorage.getItem(&#x27;goods&#x27;))</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 把对象转换为JSON字符串  JSON.stringify</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;goods&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(goods))</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// console.log(typeof localStorage.getItem(&#x27;goods&#x27;))</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 把JSON字符串转换为对象  JSON.parse</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;goods&#x27;</span>)))</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h2><h3 id="数组map-方法"><a href="#数组map-方法" class="headerlink" title="数组map 方法"></a>数组map 方法</h3><p><strong>使用场景：</strong></p>
+<p>map 可以遍历数组处理数据，并且返回新的数组</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> arr = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;pink&#x27;</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="comment">// 1. 数组 map方法 处理数据并且 返回一个数组</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">const</span> newArr = arr.<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">ele, index</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">// console.log(ele)  // 数组元素</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">// console.log(index) // 索引号</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> ele + <span class="string">&#x27;颜色&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">	&#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="variable language_">console</span>.<span class="title function_">log</span>(newArr)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>map 也称为映射。映射是个术语，指两个元素的集之间元素相互“对应”的关系。</p>
+<p>map重点在于有返回值，forEach没有返回值（undefined）</p>
+</blockquote>
+<h3 id="数组join方法"><a href="#数组join方法" class="headerlink" title="数组join方法"></a>数组join方法</h3><p><strong>作用：</strong>join() 方法用于把数组中的所有元素转换一个字符串</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> arr = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;pink&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 数组 map方法 处理数据并且 返回一个数组</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> newArr = arr.<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">ele, index</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// console.log(ele)  // 数组元素</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// console.log(index) // 索引号</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">return</span> ele + <span class="string">&#x27;颜色&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newArr)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 数组join方法  把数组转换为字符串</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 小括号为空则逗号分割</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newArr.<span class="title function_">join</span>())  <span class="comment">// red颜色,blue颜色,pink颜色</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 小括号是空字符串，则元素之间没有分隔符</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">//red颜色blue颜色pink颜色</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(newArr.<span class="title function_">join</span>(<span class="string">&#x27;|&#x27;</span>))  <span class="comment">//red颜色|blue颜色|pink颜色</span></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0/" title="Web APIs - 第5天">https://turheart.github.io/2022/08/03/Web APIs - 第5天笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/Web%20APIs%20-%20%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0/" rel="prev" title="Web APIs - 第6天">
+      <i class="fa fa-chevron-left"></i> Web APIs - 第6天
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/Web%20APIs%20-%20%E7%AC%AC4%E5%A4%A9%E7%AC%94%E8%AE%B0/" rel="next" title="Web APIs - 第4天">
+      Web APIs - 第4天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-APIs-%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Web APIs - 第5天笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js%E7%BB%84%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">js组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">window对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8-%E5%BB%B6%E8%BF%9F%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">定时器-延迟函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.4.</span> <span class="nav-text">location对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.</span> <span class="nav-text">navigator对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#histroy%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.6.</span> <span class="nav-text">histroy对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88%E4%BB%8A%E6%97%A5%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">本地存储（今日重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#localStorage%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.7.1.</span> <span class="nav-text">localStorage（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionStorage%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.7.2.</span> <span class="nav-text">sessionStorage（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#localStorage-%E5%AD%98%E5%82%A8%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.7.3.</span> <span class="nav-text">localStorage 存储复杂数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B"><span class="nav-number">1.8.</span> <span class="nav-text">综合案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84map-%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.1.</span> <span class="nav-text">数组map 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84join%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.2.</span> <span class="nav-text">数组join方法</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.2m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">17:30</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+</body>
+</html>

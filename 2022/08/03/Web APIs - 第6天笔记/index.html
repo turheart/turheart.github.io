@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Web APIs - 第6天笔记 目标：能够利用正则表达式完成小兔鲜注册页面的表单验证，具备常见的表单验证能力   正则表达式 综合案例 阶段案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web APIs - 第6天">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="Web APIs - 第6天笔记 目标：能够利用正则表达式完成小兔鲜注册页面的表单验证，具备常见的表单验证能力   正则表达式 综合案例 阶段案例">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/assets/1676079666366.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080081650.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080185383.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080296168.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080353637.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080372325.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080437160.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080548639.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1676080618794.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2024-03-04T14:07:26.645Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/assets/1676079666366.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web APIs - 第6天 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web APIs - 第6天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-04 22:07:26" itemprop="dateModified" datetime="2024-03-04T22:07:26+08:00">2024-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-APIs/" itemprop="url" rel="index"><span itemprop="name">Web APIs</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Web-APIs-第6天笔记"><a href="#Web-APIs-第6天笔记" class="headerlink" title="Web APIs - 第6天笔记"></a>Web APIs - 第6天笔记</h1><blockquote>
+<p>目标：能够利用正则表达式完成小兔鲜注册页面的表单验证，具备常见的表单验证能力</p>
+</blockquote>
+<ul>
+<li>正则表达式</li>
+<li>综合案例</li>
+<li>阶段案例</li>
+</ul>
+<span id="more"></span>
+
+
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><strong>正则表达式</strong>（Regular Expression）是一种字符串匹配的模式（规则）</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>例如验证表单：手机号表单要求用户只能输入11位的数字 (匹配)</li>
+<li>过滤掉页面内容中的一些敏感词(替换)，或从字符串中获取我们想要的特定部分(提取)等</li>
+</ul>
+<p> <img src="/assets/1676079666366.png" alt="67607966636"></p>
+<h3 id="正则基本使用"><a href="#正则基本使用" class="headerlink" title="正则基本使用"></a>正则基本使用</h3><ol>
+<li><p>定义规则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg =  <span class="regexp">/表达式/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其中<code>/   /</code>是正则表达式字面量</li>
+<li>正则表达式也是<code>对象 </code></li>
+</ul>
+</li>
+<li><p>使用正则</p>
+<ul>
+<li><code>test()方法</code>   用来查看正则表达式与指定的字符串是否匹配</li>
+<li>如果正则表达式与指定的字符串匹配 ，返回<code>true</code>，否则<code>false</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 正则表达式的基本使用</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> str = <span class="string">&#x27;web前端开发&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 定义规则</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg = <span class="regexp">/web/</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 使用正则  test()</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(str))  <span class="comment">// true  如果符合规则匹配上则返回true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&#x27;java开发&#x27;</span>))  <span class="comment">// false  如果不符合规则匹配上则返回 false</span></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><ol>
+<li><strong>普通字符:</strong></li>
+</ol>
+<ul>
+<li>大多数的字符仅能够描述它们本身，这些字符称作普通字符，例如所有的字母和数字。</li>
+<li>普通字符只能够匹配字符串中与它们相同的字符。    </li>
+<li>比如，规定用户只能输入英文26个英文字母，普通字符的话  &#x2F;[abcdefghijklmnopqrstuvwxyz]&#x2F;</li>
+</ul>
+<ol start="2">
+<li><strong>元字符(特殊字符）</strong></li>
+</ol>
+<ul>
+<li>是一些具有特殊含义的字符，可以极大提高了灵活性和强大的匹配功能。</li>
+<li>比如，规定用户只能输入英文26个英文字母，换成元字符写法： &#x2F;[a-z]&#x2F;</li>
+</ul>
+<h4 id="边界符"><a href="#边界符" class="headerlink" title="边界符"></a>边界符</h4><p>正则表达式中的边界符（位置符）用来提示字符所处的位置，主要有两个字符</p>
+<p><img src="/assets/1676080081650.png" alt="67608008165"></p>
+<blockquote>
+<p>如果 ^ 和 $ 在一起，表示必须是精确匹配</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 元字符之边界符</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 匹配开头的位置 ^</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg = <span class="regexp">/^web/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&#x27;web前端&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&#x27;前端web&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&#x27;前端web学习&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&#x27;we&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 匹配结束的位置 $</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg1 = <span class="regexp">/web$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;web前端&#x27;</span>))  <span class="comment">//  false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;前端web&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;前端web学习&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;we&#x27;</span>))  <span class="comment">// false  </span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 3. 精确匹配 ^ $</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg2 = <span class="regexp">/^web$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;web前端&#x27;</span>))  <span class="comment">//  false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;前端web&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;前端web学习&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;we&#x27;</span>))  <span class="comment">// false </span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;web&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;webweb&#x27;</span>))  <span class="comment">// flase </span></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h4><p>量词用来设定某个模式重复次数</p>
+<p><img src="/assets/1676080185383.png" alt="67608018538"></p>
+<blockquote>
+<p>注意： 逗号左右两侧千万不要出现空格</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 元字符之量词</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. * 重复次数 &gt;= 0 次</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg1 = <span class="regexp">/^w*$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. + 重复次数 &gt;= 1 次</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg2 = <span class="regexp">/^w+$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 3. ? 重复次数  0 || 1 </span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg3 = <span class="regexp">/^w?$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 4. &#123;n&#125; 重复 n 次</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg4 = <span class="regexp">/^w&#123;3&#125;$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// flase</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;www&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;wwww&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 5. &#123;n,&#125; 重复次数 &gt;= n </span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg5 = <span class="regexp">/^w&#123;2,&#125;$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;www&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 6. &#123;n,m&#125;   n =&lt; 重复次数 &lt;= m</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg6 = <span class="regexp">/^w&#123;2,4&#125;$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(<span class="string">&#x27;w&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(<span class="string">&#x27;ww&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(<span class="string">&#x27;www&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(<span class="string">&#x27;wwww&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(<span class="string">&#x27;wwwww&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 7. 注意事项： 逗号两侧千万不要加空格否则会匹配失败</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h4><p>表示字符的范围，定义的规则限定在某个范围，比如只能是英文字母，或者数字等等，用表示范围</p>
+<p> <img src="/assets/1676080296168.png" alt="67608029616"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 元字符之范围  []  </span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. [abc] 匹配包含的单个字符， 多选1</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg1 = <span class="regexp">/^[abc]$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;a&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;b&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;c&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;d&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg1.<span class="title function_">test</span>(<span class="string">&#x27;ab&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. [a-z] 连字符 单个</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg2 = <span class="regexp">/^[a-z]$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;a&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;p&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;0&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg2.<span class="title function_">test</span>(<span class="string">&#x27;A&#x27;</span>))  <span class="comment">// false</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 想要包含小写字母，大写字母 ，数字</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg3 = <span class="regexp">/^[a-zA-Z0-9]$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;B&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;b&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="number">9</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg3.<span class="title function_">test</span>(<span class="string">&#x27;,&#x27;</span>))  <span class="comment">// flase</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 用户名可以输入英文字母，数字，可以加下划线，要求 6~16位</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg4 = <span class="regexp">/^[a-zA-Z0-9_]&#123;6,16&#125;$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;abcd1&#x27;</span>))  <span class="comment">// false </span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;abcd12&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;ABcd12&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg4.<span class="title function_">test</span>(<span class="string">&#x27;ABcd12_&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 3. [^a-z] 取反符</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> reg5 = <span class="regexp">/^[^a-z]$/</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;a&#x27;</span>))  <span class="comment">// false </span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="string">&#x27;A&#x27;</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reg5.<span class="title function_">test</span>(<span class="number">8</span>))  <span class="comment">// true</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h4><p>某些常见模式的简写方式，区分字母和数字</p>
+<p><img src="/assets/1676080353637.png" alt="67608035363"></p>
+<p> <img src="/assets/1676080372325.png" alt="67608037232"></p>
+<h2 id="替换和修饰符"><a href="#替换和修饰符" class="headerlink" title="替换和修饰符"></a>替换和修饰符</h2><p>replace 替换方法，可以完成字符的替换</p>
+<p> <img src="/assets/1676080437160.png" alt="67608043716"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 替换和修饰符</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> str = <span class="string">&#x27;欢迎大家学习前端，相信大家一定能学好前端，都成为前端大神&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 替换  replace  需求：把前端替换为 web</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.1 replace 返回值是替换完毕的字符串</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// const strEnd = str.replace(/前端/, &#x27;web&#x27;) 只能替换一个</span></span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修饰符约束正则执行的某些细节行为，如是否区分大小写、是否支持多行匹配等</p>
+<ul>
+<li>i 是单词 ignore 的缩写，正则匹配时字母不区分大小写</li>
+<li>g 是单词 global 的缩写，匹配所有满足正则表达式的结果</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 替换和修饰符</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> str = <span class="string">&#x27;欢迎大家学习前端，相信大家一定能学好前端，都成为前端大神&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 替换  replace  需求：把前端替换为 web</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.1 replace 返回值是替换完毕的字符串</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// const strEnd = str.replace(/前端/, &#x27;web&#x27;) 只能替换一个</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2. 修饰符 g 全部替换</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> strEnd = str.<span class="title function_">replace</span>(<span class="regexp">/前端/g</span>, <span class="string">&#x27;web&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(strEnd) </span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="正则插件"><a href="#正则插件" class="headerlink" title="正则插件"></a>正则插件</h2><p> <img src="/assets/1676080548639.png" alt="67608054863"></p>
+<h2 id="change-事件"><a href="#change-事件" class="headerlink" title="change 事件"></a>change 事件</h2><p>给input注册 change 事件，值被修改并且失去焦点后触发</p>
+<h2 id="判断是否有类"><a href="#判断是否有类" class="headerlink" title="判断是否有类"></a>判断是否有类</h2><p> <img src="/assets/1676080618794.png" alt="67608061879"></p>
+<p>元素.classList.contains() 看看有没有包含某个类，如果有则返回true，么有则返回false</p>
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/Web%20APIs%20-%20%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0/" title="Web APIs - 第6天">https://turheart.github.io/2022/08/03/Web APIs - 第6天笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/day01-java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" rel="prev" title="Java概述">
+      <i class="fa fa-chevron-left"></i> Java概述
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/Web%20APIs%20-%20%E7%AC%AC5%E5%A4%A9%E7%AC%94%E8%AE%B0/" rel="next" title="Web APIs - 第5天">
+      Web APIs - 第5天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-APIs-%E7%AC%AC6%E5%A4%A9%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Web APIs - 第6天笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">正则基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E5%AD%97%E7%AC%A6"><span class="nav-number">1.1.2.</span> <span class="nav-text">元字符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E7%AC%A6"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">边界符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8F%E8%AF%8D"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">量词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">字符类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%92%8C%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">1.2.</span> <span class="nav-text">替换和修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E6%8F%92%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">正则插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">change 事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%9C%89%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">判断是否有类</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.2m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">17:30</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+</body>
+</html>
