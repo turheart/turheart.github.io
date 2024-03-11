@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="day03一、今日目标1.生命周期 生命周期介绍 生命周期的四个阶段 生命周期钩子 声明周期案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-day03">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/day03/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="day03一、今日目标1.生命周期 生命周期介绍 生命周期的四个阶段 生命周期钩子 声明周期案例">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/assets/1682065937815.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682066040295.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682071972085.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682090039070.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682092148521.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682094032876.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682168852372.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682169131688.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682169264266.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682227966812.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682227902873.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682263187344.png">
+<meta property="og:image" content="https://turheart.github.io/assets/1682265491628.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2024-03-11T15:15:55.801Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/assets/1682065937815.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/day03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>vue-day03 | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/day03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-day03
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 23:15:55" itemprop="dateModified" datetime="2024-03-11T23:15:55+08:00">2024-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="day03"><a href="#day03" class="headerlink" title="day03"></a>day03</h1><h2 id="一、今日目标"><a href="#一、今日目标" class="headerlink" title="一、今日目标"></a>一、今日目标</h2><h3 id="1-生命周期"><a href="#1-生命周期" class="headerlink" title="1.生命周期"></a>1.生命周期</h3><ol>
+<li>生命周期介绍</li>
+<li>生命周期的四个阶段</li>
+<li>生命周期钩子</li>
+<li>声明周期案例</li>
+</ol>
+<span id="more"></span>
+
+
+
+<h3 id="2-综合案例-小黑记账清单"><a href="#2-综合案例-小黑记账清单" class="headerlink" title="2.综合案例-小黑记账清单"></a>2.综合案例-小黑记账清单</h3><ol>
+<li>列表渲染</li>
+<li>添加&#x2F;删除</li>
+<li>饼图渲染</li>
+</ol>
+<h3 id="3-工程化开发入门"><a href="#3-工程化开发入门" class="headerlink" title="3.工程化开发入门"></a>3.工程化开发入门</h3><ol>
+<li>工程化开发和脚手架</li>
+<li>项目运行流程</li>
+<li>组件化</li>
+<li>组件注册</li>
+</ol>
+<h3 id="4-综合案例-小兔仙首页"><a href="#4-综合案例-小兔仙首页" class="headerlink" title="4.综合案例-小兔仙首页"></a>4.综合案例-小兔仙首页</h3><ol>
+<li>拆分模块-局部注册 </li>
+<li>结构样式完善 </li>
+<li>拆分组件 – 全局注册</li>
+</ol>
+<h2 id="二、Vue生命周期"><a href="#二、Vue生命周期" class="headerlink" title="二、Vue生命周期"></a>二、Vue生命周期</h2><p>思考：什么时候可以发送初始化渲染请求？（越早越好）什么时候可以开始操作dom？（至少dom得渲染出来）</p>
+<p>Vue生命周期：就是一个Vue实例从创建 到 销毁 的整个过程。</p>
+<p>生命周期四个阶段：① 创建 ② 挂载 ③ 更新 ④ 销毁</p>
+<p>1.创建阶段：创建响应式数据</p>
+<p>2.挂载阶段：渲染模板</p>
+<p>3.更新阶段：修改数据，更新视图</p>
+<p>4.销毁阶段：销毁Vue实例</p>
+<p><img src="/assets/1682065937815.png" alt="68206593781"></p>
+<h2 id="三、Vue生命周期钩子"><a href="#三、Vue生命周期钩子" class="headerlink" title="三、Vue生命周期钩子"></a>三、Vue生命周期钩子</h2><p>Vue生命周期过程中，会<strong>自动运行一些函数</strong>，被称为【<strong>生命周期钩子</strong>】→  让开发者可以在【<strong>特定阶段</strong>】运行<strong>自己的代码</strong></p>
+<p><img src="/assets/1682066040295.png" alt="68206604029"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;count--&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;count++&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">count</span>: <span class="number">100</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">title</span>: <span class="string">&#x27;计数器&#x27;</span></span></span><br><span class="line"><span class="language-javascript">      &#125;,</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 1. 创建阶段（准备数据）</span></span></span><br><span class="line"><span class="language-javascript">     </span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 2. 挂载阶段（渲染模板）</span></span></span><br><span class="line"><span class="language-javascript">      </span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 3. 更新阶段(修改数据 → 更新视图)</span></span></span><br><span class="line"><span class="language-javascript">      </span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 4. 卸载阶段</span></span></span><br><span class="line"><span class="language-javascript">     </span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四、生命周期钩子小案例"><a href="#四、生命周期钩子小案例" class="headerlink" title="四、生命周期钩子小案例"></a>四、生命周期钩子小案例</h2><h3 id="1-在created中发送数据"><a href="#1-在created中发送数据" class="headerlink" title="1.在created中发送数据"></a>1.在created中发送数据</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">   * &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">list-style</span>: none;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">padding</span>: <span class="number">20px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">flex-direction</span>: column;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">justify-content</span>: space-between;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">padding-right</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.left</span> <span class="selector-class">.title</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.left</span> <span class="selector-class">.info</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">color</span>: <span class="number">#999999</span>;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.left</span> <span class="selector-class">.info</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">width</span>: <span class="number">160px</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css">   <span class="selector-class">.news</span> <span class="selector-class">.right</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">     <span class="attribute">object-fit</span>: cover;</span></span><br><span class="line"><span class="language-css">   &#125;</span></span><br><span class="line"><span class="language-css"> </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;news&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>5G商用在即，三大运营商营收持续下降<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>新京报经济新闻<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>2222-10-28 11:50:28<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://ajax-api.itheima.net/public/images/0.webp&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;news&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>5G商用在即，三大运营商营收持续下降<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>新京报经济新闻<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>2222-10-28 11:50:28<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://ajax-api.itheima.net/public/images/0.webp&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;news&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>5G商用在即，三大运营商营收持续下降<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>新京报经济新闻<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>2222-10-28 11:50:28<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://ajax-api.itheima.net/public/images/0.webp&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">// 接口地址：http://hmajax.itheima.net/api/news</span></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">// 请求方式：get</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">     <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">list</span>: []</span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript">   &#125;)</span></span><br><span class="line"><span class="language-javascript"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-在mounted中获取焦点"><a href="#2-在mounted中获取焦点" class="headerlink" title="2.在mounted中获取焦点"></a>2.在mounted中获取焦点</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">html</span>,</span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.search-container</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">top</span>: <span class="number">30%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line"><span class="language-css">      <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.search-container</span> <span class="selector-class">.search-box</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.search-container</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">margin-bottom</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.search-container</span> <span class="selector-class">.search-box</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">512px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">16px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">padding</span>: <span class="number">12px</span> <span class="number">16px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-size</span>: <span class="number">16px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">vertical-align</span>: top;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">outline</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">box-shadow</span>: none;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#c4c7ce</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">background</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">color</span>: <span class="number">#222</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">box-sizing</span>: content-box;</span></span><br><span class="line"><span class="language-css">      -webkit-tap-highlight-<span class="attribute">color</span>: transparent;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.search-container</span> <span class="selector-class">.search-box</span> <span class="selector-tag">button</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">112px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">44px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">line-height</span>: <span class="number">41px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">line-height</span>: <span class="number">42px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">background-color</span>: <span class="number">#ad2a27</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">10px</span> <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-size</span>: <span class="number">17px</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">box-shadow</span>: none;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-weight</span>: <span class="number">400</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">border</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">outline</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">letter-spacing</span>: normal;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">color</span>: white;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">background</span>: no-repeat center /cover;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">background-color</span>: <span class="number">#edf0f5</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;search-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://www.itheima.com/images/logo.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;words&quot;</span> <span class="attr">id</span>=<span class="string">&quot;inp&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span>&gt;</span>搜索一下<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">words</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="五、案例-小黑记账清单"><a href="#五、案例-小黑记账清单" class="headerlink" title="五、案例-小黑记账清单"></a>五、案例-小黑记账清单</h2><h3 id="1-需求图示："><a href="#1-需求图示：" class="headerlink" title="1.需求图示："></a>1.需求图示：</h3><p><img src="/assets/1682071972085.png" alt="68207197208"></p>
+<h3 id="2-需求分析"><a href="#2-需求分析" class="headerlink" title="2.需求分析"></a>2.需求分析</h3><p>1.基本渲染</p>
+<p>2.添加功能</p>
+<p>3.删除功能</p>
+<p>4.饼图渲染</p>
+<h3 id="3-思路分析"><a href="#3-思路分析" class="headerlink" title="3.思路分析"></a>3.思路分析</h3><p>1.基本渲染  </p>
+<ul>
+<li>立刻发送请求获取数据 created</li>
+<li>拿到数据，存到data的响应式数据中</li>
+<li>结合数据，进行渲染 v-for</li>
+<li>消费统计  —&gt; 计算属性</li>
+</ul>
+<p>2.添加功能</p>
+<ul>
+<li>收集表单数据 v-model，使用指令修饰符处理数据</li>
+<li>给添加按钮注册点击事件，对输入的内容做非空判断，发送请求</li>
+<li>请求成功后，对文本框内容进行清空</li>
+<li>重新渲染列表</li>
+</ul>
+<p>3.删除功能</p>
+<ul>
+<li>注册点击事件，获取当前行的id</li>
+<li>根据id发送删除请求</li>
+<li>需要重新渲染</li>
+</ul>
+<p>4.饼图渲染</p>
+<ul>
+<li>初始化一个饼图 echarts.init(dom)    mounted钩子中渲染</li>
+<li>根据数据试试更新饼图 echarts.setOptions({…})</li>
+</ul>
+<h3 id="4-代码准备"><a href="#4-代码准备" class="headerlink" title="4.代码准备"></a>4.代码准备</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- CSS only --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">link</span></span></span><br><span class="line"><span class="tag">     <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css&quot;</span></span></span><br><span class="line"><span class="tag">   /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.red</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">color</span>: red<span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.search</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.my-form</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.my-form</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.table</span> &gt; <span class="selector-pseudo">:not</span>(<span class="selector-pseudo">:first</span>-child) &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">border-top</span>: none;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.contain</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">padding</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.list-box</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.list-box</span>  <span class="selector-tag">a</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">text-decoration</span>: none;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-class">.echarts-box</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">padding</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="selector-tag">tfoot</span> &#123;</span></span><br><span class="line"><span class="language-css">       <span class="attribute">font-weight</span>: bold;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">     <span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">1000px</span>) &#123;</span></span><br><span class="line"><span class="language-css">       <span class="selector-class">.contain</span> &#123;</span></span><br><span class="line"><span class="language-css">         <span class="attribute">flex-wrap</span>: wrap;</span></span><br><span class="line"><span class="language-css">       &#125;</span></span><br><span class="line"><span class="language-css">       <span class="selector-class">.list-box</span> &#123;</span></span><br><span class="line"><span class="language-css">         <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">       &#125;</span></span><br><span class="line"><span class="language-css">       <span class="selector-class">.echarts-box</span> &#123;</span></span><br><span class="line"><span class="language-css">         <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">       &#125;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css">   </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contain&quot;</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 左侧列表 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list-box&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">         <span class="comment">&lt;!-- 添加资产 --&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;my-form&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;消费名称&quot;</span> /&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;消费价格&quot;</span> /&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span>&gt;</span>添加账单<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">         <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;table table-hover&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">th</span>&gt;</span>消费名称<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">th</span>&gt;</span>消费价格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span>帽子<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span>99.00<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span>大衣<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span>&gt;</span>199.00<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">&quot;4&quot;</span>&gt;</span>消费总计： 298.00<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">       <span class="comment">&lt;!-- 右侧图表 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;echarts-box&quot;</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">/**</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 接口文档地址：</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * https://www.apifox.cn/apidoc/shared-24459455-ebb1-4fdc-8df8-0aff8dc317a8/api-53371058</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * </span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 功能需求：</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 1. 基本渲染</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 2. 添加功能</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 3. 删除功能</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      * 4. 饼图渲染</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      */</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">         </span></span><br><span class="line"><span class="language-javascript">       &#125;,</span></span><br><span class="line"><span class="language-javascript">     &#125;)</span></span><br><span class="line"><span class="language-javascript">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="六、工程化开发和脚手架"><a href="#六、工程化开发和脚手架" class="headerlink" title="六、工程化开发和脚手架"></a>六、工程化开发和脚手架</h2><h3 id="1-开发Vue的两种方式"><a href="#1-开发Vue的两种方式" class="headerlink" title="1.开发Vue的两种方式"></a>1.开发Vue的两种方式</h3><ul>
+<li>核心包传统开发模式：基于html &#x2F; css &#x2F; js 文件，直接引入核心包，开发 Vue。</li>
+<li><strong>工程化开发模式：基于构建工具（例如：webpack）的环境中开发Vue。</strong></li>
+</ul>
+<p><img src="/assets/1682090039070.png" alt="68209003907"></p>
+<p>工程化开发模式优点：</p>
+<p>   提高编码效率，比如使用JS新语法、Less&#x2F;Sass、Typescript等通过webpack都可以编译成浏览器识别的ES3&#x2F;ES5&#x2F;CSS等</p>
+<p>工程化开发模式问题：</p>
+<ul>
+<li>webpack配置<strong>不简单</strong></li>
+<li><strong>雷同</strong>的基础配置</li>
+<li>缺乏<strong>统一的标准</strong></li>
+</ul>
+<p>为了解决以上问题，所以我们需要一个工具，生成标准化的配置</p>
+<h3 id="2-脚手架Vue-CLI"><a href="#2-脚手架Vue-CLI" class="headerlink" title="2.脚手架Vue CLI"></a>2.脚手架Vue CLI</h3><h4 id="基本介绍："><a href="#基本介绍：" class="headerlink" title="基本介绍："></a>基本介绍：</h4><p>   Vue CLI 是Vue官方提供的一个<strong>全局命令工具</strong></p>
+<p>   可以帮助我们<strong>快速创建</strong>一个开发Vue项目的<strong>标准化基础架子</strong>。【集成了webpack配置】</p>
+<h4 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h4><ol>
+<li>开箱即用，零配置</li>
+<li>内置babel等工具</li>
+<li>标准化的webpack配置</li>
+</ol>
+<h4 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h4><ol>
+<li>全局安装（只需安装一次即可） yarn global add @vue&#x2F;cli 或者 npm i @vue&#x2F;cli -g</li>
+<li>查看vue&#x2F;cli版本： vue –version</li>
+<li>创建项目架子：<strong>vue create project-name</strong>(项目名不能使用中文)</li>
+<li>启动项目：<strong>yarn serve</strong> 或者 <strong>npm run serve</strong>(命令不固定，找package.json)</li>
+</ol>
+<h2 id="七、项目目录介绍和运行流程"><a href="#七、项目目录介绍和运行流程" class="headerlink" title="七、项目目录介绍和运行流程"></a>七、项目目录介绍和运行流程</h2><h3 id="1-项目目录介绍"><a href="#1-项目目录介绍" class="headerlink" title="1.项目目录介绍"></a>1.项目目录介绍</h3><p><img src="/assets/1682092148521.png" alt="68209214852"></p>
+<p>虽然脚手架中的文件有很多，目前咱们只需人事三个文件即可</p>
+<ol>
+<li>main.js  入口文件</li>
+<li>App.vue  App根组件 </li>
+<li>index.html 模板文件</li>
+</ol>
+<h3 id="2-运行流程"><a href="#2-运行流程" class="headerlink" title="2.运行流程"></a>2.运行流程</h3><p><img src="/assets/1682094032876.png" alt="68209403287"></p>
+<h2 id="八、组件化开发"><a href="#八、组件化开发" class="headerlink" title="八、组件化开发"></a>八、组件化开发</h2><p>​     组件化：一个页面可以拆分成一个个组件，每个组件有着自己独立的结构、样式、行为。</p>
+<p>​     好处：便于维护，利于复用 → 提升开发效率。</p>
+<p>​     组件分类：普通组件、根组件。</p>
+<p>​      比如：下面这个页面，可以把所有的代码都写在一个页面中，但是这样显得代码比较混乱，难易维护。咱们可以按模块进行组件划分</p>
+<p><img src="/assets/1682168852372.png" alt="68216885237"></p>
+<p>总结：</p>
+<p>组件化的好处是什么？</p>
+<p>组件的分类？</p>
+<h2 id="九、根组件-App-vue"><a href="#九、根组件-App-vue" class="headerlink" title="九、根组件 App.vue"></a>九、根组件 App.vue</h2><h3 id="1-根组件介绍"><a href="#1-根组件介绍" class="headerlink" title="1.根组件介绍"></a>1.根组件介绍</h3><p>整个应用最上层的组件，包裹所有普通小组件</p>
+<p><img src="/assets/1682169131688.png" alt="68216913168"></p>
+<h3 id="2-组件是由三部分构成"><a href="#2-组件是由三部分构成" class="headerlink" title="2.组件是由三部分构成"></a>2.组件是由三部分构成</h3><ul>
+<li>语法高亮插件</li>
+</ul>
+<p><img src="/assets/1682169264266.png" alt="68216926426"></p>
+<ul>
+<li><p>三部分构成</p>
+<ul>
+<li>template：结构 （有且只能一个根元素）</li>
+<li>script:   js逻辑 </li>
+<li>style： 样式 (可支持less，需要装包)</li>
+</ul>
+</li>
+<li><p>让组件支持less</p>
+<p>（1） style标签，lang&#x3D;”less” 开启less功能 </p>
+<p>（2） 装包: yarn add less less-loader -D 或者npm i less less-loader -D</p>
+</li>
+</ul>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><p>App组件包含哪三部分？</p>
+<h2 id="十、普通组件的注册使用-局部注册"><a href="#十、普通组件的注册使用-局部注册" class="headerlink" title="十、普通组件的注册使用-局部注册"></a>十、普通组件的注册使用-局部注册</h2><h3 id="1-特点："><a href="#1-特点：" class="headerlink" title="1.特点："></a>1.特点：</h3><p>只能在注册的组件内使用</p>
+<h3 id="2-步骤："><a href="#2-步骤：" class="headerlink" title="2.步骤："></a>2.步骤：</h3><ol>
+<li>创建.vue文件（三个组成部分）</li>
+<li>在使用的组件内先导入再注册，最后使用</li>
+</ol>
+<h3 id="3-使用方式："><a href="#3-使用方式：" class="headerlink" title="3.使用方式："></a>3.使用方式：</h3><p>当成html标签使用即可  &lt;组件名&gt;&lt;&#x2F;组件名&gt;</p>
+<h3 id="4-注意："><a href="#4-注意：" class="headerlink" title="4.注意："></a>4.注意：</h3><p>组件名规范 —&gt; 大驼峰命名法， 如 HmHeader</p>
+<h3 id="5-语法："><a href="#5-语法：" class="headerlink" title="5.语法："></a>5.语法：</h3><p><img src="/assets/1682227966812.png" alt="68222796681"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入需要注册的组件</span></span><br><span class="line"><span class="keyword">import</span> 组件对象 <span class="keyword">from</span> <span class="string">&#x27;.vue文件路径&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">HmHeader</span> <span class="keyword">from</span> <span class="string">&#x27;./components/HmHeader&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;  <span class="comment">// 局部注册</span></span><br><span class="line">  <span class="attr">components</span>: &#123;</span><br><span class="line">   <span class="string">&#x27;组件名&#x27;</span>: 组件对象,</span><br><span class="line">    <span class="title class_">HmHeader</span>:<span class="title class_">HmHeaer</span>,</span><br><span class="line">    <span class="title class_">HmHeader</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-练习"><a href="#6-练习" class="headerlink" title="6.练习"></a>6.练习</h3><p>在App组件中，完成以下练习。在App.vue中使用组件的方式完成下面布局</p>
+<p><img src="/assets/1682227902873.png" alt="68222790287"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hm-header&quot;&gt;</span><br><span class="line">    我是hm-header</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.hm-header &#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  background-color: #8064a2;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hm-main&quot;&gt;</span><br><span class="line">    我是hm-main</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.hm-main &#123;</span><br><span class="line">  height: 400px;</span><br><span class="line">  line-height: 400px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  background-color: #f79646;</span><br><span class="line">  color: white;</span><br><span class="line">  margin: 20px 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hm-footer&quot;&gt;</span><br><span class="line">    我是hm-footer</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.hm-footer &#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  background-color: #4f81bd;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7.总结"></a>7.总结</h3><ul>
+<li>A组件内部注册的局部组件能在B组件使用吗</li>
+<li>局部注册组件的步骤是什么</li>
+<li>使用组件时 应该按照什么命名法</li>
+</ul>
+<h2 id="十一、普通组件的注册使用-全局注册"><a href="#十一、普通组件的注册使用-全局注册" class="headerlink" title="十一、普通组件的注册使用-全局注册"></a>十一、普通组件的注册使用-全局注册</h2><h3 id="1-特点：-1"><a href="#1-特点：-1" class="headerlink" title="1.特点："></a>1.特点：</h3><p>全局注册的组件，在项目的<strong>任何组件</strong>中都能使用</p>
+<h3 id="2-步骤"><a href="#2-步骤" class="headerlink" title="2.步骤"></a>2.步骤</h3><ol>
+<li>创建.vue组件（三个组成部分）</li>
+<li><strong>main.js</strong>中进行全局注册</li>
+</ol>
+<h3 id="3-使用方式"><a href="#3-使用方式" class="headerlink" title="3.使用方式"></a>3.使用方式</h3><p>当成HTML标签直接使用</p>
+<blockquote>
+<p>&lt;组件名&gt;&lt;&#x2F;组件名&gt;</p>
+</blockquote>
+<h3 id="4-注意"><a href="#4-注意" class="headerlink" title="4.注意"></a>4.注意</h3><p>组件名规范 —&gt; 大驼峰命名法， 如 HmHeader</p>
+<h3 id="5-语法"><a href="#5-语法" class="headerlink" title="5.语法"></a>5.语法</h3><p>Vue.component(‘组件名’, 组件对象)</p>
+<p>例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入需要全局注册的组件</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">HmButton</span> <span class="keyword">from</span> <span class="string">&#x27;./components/HmButton&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&#x27;HmButton&#x27;</span>, <span class="title class_">HmButton</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-练习-1"><a href="#6-练习-1" class="headerlink" title="6.练习"></a>6.练习</h3><p>在以下3个局部组件中是展示一个通用按钮</p>
+<p><img src="/assets/1682263187344.png" alt="68226318734"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button class=&quot;hm-button&quot;&gt;通用按钮&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.hm-button &#123;</span><br><span class="line">  height: 50px;</span><br><span class="line">  line-height: 50px;</span><br><span class="line">  padding: 0 20px;</span><br><span class="line">  background-color: #3bae56;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-总结-1"><a href="#7-总结-1" class="headerlink" title="7.总结"></a>7.总结</h3><p>1.全局注册组件应该在哪个文件中注册以及语法是什么？</p>
+<p>2.全局组件在项目中的任何一个组件中可不可以使用？</p>
+<h2 id="十二、综合案例"><a href="#十二、综合案例" class="headerlink" title="十二、综合案例"></a>十二、综合案例</h2><h3 id="1-小兔仙首页启动项目演示"><a href="#1-小兔仙首页启动项目演示" class="headerlink" title="1.小兔仙首页启动项目演示"></a>1.小兔仙首页启动项目演示</h3><h3 id="2-小兔仙组件拆分示意图"><a href="#2-小兔仙组件拆分示意图" class="headerlink" title="2.小兔仙组件拆分示意图"></a>2.小兔仙组件拆分示意图</h3><p><img src="/assets/1682265491628.png" alt="68226549162"></p>
+<h3 id="3-开发思路"><a href="#3-开发思路" class="headerlink" title="3.开发思路"></a>3.开发思路</h3><ol>
+<li><p>分析页面，按模块拆分组件，搭架子  (局部或全局注册)</p>
+</li>
+<li><p>根据设计图，编写组件 html 结构 css 样式 (已准备好)</p>
+</li>
+<li><p>拆分封装通用小组件  (局部或全局注册)</p>
+<p>将来 → 通过 js 动态渲染，实现功能</p>
+</li>
+</ol>
+
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/day03/" title="vue-day03">https://turheart.github.io/2022/08/03/day03/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/day04%20IDEA&%E6%95%B0%E7%BB%84/" rel="prev" title="day04 IDEA&数组">
+      <i class="fa fa-chevron-left"></i> day04 IDEA&数组
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/day03%20switch&%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" rel="next" title="switch语句">
+      switch语句 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day03"><span class="nav-number">1.</span> <span class="nav-text">day03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%8A%E6%97%A5%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">一、今日目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B-%E5%B0%8F%E9%BB%91%E8%AE%B0%E8%B4%A6%E6%B8%85%E5%8D%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.综合案例-小黑记账清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.工程化开发入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B-%E5%B0%8F%E5%85%94%E4%BB%99%E9%A6%96%E9%A1%B5"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.综合案例-小兔仙首页</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.2.</span> <span class="nav-text">二、Vue生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.3.</span> <span class="nav-text">三、Vue生命周期钩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%B0%8F%E6%A1%88%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">四、生命周期钩子小案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9C%A8created%E4%B8%AD%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.在created中发送数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8mounted%E4%B8%AD%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.在mounted中获取焦点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%A1%88%E4%BE%8B-%E5%B0%8F%E9%BB%91%E8%AE%B0%E8%B4%A6%E6%B8%85%E5%8D%95"><span class="nav-number">1.5.</span> <span class="nav-text">五、案例-小黑记账清单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9C%80%E6%B1%82%E5%9B%BE%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.需求图示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%A3%E7%A0%81%E5%87%86%E5%A4%87"><span class="nav-number">1.5.4.</span> <span class="nav-text">4.代码准备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91%E5%92%8C%E8%84%9A%E6%89%8B%E6%9E%B6"><span class="nav-number">1.6.</span> <span class="nav-text">六、工程化开发和脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BC%80%E5%8F%91Vue%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.开发Vue的两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%84%9A%E6%89%8B%E6%9E%B6Vue-CLI"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.脚手架Vue CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">基本介绍：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%BD%E5%A4%84%EF%BC%9A"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">好处：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">使用步骤：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D%E5%92%8C%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.7.</span> <span class="nav-text">七、项目目录介绍和运行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.项目目录介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.7.2.</span> <span class="nav-text">2.运行流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91"><span class="nav-number">1.8.</span> <span class="nav-text">八、组件化开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%A0%B9%E7%BB%84%E4%BB%B6-App-vue"><span class="nav-number">1.9.</span> <span class="nav-text">九、根组件 App.vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B9%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.9.1.</span> <span class="nav-text">1.根组件介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%84%E4%BB%B6%E6%98%AF%E7%94%B1%E4%B8%89%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90"><span class="nav-number">1.9.2.</span> <span class="nav-text">2.组件是由三部分构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%BB%E7%BB%93"><span class="nav-number">1.9.3.</span> <span class="nav-text">3.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%99%AE%E9%80%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C%E4%BD%BF%E7%94%A8-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C"><span class="nav-number">1.10.</span> <span class="nav-text">十、普通组件的注册使用-局部注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.10.1.</span> <span class="nav-text">1.特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.10.2.</span> <span class="nav-text">2.步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.10.3.</span> <span class="nav-text">3.使用方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="nav-number">1.10.4.</span> <span class="nav-text">4.注意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">1.10.5.</span> <span class="nav-text">5.语法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BB%83%E4%B9%A0"><span class="nav-number">1.10.6.</span> <span class="nav-text">6.练习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%80%BB%E7%BB%93"><span class="nav-number">1.10.7.</span> <span class="nav-text">7.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%99%AE%E9%80%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C%E4%BD%BF%E7%94%A8-%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C"><span class="nav-number">1.11.</span> <span class="nav-text">十一、普通组件的注册使用-全局注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%89%B9%E7%82%B9%EF%BC%9A-1"><span class="nav-number">1.11.1.</span> <span class="nav-text">1.特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.11.2.</span> <span class="nav-text">2.步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">1.11.3.</span> <span class="nav-text">3.使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B3%A8%E6%84%8F"><span class="nav-number">1.11.4.</span> <span class="nav-text">4.注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%AF%AD%E6%B3%95"><span class="nav-number">1.11.5.</span> <span class="nav-text">5.语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BB%83%E4%B9%A0-1"><span class="nav-number">1.11.6.</span> <span class="nav-text">6.练习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%80%BB%E7%BB%93-1"><span class="nav-number">1.11.7.</span> <span class="nav-text">7.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B"><span class="nav-number">1.12.</span> <span class="nav-text">十二、综合案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%8F%E5%85%94%E4%BB%99%E9%A6%96%E9%A1%B5%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E6%BC%94%E7%A4%BA"><span class="nav-number">1.12.1.</span> <span class="nav-text">1.小兔仙首页启动项目演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B0%8F%E5%85%94%E4%BB%99%E7%BB%84%E4%BB%B6%E6%8B%86%E5%88%86%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">1.12.2.</span> <span class="nav-text">2.小兔仙组件拆分示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF"><span class="nav-number">1.12.3.</span> <span class="nav-text">3.开发思路</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">22:09</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+</body>
+</html>

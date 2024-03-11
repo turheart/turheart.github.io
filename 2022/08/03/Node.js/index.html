@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"turheart.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="01_Node.js入门知识点自测 从 index.js 出发，访问到 student&#x2F;data.json 的相对路径如何写?  A：..&#x2F;public&#x2F;teacher&#x2F;data.json B：.&#x2F;public&#x2F;student&#x2F;data.json C：..&#x2F;student&#x2F;data.json  答案  A选项正确">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js">
+<meta property="og:url" content="https://turheart.github.io/2022/08/03/Node.js/index.html">
+<meta property="og:site_name" content="一把小桨">
+<meta property="og:description" content="01_Node.js入门知识点自测 从 index.js 出发，访问到 student&#x2F;data.json 的相对路径如何写?  A：..&#x2F;public&#x2F;teacher&#x2F;data.json B：.&#x2F;public&#x2F;student&#x2F;data.json C：..&#x2F;student&#x2F;data.json  答案  A选项正确">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230330104904311.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230330112925228.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230330113929178.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230330113942679.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230330175243783.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331150152299.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331150407659.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331150506876.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331154702306.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331154639881.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331155406652.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331155537983.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331162320775.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331162341684.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331170210113.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331170220045.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331170539931.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230331171411780.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230403105744257.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230403105848637.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230403110640647.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230403111445196.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518101043103.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518101137662.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518101404084.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518103430262.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518104016802.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518104603049.png">
+<meta property="og:image" content="https://turheart.github.io/images/image-20230518104625088.png">
+<meta property="article:published_time" content="2022-08-03T09:08:00.000Z">
+<meta property="article:modified_time" content="2024-03-11T15:21:02.320Z">
+<meta property="article:author" content="浊心">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://turheart.github.io/images/image-20230330104904311.png">
+
+<link rel="canonical" href="https://turheart.github.io/2022/08/03/Node.js/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Node.js | 一把小桨</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一把小桨</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">浊心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://turheart.github.io/2022/08/03/Node.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="浊心">
+      <meta itemprop="description" content="山鬼不识字，西风不解情">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一把小桨">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Node.js
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 17:08:00" itemprop="dateCreated datePublished" datetime="2022-08-03T17:08:00+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 23:21:02" itemprop="dateModified" datetime="2024-03-11T23:21:02+08:00">2024-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>27k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>25 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="01-Node-js入门"><a href="#01-Node-js入门" class="headerlink" title="01_Node.js入门"></a>01_Node.js入门</h1><h2 id="知识点自测"><a href="#知识点自测" class="headerlink" title="知识点自测"></a>知识点自测</h2><ol>
+<li><p>从 index.js 出发，访问到 student&#x2F;data.json 的相对路径如何写?</p>
+<p><img src="/images/image-20230330104904311.png" alt="image-20230330104904311"></p>
+<p>A：<code>../public/teacher/data.json</code></p>
+<p>B：<code>./public/student/data.json</code></p>
+<p>C：<code>../student/data.json</code></p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>A选项正确</li>
+</ul>
+</details></li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>如下代码运行结果是多少?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">`我们都是好人，好人就是我`</span></span><br><span class="line"><span class="keyword">const</span> result = str.<span class="title function_">replace</span>(<span class="regexp">/好/g</span>, <span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>A：<code>我们都是人，好人就是我</code></p>
+<p>B：<code>我们都是人，人就是我</code></p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>B选项正确</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>以下哪个正则表达式，能匹配字符串中的小括号？</p>
+<p>A：<code>/(/</code></p>
+<p>B：<code>/\(/</code></p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>B选项正确，因为在正则表达式里直接写小括号，相当于分组功能，而不是匹配字符串小括号里，可以加一个斜杠代表转义，转换它去匹配小括号字符串而不再是分组</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>如下代码返回的结果是什么？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;/api/hello?a=10&amp;b=20&#x27;</span></span><br><span class="line"><span class="keyword">const</span> result = str.<span class="title function_">startsWith</span>(<span class="string">&#x27;/api/hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>A：true</p>
+<p>B：false</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>A 项正确，startsWith 用于判断调用的字符串是否以传入的目标字符串开头，是返回 true，否则返回 false 在原地</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="提前安装软件"><a href="#提前安装软件" class="headerlink" title="提前安装软件"></a>提前安装软件</h2><p>在配套的资料文件夹中，先安装好 Node.js 环境，上课可以节省时间</p>
+<p>具体安装过程可以参考 PPT 和 配套视频！</p>
+<h2 id="01-什么是-Node-js"><a href="#01-什么是-Node-js" class="headerlink" title="01.什么是 Node.js"></a>01.什么是 Node.js</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>什么是 Node.js，有什么用，为何能独立执行 JS 代码，演示安装和执行 JS 文件内代码</p>
+<h3 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>Node.js 是一个独立的 JavaScript 运行环境，能独立执行 JS 代码，因为这个特点，它可以用来编写服务器后端的应用程序</p>
+</li>
+<li><p>Node.js 作用除了编写后端应用程序，也可以对前端代码进行压缩，转译，整合等等，提高前端开发和运行效率</p>
+</li>
+<li><p>Node.js 基于Chrome V8 引擎封装，独立执行 JS 代码，但是语法和浏览器环境的 V8 有所不同，没有 document 和 window 但是都支持 ECMAScript 标准的代码语法</p>
+</li>
+<li><p>想要得到 Node.js 需要把这个软件安装到电脑，在素材里有安装程序（window 和 mac 环境的）参考 PPT 默认下一步安装即可</p>
+</li>
+<li><p>Node.js 没有图形化界面，需要使用 cmd 终端命令行（利用一些命令来操控电脑执行某些程序软件）输入，node -v 检查是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>需求：新建 index.js 文件，编写打印代码和 for 循环打印 3 个 6</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：编写 js 代码，用 node 命令执行</span></span><br><span class="line"><span class="comment"> * 终端作用：敲击命令，调用对应程序执行</span></span><br><span class="line"><span class="comment"> * 终端打开：目标文件-&gt;右键-&gt;在集成终端中打开</span></span><br><span class="line"><span class="comment"> * 命令：node xxx.js （注意路径）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, World&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>Node.js 执行目标 JS 文件，需要使用 node xxx.js 命令来执行（我们可以借助 VSCode 集成终端使用，好处：可以快速切换到目标 JS 文件所在终端目录，利用相对路径找到要执行的目标 JS 文件</p>
+<p><img src="/images/image-20230330112925228.png" alt="image-20230330112925228"></p>
+</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Node.js 有什么用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>编写后端程序，提供数据和网页资源，还可以作为前端工程化的工具，翻译压缩整合代码等，提高开发效率</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>Node.js 为何能执行 JS 代码？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>基于 Chrome 的 V8 引擎封装</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>Node.js 与浏览器环境的 JS 最大区别？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>Node.js 环境中没有 BOM 和 DOM，但是也用 JS 语法</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>Node.js 如何执行代码？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>在 VSCode 终端中输入：node xxx.js 回车即可执行（注意路径）</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="02-fs模块-读写文件"><a href="#02-fs模块-读写文件" class="headerlink" title="02.fs模块-读写文件"></a>02.fs模块-读写文件</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><p>了解模块概念，使用 fs 模块封装的方法读写文件内容</p>
+<h3 id="讲解-1"><a href="#讲解-1" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>模块：类似插件，封装了方法和属性供我们使用</p>
+</li>
+<li><p>fs 模块：封装了与本机文件系统进行交互的，方法和属性</p>
+</li>
+<li><p>fs 模块使用语法如下：</p>
+<ul>
+<li><p>加载 fs 模块，得到 fs 对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写入文件内容语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">writeFile</span>(<span class="string">&#x27;文件路径&#x27;</span>, <span class="string">&#x27;写入内容&#x27;</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 写入后的回调函数</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取文件内容的语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&#x27;文件路径&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 读取后的回调函数</span></span><br><span class="line">  <span class="comment">// data 是文件内容的 Buffer 数据流</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>需求：向 test.txt 文件写入内容并读取打印</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：使用 fs 模块，读写文件内容</span></span><br><span class="line"><span class="comment"> * 语法：</span></span><br><span class="line"><span class="comment"> * 1. 引入 fs 模块</span></span><br><span class="line"><span class="comment"> * 2. 调用 writeFile 写入内容</span></span><br><span class="line"><span class="comment"> * 3. 调用 readFile  读取内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 1. 引入 fs 模块</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"><span class="comment">// 2. 调用 writeFile 写入内容</span></span><br><span class="line"><span class="comment">// 注意：建议写入字符串内容，会覆盖目标文件所有内容</span></span><br><span class="line">fs.<span class="title function_">writeFile</span>(<span class="string">&#x27;./text.txt&#x27;</span>, <span class="string">&#x27;欢迎使用 fs 模块读写文件内容&#x27;</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">  <span class="keyword">else</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;写入成功&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 3. 调用 readFile  读取内容</span></span><br><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&#x27;./text.txt&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">  <span class="keyword">else</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>()) <span class="comment">// 把 Buffer 数据流转成字符串类型</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>什么是模块？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>类似插件，封装了方法和属性</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>fs 模块的作用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>读写本机文件内容</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="03-path模块-路径处理"><a href="#03-path模块-路径处理" class="headerlink" title="03.path模块-路径处理"></a>03.path模块-路径处理</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><p>使用 path 模块来得到绝对路径</p>
+<h3 id="讲解-2"><a href="#讲解-2" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>为什么在 Node.js 待执行的 JS 代码中要用绝对路径：</p>
+<blockquote>
+<p>Node.js 执行 JS 代码时，代码中的路径都是以终端所在文件夹出发查找相对路径，而不是以我们认为的从代码本身出发，会遇到问题，所以在 Node.js 要执行的代码中，访问其他文件，建议使用绝对路径</p>
+</blockquote>
+</li>
+<li><p>新建 03 文件夹编写待执行的 JS 代码，访问外层相对路径下的文件，<span style="color: red;">然后在最外层终端路径来执行目标文件，造成问题</span></p>
+<p><img src="/images/image-20230330113929178.png" alt="image-20230330113929178"></p>
+<p><img src="/images/image-20230330113942679.png" alt="image-20230330113942679"></p>
+</li>
+<li><p>问题原因：就是从代码文件夹出发，使用<code>../text.txt</code>解析路径，找不到目标文件，报错了！</p>
+</li>
+<li><p>解决方案：使用模块内置变量 <code>__dirname</code>配合 path.join() 来得到绝对路径使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(__dirname) <span class="comment">// D:\备课代码\2_node_3天\Node_代码\Day01_Node.js入门\代码\03</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 加载 path 模块</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="comment">// 2. 使用 path.join() 来拼接路径</span></span><br><span class="line"><span class="keyword">const</span> pathStr = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;text.txt&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(pathStr)</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readFile</span>(pathStr, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">  <span class="keyword">else</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>再次执行查看问题就被修复了！以后在 Node.js 要执行的 JS 代码中访问其他文件的路径，都建议使用绝度路径</p>
+</li>
+</ol>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>path.join() 方法有什么用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>按照所在本机系统的分隔符作为定界符来链接你传入的路径</li>
+</ul>
+</details>
+
+
+</li>
+<li><p><code>__dirname</code> 模块内置变量的值是多少？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>动态获取当前文件所在文件夹的绝对路径</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="04-案例-压缩前端html"><a href="#04-案例-压缩前端html" class="headerlink" title="04.案例-压缩前端html"></a>04.案例-压缩前端html</h2><h3 id="目标-3"><a href="#目标-3" class="headerlink" title="目标"></a>目标</h3><p>压缩前端代码，体验前端工程化的例子</p>
+<h3 id="讲解-3"><a href="#讲解-3" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>前端工程化：前端代码压缩，整合，转译，测试，自动部署等等工具的集成统称，为了提高前端开发项目的效率</p>
+</li>
+<li><p>需求：把准备好的 html 文件里的回车符（\r）和换行符（\n）去掉进行压缩，写入到新 html 中</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li>读取源 html 文件内容</li>
+<li>正则替换字符串</li>
+<li>写入到新的 html 文件中，并运行查看是否能正常打开网页</li>
+</ol>
+</li>
+<li><p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标一：压缩 html 里代码</span></span><br><span class="line"><span class="comment"> * 需求：把 public/index.html 里的，回车/换行符去掉，写入到 dist/index.html 中</span></span><br><span class="line"><span class="comment"> *  1.1 读取 public/index.html 内容</span></span><br><span class="line"><span class="comment"> *  1.2 使用正则替换内容字符串里的，回车符\r 换行符\n</span></span><br><span class="line"><span class="comment"> *  1.3 确认后，写入到 dist/index.html 内</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="comment">// 1.1 读取 public/index.html 内容</span></span><br><span class="line">fs.<span class="title function_">readFile</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;public&#x27;</span>, <span class="string">&#x27;index.html&#x27;</span>), <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> htmlStr = data.<span class="title function_">toString</span>()</span><br><span class="line">  <span class="comment">// 1.2 使用正则替换内容字符串里的，回车符\r 换行符\n</span></span><br><span class="line">  <span class="keyword">const</span> resultStr = htmlStr.<span class="title function_">replace</span>(<span class="regexp">/[\r\n]/g</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="comment">// 1.3 确认后，写入到 dist/index.html 内</span></span><br><span class="line">  fs.<span class="title function_">writeFile</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>, <span class="string">&#x27;index.html&#x27;</span>), resultStr, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">    <span class="keyword">else</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;压缩成功&#x27;</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>前端工程化的理解？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>对前端代码进行优化，集成各种提高前端开发效率的工具等</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="05-认识URL中的端口号"><a href="#05-认识URL中的端口号" class="headerlink" title="05.认识URL中的端口号"></a>05.认识URL中的端口号</h2><h3 id="目标-4"><a href="#目标-4" class="headerlink" title="目标"></a>目标</h3><p>认识 URL 中端口号的作用，以及 Web 服务的作用</p>
+<h3 id="讲解-4"><a href="#讲解-4" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li>URL 是统一资源定位符，简称网址，用于访问网络上的资源</li>
+<li>端口号的作用：标记服务器里对应的服务程序，值为（0-65535 之间的任意整数）</li>
+<li>注意：http 协议，默认访问的是 80 端口</li>
+<li>Web服务：一个程序，用于提供网上信息浏览功能</li>
+<li>注意：0-1023 和一些特定的端口号被占用，我们自己编写服务程序请避开使用</li>
+</ol>
+<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>端口号的作用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>标记区分服务器里不同的服务程序</li>
+</ul>
+</details>
+</li>
+<li><p>什么是 Web 服务？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>提供网上信息浏览的服务的一个程序</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="06-http模块-创建Web服务"><a href="#06-http模块-创建Web服务" class="headerlink" title="06.http模块-创建Web服务"></a>06.http模块-创建Web服务</h2><h3 id="目标-5"><a href="#目标-5" class="headerlink" title="目标"></a>目标</h3><p>基于 Node.js 环境，使用内置 http 模块，创建 Web 服务程序</p>
+<h3 id="讲解-5"><a href="#讲解-5" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：引入 http 模块，使用相关语法，创建 Web 服务程序，响应返回给请求方一句提示 ‘hello，world’</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li>引入 http 模块，创建 Web 服务对象</li>
+<li>监听 request 请求事件，对本次请求，做一些响应处理</li>
+<li>启动 Web 服务监听对应端口号</li>
+<li>运行本服务在终端进程中，用浏览器发起请求</li>
+</ol>
+</li>
+<li><p>注意：本机的域名叫做 localhost</p>
+</li>
+<li><p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 http 模块创建 Web 服务程序</span></span><br><span class="line"><span class="comment"> *  1.1 加载 http 模块，创建 Web 服务对象</span></span><br><span class="line"><span class="comment"> *  1.2 监听 request 请求事件，设置响应头和响应体</span></span><br><span class="line"><span class="comment"> *  1.3 配置端口号并启动 Web 服务</span></span><br><span class="line"><span class="comment"> *  1.4 浏览器请求（http://localhost:3000）测试</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 1.1 加载 http 模块，创建 Web 服务对象</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>()</span><br><span class="line"><span class="comment">// 1.2 监听 request 请求事件，设置响应头和响应体</span></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 设置响应头-内容类型-普通文本以及中文编码格式</span></span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/plain;charset=utf-8&#x27;</span>)</span><br><span class="line">  <span class="comment">// 设置响应体内容，结束本次请求与响应</span></span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&#x27;欢迎使用 Node.js 和 http 模块创建的 Web 服务&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 1.3 配置端口号并启动 Web 服务</span></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Web 服务启动成功了&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>如何访问本机里运行的 Web 服务？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>http://localhost:Web服务的端口号/资源路径</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="07-案例-浏览时钟"><a href="#07-案例-浏览时钟" class="headerlink" title="07.案例-浏览时钟"></a>07.案例-浏览时钟</h2><h3 id="目标-6"><a href="#目标-6" class="headerlink" title="目标"></a>目标</h3><p>体验 Web 服务除了接口数据以外，还能返回网页资源等</p>
+<h3 id="讲解-6"><a href="#讲解-6" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：基于 Web 服务，开发提供网页资源的功能，了解下后端的代码工作过程</p>
+<p><img src="/images/image-20230330175243783.png" alt="image-20230330175243783"></p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li>基于 http 模块，创建 Web 服务</li>
+<li>使用 req.url 获取请求资源路径为 &#x2F;index.html 的时候，读取 index.html 文件内容字符串返回给请求方</li>
+<li>其他路径，暂时返回不存在的提示</li>
+<li>运行 Web 服务，用浏览器发起请求</li>
+</ol>
+</li>
+<li><p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：编写 web 服务，监听请求的是 /index.html 路径的时候，返回 dist/index.html 时钟案例页面内容</span></span><br><span class="line"><span class="comment"> * 步骤：</span></span><br><span class="line"><span class="comment"> *  1. 基于 http 模块，创建 Web 服务</span></span><br><span class="line"><span class="comment"> *  2. 使用 req.url 获取请求资源路径，并读取 index.html 里字符串内容返回给请求方</span></span><br><span class="line"><span class="comment"> *  3. 其他路径，暂时返回不存在提示</span></span><br><span class="line"><span class="comment"> *  4. 运行 Web 服务，用浏览器发起请求</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="comment">// 1. 基于 http 模块，创建 Web 服务</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>()</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 2. 使用 req.url 获取请求资源路径，并读取 index.html 里字符串内容返回给请求方</span></span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">url</span> === <span class="string">&#x27;/index.html&#x27;</span>) &#123;</span><br><span class="line">    fs.<span class="title function_">readFile</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist/index.html&#x27;</span>), <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">      res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html;charset=utf-8&#x27;</span>)</span><br><span class="line">      res.<span class="title function_">end</span>(data.<span class="title function_">toString</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 3. 其他路径，暂时返回不存在提示</span></span><br><span class="line">    res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html;charset=utf-8&#x27;</span>)</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;你要访问的资源路径不存在&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8080</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Web 服务启动了&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Web 服务程序都有什么功能？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>提供数据和网页资源等等功能，其他它的功能远不止于此</li>
+</ul>
+</details></li>
+</ol>
+<h1 id="02-Node-js模块化"><a href="#02-Node-js模块化" class="headerlink" title="02_Node.js模块化"></a>02_Node.js模块化</h1><h2 id="知识点自测-1"><a href="#知识点自测-1" class="headerlink" title="知识点自测"></a>知识点自测</h2><ol>
+<li><p>以下代码运行的结果是多少？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>]</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function"><span class="params">val</span> =&gt;</span> val + <span class="number">1</span>).<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, val</span>) =&gt;</span> sum += val, <span class="number">0</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>A：60</p>
+<p>B：63</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>B选项正确</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>以下代码运行的结果是多少？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">username</span>: <span class="string">&#x27;itheima&#x27;</span>, <span class="attr">password</span>: <span class="string">&#x27;777777&#x27;</span> &#125;</span><br><span class="line"><span class="keyword">const</span> &#123; uname &#125; = obj</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(uname)</span><br></pre></td></tr></table></figure>
+
+<p>A：itheima</p>
+<p>B：undefined</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>A选项正确</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="01-模块化简介"><a href="#01-模块化简介" class="headerlink" title="01.模块化简介"></a>01.模块化简介</h2><h3 id="目标-7"><a href="#目标-7" class="headerlink" title="目标"></a>目标</h3><p>了解模块化概念和好处，以及 CommonJS 标准语法导出和导入</p>
+<h3 id="讲解-7"><a href="#讲解-7" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>在 Node.js 中每个文件都被当做是一个独立的模块，模块内定义的变量和函数都是独立作用域的，因为 Node.js 在执行模块代码时，将使用如下所示的函数封装器对其进行封装</p>
+<p><img src="/images/image-20230331150152299.png" alt="image-20230331150152299"></p>
+</li>
+</ol>
+<p>​	</p>
+<ol start="2">
+<li><p>而且项目是由多个模块组成的，每个模块之间都是独立的，而且提高模块代码复用性，按需加载，独立作用域</p>
+<p><img src="/images/image-20230331150407659.png" alt="image-20230331150407659"></p>
+</li>
+<li><p>但是因为模块内的属性和函数都是私有的，如果对外使用，需要使用标准语法导出和导入才可以，而这个标准叫 CommonJS 标准，接下来我们在一个需求中，体验下模块化导出和导入语法的使用</p>
+</li>
+<li><p>需求：定义 utils.js 模块，封装基地址和求数组总和的函数，导入到 index.js 使用查看效果</p>
+<p><img src="/images/image-20230331150506876.png" alt="image-20230331150506876"></p>
+</li>
+<li><p>导出语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  对外属性名: 模块内私有变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> 变量名 = <span class="built_in">require</span>(<span class="string">&#x27;模块名或路径&#x27;</span>)</span><br><span class="line"><span class="comment">// Node.js 环境内置模块直接写模块名（例如：fs，path，http）</span></span><br><span class="line"><span class="comment">// 自定义模块：写模块文件路径（例如：./utils.js)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>变量名的值接收的就是目标模块导出的对象</p>
+</blockquote>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>utils.js：导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 CommonJS 标准语法，封装属性和方法并导出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">url</span>: baseURL,</span><br><span class="line">  <span class="attr">arraySum</span>: getArraySum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>index.js：导入使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 CommonJS 标准语法，导入工具属性和方法使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">require</span>(<span class="string">&#x27;./utils.js&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="keyword">const</span> result = obj.<span class="title function_">arraySum</span>([<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="小结-7"><a href="#小结-7" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Node.js 中什么是模块化?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>每个文件都是独立的模块</li>
+</ul>
+</details>
+</li>
+<li><p>模块之间如何联系呢?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>使用特定语法，导出和导入使用</li>
+</ul>
+</details>
+</li>
+<li><p>CommonJS 标准规定如何导出和导入模块?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>导出：module.exports = {},导入：require('模块名或路径')</li>
+</ul>
+</details>
+</li>
+<li><p>模块名&#x2F;路径如何选择?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>内置模块：写名字。例如：fs，path，http等。自定义模块：写模块文件路径，例如：./utils.js</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="02-ECMAScript标准-默认导出和导入"><a href="#02-ECMAScript标准-默认导出和导入" class="headerlink" title="02.ECMAScript标准-默认导出和导入"></a>02.ECMAScript标准-默认导出和导入</h2><h3 id="目标-8"><a href="#目标-8" class="headerlink" title="目标"></a>目标</h3><p>掌握 ECMAScript 标准语法中，默认导出和导入的使用</p>
+<h3 id="讲解-8"><a href="#讲解-8" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>CommonJS 规范是 Node.js 环境中默认的，后来官方推出 ECMAScript 标准语法，我们接下来在一个需求中，体验下这个标准中默认导出和导入的语法要如何使用</p>
+</li>
+<li><p>需求：封装并导出基地址和求数组元素和的函数，导入到 index.js 使用查看效果</p>
+</li>
+<li><p>导出语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  对外属性名: 模块内私有变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> 变量名 <span class="keyword">from</span> <span class="string">&#x27;模块名或路径&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>变量名的值接收的就是目标模块导出的对象</p>
+</blockquote>
+</li>
+<li><p>注意：Node.js 默认只支持 CommonJS 标准语法，如果想要在当前项目环境下使用 ECMAScript 标准语法，请新建 package.json 文件设置 type: ‘module’ 来进行设置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> “type”<span class="punctuation">:</span> <span class="string">&quot;module&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>代码实现：</p>
+<ul>
+<li><p>utils.js：导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 ECMAScript 标准语法，封装属性和方法并&quot;默认&quot;导出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">url</span>: baseURL,</span><br><span class="line">  <span class="attr">arraySum</span>: getArraySum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>index.js：导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 ECMAScript 标准语法，&quot;默认&quot;导入，工具属性和方法使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 默认导入</span></span><br><span class="line"><span class="keyword">import</span> obj <span class="keyword">from</span> <span class="string">&#x27;./utils.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="keyword">const</span> result = obj.<span class="title function_">arraySum</span>([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="小结-8"><a href="#小结-8" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>ECMAScript 标准规定如何默认导出和导入模块?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>导出：export default {} 导入：import 变量名 from '模块名或路径'</li>
+</ul>
+</details>
+</li>
+<li><p>如何让 Node.js 切换模块标准为 ECMAScript？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>运行模块所在文件夹，新建 package.json 并设置 {“type”：“module”}</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="03-ECMAScript标准-命名导出和导入"><a href="#03-ECMAScript标准-命名导出和导入" class="headerlink" title="03.ECMAScript标准-命名导出和导入"></a>03.ECMAScript标准-命名导出和导入</h2><h3 id="目标-9"><a href="#目标-9" class="headerlink" title="目标"></a>目标</h3><p>掌握 ECMAScript 标准语法中，命名导出和导入的使用</p>
+<h3 id="讲解-9"><a href="#讲解-9" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>ECMAScript 标准的语法有很多，常用的就是默认和命名导出和导入，这节课我们来学习下命名导出和导入的使用</p>
+</li>
+<li><p>需求：封装并导出基地址和数组求和函数，导入到 index.js 使用查看效果</p>
+</li>
+<li><p>命名导出语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> 修饰定义语句</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名导入语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; 同名变量 &#125; <span class="keyword">from</span> <span class="string">&#x27;模块名或路径&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：同名变量指的是模块内导出的变量名</p>
+</blockquote>
+</li>
+<li><p>代码示例：</p>
+<ul>
+<li><p>utils.js 导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 ECMAScript 标准语法，封装属性和方法并&quot;命名&quot;导出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>index.js 导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：基于 ECMAScript 标准语法，&quot;命名&quot;导入，工具属性和方法使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 命名导入</span></span><br><span class="line"><span class="keyword">import</span> &#123;baseURL, getArraySum&#125; <span class="keyword">from</span> <span class="string">&#x27;./utils.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(baseURL)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(getArraySum)</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">getArraySum</span>([<span class="number">10</span>, <span class="number">21</span>, <span class="number">33</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>与默认导出如何选择：</p>
+<ul>
+<li>按需加载，使用命名导出和导入</li>
+<li>全部加载，使用默认导出和导入</li>
+</ul>
+</li>
+</ol>
+<h3 id="小结-9"><a href="#小结-9" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Node.js 支持哪 2 种模块化标准?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>CommonJS 标准语法（默认）</li>
+<li>ECMAScript 标准语法</li>
+</ul>
+</details>
+</li>
+<li><p>ECMAScript 标准，命名导出和导入的语法?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>导出：export 修饰定义的语句，import { 同名变量 } from '模块名或路径'</li>
+</ul>
+</details>
+</li>
+<li><p>ECMAScript 标准，默认导出和导入的语法？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>导出：export default {} 导入：import 变量名 from '模块名或路径'</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="04-包的概念"><a href="#04-包的概念" class="headerlink" title="04.包的概念"></a>04.包的概念</h2><h3 id="目标-10"><a href="#目标-10" class="headerlink" title="目标"></a>目标</h3><p>了解 Node.js 环境中包的概念</p>
+<h3 id="讲解-10"><a href="#讲解-10" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>包：将模块，代码，其他资料整合成一个文件夹，这个文件夹就叫包</p>
+</li>
+<li><p>包分类：</p>
+<ul>
+<li>项目包：主要用于编写项目和业务逻辑</li>
+<li>软件包：封装工具和方法进行使用</li>
+</ul>
+</li>
+<li><p>包要求：根目录中，必须有 package.json 文件（记录包的清单信息）</p>
+<p><img src="/images/image-20230331154702306.png" alt="image-20230331154702306"></p>
+<p><img src="/images/image-20230331154639881.png" alt="image-20230331154639881"></p>
+</li>
+<li><p>包使用：在引入一个包文件夹到代码中，默认引入的是包文件节下的 index.js 模块文件里导出的对象，如果没有 index.js 文件，则会引入 package.json 里 main 属性指定的文件模块导出的对象</p>
+</li>
+<li><p>需求：封装数组求和函数的模块，封装判断用户名和密码长度函数的模块，形成一个软件包，并导入到 index.js 中使用查看效果</p>
+</li>
+<li><p>代码示例：</p>
+<ul>
+<li><p>utils&#x2F;lib 相关代码在素材里准备好了，只需要自己在 utils&#x2F;index.js 统一出口进行导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本文件是，utils 工具包的唯一出口</span></span><br><span class="line"><span class="comment"> * 作用：把所有工具模块方法集中起来，统一向外暴露</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> &#123; getArraySum &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./lib/arr.js&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; checkUser, checkPwd &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./lib/str.js&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一导出所有函数</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  getArraySum,</span><br><span class="line">  checkUser,</span><br><span class="line">  checkPwd</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>index.js 导入软件包文件夹使用（注意：这次导入的是包文件夹，不是模块文件）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标：导入 utils 软件包，使用里面封装的工具函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">require</span>(<span class="string">&#x27;./utils&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="keyword">const</span> result = obj.<span class="title function_">getArraySum</span>([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="小结-10"><a href="#小结-10" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>什么是包?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>将模块，代码，其他资料聚合成的文件夹</li>
+</ul>
+</details>
+</li>
+<li><p>包分为哪 2 类呢?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>项目包：编写项目代码的文件夹，软件包：封装工具和方法供开发者使用</li>
+</ul>
+</details>
+</li>
+<li><p>package.json 文件的作用?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>记录软件包的名字，作者，入口文件等信息</li>
+</ul>
+</details>
+</li>
+<li><p>导入一个包文件夹的时候，导入的是哪个文件?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>默认 index.js 文件，或者 main 属性指定的文件</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="05-npm软件包管理器"><a href="#05-npm软件包管理器" class="headerlink" title="05.npm软件包管理器"></a>05.npm软件包管理器</h2><h3 id="目标-11"><a href="#目标-11" class="headerlink" title="目标"></a>目标</h3><p>掌握使用 npm 管理软件包</p>
+<h3 id="讲解-11"><a href="#讲解-11" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>npm 简介<a href="%5Bhttp://dev.nodejs.cn/learn/an-introduction-to-the-npm-package-manager#npm-%E7%AE%80%E4%BB%8B%5D(http://dev.nodejs.cn/learn/an-introduction-to-the-npm-package-manager)">链接</a>： 软件包管理器，用于下载和管理 Node.js 环境中的软件包</p>
+<p><img src="/images/image-20230331155406652.png" alt="image-20230331155406652"></p>
+</li>
+<li><p>npm 使用步骤：</p>
+<ol>
+<li><p>初始化清单文件： npm init -y （得到 package.json 文件，有则跳过此命令）</p>
+<blockquote>
+<p>注意 -y 就是所有选项用默认值，所在文件夹不要有中文&#x2F;特殊符号，建议英文和数字组成，因为 npm 包名限制建议用英文和数字或者下划线中划线</p>
+</blockquote>
+</li>
+<li><p>下载软件包：npm i 软件包名称</p>
+</li>
+<li><p>使用软件包</p>
+</li>
+</ol>
+</li>
+<li><p>需求：使用 npm 下载 dayjs 软件包到本地项目文件夹中，引入到 index.js 中格式化日期打印，运行观察效果</p>
+</li>
+<li><p>具体使用流程图：</p>
+<p><img src="/images/image-20230331155537983.png" alt="image-20230331155537983"></p>
+</li>
+</ol>
+<h3 id="小结-11"><a href="#小结-11" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>npm 软件包管理器作用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>下载软件包以及管理版本</li>
+</ul>
+</details>
+</li>
+<li><p>初始化项目清单文件 package.json 命令?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>npm init -y</li>
+</ul>
+</details>
+</li>
+<li><p>下载软件包的命令？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>npm i 软件包名字</li>
+</ul>
+</details>
+</li>
+<li><p>下载的包会存放在哪里?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>当前项目下的 node_modules 中，并记录在 package.json 中</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="06-npm安装所有依赖"><a href="#06-npm安装所有依赖" class="headerlink" title="06.npm安装所有依赖"></a>06.npm安装所有依赖</h2><h3 id="目标-12"><a href="#目标-12" class="headerlink" title="目标"></a>目标</h3><p>掌握 npm 安装所有依赖功能</p>
+<h3 id="讲解-12"><a href="#讲解-12" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>我们拿到了一个别人编写的项目，但是没有 node_modules，项目能否正确运行？</p>
+<blockquote>
+<p>不能，因为缺少了项目需要的依赖软件包，比如要使用 dayjs 和 lodash 但是你项目里没有这个对应的源码，项目会报错的</p>
+</blockquote>
+<p><img src="/images/image-20230331162320775.png" alt="image-20230331162320775"></p>
+</li>
+<li><p>为何没有给我 node_modules？</p>
+<blockquote>
+<p>因为每个人在自己的本机使用 npm 下载，要比磁盘间传递要快（npm 有缓存在本机）</p>
+</blockquote>
+</li>
+<li><p>如何得到需要的所有依赖软件包呢？</p>
+<blockquote>
+<p>直接在项目目录下，运行终端命令：npm i 即可安装 package.json 里记录的所有包和对应版本到本项目中的 node_modules</p>
+</blockquote>
+<p><img src="/images/image-20230331162341684.png" alt="image-20230331162341684"></p>
+</li>
+<li><p>需求：请在准备好的素材项目中，安装项目所有需要的依赖软件包，并运行 index.js 代码看是否正常！</p>
+</li>
+</ol>
+<h3 id="小结-12"><a href="#小结-12" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>当前项目中只有 package.json 没有 node_modules 怎么办?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>当前项目目录下，打开终端，执行 npm i 安装所有依赖软件包</li>
+</ul>
+</details>
+</li>
+<li><p>为什么 node_modules 不进行传递?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>因为用 npm 下载有缓存在本机，比磁盘之间传递要快</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="07-npm全局软件包-nodemon"><a href="#07-npm全局软件包-nodemon" class="headerlink" title="07.npm全局软件包-nodemon"></a>07.npm全局软件包-nodemon</h2><h3 id="目标-13"><a href="#目标-13" class="headerlink" title="目标"></a>目标</h3><p>掌握本地软件包和全局软件包区别，体验 nodemon 的使用</p>
+<h3 id="讲解-13"><a href="#讲解-13" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>软件包区别：</p>
+<ul>
+<li>本地软件包：当前项目内使用，<span style="color: red;">封装属性和方法</span>，存在于 node_modules</li>
+<li>全局软件包：本机所有项目使用，<span style="color: red;">封装命令和工具</span>，存在于系统设置的位置</li>
+</ul>
+</li>
+<li><p>nodemon 作用：替代 node 命令，检测代码更改，自动重启程序</p>
+</li>
+<li><p>使用：</p>
+<ol>
+<li>安装：npm i nodemon -g （-g 代表安装到全局环境中）</li>
+<li>运行：nodemon 待执行的目标 js 文件</li>
+</ol>
+</li>
+<li><p>需求：使用 nodemon 命令来启动素材里准备好的项目，然后修改代码保存后，观察终端重启应用程序</p>
+</li>
+</ol>
+<h3 id="小结-13"><a href="#小结-13" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>本地软件包和全局软件包区别?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>本地软件包，作用在当前项目，封装属性和方法</li>
+<li>全局软件包，本地所有项目使用，封装命令和工具</li>
+</ul>
+</details>
+</li>
+<li><p>nodemon 作用?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>替代 node 命令，检测代码更改，自动重启程序</li>
+</ul>
+</details>
+</li>
+<li><p>nodemon 怎么用?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>先确保安装 npm i nodemon -g</li>
+<li>使用 nodemon 执行目标 js 文件</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="08-Node-js概念和常用命令总结"><a href="#08-Node-js概念和常用命令总结" class="headerlink" title="08.Node.js概念和常用命令总结"></a>08.Node.js概念和常用命令总结</h2><h3 id="目标-14"><a href="#目标-14" class="headerlink" title="目标"></a>目标</h3><p>把上面学的模块化语法，包的概念，常用命令进行总结</p>
+<h3 id="讲解-14"><a href="#讲解-14" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>Node.js 模块化：把每个文件当做一个模块，独立作用域，按需加载，使用特定标准语法导出和导入使用</p>
+<blockquote>
+<p>CommonJS 标准：一般应用在 Node.js 项目环境中</p>
+<p>ECMAScript 标准：一般应用在前端工程化项目中</p>
+</blockquote>
+<p><img src="/images/image-20230331170210113.png" alt="image-20230331170210113"></p>
+<p><img src="/images/image-20230331170220045.png" alt="image-20230331170220045"></p>
+</li>
+<li><p>Node.js 包：把模块文件，代码文件，其他资料聚合成一个文件夹就是包</p>
+<blockquote>
+<p>项目包：编写项目需求和业务逻辑的文件夹</p>
+<p>软件包：封装工具和方法进行使用的文件夹（一般使用 npm 管理）</p>
+<ul>
+<li>本地软件包：作用在当前项目，封装的属性&#x2F;方法，供项目调用编写业务需求</li>
+<li>全局软件包：作用在所有项目，一般封装的命令&#x2F;工具，支撑项目运行</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20230331170539931.png" alt="image-20230331170539931"></p>
+</li>
+<li><p>Node.js 常用命令：</p>
+<p><img src="/images/image-20230331171411780.png" alt="image-20230331171411780"></p>
+</li>
+</ol>
+<h3 id="小结-14"><a href="#小结-14" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>安装本地软件包的命令是什么？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>npm i 软件包名</li>
+</ul>
+</details></li>
+</ol>
+<h1 id="03-Webpack模块打包工具"><a href="#03-Webpack模块打包工具" class="headerlink" title="03_Webpack模块打包工具"></a>03_Webpack模块打包工具</h1><h2 id="知识点自测-2"><a href="#知识点自测-2" class="headerlink" title="知识点自测"></a>知识点自测</h2><ol>
+<li><p>以下哪个选项是 ECMAScript 默认导出和导入的语法？</p>
+<p>A：export 和 require</p>
+<p>B：module.exports &#x3D; {} 和 import 变量名</p>
+<p>C：export default 和 import 变量名</p>
+<p>D：export 和 import { 同名变量名 }</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>C选项正确</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>对以下 less 样式代码描述正确的是？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.<span class="property">title</span> &#123;</span><br><span class="line">  span &#123;</span><br><span class="line">    <span class="attr">color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A：查找 class 名字叫 title 元素范围内，所有 span 标签</p>
+<p>B：查找 class 名字叫 title 和 span 标签</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>A选项正确</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>以下代码运行结果是多少？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].<span class="title function_">map</span>(<span class="function"><span class="params">val</span> =&gt;</span> val * <span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr)</span><br></pre></td></tr></table></figure>
+
+<p>A：[undefined, undefined, undefined, undefined]</p>
+<p>B：[2, 4, 6, 8]</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>B选项正确</li>
+</ul>
+</details>
+
+
+</li>
+<li><p>以下针对 axios 函数使用时的配置项描述正确的选项？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line"> <span class="comment">// 这里</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>A：url：请求的方法，method：传递参数</p>
+<p>B：data：传递查询参数，params：传递请求体参数</p>
+<p>C：url：请求的网址，method：请求的方法</p>
+<p>D：data：传递请求体参数，params：传递请求体参数</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>C选项正确</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="01-Webpack-简介以及体验"><a href="#01-Webpack-简介以及体验" class="headerlink" title="01.Webpack 简介以及体验"></a>01.Webpack 简介以及体验</h2><h3 id="目标-15"><a href="#目标-15" class="headerlink" title="目标"></a>目标</h3><p>了解 Webpack 的概念和作用，以及使用</p>
+<h3 id="讲解-15"><a href="#讲解-15" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>Webpack 是一个静态模块打包工具，从入口构建依赖图，打包有关的模块，最后用于展示你的内容</p>
+<p><img src="/images/image-20230403105744257.png" alt="image-20230403105744257"></p>
+</li>
+<li><p>静态模块：编写代码过程中的，html，css， js，图片等固定内容的文件</p>
+</li>
+<li><p>打包过程，注意：只有和入口有直接&#x2F;间接引入关系的模块，才会被打包</p>
+<p><img src="/images/image-20230403105848637.png" alt="image-20230403105848637"></p>
+</li>
+<li><p>Webpack 的作用：把静态模块内容，压缩，这个和，转译等（前端工程化）</p>
+<ul>
+<li>把 less&#x2F;sass 转成 css 代码</li>
+<li>把 ES6+ 降级成 ES5 等</li>
+<li>支持多种模块文件类型，多种模块标准语法</li>
+</ul>
+</li>
+<li><p>为何不学 vite？</p>
+<blockquote>
+<p>现在很多项目还是基于 Webpack 来进行构建的，所以还是要掌握 Webpack 的使用</p>
+</blockquote>
+</li>
+<li><p>体验 Webpack 打包 2 个 JS 文件内容</p>
+</li>
+<li><p>需求：封装 utils 包，校验手机号和验证码长度，在 src&#x2F;index.js 中使用，使用 Webpack 打包</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>新建项目文件夹 Webpack_study，初始化包环境，得到 package.json 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建 src 源代码文件夹（书写代码）包括 utils&#x2F;check.js 封装用户名和密码长度函数，引入到 src&#x2F;index.js 进行使用</p>
+<ul>
+<li><p>src&#x2F;utils&#x2F;check.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装校验手机号长度和校验验证码长度的函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">checkPhone</span> = phone =&gt; phone.<span class="property">length</span> === <span class="number">11</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">checkCode</span> = code =&gt; code.<span class="property">length</span> === <span class="number">6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>src&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标1：体验 webpack 打包过程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 1.1 准备项目和源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123; checkPhone, checkCode &#125; <span class="keyword">from</span> <span class="string">&#x27;../utils/check.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">checkPhone</span>(<span class="string">&#x27;13900002020&#x27;</span>))</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">checkCode</span>(<span class="string">&#x27;123123123123&#x27;</span>))</span><br><span class="line"><span class="comment">// 1.2 准备 webpack 打包的环境</span></span><br><span class="line"><span class="comment">// 1.3 运行自定义命令打包观察效果（npm run 自定义命令）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>下载 webpack webpack-cli 到项目（版本独立）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack webpack-cli --save-dev</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：虽然 webpack 是全局软件包，封装的是命令工具，但是为了保证项目之间版本分别独立，所以这次比较特殊，下载到某个项目环境下，但是需要把 webpack 命令配置到 package.json 的 scripts 自定义命令，作为局部命令使用</p>
+</blockquote>
+<p><img src="/images/image-20230403110640647.png" alt="image-20230403110640647"></p>
+</li>
+<li><p>项目中运行工具命令，采用自定义命令的方式（局部命令）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>npm run 自定义命令名字</p>
+<p>注意：实际上在终端运行的是 build 右侧的具体命名</p>
+</blockquote>
+</li>
+<li><p>自动产生 dist 分发文件夹（压缩和优化后，用于最终运行的代码）</p>
+</li>
+</ol>
+</li>
+<li><p>需求最终流程图：</p>
+<p><img src="/images/image-20230403111445196.png" alt="image-20230403111445196"></p>
+</li>
+</ol>
+<h3 id="小结-15"><a href="#小结-15" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Webpack 有什么用?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>压缩，转译，整合，打包我们的静态模块</li>
+</ul>
+</details>
+</li>
+<li><p>Webpack 怎么用？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>初始化环境，编写代码，安装 Webpack 软件包，配置自定义命令，打包体验查看结果</li>
+</ul>
+</details>
+</li>
+<li><p>如何运行 package.json 里的自定义命令？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>npm run 自定义命令</li>
+</ul>
+</details>
+</li>
+<li><p>Webpack 默认入口和出口？</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>src/index.js 和 dist/main.js</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="02-Webpack-修改入口和出口"><a href="#02-Webpack-修改入口和出口" class="headerlink" title="02.Webpack 修改入口和出口"></a>02.Webpack 修改入口和出口</h2><h3 id="目标-16"><a href="#目标-16" class="headerlink" title="目标"></a>目标</h3><p>了解 Webpack 配置文件使用，影响 Webpack 打包过程和结果</p>
+<h3 id="讲解-16"><a href="#讲解-16" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a href="%5Bhttps://webpack.docschina.org/concepts/#entry%5D(https://webpack.docschina.org/concepts/)">Webpack 配置</a>：影响 Webpack 打包过程</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>项目根目录，新建 Webpack.config.js 配置文件</p>
+</li>
+<li><p>导出配置对象，配置入口，出口文件路径（别忘了修改磁盘文件夹和文件的名字）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/login/index.js&#x27;</span>),</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;./login/index.js&#x27;</span>  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新打包观察</p>
+</li>
+</ol>
+</li>
+<li><p>图解：</p>
+<p><img src="/images/image-20230518101043103.png" alt="image-20230518101043103"></p>
+</li>
+</ol>
+<h3 id="小结-16"><a href="#小结-16" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>如何影响 Webpack 打包过程?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>查文档，新建配置文件和配置属性</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="03-案例-用户登录-长度判断"><a href="#03-案例-用户登录-长度判断" class="headerlink" title="03.案例-用户登录-长度判断"></a>03.案例-用户登录-长度判断</h2><h3 id="目标-17"><a href="#目标-17" class="headerlink" title="目标"></a>目标</h3><p>体验前端项目代码，如何被 Webpack 打包和使用</p>
+<h3 id="讲解-17"><a href="#讲解-17" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：点击登录按钮，判断手机号和验证码长度是否符合要求</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>新建 public&#x2F;login.html 准备网页模板（方便查找标签和后期自动生成 html 文件做准备）</p>
+<p><img src="/images/image-20230518101137662.png" alt="image-20230518101137662"></p>
+</li>
+<li><p>核心 JS 代码写在 src&#x2F;login&#x2F;index.js 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标3：用户登录-长度判断案例</span></span><br><span class="line"><span class="comment"> *  3.1 准备用户登录页面</span></span><br><span class="line"><span class="comment"> *  3.2 编写核心 JS 逻辑代码</span></span><br><span class="line"><span class="comment"> *  3.3 打包并手动复制网页到 dist 下，引入打包后的 js，运行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 3.2 编写核心 JS 逻辑代码</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> phone = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.login-form [name=mobile]&#x27;</span>).<span class="property">value</span></span><br><span class="line">  <span class="keyword">const</span> code = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.login-form [name=code]&#x27;</span>).<span class="property">value</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">checkPhone</span>(phone)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;手机号长度必须是11位&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">checkCode</span>(code)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;验证码长度必须是6位&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;提交到服务器登录...&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>运行自定义命令，让 Webpack 打包 JS 代码</p>
+</li>
+<li><p>手动复制 public&#x2F;login.html 到 dist 下，手动引入打包后的 JS 代码文件，运行 dist&#x2F;login.html 在浏览器查看效果</p>
+<p><img src="/images/image-20230518101404084.png" alt="image-20230518101404084"></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-17"><a href="#小结-17" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Webpack 打包后的前端代码是如何运行的?</p>
+<details>
+<summary>答案</summary>
+<ul>
+<li>手动引入到 html 文件中，再交给浏览器运行</li>
+</ul>
+</details></li>
+</ol>
+<h2 id="04-Webpack-自动生成-html-文件"><a href="#04-Webpack-自动生成-html-文件" class="headerlink" title="04.Webpack 自动生成 html 文件"></a>04.Webpack 自动生成 html 文件</h2><h3 id="目标-18"><a href="#目标-18" class="headerlink" title="目标"></a>目标</h3><p>让 Webpack 拥有自动生成 html 文件能力，并引入打包后的其他资源</p>
+<h3 id="讲解-18"><a href="#讲解-18" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/html-webpack-plugin/">插件 html-webpack-plugin 作用</a>：在 Webpack 打包时生成 html 文件，并引入其他打包后的资源</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>下载 html-webpack-plugin 本地软件包到项目中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i html-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有插件功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./public/login.html&#x27;</span>, <span class="comment">// 模板文件</span></span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;./login/index.html&#x27;</span> <span class="comment">// 输出文件</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定以 public&#x2F;login.html 为模板复制到 dist&#x2F;login&#x2F;index.html，并自动引入其他打包后资源</p>
+</li>
+</ol>
+</li>
+<li><p>运行打包命令，观察打包后 dist 文件夹下内容并运行查看效果</p>
+</li>
+</ol>
+<h3 id="小结-18"><a href="#小结-18" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>html-webpack-plugin 插件怎么用?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>找到插件文档，下载到项目中，配置到 Webpack 的配置文件中即可使用</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="05-Webpack-打包-css-代码"><a href="#05-Webpack-打包-css-代码" class="headerlink" title="05.Webpack-打包 css 代码"></a>05.Webpack-打包 css 代码</h2><h3 id="目标-19"><a href="#目标-19" class="headerlink" title="目标"></a>目标</h3><p>让 Webpack 能够打包 css 代码</p>
+<h3 id="讲解-19"><a href="#讲解-19" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>注意：Webpack 默认只识别 JS 和 JSON 文件内容，所以想要让 Webpack 识别更多不同内容，需要使用加载器</p>
+</li>
+<li><p>介绍需要的 2 个加载器来辅助 Webpack 才能打包 css 代码</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/css-loader/">加载器 css-loader</a>：解析 css 代码</li>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/style-loader/">加载器 style-loader</a>：把解析后的 css 代码插入到 DOM（style 标签之间）</li>
+</ul>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>准备 css 文件引入到 src&#x2F;login&#x2F;index.js 中（压缩转译处理等）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标5：打包 css 代码</span></span><br><span class="line"><span class="comment"> *  5.1 准备 css 代码，并引入到 js 中</span></span><br><span class="line"><span class="comment"> *  5.2 下载 css-loader 和 style-loader 本地软件包</span></span><br><span class="line"><span class="comment"> *  5.3 配置 webpack.config.js 让 Webpack 拥有该加载器功能</span></span><br><span class="line"><span class="comment"> *  5.4 打包后观察效果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 5.1 准备 css 代码，并引入到 js 中</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：这里只是引入代码内容让 Webpack 处理，不需定义变量接收在 JS 代码中继续使用，所以没有定义变量接收</p>
+</blockquote>
+</li>
+<li><p>下载 css-loader 和 style-loader 本地软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i css-loader style-loader --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有该加载器功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">module</span>: &#123; <span class="comment">// 加载器</span></span><br><span class="line">    <span class="attr">rules</span>: [ <span class="comment">// 规则列表</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/i</span>, <span class="comment">// 匹配 .css 结尾的文件</span></span><br><span class="line">        <span class="attr">use</span>: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span>], <span class="comment">// 使用从后到前的加载器来解析 css 代码和插入到 DOM</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包后运行 dist&#x2F;login&#x2F;index.html 观察效果，看看准备好的样式是否作用在网页上</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-19"><a href="#小结-19" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>加载器的作用是什么?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>让 Webpack 识别更多的代码内容类型</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="06-优化-提取-css-代码"><a href="#06-优化-提取-css-代码" class="headerlink" title="06.优化-提取 css 代码"></a>06.优化-提取 css 代码</h2><h3 id="目标-20"><a href="#目标-20" class="headerlink" title="目标"></a>目标</h3><p>让 Webpack 能够提取 css 代码到独立的 css 文件中</p>
+<h3 id="讲解-20"><a href="#讲解-20" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：让 webpack 把 css 代码内容字符串单独提取到 dist 下的 css 文件中</p>
+</li>
+<li><p>需要：mini-css-extract-plugin 插件来实现</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>下载 mini-css-extract-plugin 插件软件包到本地项目中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev mini-css-extract-plugin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有该插件功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MiniCssExtractPlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;mini-css-extract-plugin&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/i</span>,</span><br><span class="line">        <span class="comment">// use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;]</span></span><br><span class="line">        <span class="attr">use</span>: [<span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>, <span class="string">&quot;css-loader&quot;</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">MiniCssExtractPlugin</span>()</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>打包后观察效果</p>
+</li>
+<li><p>注意：不能和 style-loader 一起使用</p>
+</li>
+<li><p>好处：css 文件可以被浏览器缓存，减少 JS 文件体积，让浏览器并行下载 css 和 js 文件</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-20"><a href="#小结-20" class="headerlink" title="小结"></a>小结</h3><h2 id="07-优化压缩过程"><a href="#07-优化压缩过程" class="headerlink" title="07.优化压缩过程"></a>07.优化压缩过程</h2><h3 id="目标-21"><a href="#目标-21" class="headerlink" title="目标"></a>目标</h3><p>把单独提取的 css 文件内代码压缩</p>
+<h3 id="讲解-21"><a href="#讲解-21" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：把提出的 css 文件内样式代码压缩</p>
+</li>
+<li><p>需要：css-minimizer-webpack-plugin 插件来实现</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>下载 mini-css-extract-plugin 插件软件包到本地项目中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i css-minimizer-webpack-plugin --save-dev </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有该插件功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">CssMinimizerPlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;css-minimizer-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// 优化</span></span><br><span class="line">  <span class="attr">optimization</span>: &#123;</span><br><span class="line">    <span class="comment">// 最小化</span></span><br><span class="line">    <span class="attr">minimizer</span>: [</span><br><span class="line">      <span class="comment">// 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 </span></span><br><span class="line">      <span class="comment">// `terser-webpack-plugin`），将下一行取消注释（保证 JS 代码还能被压缩处理）</span></span><br><span class="line">      <span class="string">`...`</span>,</span><br><span class="line">      <span class="keyword">new</span> <span class="title class_">CssMinimizerPlugin</span>(),</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包后观察 css 文件内自己代码是否被压缩了</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-21"><a href="#小结-21" class="headerlink" title="小结"></a>小结</h3><h2 id="08-Webpack-打包-less-代码"><a href="#08-Webpack-打包-less-代码" class="headerlink" title="08.Webpack-打包 less 代码"></a>08.Webpack-打包 less 代码</h2><h3 id="目标-22"><a href="#目标-22" class="headerlink" title="目标"></a>目标</h3><p>让 Webpack 拥有打包 less 代码功能</p>
+<h3 id="讲解-22"><a href="#讲解-22" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/less-loader/">加载器 less-loader</a>：把 less 代码编译为 css 代码，还需要依赖 less 软件包</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>新建 login&#x2F;index.less 文件，设置背景图样式（图片在配套资料-素材文件夹中）</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: url(<span class="string">&#x27;./assets/login-bg.png&#x27;</span>) no-repeat center/cover;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>less 样式引入到 src&#x2F;login&#x2F;index.js 中</p>
+</li>
+</ol>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标8：打包 less 代码</span></span><br><span class="line"><span class="comment"> *  8.1 新建 less 代码（设置背景图）并引入到 src/login/index.js 中</span></span><br><span class="line"><span class="comment"> *  8.2 下载 less 和 less-loader 本地软件包</span></span><br><span class="line"><span class="comment"> *  8.3 配置 webpack.config.js 让 Webpack 拥有功能</span></span><br><span class="line"><span class="comment"> *  8.4 打包后观察效果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 8.1 新建 less 代码（设置背景图）并引入到 src/login/index.js 中</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.less&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>下载 less 和 less-loader 本地软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i less less-loader --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.less$/i</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>, <span class="string">&quot;css-loader&quot;</span>, <span class="string">&quot;less-loader&quot;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包后运行  观察效果</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-22"><a href="#小结-22" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>Webpack 支持 less 代码打包需要哪 2 个软件包?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>需要 less less-loader 这 2 个软件包</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="09-Webpack-打包图片"><a href="#09-Webpack-打包图片" class="headerlink" title="09.Webpack-打包图片"></a>09.Webpack-打包图片</h2><h3 id="目标-23"><a href="#目标-23" class="headerlink" title="目标"></a>目标</h3><p> 让 Webpack 支持图片等资源打包</p>
+<h3 id="讲解-23"><a href="#讲解-23" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/guides/asset-modules/">资源模块</a>：Webpack 内置了资源模块的打包，无需下载额外 loader </p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>配置 webpack.config.js 让 Webpack 拥有打包图片功能</p>
+<p>占位符 【hash】对模块内容做算法计算，得到映射的数字字母组合的字符串</p>
+<p>占位符 【ext】使用当前模块原本的占位符，例如：.png &#x2F; .jpg 等字符串</p>
+<p>占位符 【query】保留引入文件时代码中查询参数（只有 URL 下生效）</p>
+</li>
+<li><p>注意：判断临界值默认为 8KB</p>
+<p>大于 8KB 文件：发送一个单独的文件并导出 URL 地址</p>
+<p>小于 8KB 文件：导出一个 data URI（base64字符串）</p>
+</li>
+<li><p>在 src&#x2F;login&#x2F;index.js 中给 img 标签添加 logo 图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标9：打包资源模块（图片处理）</span></span><br><span class="line"><span class="comment"> *  9.1 创建 img 标签并动态添加到页面，配置 webpack.config.js</span></span><br><span class="line"><span class="comment"> *  9.2 打包后观察效果和区别</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 9.1 创建 img 标签并动态添加到页面，配置 webpack.config.js</span></span><br><span class="line"><span class="comment">// 注意：js 中引入本地图片资源要用 import 方式（如果是网络图片http地址，字符串可以直接写）</span></span><br><span class="line"><span class="keyword">import</span> imgObj <span class="keyword">from</span> <span class="string">&#x27;./assets/logo.png&#x27;</span></span><br><span class="line"><span class="keyword">const</span> theImg = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;img&#x27;</span>)</span><br><span class="line">theImg.<span class="property">src</span> = imgObj</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.login-wrap&#x27;</span>).<span class="title function_">appendChild</span>(theImg)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 webpack.config.js 让 Webpack 拥有打包图片功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(png|jpg|jpeg|gif)$/i</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;asset&#x27;</span>,</span><br><span class="line">        <span class="attr">generator</span>: &#123;</span><br><span class="line">          <span class="attr">filename</span>: <span class="string">&#x27;assets/[hash][ext][query]&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包后运行观察效果</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-23"><a href="#小结-23" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>资源模块指的是什么?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>图片，字体文件等等</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="10-案例-用户登录-完成功能"><a href="#10-案例-用户登录-完成功能" class="headerlink" title="10.案例-用户登录-完成功能"></a>10.案例-用户登录-完成功能</h2><h3 id="目标-24"><a href="#目标-24" class="headerlink" title="目标"></a>目标</h3><p>在 Webpack 环境下，使用 npm 下包作用在前端项目</p>
+<h3 id="讲解-24"><a href="#讲解-24" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：点击登录按钮，基于 npm 下载 axios 包，完成验证码登录功能</p>
+<p><img src="/images/image-20230518103430262.png" alt="image-20230518103430262"></p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>使用 npm 下载 axios</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i axios</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入到 src&#x2F;login&#x2F;index.js 中编写业务实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 目标10：完成登录功能</span></span><br><span class="line"><span class="comment"> *  10.1 使用 npm 下载 axios（体验 npm 作用在前端项目中）</span></span><br><span class="line"><span class="comment"> *  10.2 准备并修改 utils 工具包源代码导出实现函数</span></span><br><span class="line"><span class="comment"> *  10.3 导入并编写逻辑代码，打包后运行观察效果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 10.3 导入并编写逻辑代码，打包后运行观察效果</span></span><br><span class="line"><span class="keyword">import</span> myAxios <span class="keyword">from</span> <span class="string">&#x27;../utils/request.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; myAlert &#125; <span class="keyword">from</span> <span class="string">&#x27;../utils/alert.js&#x27;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.btn&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> phone = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.login-form [name=mobile]&#x27;</span>).<span class="property">value</span></span><br><span class="line">  <span class="keyword">const</span> code = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.login-form [name=code]&#x27;</span>).<span class="property">value</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">checkPhone</span>(phone)) &#123;</span><br><span class="line">    <span class="title function_">myAlert</span>(<span class="literal">false</span>, <span class="string">&#x27;手机号长度必须是11位&#x27;</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;手机号长度必须是11位&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">checkCode</span>(code)) &#123;</span><br><span class="line">    <span class="title function_">myAlert</span>(<span class="literal">false</span>, <span class="string">&#x27;验证码长度必须是6位&#x27;</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;验证码长度必须是6位&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">myAxios</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;/v1_0/authorizations&#x27;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">mobile</span>: phone,</span><br><span class="line">      <span class="attr">code</span>: code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">myAlert</span>(<span class="literal">true</span>, <span class="string">&#x27;登录成功&#x27;</span>)</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;token&#x27;</span>, res.<span class="property">data</span>.<span class="property">token</span>)</span><br><span class="line">    location.<span class="property">href</span> = <span class="string">&#x27;../content/index.html&#x27;</span></span><br><span class="line">  &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">myAlert</span>(<span class="literal">false</span>, error.<span class="property">response</span>.<span class="property">data</span>.<span class="property">message</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打包后运行观察效果</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-24"><a href="#小结-24" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>npm 下载的包如何作用在前端项目上?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>被 Webpack 打包处理后，再引入到 html 文件中运行</li>      
+</ul> 
+</details></li>
+</ol>
+<h2 id="10-Webpack-搭建开发环境"><a href="#10-Webpack-搭建开发环境" class="headerlink" title="10.Webpack 搭建开发环境"></a>10.Webpack 搭建开发环境</h2><h3 id="目标-25"><a href="#目标-25" class="headerlink" title="目标"></a>目标</h3><p>体验 webpack-dev-server 开发服务器，快速开发应用程序</p>
+<h3 id="讲解-25"><a href="#讲解-25" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>每次改动代码，都要重新打包，很麻烦，所以这里给项目集成 webpack-dev-server 开发服务器</p>
+</li>
+<li><p>作用：启动 Web 服务，打包输出源码在内存，并会自动检测代码变化热更新到网页</p>
+</li>
+<li><p>步骤；</p>
+<ol>
+<li><p>下载 webpack-dev-server 软件包到当前项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack-dev-server --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置自定义命令，并设置打包的模式为开发模式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack serve --mode=development&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 npm run dev 来启动开发服务器，访问提示的域名+端口号，在浏览器访问打包后的项目网页，修改代码后试试热更新效果</p>
+<blockquote>
+<p>在 js &#x2F; css 文件中修改代码保存后，会实时反馈到浏览器</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-25"><a href="#小结-25" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>webpack-dev-server 的作用?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>启动 Webpack 开发服务器，会启动一个 Web 服务，实时检测代码变化重新打包，并快速反应最新效果到浏览器页面上</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="11-Webpack-打包模式"><a href="#11-Webpack-打包模式" class="headerlink" title="11.Webpack 打包模式"></a>11.Webpack 打包模式</h2><h3 id="目标-26"><a href="#目标-26" class="headerlink" title="目标"></a>目标</h3><p>了解不同打包模式对代码和环境的影响</p>
+<h3 id="讲解-26"><a href="#讲解-26" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/mode/">打包模式</a>：告知 Webpack 使用相应模式的内置优化</p>
+</li>
+<li><p>分类：</p>
+<table>
+<thead>
+<tr>
+<th><strong>模式名称</strong></th>
+<th><strong>模式名字</strong></th>
+<th><strong>特点</strong></th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发模式</td>
+<td>development</td>
+<td>调试代码，实时加载，模块热替换等</td>
+<td>本地开发</td>
+</tr>
+<tr>
+<td>生产模式</td>
+<td>production</td>
+<td>压缩代码，资源优化，更轻量等</td>
+<td>打包上线</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>如何设置影响 Webpack呢？</p>
+<ul>
+<li><p>方式1：在 webpack.config.js 配置文件设置 mode 选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式2：在 package.json 命令行设置 mode 参数</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack --mode=production&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack serve --mode=development&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>注意：命令行设置的优先级高于配置文件中的，推荐用命令行设置</p>
+</li>
+<li><p>体验：在 build 命令后 修改 mode 的值，打包输出观察打包后的 js 文件内容</p>
+</li>
+</ol>
+<h3 id="小结-26"><a href="#小结-26" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>两种模式的区别?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>开发模式注重代码热替换更快，让开发调试代码更便捷，生产模式注重项目体积更小，更轻量，适配不同的浏览器环境</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="12-Webpack-打包模式的应用"><a href="#12-Webpack-打包模式的应用" class="headerlink" title="12.Webpack 打包模式的应用"></a>12.Webpack 打包模式的应用</h2><h3 id="目标-27"><a href="#目标-27" class="headerlink" title="目标"></a>目标</h3><p>了解 Webpack 打包模式的应用</p>
+<h3 id="讲解-27"><a href="#讲解-27" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：在开发模式下用 style-loader 内嵌更快，在生产模式下提取 css 代码</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/mode/">方案</a><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/mode/">1</a>：webpack.config.js 配置导出函数，但是局限性大（只接受 2 种模式）</p>
+<p>方案2：借助 cross-env （跨平台通用）包命令，设置参数区分环境</p>
+<p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/guides/production/">方案</a><a target="_blank" rel="noopener" href="https://webpack.docschina.org/guides/production/">3</a>：配置不同的 webpack.config.js （适用多种模式差异性较大情况）</p>
+</li>
+<li><p>主要使用方案 2 尝试，其他方案可以结合点击跳转的官方文档查看尝试</p>
+</li>
+<li><p>步骤：</p>
+<p>1.下载 cross-env 软件包到当前项目</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i cross-env --save-dev</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.配置自定义命令，传入参数名和值（会绑定到 process.env 对象下）</p>
+<p><img src="/images/image-20230518104016802.png" alt="image-20230518104016802"></p>
+<p>3.在 webpack.config.js 区分不同环境使用不同配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/i</span>,</span><br><span class="line">        <span class="comment">// use: [&#x27;style-loader&#x27;, &quot;css-loader&quot;],</span></span><br><span class="line">        <span class="attr">use</span>: [process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span> ? <span class="string">&#x27;style-loader&#x27;</span> : <span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>, <span class="string">&quot;css-loader&quot;</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.less$/i</span>,</span><br><span class="line">        <span class="attr">use</span>: [</span><br><span class="line">          <span class="comment">// compiles Less to CSS</span></span><br><span class="line">          process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span> ? <span class="string">&#x27;style-loader&#x27;</span> : <span class="title class_">MiniCssExtractPlugin</span>.<span class="property">loader</span>,</span><br><span class="line">          <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;less-loader&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4.重新打包观察两种配置区别</p>
+</li>
+</ol>
+<h3 id="小结-27"><a href="#小结-27" class="headerlink" title="小结"></a>小结</h3><h2 id="13-Webpack-前端注入环境变量"><a href="#13-Webpack-前端注入环境变量" class="headerlink" title="13.Webpack 前端注入环境变量"></a>13.Webpack 前端注入环境变量</h2><h3 id="目标-28"><a href="#目标-28" class="headerlink" title="目标"></a>目标</h3><p>前端项目中，开发模式下打印语句生效，生产模式下打印语句失效</p>
+<h3 id="讲解-28"><a href="#讲解-28" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：前端项目中，开发模式下打印语句生效，生产模式下打印语句失效</p>
+</li>
+<li><p>问题：cross-env 设置的只在 Node.js 环境生效，前端代码无法访问 process.env.NODE_ENV</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/define-plugin">解决</a>：使用 Webpack 内置的 DefinePlugin 插件</p>
+</li>
+<li><p>作用：在编译时，将前端代码中匹配的变量名，替换为值或表达式</p>
+</li>
+<li><p>配置 webpack.config.js 中给前端注入环境变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(&#123;</span><br><span class="line">      <span class="comment">// key 是注入到打包后的前端 JS 代码中作为全局变量</span></span><br><span class="line">      <span class="comment">// value 是变量对应的值（在 corss-env 注入在 node.js 中的环境变量字符串）</span></span><br><span class="line">      <span class="string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="小结-28"><a href="#小结-28" class="headerlink" title="小结"></a>小结</h3><h2 id="14-Webpack-开发环境调错-source-map"><a href="#14-Webpack-开发环境调错-source-map" class="headerlink" title="14.Webpack 开发环境调错 source map"></a>14.Webpack 开发环境调错 source map</h2><h3 id="目标-29"><a href="#目标-29" class="headerlink" title="目标"></a>目标</h3><p>在开发环境如何精准定位到报错源码位置</p>
+<h3 id="讲解-29"><a href="#讲解-29" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a href="%5Bhttps://webpack.docschina.org/guides/development/#using-source-maps%5D(https://webpack.docschina.org/guides/development/)">source map</a>：可以准确追踪 error 和 warning 在原始代码的位置</p>
+</li>
+<li><p>问题：代码被压缩和混淆，无法正确定位源代码位置（行数和列数）</p>
+</li>
+<li><p>设置：webpack.config.js 配置 devtool 选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&#x27;inline-source-map&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>inline-source-map 选项：把源码的位置信息一起打包在 JS 文件内</p>
+</blockquote>
+</li>
+<li><p>注意：source map 适用于开发环境，不要在生产环境使用（防止被轻易查看源码位置）</p>
+</li>
+</ol>
+<h3 id="小结-29"><a href="#小结-29" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>为何打包后，在控制台无法准确定位到源码的位置信息?</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>因为 Webpack 把代码压缩和混淆了</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="15-Webpack-设置解析别名路径"><a href="#15-Webpack-设置解析别名路径" class="headerlink" title="15.Webpack 设置解析别名路径"></a>15.Webpack 设置解析别名路径</h2><h3 id="目标-30"><a href="#目标-30" class="headerlink" title="目标"></a>目标</h3><p>设置 Webpack 如何设置路径别名，方便我们引入目标模块</p>
+<h3 id="讲解-30"><a href="#讲解-30" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p><a href="%5Bhttps://webpack.docschina.org/configuration/resolve#resolvealias%5D(https://webpack.docschina.org/configuration/resolve)">解析别名</a>：配置模块如何解析，创建 import 或 require 的别名，来确保模块引入变得更简单</p>
+</li>
+<li><p>例如：</p>
+<ol>
+<li><p>原来路径如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; checkPhone, checkCode &#125; <span class="keyword">from</span> <span class="string">&#x27;../src/utils/check.js&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置解析别名：在 webpack.config.js 中设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样我们以后，引入目标模块写的路径就更简单了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; checkPhone, checkCode &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/check.js&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>修改代码的路径后，重新打包观察效果是否正常！</p>
+</li>
+</ol>
+<h3 id="小结-30"><a href="#小结-30" class="headerlink" title="小结"></a>小结</h3><ol>
+<li><p>路径中的 ‘@’ 符号代表什么意思？</p>
+<details>     
+<summary>答案</summary> 
+<ul>
+<li>看在 webpack 配置中的别名路径是什么，就会在打包时替换成哪个路径使用</li>
+</ul> 
+</details></li>
+</ol>
+<h2 id="16-优化-CDN使用"><a href="#16-优化-CDN使用" class="headerlink" title="16.优化-CDN使用"></a>16.优化-CDN使用</h2><h3 id="目标-31"><a href="#目标-31" class="headerlink" title="目标"></a>目标</h3><p>开发模式使用本地第三方库，生产模式下使用 CDN 加载引入</p>
+<h3 id="讲解-31"><a href="#讲解-31" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：开发模式使用本地第三方库，生产模式下使用 CDN 加载引入</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/CDN">CDN</a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/CDN">定义</a>：内容分发网络，指的是一组分布在各个地区的服务器</p>
+</li>
+<li><p>作用：把静态资源文件&#x2F;第三方库放在 CDN 网络中各个服务器中，供用户就近请求获取</p>
+</li>
+<li><p>好处：减轻自己服务器请求压力，就近请求物理延迟低，配套缓存策略</p>
+<p><img src="/images/image-20230518104603049.png" alt="image-20230518104603049"></p>
+</li>
+<li><p>实现需求的思路图：</p>
+<p><img src="/images/image-20230518104625088.png" alt="image-20230518104625088"></p>
+</li>
+<li><p>步骤：</p>
+<p>1.在 html 中引入第三方库的 <a target="_blank" rel="noopener" href="https://www.bootcdn.cn/">CDN </a><a target="_blank" rel="noopener" href="https://www.bootcdn.cn/">地址</a><a target="_blank" rel="noopener" href="https://www.bootcdn.cn/"> </a>并用模板语法判断</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(htmlWebpackPlugin.options.useCdn)&#123; %&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.配置 webpack.config.js 中 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/externals">externals</a> 外部扩展选项（防止某些 import 的包被打包）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生产环境下使用相关配置</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  <span class="comment">// 外部扩展（让 webpack 防止 import 的包被打包进来）</span></span><br><span class="line">  config.<span class="property">externals</span> = &#123;</span><br><span class="line">    <span class="comment">// key：import from 语句后面的字符串</span></span><br><span class="line">    <span class="comment">// value：留在原地的全局变量（最好和 cdn 在全局暴露的变量一致）</span></span><br><span class="line">    <span class="string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span>: <span class="string">&#x27;bootstrap&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;axios&#x27;</span>: <span class="string">&#x27;axios&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      <span class="comment">// 自定义属性，在 html 模板中 &lt;%=htmlWebpackPlugin.options.useCdn%&gt; 访问使用</span></span><br><span class="line">      <span class="attr">useCdn</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.两种模式下打包观察效果</p>
+</li>
+</ol>
+<h3 id="小结-31"><a href="#小结-31" class="headerlink" title="小结"></a>小结</h3><h2 id="17-Webpack-多页面打包"><a href="#17-Webpack-多页面打包" class="headerlink" title="17.Webpack 多页面打包"></a>17.Webpack 多页面打包</h2><h3 id="目标-32"><a href="#目标-32" class="headerlink" title="目标"></a>目标</h3><p>让 Webpack 同时打包登录和内容列表页面</p>
+<h3 id="讲解-32"><a href="#讲解-32" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>概念：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/SPA">单页面</a>：单个 html 文件，切换 DOM 的方式实现不同业务逻辑展示，后续 Vue&#x2F;React 会学到</p>
+<p>多页面：多个 html 文件，切换页面实现不同业务逻辑展示</p>
+</li>
+<li><p>需求：把黑马头条-数据管理平台-内容页面一起引入打包使用</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>准备源码（html，css，js）放入相应位置，并改用模块化语法导出</p>
+</li>
+<li><p>下载 form-serialize 包并导入到核心代码中使用</p>
+</li>
+<li><p>配置 webpack.config.js 多入口和多页面的设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;模块名1&#x27;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/入口1.js&#x27;</span>),</span><br><span class="line">    <span class="string">&#x27;模块名2&#x27;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/入口2.js&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;./[name]/index.js&#x27;</span>  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./public/页面2.html&#x27;</span>, <span class="comment">// 模板文件</span></span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;./路径/index.html&#x27;</span>, <span class="comment">// 输出文件</span></span><br><span class="line">      <span class="attr">chunks</span>: [<span class="string">&#x27;模块名2&#x27;</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&#x27;./public/页面2.html&#x27;</span>, <span class="comment">// 模板文件</span></span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;./路径/index.html&#x27;</span>, <span class="comment">// 输出文件</span></span><br><span class="line">      <span class="attr">chunks</span>: [<span class="string">&#x27;模块名2&#x27;</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新打包观察效果</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结-32"><a href="#小结-32" class="headerlink" title="小结"></a>小结</h3><h2 id="18-案例-发布文章页面打包"><a href="#18-案例-发布文章页面打包" class="headerlink" title="18.案例-发布文章页面打包"></a>18.案例-发布文章页面打包</h2><h3 id="目标-33"><a href="#目标-33" class="headerlink" title="目标"></a>目标</h3><p>案例-发布文章页面打包</p>
+<h3 id="讲解-33"><a href="#讲解-33" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：把发布文章页面一起打包</p>
+<p>步骤：</p>
+<p>1.准备发布文章页面源代码，改写成模块化的导出和导入方式</p>
+<p>2.修改 webpack.config.js 的配置，增加一个入口和出口</p>
+<p>3.打包观察效果</p>
+</li>
+</ol>
+<h3 id="小结-33"><a href="#小结-33" class="headerlink" title="小结"></a>小结</h3><h2 id="19-优化-分割公共代码"><a href="#19-优化-分割公共代码" class="headerlink" title="19.优化-分割公共代码"></a>19.优化-分割公共代码</h2><h3 id="目标-34"><a href="#目标-34" class="headerlink" title="目标"></a>目标</h3><p>优化-分割功能代码</p>
+<h3 id="讲解-34"><a href="#讲解-34" class="headerlink" title="讲解"></a>讲解</h3><ol>
+<li><p>需求：把 2 个以上页面引用的公共代码提取</p>
+<p>步骤：</p>
+<p>1.配置 webpack.config.js 的 splitChunks 分割功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">optimization</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">splitChunks</span>: &#123;</span><br><span class="line">      <span class="attr">chunks</span>: <span class="string">&#x27;all&#x27;</span>, <span class="comment">// 所有模块动态非动态移入的都分割分析</span></span><br><span class="line">      <span class="attr">cacheGroups</span>: &#123; <span class="comment">// 分隔组</span></span><br><span class="line">        <span class="attr">commons</span>: &#123; <span class="comment">// 抽取公共模块</span></span><br><span class="line">          <span class="attr">minSize</span>: <span class="number">0</span>, <span class="comment">// 抽取的chunk最小大小字节</span></span><br><span class="line">          <span class="attr">minChunks</span>: <span class="number">2</span>, <span class="comment">// 最小引用数</span></span><br><span class="line">          <span class="attr">reuseExistingChunk</span>: <span class="literal">true</span>, <span class="comment">// 当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用</span></span><br><span class="line">          <span class="title function_">name</span>(<span class="params"><span class="variable language_">module</span>, chunks, cacheGroupKey</span>) &#123; <span class="comment">// 分离出模块文件名</span></span><br><span class="line">            <span class="keyword">const</span> allChunksNames = chunks.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">name</span>).<span class="title function_">join</span>(<span class="string">&#x27;~&#x27;</span>) <span class="comment">// 模块名1~模块名2</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">`./js/<span class="subst">$&#123;allChunksNames&#125;</span>`</span> <span class="comment">// 输出到 dist 目录下位置</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.打包观察效果</p>
+</li>
+</ol>
+<h3 id="小结-34"><a href="#小结-34" class="headerlink" title="小结"></a>小结</h3>
+    </div>
+	
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>浊心
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://turheart.github.io/2022/08/03/Node.js/" title="Node.js">https://turheart.github.io/2022/08/03/Node.js/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+	  
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/03/RabbitMQ-%E9%AB%98%E7%BA%A7%E7%AF%87/" rel="prev" title="RabbitMQ-高级篇">
+      <i class="fa fa-chevron-left"></i> RabbitMQ-高级篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/03/Mybatis/" rel="next" title="Mybatis练习">
+      Mybatis练习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01-Node-js%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">01_Node.js入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E8%87%AA%E6%B5%8B"><span class="nav-number">1.1.</span> <span class="nav-text">知识点自测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%89%8D%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">提前安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF-Node-js"><span class="nav-number">1.3.</span> <span class="nav-text">01.什么是 Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3"><span class="nav-number">1.3.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.3.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-fs%E6%A8%A1%E5%9D%97-%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">02.fs模块-读写文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-path%E6%A8%A1%E5%9D%97-%E8%B7%AF%E5%BE%84%E5%A4%84%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">03.path模块-路径处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="nav-number">1.5.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%A1%88%E4%BE%8B-%E5%8E%8B%E7%BC%A9%E5%89%8D%E7%AB%AFhtml"><span class="nav-number">1.6.</span> <span class="nav-text">04.案例-压缩前端html</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-3"><span class="nav-number">1.6.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-3"><span class="nav-number">1.6.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-3"><span class="nav-number">1.6.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E8%AE%A4%E8%AF%86URL%E4%B8%AD%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">1.7.</span> <span class="nav-text">05.认识URL中的端口号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-4"><span class="nav-number">1.7.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-4"><span class="nav-number">1.7.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-4"><span class="nav-number">1.7.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-http%E6%A8%A1%E5%9D%97-%E5%88%9B%E5%BB%BAWeb%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.8.</span> <span class="nav-text">06.http模块-创建Web服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-5"><span class="nav-number">1.8.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-5"><span class="nav-number">1.8.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-5"><span class="nav-number">1.8.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E6%A1%88%E4%BE%8B-%E6%B5%8F%E8%A7%88%E6%97%B6%E9%92%9F"><span class="nav-number">1.9.</span> <span class="nav-text">07.案例-浏览时钟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-6"><span class="nav-number">1.9.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-6"><span class="nav-number">1.9.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-6"><span class="nav-number">1.9.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02-Node-js%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">02_Node.js模块化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E8%87%AA%E6%B5%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">知识点自测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E6%A8%A1%E5%9D%97%E5%8C%96%E7%AE%80%E4%BB%8B"><span class="nav-number">2.2.</span> <span class="nav-text">01.模块化简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-7"><span class="nav-number">2.2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-7"><span class="nav-number">2.2.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-7"><span class="nav-number">2.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-ECMAScript%E6%A0%87%E5%87%86-%E9%BB%98%E8%AE%A4%E5%AF%BC%E5%87%BA%E5%92%8C%E5%AF%BC%E5%85%A5"><span class="nav-number">2.3.</span> <span class="nav-text">02.ECMAScript标准-默认导出和导入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-8"><span class="nav-number">2.3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-8"><span class="nav-number">2.3.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-8"><span class="nav-number">2.3.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-ECMAScript%E6%A0%87%E5%87%86-%E5%91%BD%E5%90%8D%E5%AF%BC%E5%87%BA%E5%92%8C%E5%AF%BC%E5%85%A5"><span class="nav-number">2.4.</span> <span class="nav-text">03.ECMAScript标准-命名导出和导入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-9"><span class="nav-number">2.4.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-9"><span class="nav-number">2.4.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-9"><span class="nav-number">2.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E5%8C%85%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.5.</span> <span class="nav-text">04.包的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-10"><span class="nav-number">2.5.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-10"><span class="nav-number">2.5.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-10"><span class="nav-number">2.5.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-npm%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">2.6.</span> <span class="nav-text">05.npm软件包管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-11"><span class="nav-number">2.6.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-11"><span class="nav-number">2.6.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-11"><span class="nav-number">2.6.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-npm%E5%AE%89%E8%A3%85%E6%89%80%E6%9C%89%E4%BE%9D%E8%B5%96"><span class="nav-number">2.7.</span> <span class="nav-text">06.npm安装所有依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-12"><span class="nav-number">2.7.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-12"><span class="nav-number">2.7.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-12"><span class="nav-number">2.7.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-npm%E5%85%A8%E5%B1%80%E8%BD%AF%E4%BB%B6%E5%8C%85-nodemon"><span class="nav-number">2.8.</span> <span class="nav-text">07.npm全局软件包-nodemon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-13"><span class="nav-number">2.8.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-13"><span class="nav-number">2.8.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-13"><span class="nav-number">2.8.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#08-Node-js%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="nav-number">2.9.</span> <span class="nav-text">08.Node.js概念和常用命令总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-14"><span class="nav-number">2.9.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-14"><span class="nav-number">2.9.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-14"><span class="nav-number">2.9.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03-Webpack%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">03_Webpack模块打包工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E8%87%AA%E6%B5%8B-2"><span class="nav-number">3.1.</span> <span class="nav-text">知识点自测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Webpack-%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E4%BD%93%E9%AA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">01.Webpack 简介以及体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-15"><span class="nav-number">3.2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-15"><span class="nav-number">3.2.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-15"><span class="nav-number">3.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-Webpack-%E4%BF%AE%E6%94%B9%E5%85%A5%E5%8F%A3%E5%92%8C%E5%87%BA%E5%8F%A3"><span class="nav-number">3.3.</span> <span class="nav-text">02.Webpack 修改入口和出口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-16"><span class="nav-number">3.3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-16"><span class="nav-number">3.3.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-16"><span class="nav-number">3.3.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E6%A1%88%E4%BE%8B-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95-%E9%95%BF%E5%BA%A6%E5%88%A4%E6%96%AD"><span class="nav-number">3.4.</span> <span class="nav-text">03.案例-用户登录-长度判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-17"><span class="nav-number">3.4.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-17"><span class="nav-number">3.4.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-17"><span class="nav-number">3.4.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-Webpack-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90-html-%E6%96%87%E4%BB%B6"><span class="nav-number">3.5.</span> <span class="nav-text">04.Webpack 自动生成 html 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-18"><span class="nav-number">3.5.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-18"><span class="nav-number">3.5.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-18"><span class="nav-number">3.5.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-Webpack-%E6%89%93%E5%8C%85-css-%E4%BB%A3%E7%A0%81"><span class="nav-number">3.6.</span> <span class="nav-text">05.Webpack-打包 css 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-19"><span class="nav-number">3.6.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-19"><span class="nav-number">3.6.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-19"><span class="nav-number">3.6.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-%E4%BC%98%E5%8C%96-%E6%8F%90%E5%8F%96-css-%E4%BB%A3%E7%A0%81"><span class="nav-number">3.7.</span> <span class="nav-text">06.优化-提取 css 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-20"><span class="nav-number">3.7.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-20"><span class="nav-number">3.7.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-20"><span class="nav-number">3.7.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E4%BC%98%E5%8C%96%E5%8E%8B%E7%BC%A9%E8%BF%87%E7%A8%8B"><span class="nav-number">3.8.</span> <span class="nav-text">07.优化压缩过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-21"><span class="nav-number">3.8.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-21"><span class="nav-number">3.8.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-21"><span class="nav-number">3.8.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#08-Webpack-%E6%89%93%E5%8C%85-less-%E4%BB%A3%E7%A0%81"><span class="nav-number">3.9.</span> <span class="nav-text">08.Webpack-打包 less 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-22"><span class="nav-number">3.9.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-22"><span class="nav-number">3.9.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-22"><span class="nav-number">3.9.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#09-Webpack-%E6%89%93%E5%8C%85%E5%9B%BE%E7%89%87"><span class="nav-number">3.10.</span> <span class="nav-text">09.Webpack-打包图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-23"><span class="nav-number">3.10.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-23"><span class="nav-number">3.10.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-23"><span class="nav-number">3.10.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%A1%88%E4%BE%8B-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95-%E5%AE%8C%E6%88%90%E5%8A%9F%E8%83%BD"><span class="nav-number">3.11.</span> <span class="nav-text">10.案例-用户登录-完成功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-24"><span class="nav-number">3.11.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-24"><span class="nav-number">3.11.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-24"><span class="nav-number">3.11.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Webpack-%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">3.12.</span> <span class="nav-text">10.Webpack 搭建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-25"><span class="nav-number">3.12.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-25"><span class="nav-number">3.12.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-25"><span class="nav-number">3.12.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Webpack-%E6%89%93%E5%8C%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.13.</span> <span class="nav-text">11.Webpack 打包模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-26"><span class="nav-number">3.13.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-26"><span class="nav-number">3.13.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-26"><span class="nav-number">3.13.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Webpack-%E6%89%93%E5%8C%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">3.14.</span> <span class="nav-text">12.Webpack 打包模式的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-27"><span class="nav-number">3.14.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-27"><span class="nav-number">3.14.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-27"><span class="nav-number">3.14.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Webpack-%E5%89%8D%E7%AB%AF%E6%B3%A8%E5%85%A5%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.15.</span> <span class="nav-text">13.Webpack 前端注入环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-28"><span class="nav-number">3.15.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-28"><span class="nav-number">3.15.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-28"><span class="nav-number">3.15.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Webpack-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%B0%83%E9%94%99-source-map"><span class="nav-number">3.16.</span> <span class="nav-text">14.Webpack 开发环境调错 source map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-29"><span class="nav-number">3.16.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-29"><span class="nav-number">3.16.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-29"><span class="nav-number">3.16.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Webpack-%E8%AE%BE%E7%BD%AE%E8%A7%A3%E6%9E%90%E5%88%AB%E5%90%8D%E8%B7%AF%E5%BE%84"><span class="nav-number">3.17.</span> <span class="nav-text">15.Webpack 设置解析别名路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-30"><span class="nav-number">3.17.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-30"><span class="nav-number">3.17.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-30"><span class="nav-number">3.17.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-%E4%BC%98%E5%8C%96-CDN%E4%BD%BF%E7%94%A8"><span class="nav-number">3.18.</span> <span class="nav-text">16.优化-CDN使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-31"><span class="nav-number">3.18.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-31"><span class="nav-number">3.18.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-31"><span class="nav-number">3.18.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Webpack-%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8C%85"><span class="nav-number">3.19.</span> <span class="nav-text">17.Webpack 多页面打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-32"><span class="nav-number">3.19.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-32"><span class="nav-number">3.19.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-32"><span class="nav-number">3.19.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-%E6%A1%88%E4%BE%8B-%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8C%85"><span class="nav-number">3.20.</span> <span class="nav-text">18.案例-发布文章页面打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-33"><span class="nav-number">3.20.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-33"><span class="nav-number">3.20.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-33"><span class="nav-number">3.20.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-%E4%BC%98%E5%8C%96-%E5%88%86%E5%89%B2%E5%85%AC%E5%85%B1%E4%BB%A3%E7%A0%81"><span class="nav-number">3.21.</span> <span class="nav-text">19.优化-分割公共代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-34"><span class="nav-number">3.21.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-34"><span class="nav-number">3.21.2.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-34"><span class="nav-number">3.21.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浊心"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">浊心</p>
+  <div class="site-description" itemprop="description">山鬼不识字，西风不解情</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/turheart" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;turheart" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:turheart.com@gmail.com" title="E-Mail → mailto:turheart.com@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浊心</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">1.5m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">22:09</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!-- ҳ����С���� -->
+
+      <script type="text/javascript" src="/js/clicklove.js"></script>
+
+</body>
+</html>
